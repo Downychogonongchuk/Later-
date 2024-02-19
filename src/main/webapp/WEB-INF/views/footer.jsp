@@ -4,6 +4,5 @@
 	<img src="resources/images/logo.png" class="footer-logo">
 		<span class="information">
 			REVIEW& 2024
-			00000000000000000000
 		</span>
 </div>
