@@ -37,7 +37,7 @@
 <jsp:include page="header.jsp" />
 	<div class="content">
 		<form action="mUpdateProc" method="post" enctype="multipart/form-data">
-            <h2 class="form-header">회원정보 수정</h2>
+            <h2 class="form-header">회원정보 수정</h2>          
                 <!-- 파일 입력 처리 영역 -->
                  <div class="filebox">
                 <label for="file">프로필사진</label>
