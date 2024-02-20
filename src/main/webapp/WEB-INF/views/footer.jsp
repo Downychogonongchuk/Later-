@@ -3,7 +3,7 @@
     
     <style>
 .footer-bar {
-	background-color: #1877F2;
+	background-color: #006BB9;
 	color: #fff;
 	height: 60px;
 	line-height: 60px;

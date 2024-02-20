@@ -223,9 +223,9 @@ font.pno {
 .filebox label {
 	display: inline-block;
 	padding: 10px 20px;
-	color: #999;
+	color: #ffffff;
 	vertical-align: middle;
-	background-color: #fdfdfd;
+	background-color: #006BB9;
 	cursor: pointer;
 	border: 1px solid #ebebeb;
 	border-radius: 5px;

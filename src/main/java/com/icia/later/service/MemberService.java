@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -21,9 +22,11 @@ public class MemberService {
 	@Autowired
 	private MemberDao mDao;
 
-	public String insertMember(List<MultipartFile> files, MemberDto member, HttpSession session,
-			RedirectAttributes rttr) {
-		log.info("insertMovie()");
+	public String insertMember(List<MultipartFile> files, 
+								MemberDto member, 
+								HttpSession session,
+								RedirectAttributes rttr) {
+		log.info("insertMember()");
 		String msg = null; // DB에 저장 성공/실패 관련 메세지 저장
 		String view = null;// 대상 페이지 지정 변수
 		String upFile = files.get(0).getOriginalFilename();
@@ -35,11 +38,11 @@ public class MemberService {
 			}
 			mDao.insertMember(member);
 			view = "redirect:/";
-			msg = "작성 성공";
+			msg = "가입 성공";
 		} catch (Exception e) {// 저장 실패인 경우
 			e.printStackTrace();
 			view = "redirect:/";
-			msg = "작성 실패";
+			msg = "가입 실패";
 		}
 		rttr.addFlashAttribute("msg", msg);
 
@@ -71,5 +74,56 @@ public class MemberService {
 		mf.transferTo(file); // 하드디스크(경로상의 폴더)에 저장
 		member.setMemberProfile(sysname);
 	}
+	
+	// 로그인
+		public String login(MemberDto member, HttpSession session, RedirectAttributes rttr) {
+			log.info("login2()");
+			String msg = null;
+			String view = null;
+			MemberDto loggedInMember = mDao.login(member);
+			System.out.println(loggedInMember);
+			System.out.println(member);
+			
+			if (loggedInMember != null) {
+			//	mDao.login(m_email, m_password);
+				msg = "로그인 성공";
+				view = "redirect:/";
+
+				System.out.println(loggedInMember);
+				// 로그인시 세션에 저장
+				session.setAttribute("login", loggedInMember);
+				System.out.println(loggedInMember);
+
+			} else {
+				msg = "이메일 및 비밀번호를 다시 확인해주세요.";
+				view = "redirect:login";
+			}
+			
+			rttr.addFlashAttribute("msg", msg);
+			System.out.println(msg);
+			
+			return view;
+		}
+		
+		public String logout(HttpSession session, RedirectAttributes rttr) {
+			log.info("logout()");
+			String msg = "로그아웃 성공";
+
+			session.removeAttribute("login");
+
+			rttr.addFlashAttribute("msg", msg);
+			return "redirect:/";
+		}
+		
+		//상세보기 처리 메소드
+		public void getMember(Integer memberId, Model model,HttpSession session) {
+			log.info("getMember()");
+			//DB에서 데이터 가져오기
+			session.setAttribute("", session);
+			MemberDto member = mDao.selectMember(memberId);
+			//model에 담기
+			model.addAttribute("member",member);
+			
+			}
 
 }
