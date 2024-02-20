@@ -47,13 +47,13 @@
 </style>
 
 <div class="top-bar"> <img alt="로고"
-	src="resources/images/logo1.png" class="logo"
+	src="resources/images/logo.png" class="logo"
 	onclick="location.href='/'">
 	<h2>리뷰엔</h2> 
 	<div class="lgoin-signin">
 	<i class="fa fa-user-circle-o" aria-hidden="true"></i> <a
 	class="link" href="loginPage">로그인</a> <a class="link"
-	href="registerPage">회원가입</a>
+	href="mSignIn">회원가입</a>
 	</div>
 </div>
 

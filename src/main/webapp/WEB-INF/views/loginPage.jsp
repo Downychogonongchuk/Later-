@@ -11,7 +11,7 @@
         <input type="password" name="password" placeholder="비밀번호">
         <button type="submit">로그인</button>
     </form>
-    <a href="/join">회원가입</a>
+    <a href="mSignIn">회원가입</a>
     <a href="#">아이디/비밀번호 찾기</a>
 </body>
 </html>

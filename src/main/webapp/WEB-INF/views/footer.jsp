@@ -20,7 +20,7 @@
 	
 </style>
 <div class="footer-bar">
-	<img src="resources/images/logo1.png" class="footer-logo">
+	<img src="resources/images/logo.png" class="footer-logo">
 		<span class="information">
 			REVIEW& 2024
 		</span>
