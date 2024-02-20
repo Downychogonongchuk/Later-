@@ -10,15 +10,15 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	
 	<!-- DB 처리용 객체 -->
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<!--  <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
 		<property name="url" value="jdbc:mysql://localhost:3306/later"/>
 		<property name="username" value="later"/>
 		<property name="password" value="1234"/>
-	</bean>
+	</bean>-->
 	
 	<!-- Mybatis 관련 설정 -->
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<!--  <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
 		<property name="configLocation" value="classpath:com/icia/later/dao/mybatis-conf.xml"/>
 	</bean>
@@ -26,5 +26,5 @@
 	<mybatis-spring:scan base-package="com.icia.later.dao"/>
 	
 	<tx:annotation-driven/>
-	
+	-->
 </beans>
