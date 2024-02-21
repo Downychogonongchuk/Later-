@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.icia.later.dto.BoardDto;
 import com.icia.later.dto.MemberDto;
+import com.icia.later.service.BoardService;
 import com.icia.later.service.MemberService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +25,8 @@ import lombok.extern.slf4j.Slf4j;
 public class HomeController {
 	@Autowired
 	private MemberService mServ;
-			
+	@Autowired
+	private BoardService bServ;
 	
 	@GetMapping("/")
 	public String home() {
@@ -58,7 +61,7 @@ public class HomeController {
 	public String mSigIn() {
 		log.info("mSigIn()");
 		
-		return "mSigIn";
+		return "mSignIn";
 	}
 	// 회원가입 처리 메서드
 	@PostMapping("mSignInProc")
@@ -72,6 +75,16 @@ public class HomeController {
 		return view;
 		}
 	
+	@PostMapping("writeProc")
+	public String writeProc(@RequestPart List<MultipartFile> files, 
+			BoardDto board,
+			HttpSession session,
+			RedirectAttributes rttr) {
+		log.info("writeProc()");
+		
+		String view = bServ.insertBoard(files, board, session, rttr);
+		return view;
+	}
 	
 	
 }

@@ -19,7 +19,7 @@
 	color: #fff;
 	line-height: 50px;
 	display: flex;
-	justify-content: center;
+	justify-content: space-between;
 	align-items: center; /* 요소를 수직 가운데 정렬 */
 }
 
@@ -36,7 +36,7 @@
 	color: white;
 }
 
-.top-bar a {
+.login-signin a {
 	margin-left: 10px;
 	text-decoration: none;
 }
@@ -46,14 +46,17 @@
 }
 </style>
 
-<div class="top-bar"> <img alt="로고"
-	src="resources/images/logo.png" class="logo"
-	onclick="location.href='/'">
-	<h2>리뷰엔</h2> 
+<div class="top-bar"> 
+	<div class="review">
+		<a href="/later"><img alt="로고" src="resources/images/logo.png" class="logo"></a>
+	</div>
+	<div class="site">
+		<h2>리뷰엔</h2> 
+	</div>
 	<div class="lgoin-signin">
-	<i class="fa fa-user-circle-o" aria-hidden="true"></i> <a
-	class="link" href="loginPage">로그인</a> <a class="link"
-	href="mSignIn">회원가입</a>
+		<i class="fa fa-user-circle-o" aria-hidden="true"></i> 
+		<a class="link" href="loginPage">로그인</a> 
+		<a class="link" href="mSignIn">회원가입</a>
 	</div>
 </div>
 
