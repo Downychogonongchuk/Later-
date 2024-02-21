@@ -4,18 +4,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>header</title>
+<title>footer</title>
 <link rel="stylesheet" href="resources/css/style.css">
-
 </head>
-
-
 <body>
 
-<div class="top-bar">
-	<img alt="로고" src="resources/images/logo.png"
-		class="logo" onclick="location.href='/'">
-	<h2>리뷰엔</h2>
+<div class="footer-bar">
+	<img src="resources/images/logo.png" class="footer-logo">
+		<span class="information">
+			REVIEW& 2024
+		</span>
 </div>
+
+
 </body>
 </html>

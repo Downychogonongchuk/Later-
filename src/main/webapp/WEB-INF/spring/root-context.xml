@@ -17,11 +17,11 @@
 		<property name="password" value="1234"/>
 	</bean>
 	
-	<!-- Mybatis 관련 설정 
+	<!-- Mybatis 관련 설정 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
 		<property name="configLocation" value="classpath:com/icia/later/dao/mybatis-conf.xml"/>
-	</bean>-->
+	</bean>
 	
 	<mybatis-spring:scan base-package="com.icia.later.dao"/>
 	
