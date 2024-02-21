@@ -25,7 +25,6 @@ public class HomeController {
 	@Autowired
 	private MemberService mServ;
 			
-	
 	@GetMapping("/")
 	public String home() {
 
@@ -39,8 +38,16 @@ public class HomeController {
 			
 		return "writeFrm";
 	}
+	
+	// 회원가입 유형선택페이지
+	@GetMapping("signSelect")
+	public String signSelect() {
+		log.info("signSelect()");
 		
-	// 회원가입페이지 이동
+		return "signSelect";
+	}
+	
+	// 일반회원 가입페이지 이동
 	@GetMapping("mSignIn")
 	public String mSignIn() {
 		log.info("mSignIn()");
@@ -56,7 +63,7 @@ public class HomeController {
 		log.info("mSignInProc()");
 				
 		String view = mServ.insertMember(files, member, session, rttr);
-		System.out.println(member);
+		
 		return view;
 		}
 	
@@ -102,8 +109,7 @@ public class HomeController {
 		if (logInInfo != null) {
 	        // 로그인한 회원 정보를 모델에 추가하여 JSP로 전달
 	        model.addAttribute("logInInfo", logInInfo);
-	        System.out.println(model);
-	        	        
+	        	        	        
 	}
 		return "mUpdate";
 }
@@ -121,7 +127,7 @@ public class HomeController {
 	}
 	@GetMapping("mDelete")
 	public String mDelete(Integer memberId,HttpSession session,RedirectAttributes rttr) {
-		log.info("mDelete()test");
+		log.info("mDelete()");
 		
 		
 		String view = mServ.mDelete(memberId,session,rttr);

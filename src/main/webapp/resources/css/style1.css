@@ -24,6 +24,9 @@ a:visited {
 /*
 * top-bar, footer-bar style
 */
+.top-bar .site {
+	text-align: center;
+}
 .top-bar {
 	background-color: #1877F2;
 	color: #fff;
@@ -135,6 +138,38 @@ a:visited {
 	margin: 0px auto;
 	margin-bottom: 50px;
 	text-align: center;
+}
+.button-container {
+	margin-top : 100px;
+  text-align: center;
+}
+.button-container .small-button {
+	margin-top : 100px;
+}
+
+.large-button, .small-button {
+	outline: none; /* 윤곽선 제거 */
+}
+.large-button {
+  padding: 50px 250px;
+  font-size: 30px;
+  background-color: #006BB9;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.small-button {
+  padding: 10px 20px;
+  font-size: 14px;
+  background-color: black;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  margin: 10px;
+  cursor: pointer;
 }
 .btn-area {
 	width: 300px;
@@ -319,6 +354,8 @@ font.pno {
 	}
 	.info-pre>div {
 		margin-bottom: 5px;
+	}
+		width: 100%;
 	}
 	.btn-area {
 		width: 100%;

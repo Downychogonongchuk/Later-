@@ -19,10 +19,17 @@
 	color: #fff;
 	line-height: 50px;
 	display: flex;
-	justify-content: center;
+	justify-content: space-between;
 	align-items: center; /* 요소를 수직 가운데 정렬 */
 }
+.top-bar #site{
+text-align: center;
+}
 
+.review {
+	vertical-align: middle;
+	text-align: left;
+}
 
 .logo {
 	margin: 4px;
@@ -31,31 +38,34 @@
 	border-radius: 10px;
 }
 
+
 .link {
 	font-size: 15px;
 	color: white;
 }
 
-.top-bar a {
+.login-signin a {
 	margin-left: 10px;
 	text-decoration: none;
 }
 
 .login-signin {
-	justify-content: flex-end !important
+	vertical-align: middle;
+	text-align: right;
 }
 </style>
 
-<div class="top-bar"> <a href="/later"><img alt="로고"
-	src="resources/images/나중엔 로고.png" class="logo"
-	></a>
-	<h2>리뷰엔</h2> 
-	<div class="lgoin-signin">
-	<i class="fa fa-user-circle-o" aria-hidden="true"></i> <a
-	class="link" href="login">로그인</a> <a class="link"
-	href="mSignIn">회원가입</a><a
-	class="link" href="logout">로그아웃</a><a
-	class="link" href="mUpdate">정보수정</a><a
-	class="link" href="mDelete">회원탈퇴</a>
+<div class="top-bar"> 
+	<div class="review">
+		<a href="/later"><img alt="로고" src="resources/images/logo.png" class="logo"></a>
+	</div>
+
+		<h2 id="site">리뷰엔</h2> 
+
+	<div class="login-signin">
+		<i class="fa fa-user-circle-o" aria-hidden="true"></i> 
+		<a class="link" href="loginPage">로그인</a> 
+		<a class="link" href="mSignIn">회원가입</a>
+		<a class="link" href="writeFrm">업체 등록</a>
 	</div>
 </div>

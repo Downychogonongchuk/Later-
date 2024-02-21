@@ -4,7 +4,6 @@ import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -79,9 +78,7 @@ public class MemberService {
 		String msg = null;
 		String view = null;
 		MemberDto loggedInMember = mDao.login(member);
-		System.out.println(loggedInMember);
-		System.out.println(member);
-
+		
 		if (loggedInMember != null) {
 			// mDao.login(m_email, m_password);
 			msg = "로그인 성공";
