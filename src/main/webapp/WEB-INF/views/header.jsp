@@ -24,8 +24,10 @@
 }
 
 .review { /* 로고위치 조정 */
+	flex: 1;
 	vertical-align: middle;
 	text-align: left;
+	padding-left: 5px;
 }
 
 .logo { /* 로고 스타일 */
@@ -36,6 +38,7 @@
 }
 
 .site { /* 사이트 이름 위치 조정 */
+	flex: 1;
 	text-align: center;
 }
 
@@ -50,8 +53,10 @@
 }
 
 .login-signin { /* 로그인, 회원가입*/
+	flex: 1;
 	vertical-align: middle;
 	text-align: right;
+	padding-right: 5px;
 }
 </style>
 
