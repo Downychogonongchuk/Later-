@@ -1,6 +1,5 @@
 package com.icia.later;
 
-import java.io.Console;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -108,14 +107,25 @@ public class HomeController {
 	}
 		return "mUpdate";
 }
+	// 회원정보 수정 처리
 	@PostMapping("mUpdateProc")
-	public String mUpdateProc() {
-		log.info("mUpdateProc()");
+	public String mUpdateProc(@RequestPart List<MultipartFile> files, 
+			MemberDto member,
+			HttpSession session,
+			RedirectAttributes rttr) {
+		log.info("updateProc()");
+		System.out.println("mUpdate에서 넘어온 dto"+member);
+		String view = mServ.memberUpdate(files, member, session, rttr);
+		
+		return view;
+	}
+	@GetMapping("mDelete")
+	public String mDelete(Integer memberId,HttpSession session,RedirectAttributes rttr) {
+		log.info("mDelete()");
 		
 		
-		
-		return "view";
+		String view = mServ.mDelete(memberId,session,rttr);
+		return view;
 	}
 	
-	
-	}
+}

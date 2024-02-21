@@ -55,6 +55,7 @@
 	class="link" href="login">로그인</a> <a class="link"
 	href="mSignIn">회원가입</a><a
 	class="link" href="logout">로그아웃</a><a
-	class="link" href="mUpdate">정보수정</a>
+	class="link" href="mUpdate">정보수정</a><a
+	class="link" href="mDelete">회원탈퇴</a>
 	</div>
 </div>

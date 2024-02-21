@@ -45,6 +45,12 @@
                 <input type="text" class="upload-name" value="파일선택" readonly>
             </div>
             <!-- 개인정보 입력 영역 -->
+            <input type="hidden" class="write-input" name="memberId"
+            autofocus value="${logInInfo.memberId}">
+            <input type="hidden" class="write-input" name="memberName"
+            autofocus value="${logInInfo.memberName}">
+            <input type="hidden" class="write-input" name="memberEmail"
+                   autofocus value="${logInInfo.memberEmail}">
             <h4>비밀번호</h4>
             <input type="password" class="write-input" name="memberPass"
                    autofocus value="${logInInfo.memberPass}">
@@ -55,28 +61,25 @@
             <input type="text" class="write-input" name="memberPhone"
                    autofocus value="${logInInfo.memberPhone}">
             <h4>사용하는 SNS</h4>
-            <select name = "sns" class="write-input" name="snsKind" required autofocus>
-			 	<option value="">==선택해주세요==</option>
-			 	<option value="">인스타그램</option>
-			 	<option value="">페이스북</option>
-			 	<option value="">네이버블로그</option>
-			 	<option value="">티스토리 블로그</option>
+            <select name = "snsKind" class="write-input" required autofocus>
+			<option value="없음">==선택해주세요==</option>
+			<option value="facebook">페이스북</option>
+			<option value="instagram">인스타그램</option>
+			<option value="blog">블로그</option>
+			<option value="youtube">유튜브</option>
             </select>
             <h4>본인의 SNS또는 BLOG 링크</h4>
             <input type="text" class="write-input" name="snsLink"
                    value="${logInInfo.snsLink}">
             <h4>팔로워 수</h4>       
-            <select name="follower" class="write-input" name="snsFollower" required autofocus>
-			 	<option value="">==선택해주세요==</option>
-			 	<option value="">~5000</option>
-			 	<option value="">5000~10000</option>
-			 	<option value="">10000~15000</option>
-			 	<option value="">15000~20000</option>
-			 	<option value="">20000~25000</option>
-			 	<option value="">25000~30000</option>
-			 	<option value="">35000~40000</option>
-			 	<option value="">45000~50000</option>
-			 	<option value="">50000만 이상</option>
+            <select name="snsFollower" class="write-input" required autofocus>
+			<option value="없음">==선택해주세요==</option>
+			<option value="1000">1~1,000</option>
+			<option value="5000">1,000~5,000</option>
+			<option value="10000">5,000~10,000</option>
+			<option value="30000">10,000~30,000</option>
+			<option value="50000">30,000~50,000</option>
+			<option value="50001">50,000 이상</option>
 			 </select>
 
             <div class="btn-area">

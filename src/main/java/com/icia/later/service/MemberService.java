@@ -22,10 +22,8 @@ public class MemberService {
 	@Autowired
 	private MemberDao mDao;
 
-	public String insertMember(List<MultipartFile> files, 
-								MemberDto member, 
-								HttpSession session,
-								RedirectAttributes rttr) {
+	public String insertMember(List<MultipartFile> files, MemberDto member, HttpSession session,
+			RedirectAttributes rttr) {
 		log.info("insertMember()");
 		String msg = null; // DB에 저장 성공/실패 관련 메세지 저장
 		String view = null;// 대상 페이지 지정 변수
@@ -74,56 +72,130 @@ public class MemberService {
 		mf.transferTo(file); // 하드디스크(경로상의 폴더)에 저장
 		member.setMemberProfile(sysname);
 	}
-	
+
 	// 로그인
-		public String login(MemberDto member, HttpSession session, RedirectAttributes rttr) {
-			log.info("login2()");
-			String msg = null;
-			String view = null;
-			MemberDto loggedInMember = mDao.login(member);
+	public String login(MemberDto member, HttpSession session, RedirectAttributes rttr) {
+		log.info("login2()");
+		String msg = null;
+		String view = null;
+		MemberDto loggedInMember = mDao.login(member);
+		System.out.println(loggedInMember);
+		System.out.println(member);
+
+		if (loggedInMember != null) {
+			// mDao.login(m_email, m_password);
+			msg = "로그인 성공";
+			view = "redirect:/";
+
 			System.out.println(loggedInMember);
-			System.out.println(member);
-			
-			if (loggedInMember != null) {
-			//	mDao.login(m_email, m_password);
-				msg = "로그인 성공";
-				view = "redirect:/";
+			// 로그인시 세션에 저장
+			session.setAttribute("login", loggedInMember);
+			System.out.println(loggedInMember);
 
-				System.out.println(loggedInMember);
-				// 로그인시 세션에 저장
-				session.setAttribute("login", loggedInMember);
-				System.out.println(loggedInMember);
-
-			} else {
-				msg = "이메일 및 비밀번호를 다시 확인해주세요.";
-				view = "redirect:login";
-			}
-			
-			rttr.addFlashAttribute("msg", msg);
-			System.out.println(msg);
-			
-			return view;
+		} else {
+			msg = "이메일 및 비밀번호를 다시 확인해주세요.";
+			view = "redirect:login";
 		}
-		
-		public String logout(HttpSession session, RedirectAttributes rttr) {
-			log.info("logout()");
-			String msg = "로그아웃 성공";
 
-			session.removeAttribute("login");
+		rttr.addFlashAttribute("msg", msg);
+		System.out.println(msg);
 
-			rttr.addFlashAttribute("msg", msg);
-			return "redirect:/";
+		return view;
+	}
+
+	// 로그아웃 처리
+//		public String logout(HttpSession session, RedirectAttributes rttr) {
+//			log.info("logout()");
+//			String msg = "로그아웃 성공";
+//
+//			session.removeAttribute("login");
+//
+//			rttr.addFlashAttribute("msg", msg);
+//			return "redirect:/";
+//		}
+
+	// 상세보기 처리 메소드
+	public void getMember(Integer memberId, Model model, HttpSession session) {
+		log.info("getMember()");
+		// DB에서 데이터 가져오기
+		session.setAttribute("", session);
+		MemberDto member = mDao.selectMember(memberId);
+		// model에 담기
+		model.addAttribute("member", member);
+
+	}
+
+	// 회원정보 수정 처리
+	public String memberUpdate(List<MultipartFile> files, MemberDto member, HttpSession session,
+			RedirectAttributes rttr) {
+		log.info("memberUpdate()");
+		String msg = null;
+		String view = null;
+		String poster = member.getMemberProfile();// 기존파일(포스터)
+
+		try {
+			if (!files.get(0).isEmpty()) {
+				FileUpload(files, session, member);
+
+				// 기존파일 삭제
+				if (poster != null) {
+					FileDelete(poster, session);
+				}
+			}
+			mDao.updateMember(member);
+			System.out.println("mServ" + member);
+
+			view = "redirect:/"; // + member.getMemberId();
+			msg = "수정 성공";
+			// 기존 파일 삭제
+		} catch (Exception e) {
+			e.printStackTrace();
+			view = "redirect:mUpdate?memberId=" + member.getMemberId();
+			msg = "수정 실패";
 		}
-		
-		//상세보기 처리 메소드
-		public void getMember(Integer memberId, Model model,HttpSession session) {
-			log.info("getMember()");
-			//DB에서 데이터 가져오기
-			session.setAttribute("", session);
-			MemberDto member = mDao.selectMember(memberId);
-			//model에 담기
-			model.addAttribute("member",member);
-			
+
+		rttr.addFlashAttribute("msg", msg);
+		return view;
+	}
+
+	// 기존 업로드이미지 삭제 처리 메서드
+	private void FileDelete(String poster, HttpSession session) throws Exception {
+		log.info("fileDelete()");
+
+		String realPath = session.getServletContext().getRealPath("/");
+		realPath += "resouces/upload/" + poster;
+		File file = new File(realPath);
+		if (file.exists()) {
+			file.delete();
+		}
+
+	}
+
+	public String mDelete(Integer memberId, HttpSession session, RedirectAttributes rttr) {
+		log.info("mDelete()");
+		String msg = null;
+		String view = null;
+		MemberDto loginInfo = (MemberDto) session.getAttribute("login");
+		int id = loginInfo.getMemberId();
+
+		try {
+			if (loginInfo != null) {
+				mDao.deleteMember(id);
+				System.out.println("mServ" + id);
+
+				view = "redirect:/"; // + member.getMemberId();
+				msg = "탈퇴 성공";
 			}
 
+			// 기존 파일 삭제
+		} catch (Exception e) {
+			e.printStackTrace();
+			view = "redirect:/";// + member.getMemberId();
+			msg = "탈퇴 실패";
+		}
+
+		rttr.addFlashAttribute("msg", msg);
+		return view;
+
+	}
 }

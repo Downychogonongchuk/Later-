@@ -42,7 +42,7 @@
 			<option value="10000">5,000~10,000</option>
 			<option value="30000">10,000~30,000</option>
 			<option value="50000">30,000~50,000</option>
-			<option value="50000+">50,000 이상</option>
+			<option value="50001">50,000 이상</option>
 		</select>
 			<button type="submit">회원가입</button>
 	</form>
