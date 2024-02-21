@@ -121,7 +121,7 @@ public class HomeController {
 	}
 	@GetMapping("mDelete")
 	public String mDelete(Integer memberId,HttpSession session,RedirectAttributes rttr) {
-		log.info("mDelete()");
+		log.info("mDelete()test");
 		
 		
 		String view = mServ.mDelete(memberId,session,rttr);
