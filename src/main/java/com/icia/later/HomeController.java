@@ -28,9 +28,10 @@ public class HomeController {
 	@Autowired
 	private BoardService bServ;
 	
+	//메인페이지
 	@GetMapping("/")
 	public String home() {
-
+		log.info("home()");
 		return "home";
 	}
 	
@@ -41,7 +42,8 @@ public class HomeController {
 			
 		return "writeFrm";
 	}
-		
+	
+	//회원정보 수정 페이지 이동
 	@GetMapping("mUpdate")
 	public String mUpdate() {
 		log.info("mUpdate");
@@ -49,6 +51,7 @@ public class HomeController {
 		return("mUpdate");
 	}
 	
+	// 로그인페이지 이동
 	@GetMapping("loginPage")
 	public String loginPage() {
 		log.info("loginPage()");
@@ -75,6 +78,7 @@ public class HomeController {
 		return view;
 		}
 	
+	// 모집등록 처리 메서드
 	@PostMapping("writeProc")
 	public String writeProc(@RequestPart List<MultipartFile> files, 
 			BoardDto board,

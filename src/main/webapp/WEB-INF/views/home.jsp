@@ -67,16 +67,6 @@
 				<li class="nav-item"><a class="nav-link" href="#">뷰티</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">기타</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">리뷰</a></li>
-
-				<!-- Dropdown -->
-				<!--  <li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" href="#" id="navbardrop"
-					data-toggle="dropdown"> Dropdown link </a>
-					<div class="dropdown-menu">
-						<a class="dropdown-item" href="#">Link 1</a> <a
-							class="dropdown-item" href="#">Link 2</a> <a
-							class="dropdown-item" href="#">Link 3</a>
-					</div></li>-->
 			</ul>
 		</nav>
 		<div>
@@ -90,7 +80,28 @@
 		<div>
 			<hr color="gray">
 		</div>
-		
+			<!--<c:if test="${empty bList}">
+				등록된 모집글이 없습니다.
+			</c:if>
+			<c:if test="${!empty bList}">
+				<c:forEach var="bitem" items="${bList}">
+					<div class="board-item">
+						<a href="detail?boardId=${bitem.boardId}">
+							<c:if test="${empty bitem.Boardfile}">
+								등록된 이미지가 없습니다.
+							</c:if>
+							<c:if test="${!empty bitem.Boardfile}">
+								<div>${bitem.Boardfile}</div>
+							</c:if>
+						</a>
+						<a href="detail?boardId=${bitem.boardId}">
+							${bitem.companeyName}
+						</a>
+						<div>${bitem.price}</div>
+						<div>${bitem.personnel}</div>
+					</div>
+				</c:forEach>
+			</c:if>-->
 			<p>Some example text. Some example text. Some example text. Some
 				example text. Some example text.</p>
 			<p>Some example text. Some example text. Some example text. Some

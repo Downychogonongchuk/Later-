@@ -54,7 +54,7 @@ public class BoardService {
 
 		String realPath = session.getServletContext().getRealPath("/");
 		log.info(realPath);
-		realPath += "resources/upload/";
+		realPath += "/resources/upload/";
 		File folder = new File(realPath);
 //isDirectory() : 해당 이름이 폴더가 아니거나 존재하지않으면 false
 		if (folder.isDirectory() == false) {

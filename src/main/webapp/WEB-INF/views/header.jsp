@@ -14,7 +14,7 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 <style>
-.top-bar {
+.top-bar { /* 헤더 바 */
 	background-color: #006BB9;
 	color: #fff;
 	line-height: 50px;
@@ -23,26 +23,35 @@
 	align-items: center; /* 요소를 수직 가운데 정렬 */
 }
 
+.review { /* 로고위치 조정 */
+	vertical-align: middle;
+	text-align: left;
+}
 
-.logo {
+.logo { /* 로고 스타일 */
 	margin: 4px;
 	width: 50px;
 	height: 50px;
 	border-radius: 10px;
 }
 
-.link {
+.site { /* 사이트 이름 위치 조정 */
+	text-align: center;
+}
+
+.link { /* 링크 스타일 */
 	font-size: 15px;
 	color: white;
 }
 
-.login-signin a {
+.login-signin a { /* 로그인, 회원가입*/
 	margin-left: 10px;
 	text-decoration: none;
 }
 
-.login-signin {
-	justify-content: flex-end !important
+.login-signin { /* 로그인, 회원가입*/
+	vertical-align: middle;
+	text-align: right;
 }
 </style>
 
@@ -50,13 +59,12 @@
 	<div class="review">
 		<a href="/later"><img alt="로고" src="resources/images/logo.png" class="logo"></a>
 	</div>
-	<div class="site">
-		<h2>리뷰엔</h2> 
-	</div>
-	<div class="lgoin-signin">
+		<h2>리뷰엔</h2>
+	<div class="login-signin">
 		<i class="fa fa-user-circle-o" aria-hidden="true"></i> 
 		<a class="link" href="loginPage">로그인</a> 
 		<a class="link" href="mSignIn">회원가입</a>
+		<!--  <a class="link" href="writeFrm">업체 등록</a>  -->
 	</div>
 </div>
 
