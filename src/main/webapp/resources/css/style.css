@@ -1,12 +1,17 @@
 @charset "UTF-8";
-
+/*header*/
 .top-bar {
-	background-color : #006BB9;
+	background-color: #006BB9;
 	color: #fff;
 	line-height: 50px;
 	display: flex;
-	justify-content: center;
-	align-items: center;
+	justify-content: space-between;
+	align-items: center; /* 요소를 수직 가운데 정렬 */
+}
+
+.review { /*로고:리뷰엔*/
+	vertical-align: middle;
+	text-align: left;
 }
 
 .logo {
@@ -15,7 +20,29 @@
 	height: 50px;
 	border-radius: 10px;
 }
+
+.site {
+	text-align: center;
+}
+
+.link {
+	font-size: 15px;
+	color: white;
+}
+
+.login-signin a {
+	margin-left: 10px;
+	text-decoration: none;
+}
+
+.login-signin {
+	vertical-align: middle;
+	text-align: right;
+}
  
+ 
+ 
+ /*footer*/
 .footer-bar {
 	background-color: #006BB9;
 	color: #fff;
