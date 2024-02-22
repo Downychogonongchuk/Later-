@@ -32,12 +32,12 @@
 			</section>
 		<div class="right">
 			<!-- 인포 -->
-			<form id="detailForm" method="post" action="controller_method"
+			<form id="detailForm" method="post" action=""
 				enctype="multipart/form-data">
 				<section class="info">
 					<p>
-						<strong>파일</strong><br>${board.boardfile}</p>
-					<input type="hidden" name="Boardfile" value="${board.boardfile}">
+						<strong>파일</strong><br>${board.boardFile}</p>
+					<input type="hidden" name="Boardfile" value="${board.boardFile}">
 					
 					<p>
 						<strong>boardId:</strong> ${board.boardId}
@@ -100,20 +100,17 @@
 				<!-- 결제버튼-->
 				<button type="submit" id="btn-apply" class="btn-apply">신청하기</button>
 				<!-- 결제버튼 완-->
+				<button type="submit" id="btn-interest" class="btn-interest">찜</button>
 			</form>
+				
+				
 
-			<script>
-            $("#btn-apply").click(function () {
-            	// 로그인 함수 체크 um
-        		if(){ 
-        			$('#').
-        		}
-            	location.href = `./detail?boardID=${board.boardId}`;
-            	  
-            	e.preventDefault();
-        	});	
-            
-            </script>
+<script>
+	$("#btn-apply").click(function() {
+		location.href = `./`;
+	});
+	
+</script>
 		</div>
 		<!-- 오른쪽  완료-->
 

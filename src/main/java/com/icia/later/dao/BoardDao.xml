@@ -19,5 +19,11 @@
 		where boardId=#{boardId}
   	</select>
   		
+  	<select id="applyCompany" parameterType="Integer"
+  		resultType="board">
+  		select * from board
+  		where boardId=#{boardId}
+  		</select>
+  	
   	
   </mapper>

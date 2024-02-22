@@ -8,10 +8,18 @@
 	justify-content: space-between;
 	align-items: center; /* 요소를 수직 가운데 정렬 */
 }
-
-.review { /*로고:*/
+/*
+.review { 로고:
 	vertical-align: middle;
 	text-align: left;
+} 
+*/
+
+.review { /* 로고위치 조정 */
+	flex: 1;
+	vertical-align: middle;
+	text-align: left;
+	padding-left: 5px;
 }
 
 .logo {
@@ -20,12 +28,17 @@
 	height: 50px;
 	border-radius: 10px;
 }
-
-.site { /*리뷰엔*/
+.site { /* 사이트 이름 위치 조정 */
+	flex: 1;
 	text-align: center;
-	margin-left: 50%; /* 반 화면의 가로 중앙으로 이동 */
-    transform: translateX(-50%); /* 중앙 정렬 */
 }
+/*
+.site { 리뷰엔
+	text-align: center;
+	margin-left: 50%; 
+    transform: translateX(-50%); 
+}
+*/
 
 .link {
 	font-size: 15px;
@@ -37,11 +50,19 @@
 	text-decoration: none;
 }
 
+/*
 .login-signin {
 	vertical-align: middle;
 	text-align: right;
 }
- 
+*/
+
+.login-signin { /* 로그인, 회원가입*/
+	flex: 1;
+	vertical-align: middle;
+	text-align: right;
+	padding-right: 5px;
+}
  
  
  /*footer*/

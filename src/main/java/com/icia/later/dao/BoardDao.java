@@ -13,5 +13,9 @@ public interface BoardDao {
 	
 	//게시글 정보 상세보기
 		BoardDto selectBoard(Integer boardId);
+
+
+	//내가 신청한 업체 목록보기
+		BoardDto applyCompany(Integer boardId);
 	
 }
