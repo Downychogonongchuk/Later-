@@ -119,7 +119,6 @@ public class MemberService {
 		MemberDto member = mDao.selectMember(memberId);
 		// model에 담기
 		model.addAttribute("member", member);
-
 	}
 
 	// 회원정보 수정 처리
