@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page session="false"%>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 <link rel="stylesheet"
@@ -66,10 +68,41 @@
 	</div>
 		<h2>리뷰엔</h2>
 	<div class="login-signin">
-		<i class="fa fa-user-circle-o" aria-hidden="true"></i> 
+		<!-- mLogin: 일반회원 로그인 여부
+			 cLogin: 업체회원 로그인 여부 -->
+		<% 
+		 	//mLogin: 일반회원 로그인 여부
+		 	//cLogin: 업체회원 로그인 여부
+			boolean mLogin = false; 
+			boolean cLogin = true;
+			//일반회원 로그인 X, 업체회원 로그인 X
+			if(mLogin == false && cLogin == false) {
+		%>
+		<!-- 아무도 로그인하지 않았을 때 보여주는 태그 -->
+		<i class="fa fa-user-circle-o" aria-hidden="true"></i>
 		<a class="link" href="loginPage">로그인</a> 
 		<a class="link" href="mSignIn">회원가입</a>
-		<!--  <a class="link" href="writeFrm">업체 등록</a>  -->
+		<%
+			}
+			// 일반회원 로그인 X, 업체회원 로그인 O
+			else if(cLogin == true) {
+		%>
+		<!-- 업체회원이 로그인 했을 때 보여주는 태그 -->
+		<a class="link" href="#">마이페이지</a>
+		<a class="link" href="writeFrm">업체 등록</a> 
+		<a class="link" href="mSignIn">로그아웃</a>
+		<%
+			}
+			// 일반회원 로그인 O, 업체회원 로그인 X
+			else if(mLogin == true) {
+		%>
+		<!-- 일반회원이 로그인 했을 때 보여주는 태그 -->
+		<a class="link" href="#">마이페이지</a>
+		<a class="link" href="mSignIn">로그아웃</a>
+		<%
+			}
+		%>
 	</div>
 </div>
+
 

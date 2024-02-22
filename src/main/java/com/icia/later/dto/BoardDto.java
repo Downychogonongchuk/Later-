@@ -18,5 +18,5 @@ public class BoardDto {
 	private String checkInfo;
 	private String provideType;
 	private int price;
-	private String Boardfile;
+	private String boardFile;
 }

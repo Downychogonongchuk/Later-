@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page session="false"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,9 +52,9 @@
             </div>
             <input type="text" class="write-input" name="companyName"
                    autofocus placeholder="가게명" required>
-            <input type="text" class="write-input" name="perioStart"
+            <input type="text" class="write-input" name="periodStart"
                    placeholder="모집시작일 ex)2024-02-00" required>
-            <input type="text" class="write-input" name="perioEnd"
+            <input type="text" class="write-input" name="periodEnd"
                    placeholder="모집종료일 ex)2024-02-00" required>
             <input type="text" class="write-input" name="personnel"
                    placeholder="모집인원" required>

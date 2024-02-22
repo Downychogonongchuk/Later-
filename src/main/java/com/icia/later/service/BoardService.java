@@ -52,7 +52,7 @@ public class BoardService {
 		String sysname = null;// 변경하는 파일명
 		String oriname = null;// 원래 파일명
 
-		String realPath = session.getServletContext().getRealPath("/");
+		String realPath = session.getServletContext().getRealPath("/WEB-INF");
 		log.info(realPath);
 		realPath += "/resources/upload/";
 		File folder = new File(realPath);
@@ -69,7 +69,7 @@ public class BoardService {
 		File file = new File(realPath + sysname);
 
 		mf.transferTo(file); // 하드디스크(경로상의 폴더)에 저장
-		board.setBoardfile(sysname);
+		board.setBoardFile(sysname);
 	}
 
 }
