@@ -10,4 +10,14 @@
 				#{price}, #{boardFile})
 	</insert>
 	
+	<update id="updateBoard" parameterType="board">
+		UPDATE board
+		SET periodStart=#{periodStart}, periodEnd=#{periodEnd}, 
+		personnel=#{personnel}, companyName=#{companyName},
+		detail=#{detail}, checkInfo=#{checkInfo}, 
+		provideType=#{provideType}, price=#{price}, 
+		boardFile=#{boardFile}
+		
+		WHERE boardId = #{boardId}
+	</update>
 </mapper>

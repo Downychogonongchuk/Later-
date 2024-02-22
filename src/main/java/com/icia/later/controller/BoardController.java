@@ -42,4 +42,24 @@ public class BoardController {
 			String view = bServ.insertBoard(files, board, session, rttr);
 			return view;
 		}
+		
+		//업체정보 수정페이지 전환
+		@GetMapping("bUpdate")
+		public String bUpdate() {
+			log.info("bUpdate()");
+			
+			return "bUpdate";
+		}
+		
+		//업체정보 수정 처리 메서드
+		@PostMapping("bUpdateProc")
+		public String bUpdateProc(@RequestPart List<MultipartFile> files, 
+				BoardDto board,
+				HttpSession session,
+				RedirectAttributes rttr) {
+			log.info("bUpdateProc()");
+			String view = bServ.boardUpdate(files, board, session, rttr);
+			
+			return view;
+		}
 }

@@ -7,6 +7,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script>
+            let m = "${msg}";
+            if(m != ""){
+                alert(m);
+            }
+            
+    </script>
 </head>
 <body>
 
@@ -21,7 +28,7 @@
 		<input type="text" name="memberName" placeholder="회원 이름"><br />
 		<input type="text" name="memberPhone" placeholder="전화번호">
 		<h3>사용하는 SNS</h3>
-		<select name="sns">
+		<select name="snsKind">
 			<option value="없음"></option>
 			<option value="facebook">Facebook</option>
 			<option value="instagram">Instagram</option>

@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -23,13 +24,21 @@ public class MemberController {
 	@Autowired
 	private MemberService mServ;
 	
-		//회원정보 수정 페이지 이동
-		@GetMapping("mUpdate")
-		public String mUpdate() {
-			log.info("mUpdate");
-			
-			return("mUpdate");
+	// 회원정보 수정페이지 이동
+			@GetMapping("mUpdate")
+			public String mUpdate(Model model,HttpSession session) {
+				log.info("mUpdate()");
+				
+				MemberDto logInInfo = (MemberDto) session.getAttribute("login");
+				
+				if (logInInfo != null && session.getAttribute("login") != null) {
+			        // 로그인한 회원 정보를 모델에 추가하여 JSP로 전달
+			        model.addAttribute("logInInfo", logInInfo);
+			        	        	        	        
+			}
+				return "mUpdate";
 		}
+		
 		
 		// 회원가입 처리 메서드
 		@PostMapping("mSignInProc")

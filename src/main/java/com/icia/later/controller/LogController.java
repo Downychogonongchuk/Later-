@@ -21,11 +21,11 @@ public class LogController {
 	private MemberService mServ;
 	
 	// 로그인페이지 이동
-		@GetMapping("loginPage")
+		@GetMapping("login")
 		public String loginPage() {
 			log.info("loginPage()");
 			
-			return "loginPage";
+			return "login";
 		}
 		
 		// 로그인 처리 메서드

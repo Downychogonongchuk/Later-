@@ -72,4 +72,41 @@ public class BoardService {
 		board.setBoardFile(sysname);
 	}
 
+	public String boardUpdate(List<MultipartFile> files, BoardDto board, HttpSession session, RedirectAttributes rttr) {
+		
+		log.info("boardUpdate()");
+		String msg = null;
+		String view = null;
+		String poster = board.getBoardFile();// 기존파일(포스터)
+		
+		try {
+			if (!files.get(0).isEmpty()) {
+				FileUpload(files, session, board);
+
+				// 기존파일 삭제
+				if (poster != null) {
+					FileDelete(poster, session);
+				}
+			}
+			bDao.updateMember(board);
+			System.out.println("mServ" + board);
+
+			view = "redirect:/"; // + member.getMemberId();
+			msg = "수정 성공";
+			// 기존 파일 삭제
+		} catch (Exception e) {
+			e.printStackTrace();
+			view = "redirect:mUpdate?memberId=" + board.getMemberId();
+			msg = "수정 실패";
+		}
+
+		rttr.addFlashAttribute("msg", msg);
+		return view;
+	}
+
+	private void FileDelete(String poster, HttpSession session) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

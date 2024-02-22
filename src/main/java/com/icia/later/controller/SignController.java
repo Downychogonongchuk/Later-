@@ -4,8 +4,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -13,12 +13,15 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.icia.later.dto.MemberDto;
+import com.icia.later.service.MemberService;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @Slf4j
 public class SignController {
+	@Autowired
+	private MemberService mServ;
 	
 	// 회원가입페이지 이동
 	@GetMapping("mSignIn")
@@ -36,20 +39,7 @@ public class SignController {
 			return "signSelect";
 		}
 	
-		// 회원정보 수정페이지 이동
-		@GetMapping("mUpdate")
-		public String mUpdate(Model model,HttpSession session) {
-			log.info("mUpdate()");
-			
-			MemberDto logInInfo = (MemberDto) session.getAttribute("login");
-			
-			if (logInInfo != null && session.getAttribute("login") != null) {
-		        // 로그인한 회원 정보를 모델에 추가하여 JSP로 전달
-		        model.addAttribute("logInInfo", logInInfo);
-		        	        	        	        
-		}
-			return "mUpdate";
-	}
+		
 		// 회원정보 수정 처리
 		@PostMapping("mUpdateProc")
 		public String mUpdateProc(@RequestPart List<MultipartFile> files, 

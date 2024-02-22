@@ -18,6 +18,8 @@
 	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
 <style type="text/css">
 .wrap {
 	display: flex;
@@ -53,6 +55,13 @@
 	font-size: 20px;
 }
 </style>
+<script>
+            let m = "${msg}";
+            if(m != ""){
+                alert(m);
+            }
+            
+    </script>
 </head>
 <body>
 	<div class="wrap">
@@ -80,17 +89,17 @@
 		<div>
 			<hr color="gray">
 		</div>
-			<!--<c:if test="${empty bList}">
+			<!-- <c:if test="${empty bList}">
 				등록된 모집글이 없습니다.
 			</c:if>
 			<c:if test="${!empty bList}">
 				<c:forEach var="bitem" items="${bList}">
 					<div class="board-item">
 						<a href="detail?boardId=${bitem.boardId}">
-							<c:if test="${empty bitem.Boardfile}">
+							<c:if test="${empty bitem.boardFile}">
 								등록된 이미지가 없습니다.
 							</c:if>
-							<c:if test="${!empty bitem.Boardfile}">
+							<c:if test="${!empty bitem.boardFile}">
 								<div>${bitem.Boardfile}</div>
 							</c:if>
 						</a>
@@ -101,7 +110,7 @@
 						<div>${bitem.personnel}</div>
 					</div>
 				</c:forEach>
-			</c:if>-->
+			</c:if> -->
 			<p>Some example text. Some example text. Some example text. Some
 				example text. Some example text.</p>
 			<p>Some example text. Some example text. Some example text. Some

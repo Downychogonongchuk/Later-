@@ -16,10 +16,10 @@ public class MemberDto {
 	private String memberEmail;
 	private String memberPass;
 	private String memberPhone;
-	private String snsFollower;
+	private int snsFollower;
 	private String snsLink;
 	private String memberProfile;
-	
+	private String snsKind;
 	
 	
 }
