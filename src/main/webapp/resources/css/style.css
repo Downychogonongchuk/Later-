@@ -9,7 +9,7 @@
 	align-items: center; /* 요소를 수직 가운데 정렬 */
 }
 
-.review { /*로고:리뷰엔*/
+.review { /*로고:*/
 	vertical-align: middle;
 	text-align: left;
 }
@@ -21,8 +21,10 @@
 	border-radius: 10px;
 }
 
-.site {
+.site { /*리뷰엔*/
 	text-align: center;
+	margin-left: 50%; /* 반 화면의 가로 중앙으로 이동 */
+    transform: translateX(-50%); /* 중앙 정렬 */
 }
 
 .link {

@@ -33,6 +33,22 @@ public class HomeController {
 		return "companyDetail";
 	}
 	
+	@GetMapping("applyCompany")
+	public String applyList() {
+		return "applyCompany";	
+	}
+	
+//	@GetMapping("applyCompany")
+//	public String applyList(Integer MemberId, Model model) {
+//		log.info("companyDetail()");
+//		MemberId = 1;
+//		bServ.getCompanyDetail(MemberId, model);
+//		System.out.println(model);
+////		model.addAttribute(model);
+//		
+//		return "companyDetail";
+//	}
+//	
 	
 		
 }

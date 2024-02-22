@@ -28,7 +28,9 @@
 <div class="top-bar">
 	<img alt="로고" src="resources/images/logo.png"
 		class="logo" onclick="location.href='/'">
-	<h2>리뷰엔</h2>
+	<div class="site">
+		<h2>리뷰엔</h2> 
+	</div>
 	<div class="login-signin">
 		<i class="fa fa-user-circle-o" aria-hidden="true"></i> 
 		<a class="link" href="loginPage">로그인</a> 
