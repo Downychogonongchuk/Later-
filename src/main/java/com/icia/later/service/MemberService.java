@@ -72,7 +72,7 @@ public class MemberService {
 		member.setMemberProfile(sysname);
 	}
 
-	// 로그인
+	// 로그인기능
 	public String login(MemberDto member, HttpSession session, RedirectAttributes rttr) {
 		log.info("login2()");
 		String msg = null;

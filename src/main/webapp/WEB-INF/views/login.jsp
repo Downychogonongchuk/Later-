@@ -36,7 +36,6 @@
 					<a href="mSignIn" class="link1">회원가입</a>
 					<br> <input type="button" class="btn-write" value="홈으로 돌아가기"
 						id="backbtn">
-
 				</div>
 			</form>
 		</div>

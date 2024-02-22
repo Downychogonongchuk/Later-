@@ -38,7 +38,6 @@ text-align: center;
 	border-radius: 10px;
 }
 
-
 .link {
 	font-size: 15px;
 	color: white;

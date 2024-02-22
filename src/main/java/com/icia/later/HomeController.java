@@ -32,14 +32,6 @@ public class HomeController {
 		return "home";
 	}
 	
-	//모집등록페이지 전환
-	@GetMapping("writeFrm")
-	public String writeFrm() {
-		log.info("writeFrm()");
-			
-		return "writeFrm";
-	}
-	
 	// 회원가입 유형선택페이지
 	@GetMapping("signSelect")
 	public String signSelect() {
