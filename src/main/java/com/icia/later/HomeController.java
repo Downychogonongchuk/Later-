@@ -2,6 +2,7 @@ package com.icia.later;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,13 +89,26 @@ public class HomeController {
 	}
 	// 로그아웃 
 	@GetMapping("logout")
-	public String logout(HttpSession session, RedirectAttributes rttr) {
+	public String logout(HttpServletRequest request, RedirectAttributes rttr) {
 	    log.info("logout()");
-	    String msg = "로그아웃 되었습니다 감사합니다.";
-	    // 세션에서 "login" 속성만을 제거
-	    session.removeAttribute("login");
-	    
-	    rttr.addFlashAttribute("msg",msg);
+	    String msg = null;
+
+	    HttpSession session = request.getSession(false); // false 플래그는 새로운 세션이 생성되지 않도록 합니다.
+
+	    if (session != null && session.getAttribute("login") != null) {
+	        // 세션이 비어있지 않을 때 로그아웃 처리
+	        session.invalidate();
+	        System.out.println(session);
+	        msg = "로그아웃 되었습니다. 감사합니다.";
+	        
+	    } else {
+	        // 이미 로그아웃 되어있거나 세션이 없는 경우
+	    	System.out.println(session);
+	    	msg = "이미 로그아웃 되어 있습니다.";
+	        
+	    }
+
+	    rttr.addFlashAttribute("msg", msg);
 	    return "redirect:/";
 	}
 	
@@ -106,10 +120,10 @@ public class HomeController {
 		
 		MemberDto logInInfo = (MemberDto) session.getAttribute("login");
 		
-		if (logInInfo != null) {
+		if (logInInfo != null && session.getAttribute("login") != null) {
 	        // 로그인한 회원 정보를 모델에 추가하여 JSP로 전달
 	        model.addAttribute("logInInfo", logInInfo);
-	        	        	        
+	        	        	        	        
 	}
 		return "mUpdate";
 }
@@ -131,6 +145,11 @@ public class HomeController {
 		
 		
 		String view = mServ.mDelete(memberId,session,rttr);
+		if (session != null && session.getAttribute("login") != null) {
+	        // 탈퇴 후 세션에 저장되어있는 값 삭제
+	        session.invalidate();
+	    }
+
 		return view;
 	}
 	

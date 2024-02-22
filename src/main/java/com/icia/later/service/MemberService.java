@@ -78,9 +78,9 @@ public class MemberService {
 		String msg = null;
 		String view = null;
 		MemberDto loggedInMember = mDao.login(member);
+		System.out.println(loggedInMember);
 		
 		if (loggedInMember != null) {
-			// mDao.login(m_email, m_password);
 			msg = "로그인 성공";
 			view = "redirect:/";
 
@@ -101,15 +101,15 @@ public class MemberService {
 	}
 
 	// 로그아웃 처리
-//		public String logout(HttpSession session, RedirectAttributes rttr) {
-//			log.info("logout()");
-//			String msg = "로그아웃 성공";
-//
-//			session.removeAttribute("login");
-//
-//			rttr.addFlashAttribute("msg", msg);
-//			return "redirect:/";
-//		}
+		public String logout(HttpSession session, RedirectAttributes rttr) {
+			log.info("logout()");
+			String msg = "로그아웃 성공";
+
+			session.removeAttribute("login");
+
+			rttr.addFlashAttribute("msg", msg);
+			return "redirect:/";
+		}
 
 	// 상세보기 처리 메소드
 	public void getMember(Integer memberId, Model model, HttpSession session) {
@@ -129,7 +129,7 @@ public class MemberService {
 		String msg = null;
 		String view = null;
 		String poster = member.getMemberProfile();// 기존파일(포스터)
-
+		
 		try {
 			if (!files.get(0).isEmpty()) {
 				FileUpload(files, session, member);
@@ -167,7 +167,7 @@ public class MemberService {
 		}
 
 	}
-
+	// 회원 탈퇴 메서드
 	public String mDelete(Integer memberId, HttpSession session, RedirectAttributes rttr) {
 		log.info("mDelete()");
 		String msg = null;

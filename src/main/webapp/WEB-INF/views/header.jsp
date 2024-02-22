@@ -62,10 +62,17 @@ text-align: center;
 
 		<h2 id="site">리뷰엔</h2> 
 
+    
 	<div class="login-signin">
-		<i class="fa fa-user-circle-o" aria-hidden="true"></i> 
-		<a class="link" href="loginPage">로그인</a> 
+		<i class="fa fa-user-circle-o" aria-hidden="true"></i>
+		<a class="link" href="login">로그인</a> 
+		<a class="link" href="logout">로그아웃</a>
 		<a class="link" href="mSignIn">회원가입</a>
+		<a class="link" href="mUpdate">회원정보수정</a>
+		<a class="link" href="mDelete">회원탈퇴</a>
 		<a class="link" href="writeFrm">업체 등록</a>
 	</div>
 </div>
+
+
+
