@@ -52,7 +52,7 @@ public class MemberService {
 		String sysname = null;// 변경하는 파일명
 		String oriname = null;// 원래 파일명
 
-		String realPath = session.getServletContext().getRealPath("/WEB-INF");
+		String realPath = session.getServletContext().getRealPath("/");
 		log.info(realPath);
 		realPath += "/resources/upload/";
 		File folder = new File(realPath);
@@ -133,7 +133,7 @@ public class MemberService {
 
 	private void FileDelete(String poster, HttpSession session) {
 		String realPath = session.getServletContext().getRealPath("/");
-		realPath += "resouces/upload/" + poster;
+		realPath += "resources/upload/" + poster;
 		File file = new File(realPath);
 		if (file.exists()) {
 			file.delete();

@@ -5,7 +5,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>업체정보 수정</title>
-	<link rel="stylesheet" href="resources/css/style1.css">
+	<link rel="stylesheet" href="resources/css/style.css">
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js" 
 			integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" 
 			crossorigin="anonymous"></script>
@@ -60,26 +60,29 @@
             </div>
             <!-- 변경할 업체 정보 입력 -->
             <input type="hidden" class="write-input" name="boardId"
-            autofocus value="${logInInfo.boardId}">
+            autofocus value="${board.boardId}">
+            <h4>모집시작일</h4>
             <input type="text" class="write-input" name="periodStart"
-            autofocus value="${logInInfo.periodStart}">
+            autofocus value="${board.periodStart}" placeholder="ex)2024-02-00">
+            <h4>모집종료일</h4>
             <input type="text" class="write-input" name="periodEnd"
-                   autofocus value="${logInInfo.periodEnd}">
+                   autofocus value="${board.periodEnd}" placeholder="ex)2024-02-00">
+            <h4>모집인원</h4>
             <input type="text" class="write-input" name="personnel"
-                   autofocus value="${logInInfo.personnel}">
-            <input type="text" class="write-input" name="companyName"
+                   value="${board.personnel}">
+            <input type="hidden" class="write-input" name="companyName"
                    autofocus placeholder="companyName">
-            <h4>detail</h4>
-            <input type="detail" class="write-input" name="detail"
-                   autofocus value="${logInInfo.detail}">
-           
-            <input type="detail" class="write-input" name="checkInfo"
-                   autofocus value="${logInInfo.checkInfo}">
-            <input type="text" class="write-input" name="provideType"
-                   value="${logInInfo.snsLink}">
+            <h4>모집내용</h4>
+            <textarea class="write-input" name="detail"
+                   >${board.detail}</textarea> 
+           <h4>체크사항 및 요청사항</h4>
+            <textarea class="write-input" name="checkInfo"
+                   >${board.checkInfo}</textarea>
+             <input type="text" class="write-input" name="provideType"
+                   value="${board.provideType}">
             <input type="text" class="write-input" name="price"
-                   value="${logInInfo.price}">
-
+                   value="${board.price}">
+			
             <div class="btn-area">
                 <input type="submit" class="btn-write" value="수정완료">
                 <input type="button" class="btn-write" value="뒤로가기" id="backbtn">

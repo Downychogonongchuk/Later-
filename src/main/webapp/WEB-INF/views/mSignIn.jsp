@@ -16,7 +16,7 @@
     </script>
 </head>
 <body>
-
+	
 	<h1>개인 회원 가입</h1>
 	<form action="mSignInProc" method="post" enctype="multipart/form-data">
 	<label for="file">포스터</label>

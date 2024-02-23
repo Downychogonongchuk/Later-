@@ -9,6 +9,9 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+<link rel="stylesheet"
+	href="resources/css/style.css"/>
+
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"
 	integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
 	crossorigin="anonymous"></script>
@@ -89,7 +92,7 @@
 		<div>
 			<hr color="gray">
 		</div>
-			<!-- <c:if test="${empty bList}">
+		 <c:if test="${empty bList}">
 				등록된 모집글이 없습니다.
 			</c:if>
 			<c:if test="${!empty bList}">
@@ -100,17 +103,17 @@
 								등록된 이미지가 없습니다.
 							</c:if>
 							<c:if test="${!empty bitem.boardFile}">
-								<div>${bitem.Boardfile}</div>
+								<div>${bitem.boardFile}</div>
 							</c:if>
 						</a>
 						<a href="detail?boardId=${bitem.boardId}">
-							${bitem.companeyName}
+							${bitem.companyName}
 						</a>
 						<div>${bitem.price}</div>
 						<div>${bitem.personnel}</div>
 					</div>
 				</c:forEach>
-			</c:if> -->
+			</c:if> 
 			<p>Some example text. Some example text. Some example text. Some
 				example text. Some example text.</p>
 			<p>Some example text. Some example text. Some example text. Some

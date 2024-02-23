@@ -20,4 +20,13 @@
 		
 		WHERE boardId = #{boardId}
 	</update>
+	
+	<select id="selectBoard" parameterType="Integer"
+			resultType="board">
+			SELECT * FROM board WHERE boardId = #{boardId}
+	</select>
+	
+	<select id="getBoardList" resultType="board">
+		SELECT * FROM board
+	</select>
 </mapper>

@@ -2,24 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page session="false"%>
-<style>
-.footer-bar {
-	background-color: #006BB9;
-	color: #fff;
-	height: 60px;
-	line-height: 60px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.footer-logo {
-	width: 30px;
-	border-radius: 5px;
-	margin-right: 5px;
-}
+<link rel="stylesheet"
+	href="resources/css/footer.css"/>
 	
-</style>
 <div class="footer-bar">
 	<img src="resources/images/logo.png" class="footer-logo">
 		<span class="information">

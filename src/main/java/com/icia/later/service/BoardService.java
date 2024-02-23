@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -52,9 +53,9 @@ public class BoardService {
 		String sysname = null;// 변경하는 파일명
 		String oriname = null;// 원래 파일명
 
-		String realPath = session.getServletContext().getRealPath("/WEB-INF");
+		String realPath = session.getServletContext().getRealPath("/");
 		log.info(realPath);
-		realPath += "/resources/upload/";
+		realPath += "resources/upload/";
 		File folder = new File(realPath);
 //isDirectory() : 해당 이름이 폴더가 아니거나 존재하지않으면 false
 		if (folder.isDirectory() == false) {
@@ -88,7 +89,7 @@ public class BoardService {
 					FileDelete(poster, session);
 				}
 			}
-			bDao.updateMember(board);
+			bDao.updateBoard(board);
 			System.out.println("mServ" + board);
 
 			view = "redirect:/"; // + member.getMemberId();
@@ -96,7 +97,7 @@ public class BoardService {
 			// 기존 파일 삭제
 		} catch (Exception e) {
 			e.printStackTrace();
-			view = "redirect:mUpdate?memberId=" + board.getMemberId();
+			view = "redirect:mUpdate?memberId=" + board.getBoardId();
 			msg = "수정 실패";
 		}
 
@@ -107,6 +108,23 @@ public class BoardService {
 	private void FileDelete(String poster, HttpSession session) {
 		// TODO Auto-generated method stub
 		
+	}
+	//수정할 업체정보 가져오기
+	public void getBoard(Integer boardId, Model model) {
+		log.info("getBoard()");
+		
+		boardId = 4;
+		
+		BoardDto board = bDao.selectBoard(boardId);
+		
+		model.addAttribute("board", board);
+	}
+
+	public List<BoardDto> getBoardList() {
+		
+		List<BoardDto> bList = bDao.getBoardList();
+		
+		return bList;
 	}
 
 }
