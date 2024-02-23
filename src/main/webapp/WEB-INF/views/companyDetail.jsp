@@ -32,7 +32,7 @@
 			</section>
 		<div class="right">
 			<!-- 인포 -->
-			<form id="detailForm" method="post" action=""
+			<form id="detailForm" method="post" action="rev"
 				enctype="multipart/form-data">
 				<section class="info">
 					<p>
@@ -100,7 +100,7 @@
 				<!-- 결제버튼-->
 				<button type="submit" id="btn-apply" class="btn-apply">신청하기</button>
 				<!-- 결제버튼 완-->
-				<button type="submit" id="btn-interest" class="btn-interest">찜</button>
+				<button id="btn-interest" class="btn-interest">찜</button>
 			</form>
 				
 				

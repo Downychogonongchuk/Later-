@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.icia.later.dto.BoardDto;
+import com.icia.later.dto.MemberDto;
 
 public interface BoardDao {
 	//게시글 목록 가져오기
@@ -17,5 +18,9 @@ public interface BoardDao {
 
 	//내가 신청한 업체 목록보기
 		BoardDto applyCompany(Integer boardId);
+
+
+	// 로그인 
+		MemberDto login(BoardDto board);
 	
 }

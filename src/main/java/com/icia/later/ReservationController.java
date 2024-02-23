@@ -3,6 +3,8 @@ package com.icia.later;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,53 +30,56 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ReservationController {
 	
-		
+	@Autowired
+	private BoardService bServ;
 	@Autowired
 	private ReservationService rServ;
 	
+
+	
 	// 예약처리
 			@PostMapping("rev")
-			public String rev(@RequestPart List<MultipartFile> files, 
-					BoardDto board,
-					HttpSession session,
-					RedirectAttributes rttr) {
+			public String rev(HttpServletRequest request,HttpSession session,
+					RedirectAttributes rttr,
+					Integer boardId) {
 				log.info("rev()");
+				boardId =1;
 				
-				String view = rServ.insertRev(files, board, session, rttr);
-				System.out.println(board);
+				// http session 가져오기
+				HttpSession session11 = request.getSession();
 				
+				Object someValue = (Object) session11.getAttribute("login");
+			
+				// 속성이 null이 아니고  // 로그인 정보가 MemberDto의 인스턴스인지 확인
+				if (someValue != null && someValue instanceof MemberDto) {
+					
+				    // 로그인 정보(객체)를 MemberDto로 형변환합니다.
+					 MemberDto memberDto = (MemberDto) someValue;
+					 
+					 // 회원 ID 가져오기
+					 Integer memberId1 = memberDto.getMemberId();
+					 System.out.println(memberId1);
+					 
+					 String view = rServ.insertRev(memberId1, boardId, rttr, session);
+					    return view;
+				} else{
+					// 세션에 저장된 값이 MemberDto 타입이 아닌 경우 처리
+			        // 예를 들어, 로그인이 되어 있지 않은 상태 등에 대한 처리를 추가할 수 있습니다.
+			        // 여기에 적절한 로직을 추가하세요.
+			        return "redirect:/login"; // 로그인 페이지로 리다이렉트 예시
+					
+					}
+				}
+				   
 				
-				return view;
 			}
 	
 	
 	
 	
-//	@PostMapping("/rsv")
-//    public String processPayment(@PathVariable String room_name,
-//            @RequestParam("boardId") int boardId,
-//            @RequestParam("periodStart") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm") LocalDateTime periodStart,
-//            @RequestParam("periodEnd") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm") LocalDateTime periodEnd,
-//            HttpSession session) { // HttpSession을 파라미터로 받아 세션을 사용합니다.
-//
-//        String customer_id = getCustomerIdFromSession(session); // 세션에서 고객 ID를 가져옵니다.
-//
-//        ReservationDto reservationDto = new ReservationDto();
-//        reservationDto.setMemberId(MemberId); // 세션에서 가져온 고객 ID를 설정합니다.
-//        reservationDto.setBoardId(BoardId); // 게시글 ID 
-//        reservationDto.setStatus("1"); // 결제가 완료되었음을 나타내는 상태
-//        reservationDto.setperiodStart(periodStart);
-//        reservationDto.setperiodEnd(periodEnd);
-//
-//        // 데이터베이스에 저장
-//        seatReservationService.saveReservation(reservationDto);
-//        log.info("예약 성공");
-//        return "redirect:/main"; // 결제가 성공적으로 완료되면 메인 페이지로 리다이렉트
-//    }
-//	
+
 	
 	
 	
 	
-	
-}
+

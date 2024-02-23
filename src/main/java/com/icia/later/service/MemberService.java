@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.icia.later.ReservationController;
 import com.icia.later.dao.MemberDao;
 import com.icia.later.dto.MemberDto;
 
@@ -21,8 +22,10 @@ public class MemberService {
 	@Autowired
 	private MemberDao mDao;
 
-	public String insertMember(List<MultipartFile> files, MemberDto member, HttpSession session,
-			RedirectAttributes rttr) {
+	public String insertMember(List<MultipartFile> files,
+				MemberDto member, HttpSession session,
+					RedirectAttributes rttr) {
+		
 		log.info("insertMember()");
 		String msg = null; // DB에 저장 성공/실패 관련 메세지 저장
 		String view = null;// 대상 페이지 지정 변수

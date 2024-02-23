@@ -20,7 +20,5 @@ public class MemberDto {
 	private String snsFollower;
 	private String snsLink;
 	private String memberProfile;
-	
-	
-	
+
 }

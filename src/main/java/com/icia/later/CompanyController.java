@@ -39,7 +39,8 @@ public class CompanyController {
 	@GetMapping("companyDetail")
 	public String companyDetail(Integer boardId, Model model) {
 		log.info("companyDetail()");
-		boardId =4;
+		boardId =3;
+		
 		bServ.getCompanyDetail(boardId, model);
 		System.out.println(model);
 	//		model.addAttribute(model);
@@ -47,41 +48,6 @@ public class CompanyController {
 		return "companyDetail";
 	}
 		
-//	@PostMapping("companyReserv")
-//	public String companyReserv()
-
-//	// 신청한 업체 목록
-//	@GetMapping("applyCompany")
-//	public String applyCompany(Integer boardId, Model model) {
-//		log.info("detail()");
-//		boardId =4;
-//			rServ.applyCompany(boardId, model);
-//			return "applyCompany"; // jsp파일명
-//			
-//	}
-	
-//	// 예약*신청 처리 메서드
-//		@PostMapping("reservationProc")
-//		public String reservationProc(@RequestPart List<MultipartFile> files, BoardDto board, HttpSession session,
-//				RedirectAttributes rttr) {
-//			log.info("reservationProc()");
-//
-//			String view = bServ.insertboard(files, board, session, rttr);
-//
-//			return view;
-//		}
-
-//	@GetMapping("applyCompany")
-//	public String applyList(Integer MemberId, Model model) {
-//		log.info("companyDetail()");
-//		MemberId = 1;
-//		bServ.getCompanyDetail(MemberId, model);
-//		System.out.println(model);
-////		model.addAttribute(model);
-//		
-//		return "companyDetail";
-//	}
-	
 
 	
 }
