@@ -28,9 +28,9 @@
 		<a href="/later">리뷰엔</a>
 	</div>
 	<div class="login-signin">
-		<i class="fa fa-user-circle-o" aria-hidden="true"></i>
-		<a class="link" href="login">로그인</a> 
-		<a class="link" href="signSelect">회원가입</a>
+		<a class="link" href="#">마이페이지</a>
+		<a class="link" href="writeFrm">업체 등록</a> 
+		<a class="link" href="logout">로그아웃</a>
 	</div>
 </div>
 

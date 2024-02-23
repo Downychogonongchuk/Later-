@@ -68,8 +68,15 @@
 </head>
 <body>
 	<div class="wrap">
-
-		<jsp:include page="header.jsp" />
+		<c:if test="${empty logInInfo && empty logInInfo1}">
+			<jsp:include page="header.jsp" />
+		</c:if>
+		<c:if test="${!empty logInInfo}">
+			<jsp:include page="mHeader.jsp" />
+		</c:if>
+		<c:if test="${!empty logInfo1}">
+			<jsp:include page="cHeader.jsp" />
+		</c:if>
 		<nav class="navbar navbar-expand-sm bg-light navbar-light">
 			<!-- Links -->
 			<ul class="navbar-nav">
