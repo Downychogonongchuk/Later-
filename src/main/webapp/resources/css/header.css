@@ -29,7 +29,16 @@
 	flex: 1;
 	text-align: center;
 }
+.site a {
+    color: white;
+    font-size: 30px;
+    text-decoration: none; /* 밑줄 제거 */
+}
 
+.site a:hover {
+    color: white;
+    text-decoration: none;
+}
 .link { /* 링크 스타일 */
 	font-size: 15px;
 	color: white;

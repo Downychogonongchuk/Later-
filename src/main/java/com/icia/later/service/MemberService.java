@@ -72,9 +72,9 @@ public class MemberService {
 		member.setMemberProfile(sysname);
 	}
 
-	// 로그인기능
-	public String login(MemberDto member, HttpSession session, RedirectAttributes rttr) {
-		log.info("login2()");
+	// 일반회원 로그인기능
+	public String mLogin(MemberDto member, HttpSession session, RedirectAttributes rttr) {
+		log.info("mLogin()");
 		String msg = null;
 		String view = null;
 		MemberDto loggedInMember = mDao.login(member);
@@ -91,7 +91,7 @@ public class MemberService {
 
 		} else {
 			msg = "이메일 및 비밀번호를 다시 확인해주세요.";
-			view = "redirect:login";
+			view = "redirect:mLogin";
 		}
 
 		rttr.addFlashAttribute("msg", msg);

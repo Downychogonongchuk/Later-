@@ -2,26 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="com.icia.later.dao.MemberDao">
+  <mapper namespace="com.icia.later.dao.CustomerDao">
 
-	<insert id="insertMember" parameterType="member">
-		INSERT INTO Member
-		VALUES (null,#{memberName},#{memberEmail},#{memberPass},#{memberPhone},
-				#{snsKind},#{snsFollower},#{snsLink},#{memberProfile})
+	<insert id="insertCustomer" parameterType="customer">
+		INSERT INTO customer
+		VALUES (null,#{customerName},#{customerEmail},#{customerPass},#{customerNum},
+				#{companyName},#{companyAddress},#{sectors},#{customerProfile})
 	</insert>
 	
-	<select id="login" parameterType="member" resultType="member">
-		SELECT * FROM Member 
-		WHERE memberEmail = #{memberEmail} AND memberPass = #{memberPass}
+	<select id="login" parameterType="customer" resultType="customer">
+		SELECT * FROM customer 
+		WHERE customerEmail = #{customerEmail} AND customerPass = #{customerPass}
 	</select>
-	
+	<!-- 	
 	<select id="selectMember" parameterType="Integer" resultType="member">
-		SELECT * FROM Member
+		SELECT * FROM test1
 		WHERE memberId=${memberId}
 	</select>
 	
 	<update id="updateMember" parameterType="member">
-		UPDATE Member
+		UPDATE test1
 		SET memberName=#{memberName},memberEmail=#{memberEmail},
 		memberPass=#{memberPass},memberPhone=#{memberPhone},
 		snsKind=#{snsKind},snsFollower=#{snsFollower},
@@ -31,8 +31,8 @@
 	</update>
 	
 	<delete id="deleteMember" parameterType="Integer">
-		DELETE FROM Member
+		DELETE FROM test1
 		WHERE memberId=#{memberId}
 	</delete>
-	
+	 -->
 </mapper>

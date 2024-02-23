@@ -60,23 +60,32 @@ public class HomeController {
 		return view;
 		}
 	
-	// 로그인페이지 이동
-	@GetMapping("login")
-	public String login() {
+	// 로그인선택 페이지 이동
+	@GetMapping("loginSelect")
+	public String loginSelect() {
 		log.info("login()");
 
-		return "login";
+		return "loginSelect";
 	}
 	
-	// 로그인 처리 메서드
-	@PostMapping("loginCheck")
-	public String loginCheck(MemberDto member,
+	//일반 로그인 페이지
+	@GetMapping("mLogin")
+	public String mLogin() {
+		log.info("mLogin()");
+
+		return "mLogin";
+	}
+	
+	
+	// 일반회원 로그인 처리 메서드
+	@PostMapping("mLoginProc")
+	public String mLoginProc(MemberDto member,
 							HttpSession session,
 							RedirectAttributes rttr) {
-		log.info("loginCheck()");
+		log.info("mLoginProc()");
 		System.out.println(member);
 		
-		String view = mServ.login(member, session, rttr);
+		String view = mServ.mLogin(member, session, rttr);
 		return view;
 	}
 	// 로그아웃 

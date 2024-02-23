@@ -60,7 +60,7 @@
             <h5>사업장 주소</h5>
             <input type="text" class="write-input" name="companyAddress" autofocus required="required">
             <h5>업종</h5>            
-			<select name="sector" class="write-input" required="required" autofocus>
+			<select name="sectors" class="write-input" required="required" autofocus>
 			<option value="없음">==카테고리 선택==</option>
 			<option value="1">요식업</option>
 			<option value="2">숙박업</option>

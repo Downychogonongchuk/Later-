@@ -23,7 +23,9 @@
 	<div class="review">
 		<a href="/later"><img alt="로고" src="resources/images/logo.png" class="logo"></a>
 	</div>
-		<h2>리뷰엔</h2>
+		<div class="site">
+		<a href="/later">리뷰엔</a>
+	</div>
 	<div class="login-signin">
 		<!-- mLogin: 일반회원 로그인 여부
 			 cLogin: 업체회원 로그인 여부 -->
@@ -37,7 +39,8 @@
 		%>
 		<!-- 아무도 로그인하지 않았을 때 보여주는 태그 -->
 		<i class="fa fa-user-circle-o" aria-hidden="true"></i>
-		<a class="link" href="login">로그인</a> 
+		<a class="link" href="loginSelect">로그인</a> 
+		<a class="link" href="logout">로그아웃</a> 
 		<a class="link" href="signSelect">회원가입</a>
 		<a class="link" href="bUpdate">업체정보수정</a>
 		<a class="link" href="mUpdate">회원정보수정</a>
