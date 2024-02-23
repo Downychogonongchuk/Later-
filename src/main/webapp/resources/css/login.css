@@ -13,8 +13,9 @@ a {
 	text-decoration: none;
 	color: white;
 }
-a:visited {
-	color: black;
+div.link-area .link1 {
+	font-size: 10;
+	color: blue;
 }
 .wrap {
 	margin:auto;
@@ -115,10 +116,6 @@ a:visited {
 	height : 40px;
 }
 
-.link1 {
-	font-size: 10;
-	color: blue;
-}
 /*
  * Responsive css
  */

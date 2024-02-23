@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원정보수정 - WRITE</title>
+<title>로그인</title>
 <link rel="stylesheet" href="resources/css/login.css">
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"
 	integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
@@ -20,10 +20,10 @@
 				<h2 class="form-header">로그인</h2>
 				<!-- 개인정보 입력 영역 -->
 				<div class="loginBox">
-					<h4>이메일</h4>
+					<h5>이메일</h5>
 					<input type="email" class="write-input" name="memberEmail"
 						autofocus placeholder="이메일을 입력해주세요." required="required">
-					<h4>비밀번호</h4>
+					<h5>비밀번호</h5>
 					<input type="password" class="write-input" name="memberPass"
 						autofocus placeholder="비밀번호를 입력해주세요." required="required">
 				</div>
@@ -32,10 +32,12 @@
 					<br>
 					<br>
 					<h5>이메일, 비밀번호를 잊으셨나요?</h5>
+					<div class="link-area">
 					<a href="" class="link1">아이디 /</a><a href="" class="link1"> 비밀번호 찾기</a><br>
 					<a href="mSignIn" class="link1">회원가입</a>
 					<br> <input type="button" class="btn-write" value="홈으로 돌아가기"
 						id="backbtn">
+					</div>
 				</div>
 			</form>
 		</div>

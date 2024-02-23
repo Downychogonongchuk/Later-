@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>MOVIE INFO - WRITE</title>
+	<title>모집글 작성</title>
 	<link rel="stylesheet" href="resources/css/writeFrm.css">
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js" 
 			integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" 
@@ -50,11 +50,11 @@
             </div>
             <select name="category" class="write-input" required autofocus>
 			<option value="없음">==카테고리 선택==</option>
-			<option value="푸드">푸드</option>
-			<option value="숙소">숙소</option>
-			<option value="가전">가전</option>
-			<option value="뷰티">뷰티</option>
-			<option value="기타">기타</option>
+			<option value="1">푸드</option>
+			<option value="2">숙소</option>
+			<option value="3">가전</option>
+			<option value="4">뷰티</option>
+			<option value="5">기타</option>
 			 </select>  
             <input type="text" class="write-input" name="companyName"
                    autofocus placeholder="가게명" required>

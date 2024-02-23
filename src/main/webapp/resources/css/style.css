@@ -7,13 +7,10 @@ html {
 body {
 	margin: 0;
 	height: 100%;
-	background-color: #DFDFE1;
+	background-color: white;
 }
 a {
 	text-decoration: none;
-	color: black;
-}
-a:visited {
 	color: black;
 }
 .wrap {
@@ -24,25 +21,52 @@ a:visited {
 /*
 * top-bar, footer-bar style
 */
-.top-bar .site {
-	text-align: center;
-}
-.top-bar {
-	background-color: #1877F2;
+.top-bar { /* 헤더 바 */
+	background-color: #006BB9;
 	color: #fff;
 	line-height: 50px;
 	display: flex;
-	justify-content: center;
-	align-items: center;
+	justify-content: space-between;
+	align-items: center; /* 요소를 수직 가운데 정렬 */
 }
-.logo {
+
+.review { /* 로고위치 조정 */
+	flex: 1;
+	vertical-align: middle;
+	text-align: left;
+	padding-left: 5px;
+}
+
+.logo { /* 로고 스타일 */
 	margin: 4px;
 	width: 50px;
 	height: 50px;
 	border-radius: 10px;
 }
+
+.site { /* 사이트 이름 위치 조정 */
+	flex: 1;
+	text-align: center;
+}
+
+.link { /* 링크 스타일 */
+	font-size: 15px;
+	color: white;
+}
+
+.login-signin a { /* 로그인, 회원가입*/
+	margin-left: 10px;
+	text-decoration: none;
+}
+
+.login-signin { /* 로그인, 회원가입*/
+	flex: 1;
+	vertical-align: middle;
+	text-align: right;
+	padding-right: 5px;
+}
 .footer-bar {
-	background-color: #1877F2;
+	background-color: #006BB9;
 	color: #fff;
 	height: 60px;
 	line-height: 60px;

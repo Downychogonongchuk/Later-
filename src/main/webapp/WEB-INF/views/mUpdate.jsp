@@ -5,7 +5,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>회원정보수정 - WRITE</title>
-	<link rel="stylesheet" href="resources/css/style1.css">
+	<link rel="stylesheet" href="resources/css/mUpdate.css">
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js" 
 			integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" 
 			crossorigin="anonymous"></script>
@@ -51,16 +51,16 @@
             autofocus value="${logInInfo.memberName}">
             <input type="hidden" class="write-input" name="memberEmail"
                    autofocus value="${logInInfo.memberEmail}">
-            <h4>비밀번호</h4>
+            <h5>비밀번호</h5>
             <input type="password" class="write-input" name="memberPass"
                    autofocus value="${logInInfo.memberPass}">
-            <h4>비밀번호 재확인</h4>
+            <h5>비밀번호 재확인</h5>
             <input type="password" class="write-input" name=""
                    autofocus placeholder="변동사항 없을시 미입력">
-            <h4>연락처</h4>
+            <h5>연락처</h5>
             <input type="text" class="write-input" name="memberPhone"
                    autofocus value="${logInInfo.memberPhone}">
-            <h4>사용하는 SNS</h4>
+            <h5>사용하는 SNS</h5>
             <select name = "snsKind" class="write-input" required autofocus>
 			<option value="없음">==선택해주세요==</option>
 			<option value="facebook">페이스북</option>
@@ -68,10 +68,10 @@
 			<option value="blog">블로그</option>
 			<option value="youtube">유튜브</option>
             </select>
-            <h4>본인의 SNS또는 BLOG 링크</h4>
+            <h5>본인의 SNS또는 BLOG 링크</h5>
             <input type="text" class="write-input" name="snsLink"
                    value="${logInInfo.snsLink}">
-            <h4>팔로워 수</h4>       
+            <h5>팔로워 수</h5>       
             <select name="snsFollower" class="write-input" required autofocus>
 			<option value="없음">==선택해주세요==</option>
 			<option value="1000">1~1,000</option>

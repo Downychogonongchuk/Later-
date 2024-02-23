@@ -13,9 +13,6 @@ a {
 	text-decoration: none;
 	color: black;
 }
-a:visited {
-	color: black;
-}
 .wrap {
 	display: flex;
 	flex-direction: column;

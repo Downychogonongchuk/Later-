@@ -46,22 +46,28 @@
             </div>
             <!-- 개인정보 입력 영역 -->
             <h5>이메일</h5>
-            <input type="email" class="write-input" name="memberEmail" autofocus required="required">
+            <input type="email" class="write-input" name="customerEmail" autofocus required="required">
             <h5>비밀번호</h5>
-            <input type="password" class="write-input" name="memberPass" autofocus required="required">
+            <input type="password" class="write-input" name="customerPass" autofocus required="required">
             <h5>비밀번호 재확인</h5>
             <input type="password" class="write-input" name="" autofocus required="required">
             <h5>이름</h5>
-            <input type="text" class="write-input" name="memberName" autofocus required="required">
-            <h5>전화번호</h5>
-            <input type="text" class="write-input" name="memberPhone" autofocus required="required">
-            <h5>사용하는 SNS</h5>
-            <input type="text" class="write-input" name="snsKind" autofocus required="required">
-            <h5>팔로워</h5>
-            <input type="text" class="write-input" name="snsFollower" autofocus required="required">
-            <h5>SNS 링크</h5>       
-            <input type="text" class="write-input" name="snsLink" autofocus required="required">
-
+            <input type="text" class="write-input" name="customerName" autofocus required="required">
+            <h5>사업자번호</h5>
+            <input type="text" class="write-input" name="customerNum" autofocus required="required">
+            <h5>업체명</h5>
+            <input type="text" class="write-input" name="companyName" autofocus required="required">
+            <h5>사업장 주소</h5>
+            <input type="text" class="write-input" name="companyAddress" autofocus required="required">
+            <h5>업종</h5>            
+			<select name="sector" class="write-input" required="required" autofocus>
+			<option value="없음">==카테고리 선택==</option>
+			<option value="1">요식업</option>
+			<option value="2">숙박업</option>
+			<option value="3">가전제품 도소매업</option>
+			<option value="4">미용업</option>
+			<option value="5">기타</option>
+			 </select>  
             <div class="btn-area">
                 <input type="submit" class="btn-write" value="가입">
                 <input type="button" class="btn-write" value="돌아가기" id="backbtn">
