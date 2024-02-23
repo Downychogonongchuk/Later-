@@ -3,7 +3,7 @@ package com.icia.later.util;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class PagingUtil {
+public class PagingUtil { 
 	private int totalNum;// 전체 글의 개수
 	private int pageNum;// 현재 페이지 번호
 	private int listCount;// 페이지당 나타낼 글의 개수
