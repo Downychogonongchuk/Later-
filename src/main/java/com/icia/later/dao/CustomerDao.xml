@@ -19,20 +19,20 @@
 		SELECT * FROM test1
 		WHERE memberId=${memberId}
 	</select>
-	
-	<update id="updateMember" parameterType="member">
-		UPDATE test1
-		SET memberName=#{memberName},memberEmail=#{memberEmail},
-		memberPass=#{memberPass},memberPhone=#{memberPhone},
-		snsKind=#{snsKind},snsFollower=#{snsFollower},
-		snsLink=#{snsLink},memberProfile=#{memberProfile}
+	-->
+	<update id="updateCustomer" parameterType="customer">
+		UPDATE customer
+		SET customerName=#{customerName},customerEmail=#{customerEmail},
+		customerPass=#{customerPass},customerNum=#{customerNum},
+		companyName=#{companyName},companyAddress=#{companyAddress},
+		sectors=#{sectors},customerProfile=#{customerProfile}
 		
-		WHERE memberId=#{memberId}
+		WHERE customerId=#{customerId}
 	</update>
-	
+	<!-- 
 	<delete id="deleteMember" parameterType="Integer">
 		DELETE FROM test1
 		WHERE memberId=#{memberId}
 	</delete>
-	 -->
+	  -->
 </mapper>

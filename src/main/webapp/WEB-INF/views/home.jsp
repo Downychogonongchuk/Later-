@@ -9,6 +9,9 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+<link rel="stylesheet"
+	href="resources/css/style.css"/>
+
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"
 	integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
 	crossorigin="anonymous"></script>
@@ -18,6 +21,8 @@
 	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
 <style type="text/css">
 .wrap {
 	display: flex;
@@ -63,8 +68,15 @@
 </head>
 <body>
 	<div class="wrap">
-
-		<jsp:include page="header.jsp" />
+		<c:if test="${empty logInInfo && empty logInInfo1}">
+			<jsp:include page="header.jsp" />
+		</c:if>
+		<c:if test="${!empty logInInfo}">
+			<jsp:include page="mheader.jsp" />
+		</c:if>
+		<c:if test="${!empty logInInfo1}">
+			<jsp:include page="cheader.jsp" />
+		</c:if>
 		<nav class="navbar navbar-expand-sm bg-light navbar-light">
 			<!-- Links -->
 			<ul class="navbar-nav">
@@ -74,16 +86,6 @@
 				<li class="nav-item"><a class="nav-link" href="#">뷰티</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">기타</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">리뷰</a></li>
-
-				<!-- Dropdown -->
-				<!--  <li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" href="#" id="navbardrop"
-					data-toggle="dropdown"> Dropdown link </a>
-					<div class="dropdown-menu">
-						<a class="dropdown-item" href="#">Link 1</a> <a
-							class="dropdown-item" href="#">Link 2</a> <a
-							class="dropdown-item" href="#">Link 3</a>
-					</div></li>-->
 			</ul>
 		</nav>
 		<div>
@@ -97,7 +99,28 @@
 		<div>
 			<hr color="gray">
 		</div>
-		
+		 <!-- <c:if test="${empty bList}">
+				등록된 모집글이 없습니다.
+			</c:if>
+			<c:if test="${!empty bList}">
+				<c:forEach var="bitem" items="${bList}">
+					<div class="board-item">
+						<a href="detail?boardId=${bitem.boardId}">
+							<c:if test="${empty bitem.boardFile}">
+								등록된 이미지가 없습니다.
+							</c:if>
+							<c:if test="${!empty bitem.boardFile}">
+								<div>${bitem.boardFile}</div>
+							</c:if>
+						</a>
+						<a href="detail?boardId=${bitem.boardId}">
+							${bitem.companyName}
+						</a>
+						<div>${bitem.price}</div>
+						<div>${bitem.personnel}</div>
+					</div>
+				</c:forEach>
+			</c:if> -->
 			<p>Some example text. Some example text. Some example text. Some
 				example text. Some example text.</p>
 			<p>Some example text. Some example text. Some example text. Some

@@ -1,6 +1,7 @@
 package com.icia.later.dao;
 
 import com.icia.later.dto.CustomerDto;
+import com.icia.later.dto.MemberDto;
 
 public interface CustomerDao {
 	
@@ -9,5 +10,8 @@ public interface CustomerDao {
 	
 	// 사업자 로그인
 	CustomerDto login(CustomerDto customer);
+	
+	// 업데이트
+	void updateCustomer(CustomerDto customer);
 
 }

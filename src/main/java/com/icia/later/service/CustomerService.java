@@ -101,5 +101,50 @@ public class CustomerService {
 
 			return view;
 		}
+	// 회원정보 수정 처리
+		public String customerUpdate(List<MultipartFile> files, CustomerDto customer, HttpSession session,
+				RedirectAttributes rttr) {
+			log.info("customerUpdate()");
+			String msg = null;
+			String view = null;
+			String poster = customer.getCustomerProfile();// 기존파일(포스터)
+			
+			try {
+				if (!files.get(0).isEmpty()) {
+					FileUpload(files, session, customer);
+
+					// 기존파일 삭제
+					if (poster != null) {
+						cFileDelete(poster, session);
+					}
+				}
+				cDao.updateCustomer(customer);
+				System.out.println("cServ" + customer);
+
+				view = "redirect:/"; // + member.getMemberId();
+				msg = "수정 성공";
+				// 기존 파일 삭제
+			} catch (Exception e) {
+				e.printStackTrace();
+				view = "redirect:mUpdate?memberId=" + customer.getCustomerId();
+				msg = "수정 실패";
+			}
+
+			rttr.addFlashAttribute("msg", msg);
+			return view;
+		}
+		
+		// 기존 업로드이미지 삭제 처리 메서드
+		private void cFileDelete(String poster, HttpSession session) throws Exception {
+			log.info("fileDelete()");
+
+			String realPath = session.getServletContext().getRealPath("/");
+			realPath += "resouces/upload/" + poster;
+			File file = new File(realPath);
+			if (file.exists()) {
+				file.delete();
+			}
+
+		}
 		
 }

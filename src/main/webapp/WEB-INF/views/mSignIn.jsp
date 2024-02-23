@@ -36,7 +36,7 @@
 <div class="wrap">
 <jsp:include page="header.jsp" />
 	<div class="content">
-		<form action="cSignInProc" method="post" enctype="multipart/form-data">
+		<form action="mSignInProc" method="post" enctype="multipart/form-data">
             <h2 class="form-header">회원가입</h2>          
                 <!-- 파일 입력 처리 영역 -->
                  <div class="filebox">
@@ -56,11 +56,26 @@
             <h5>전화번호</h5>
             <input type="text" class="write-input" name="memberPhone" autofocus required="required">
             <h5>사용하는 SNS</h5>
-            <input type="text" class="write-input" name="snsKind" autofocus required="required">
-            <h5>팔로워</h5>
-            <input type="text" class="write-input" name="snsFollower" autofocus required="required">
+            <select name = "snsKind" class="write-input" required autofocus>
+			<option value="없음">==선택해주세요==</option>
+			<option value="facebook">페이스북</option>
+			<option value="instagram">인스타그램</option>
+			<option value="blog">블로그</option>
+			<option value="youtube">유튜브</option>
+            </select>
             <h5>SNS 링크</h5>       
             <input type="text" class="write-input" name="snsLink" autofocus required="required">
+            <h5>팔로워 수</h5>       
+            <select name="snsFollower" class="write-input" required autofocus>
+			<option value="없음">==선택해주세요==</option>
+			<option value="1000">1~1,000</option>
+			<option value="5000">1,000~5,000</option>
+			<option value="10000">5,000~10,000</option>
+			<option value="30000">10,000~30,000</option>
+			<option value="50000">30,000~50,000</option>
+			<option value="50001">50,000 이상</option>
+			 </select>
+            
 
             <div class="btn-area">
                 <input type="submit" class="btn-write" value="가입">

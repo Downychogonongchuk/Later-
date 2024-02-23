@@ -135,7 +135,7 @@ public class MemberService {
 
 				// 기존파일 삭제
 				if (poster != null) {
-					FileDelete(poster, session);
+					mFileDelete(poster, session);
 				}
 			}
 			mDao.updateMember(member);
@@ -155,7 +155,7 @@ public class MemberService {
 	}
 
 	// 기존 업로드이미지 삭제 처리 메서드
-	private void FileDelete(String poster, HttpSession session) throws Exception {
+	private void mFileDelete(String poster, HttpSession session) throws Exception {
 		log.info("fileDelete()");
 
 		String realPath = session.getServletContext().getRealPath("/");

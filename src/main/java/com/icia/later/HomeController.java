@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.icia.later.dto.CustomerDto;
 import com.icia.later.dto.MemberDto;
 import com.icia.later.service.MemberService;
 
@@ -26,11 +27,14 @@ public class HomeController {
 	@Autowired
 	private MemberService mServ;
 			
-	@GetMapping("/")
-	public String home() {
+	//메인페이지
+		@GetMapping("/")
+		public String home() {
+			log.info("home()");
 
-		return "home";
-	}
+			return "home";
+		}
+	
 	
 	// 회원가입 유형선택페이지
 	@GetMapping("signSelect")
@@ -114,7 +118,7 @@ public class HomeController {
 	}
 	
 	
-	// 회원정보 수정페이지 이동
+	// 일반회원정보 수정페이지 이동
 	@GetMapping("mUpdate")
 	public String mUpdate(Model model,HttpSession session) {
 		log.info("mUpdate()");
@@ -128,7 +132,8 @@ public class HomeController {
 	}
 		return "mUpdate";
 }
-	// 회원정보 수정 처리
+	
+	// 일반회원정보 수정 처리
 	@PostMapping("mUpdateProc")
 	public String mUpdateProc(@RequestPart List<MultipartFile> files, 
 			MemberDto member,
@@ -140,6 +145,8 @@ public class HomeController {
 		
 		return view;
 	}
+	
+	// 일반회원 탈퇴
 	@GetMapping("mDelete")
 	public String mDelete(Integer memberId,HttpSession session,RedirectAttributes rttr) {
 		log.info("mDelete()");
