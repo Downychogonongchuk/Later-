@@ -26,7 +26,7 @@
 
 		<div class="content">
 			<div class="list-title">
-				<h2 class="form-header">게시글 목록</h2>
+				<h2 class="form-header">카테고리 목록</h2>
 				<button class="wr-btn" onclick="location.href='./writeFrm'">
 					게시글 작성</button>
 			</div>
