@@ -30,8 +30,8 @@
 						<c:if test="${empty boardfile}">
 							<img class="poster" src="resources/images/no_image.jpg">
 						</c:if>
-						<c:if test="${!empty movie.p_sysname}">
-							<img class="poster" src="resources/upload/${movie.p_sysname}">
+						<c:if test="${!empty board.boardfile}">
+							<img class="poster" src="resources/upload/${board.boardfile}">
 						</c:if>
 					</div>
 				</div>
