@@ -1,18 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
+
 <mapper namespace="com.icia.later.dao.ReservationDao">
-	
+
 	<!-- * DB Table 마다 컬럼 순서 다름 // 컬럼 순서와 테이블명 체크 -->
 
 	<!-- 회원가입 -->
 	<insert id="insertReservation" parameterType="reserv">
-		INSERT INTO reservation
-		VALUES (null,#{reservationTime},#{status},#{memberId},#{boardId})
+		INSERT INTO
+		reservation
+		VALUES
+		(null,#{reservationTime},#{status},#{memberId},#{boardId})
 	</insert>
-	
-	
-	
-	
-	</mapper>
+
+	<select id="getBoardListBymemberId" resultType="board"
+		parameterType="HashMap">
+
+		SELECT Board.*
+		FROM Board
+		JOIN Reservation ON Board.boardId = Reservation.boardId
+		WHERE Reservation.memberId = #{pMap.memberId11}
+		LIMIT #{pMap.pageNum},
+		#{pMap.listCnt}
+		
+	</select>
+
+
+
+</mapper>

@@ -4,6 +4,7 @@ import org.apache.ibatis.type.Alias;
 
 import lombok.Data;
 
+		
 @Data
 @Alias("board")
 public class BoardDto {	
@@ -17,6 +18,6 @@ public class BoardDto {
 		 private String provideType; // 제공타입
 		 private String detail;  // 상세설명 
 		 private String checkInfo;  // 체크사항
-		 private String boardfile; // 게시글 업체사진 
+		 private String boardFile; // 게시글 업체사진 
 		 private int customerId; //  사업자 아이디  // 추가 dao controller
 }

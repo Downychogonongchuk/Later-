@@ -18,23 +18,23 @@
         <section id="applyCompany">
             <div class="data-area">
                 <!-- 신청 목록 출력 -->
-                    <c:if test="${empty boardList}">
+                    <c:if test="${empty bList}">
                         <div class="shop-item">
                             <span class="none-content">신청한 체험단 모집글이 없습니다.</span>
                         </div>
                     </c:if><!--if boardList is Empty-->
 
-                    <c:if test="${!empty boardList}">
-                        <c:forEach var="mitem" items="${boardList}">
+                    <c:if test="${!empty bList}">
+                        <c:forEach var="board" items="${bList}">
                             <div class="shop-item">
                                 <a href="companyDetail?boardId=${board.boardId}">
-                                    <c:if test="${empty board.Boardfile}">
+                                    <c:if test="${empty board.boardFile}">
                                         <img src="resources/images/no_image.jpg"
                                             class="poster-pre">
                                     </c:if> <!--!empty boardList End-->
 
-                                    <c:if test="${!empty board.Boardfile}">
-                                        <img src="resources/upload/${board.Boardfile}"
+                                    <c:if test="${!empty board.boardFile}">
+                                        <img src="resources/upload/${board.boardFile}"
                                             class="poster-pre">
                                     </c:if>
                                 </a>
@@ -42,12 +42,13 @@
                                     <div class="title-pre">
                                         <a href="companyDetail?boardId=${board.boardId}">
                                             ${board.companyName}
-                                        </a>
+                                        </a>  
                                     </div> <!--info-pre-End-->
                                     <div class="content-pre">${board.provideType}</div>
                                     <div class="content-pre">${board.price}</div>
                                     <div class="content-pre">${board.personnel}</div>
                                     <div class="content-pre">${board.periodStart}</div>
+                                    <div class="content-pre">${board.periodEnd}</div>
                                     <div class="content-pre">${board.periodEnd}</div>
 
                                 </div>
