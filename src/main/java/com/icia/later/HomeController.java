@@ -34,6 +34,21 @@ public class HomeController {
 
 			return "home";
 		}
+		
+	// 마이페이지 홈 이동
+		@GetMapping("myPage")
+		public String myPage(Model model,HttpSession session) {
+			log.info("myPage()");
+			
+			MemberDto logInInfo = (MemberDto) session.getAttribute("login");
+			
+			if (logInInfo != null && session.getAttribute("login") != null) {
+		        // 로그인한 회원 정보를 모델에 추가하여 JSP로 전달
+		        model.addAttribute("logInInfo", logInInfo);
+		        System.out.println(logInInfo);
+			}
+			return "myPage";
+		}
 	
 	
 	// 회원가입 유형선택페이지
