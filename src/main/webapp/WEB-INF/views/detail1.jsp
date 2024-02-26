@@ -18,6 +18,41 @@
 		}
 	});
 </script>
+<style>
+body {
+	background-color: #FFFFFF;
+	color: #000000;
+}
+
+h2.form-header {
+	color: #006BB9;
+}
+
+.detail {
+	background-color: white;
+	color: #333;
+	margin-bottom: 20px;
+	padding: 10px;
+}
+
+.detail-title {
+	font-weight: bold;
+}
+
+.synopsis-title {
+	color: #000000;
+	font-weight: bold;
+}
+
+.btn-area button {
+	background-color: #52d273;
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	margin-right: 10px;
+	cursor: pointer;
+}
+</style>
 </head>
 <body>
 	<div class="wrap">
