@@ -65,4 +65,14 @@ public class BoardController {
 			
 			return view;
 		}
+		
+		// 업체 삭제 메서드
+		@GetMapping("bDelete")
+		public String bDelete(Integer boardId,
+							  HttpSession session,
+							  RedirectAttributes rttr) {
+			log.info("bDelete()");
+			String view = bServ.boardDelete(boardId, session, rttr);
+			return view;
+		}
 }

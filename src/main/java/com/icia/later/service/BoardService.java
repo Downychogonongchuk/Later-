@@ -86,7 +86,7 @@ public class BoardService {
 
 				// 기존파일 삭제
 				if (poster != null) {
-					FileDelete(poster, session);
+					fileDelete(poster, session);
 				}
 			}
 			bDao.updateBoard(board);
@@ -104,16 +104,11 @@ public class BoardService {
 		rttr.addFlashAttribute("msg", msg);
 		return view;
 	}
-
-	private void FileDelete(String poster, HttpSession session) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 	//수정할 업체정보 가져오기
 	public void getBoard(Integer boardId, Model model) {
 		log.info("getBoard()");
 		
-		boardId = 4;
 		
 		BoardDto board = bDao.selectBoard(boardId);
 		
@@ -125,6 +120,49 @@ public class BoardService {
 		List<BoardDto> bList = bDao.getBoardList();
 		
 		return bList;
+	}
+	
+	public String boardDelete(Integer boardId, 
+							  HttpSession session, 
+							  RedirectAttributes rttr) {
+		log.info("boardDelete()");
+		String view = null;
+		String msg = null;
+		
+		//업체 코드로 파일명 구하기
+		BoardDto board = bDao.selectBoard(boardId);
+		String poster = board.getBoardFile();
+		
+		try {
+			if(poster != null) {
+				fileDelete(poster, session);
+			}
+			bDao.deleteBoard(boardId);
+			
+			view = "redirect:/";
+			msg = "삭제 성공";
+		} catch (Exception e) {
+			e.printStackTrace();
+			view = "redirect:/";
+			msg = "삭제 실패";
+		}
+		
+		rttr.addFlashAttribute("msg", msg);
+		return view;
+	}
+	// 업체 사진 삭제
+	private void fileDelete(String poster,
+							HttpSession session) 
+							throws Exception{
+		log.info("fileDelete()");
+		
+		String realPath = session.getServletContext()
+				.getRealPath("/");
+		realPath += "resources/upload" + poster;
+		File file = new File(realPath);
+		if(file.exists()) {
+			file.delete();
+		}
 	}
 
 }

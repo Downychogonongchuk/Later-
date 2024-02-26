@@ -11,6 +11,8 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 <link rel="stylesheet"
 	href="resources/css/style.css"/>
+<link rel="stylesheet"
+	href="resources/css/bestBoard.css"/>
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"
 	integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
@@ -68,13 +70,13 @@
 </head>
 <body>
 	<div class="wrap">
-		<c:if test="${empty logInInfo && empty logInInfo1}">
+		<c:if test="${empty mLogInInfo and empty cLogInInfo}">
 			<jsp:include page="header.jsp" />
 		</c:if>
-		<c:if test="${!empty logInInfo}">
+		<c:if test="${!empty mLogInInfo}">
 			<jsp:include page="mHeader.jsp" />
 		</c:if>
-		<c:if test="${!empty logInfo1}">
+		<c:if test="${!empty cLogInInfo}">
 			<jsp:include page="cHeader.jsp" />
 		</c:if>
 		<nav class="navbar navbar-expand-sm bg-light navbar-light">
@@ -99,36 +101,42 @@
 		<div>
 			<hr color="gray">
 		</div>
+		
+		<!-- 업체 리스트 (2024-02-26) -->
+		<div class="board">
 		 <c:if test="${empty bList}">
 				등록된 모집글이 없습니다.
 			</c:if>
 			<c:if test="${!empty bList}">
-				<c:forEach var="bitem" items="${bList}">
+				<c:forEach var="bitem" items="${bList}" begin="0" end="4" step="1">
 					<div class="board-item">
+					<!-- 업체 이미지 (2024-02-26) -->
+					<div class="board-image">
 						<a href="detail?boardId=${bitem.boardId}">
 							<c:if test="${empty bitem.boardFile}">
-								등록된 이미지가 없습니다.
+								<img src="resources/images/no_image.jpg"
+									class="poster-pre">
 							</c:if>
 							<c:if test="${!empty bitem.boardFile}">
-								<div>${bitem.boardFile}</div>
+								<img src="resources/upload/${bitem.boardFile}"
+									class="poster-pre">
 							</c:if>
 						</a>
-						<a href="detail?boardId=${bitem.boardId}">
-							${bitem.companyName}
-						</a>
-						<div>${bitem.price}</div>
-						<div>${bitem.personnel}</div>
+						</div>
+						<!-- 업체 이름 (2024-02-26) -->
+						<div class="board-name">
+							<a href="detail?boardId=${bitem.boardId}">
+								${bitem.companyName}
+							</a>
+						</div>
+						<!-- 등록된 가격 (2024-02-26) -->
+						<div class="board-item">${bitem.price}</div>
+						<!-- 모집 인원 (2024-02-26) -->
+						<div class="board-personnel">${bitem.personnel}</div>
 					</div>
 				</c:forEach>
 			</c:if> 
-			<p>Some example text. Some example text. Some example text. Some
-				example text. Some example text.</p>
-			<p>Some example text. Some example text. Some example text. Some
-				example text. Some example text.</p>
-			<p>Some example text. Some example text. Some example text. Some
-				example text. Some example text.</p>
-			<p>Some example text. Some example text. Some example text. Some
-				example text. Some example text.</p>
+			</div>
 		
 		<div class="coming-soon">
 			<i class="fa fa-hourglass-start" aria-hidden="true"></i> COMING SOON

@@ -40,7 +40,7 @@
 </head>
 <body>
 <div class="wrap">
-<jsp:include page="header.jsp" />
+<jsp:include page="cHeader.jsp" />
 	<div class="content">
 		<form action="writeProc" method="post" enctype="multipart/form-data">
             <h2 class="form-header">모집 등록</h2>

@@ -24,6 +24,26 @@ public class MemberController {
 	@Autowired
 	private MemberService mServ;
 	
+	// 로그인페이지 이동
+			@GetMapping("mLogin")
+			public String mLogin() {
+				log.info("mLogin()");
+				
+				return "mLogin";
+			}
+			
+			// 로그인 처리 메서드
+			@PostMapping("loginCheck")
+			public String loginCheck(MemberDto member,
+									HttpSession session,
+									RedirectAttributes rttr) {
+				log.info("loginCheck()");
+				System.out.println(member);
+				
+				String view = mServ.login(member, session, rttr);
+				return view;
+			}
+	
 	// 회원정보 수정페이지 이동
 			@GetMapping("mUpdate")
 			public String mUpdate(Model model,HttpSession session) {
@@ -39,6 +59,14 @@ public class MemberController {
 				return "mUpdate";
 		}
 		
+			// 회원가입페이지 이동
+			@GetMapping("mSignIn")
+			public String mSigIn() {
+				log.info("mSigIn()");
+				
+				return "mSignIn";
+			}
+			
 		
 		// 회원가입 처리 메서드
 		@PostMapping("mSignInProc")

@@ -1,0 +1,8 @@
+@charset "UTF-8";
+
+/* 베스트 업체 리스트 2024-02-24 */
+.board {
+	display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* 자동으로 요소의 크기를 조정하여 가로 정렬 */
+    gap: 10px; /* 요소 사이의 간격 */
+}

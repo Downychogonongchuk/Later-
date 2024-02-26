@@ -14,5 +14,7 @@ public interface BoardDao {
 	BoardDto selectBoard(Integer boardId);
 
 	List<BoardDto> getBoardList();
+
+	void deleteBoard(Integer boardId);
 	
 }

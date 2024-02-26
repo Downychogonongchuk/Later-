@@ -29,4 +29,8 @@
 	<select id="getBoardList" resultType="board">
 		SELECT * FROM board
 	</select>
+	
+	<delete id="deleteBoard" parameterType="Integer">
+		DELETE FROM board WHERE boardId = #{boardId}
+	</delete>
 </mapper>

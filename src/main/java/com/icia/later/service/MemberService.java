@@ -85,12 +85,12 @@ public class MemberService {
 
 			System.out.println(loggedInMember);
 			// 로그인시 세션에 저장
-			session.setAttribute("login", loggedInMember);
+			session.setAttribute("mLogin", loggedInMember);
 			System.out.println(loggedInMember);
 
 		} else {
 			msg = "이메일 및 비밀번호를 다시 확인해주세요.";
-			view = "redirect:login";
+			view = "redirect:mLogin";
 		}
 
 		rttr.addFlashAttribute("msg", msg);

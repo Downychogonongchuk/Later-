@@ -23,14 +23,7 @@ public class SignController {
 	@Autowired
 	private MemberService mServ;
 	
-	// 회원가입페이지 이동
-	@GetMapping("mSignIn")
-	public String mSigIn() {
-		log.info("mSigIn()");
-		
-		return "mSignIn";
-	}
-	
+
 	// 회원가입 유형선택페이지
 		@GetMapping("signSelect")
 		public String signSelect() {
