@@ -19,7 +19,79 @@
 		}
 	});
 </script>
+<style>
+.wrap {
+	margin: 20px auto;
+	width: 80%;
+}
 
+.content {
+	background-color: #f9f9f9;
+	padding: 20px;
+	border-radius: 7px;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.list-title {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 20px;
+}
+
+.wr-btn {
+	background-color: #006BB9;
+	color: #fff;
+	border: none;
+	padding: 8px 16px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.wr-btn:hover {
+	background-color: #52d273;
+}
+
+.board-item {
+	border: 1px solid #e6e6e6;
+	padding: 10px;
+	margin-bottom: 10px;
+	border-radius: 5px;
+}
+
+.none-content {
+	font-style: italic;
+	color: #808080;
+}
+
+.data-area {
+	margin-bottom: 20px;
+}
+
+.paging-area {
+	display: flex;
+	justify-content: center;
+}
+
+.paging {
+	display: flex;
+	list-style: none;
+	padding: 0;
+}
+
+.paging li {
+	margin-right: 5px;
+}
+
+.paging a {
+	color: #007bff;
+	text-decoration: none;
+}
+
+.paging a:hover {
+	text-decoration: underline;
+}
+</style>
 </head>
 <body>
 	<div class="wrap">
