@@ -5,7 +5,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>업체정보 수정</title>
-	<link rel="stylesheet" href="resources/css/style.css">
+	<link rel="stylesheet" href="resources/css/writeFrm.css">
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js" 
 			integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" 
 			crossorigin="anonymous"></script>
@@ -56,32 +56,36 @@
                  <div class="filebox">
                 <label for="file">업체 사진</label>
                 <input type="file" name="files" id="file">
-                <input type="text" class="upload-name" value="파일선택" readonly>
+                <input type="text" class="upload-name" value="파일명" readonly>
             </div>
             <!-- 변경할 업체 정보 입력 -->
+            <input type="hidden" class="write-input" name="customerId"
+            autofocus value="${board.customerId}">
             <input type="hidden" class="write-input" name="boardId"
             autofocus value="${board.boardId}">
-            <h4>모집시작일</h4>
             <input type="text" class="write-input" name="periodStart"
-            autofocus value="${board.periodStart}" placeholder="ex)2024-02-00">
-            <h4>모집종료일</h4>
+            autofocus value="${board.periodStart}" placeholder="모집시작일ex)2024-02-00">
             <input type="text" class="write-input" name="periodEnd"
-                   autofocus value="${board.periodEnd}" placeholder="ex)2024-02-00">
-            <h4>모집인원</h4>
+                   autofocus value="${board.periodEnd}" placeholder="모집종료일ex)2024-02-00">
             <input type="text" class="write-input" name="personnel"
-                   value="${board.personnel}">
+                   value="${board.personnel}" placeholder="모집인원">
             <input type="hidden" class="write-input" name="companyName"
-                   autofocus placeholder="companyName">
-            <h4>모집내용</h4>
-            <textarea class="write-input" name="detail"
+                   autofocus value="${board.companyName}" placeholder="companyName">
+            <input type="hidden" class="write-input" name="category"
+                   autofocus value="${board.category}" placeholder="category" >
+            <textarea rows="10" class="write-input ta" name="detail" placeholder="상세설명"
                    >${board.detail}</textarea> 
-           <h4>체크사항 및 요청사항</h4>
-            <textarea class="write-input" name="checkInfo"
+            <textarea rows="10" class="write-input ta" name="checkInfo" placeholder="체크사항 및 요청사항"
                    >${board.checkInfo}</textarea>
-             <input type="text" class="write-input" name="provideType"
-                   value="${board.provideType}">
-            <input type="text" class="write-input" name="price"
-                   value="${board.price}">
+             
+             <input type="text" class="write-input" name="price"
+                    autofocus value="${board.price}" placeholder="원가">
+             <!-- <h6 id="write1">**규정상 무료제공을 원칙으로 하고있습니다, 동의하지 않으시는 회원께서는 리뷰엔 이용에 제한됩니다
+            제공하는 금액에서 추가적인 비용 발생시 체험신청자와 협의하에 추가비용 청구는 가능합니다.**</h6>
+             <h4>제공 가격</h4>  -->
+             <input type="hidden" class="write-input" name="provideType"
+                   autofocus value="${board.provideType}" placeholder="제공가격">
+            
 			
             <div class="btn-area">
                 <input type="submit" class="btn-write" value="수정완료">

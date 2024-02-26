@@ -97,7 +97,7 @@ public class BoardService {
 			// 기존 파일 삭제
 		} catch (Exception e) {
 			e.printStackTrace();
-			view = "redirect:mUpdate?memberId=" + board.getBoardId();
+			view = "redirect:bUpdate";//mUpdate?memberId=" + board.getBoardId();
 			msg = "수정 실패";
 		}
 
@@ -108,6 +108,7 @@ public class BoardService {
 	//수정할 업체정보 가져오기
 	public void getBoard(Integer boardId, Model model) {
 		log.info("getBoard()");
+		
 		
 		
 		BoardDto board = bDao.selectBoard(boardId);

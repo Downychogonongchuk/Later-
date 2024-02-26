@@ -23,7 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CustomerController {
 	@Autowired 
-	CustomerService cServ;
+	private CustomerService cServ;
 	
 	
 	@GetMapping("cSignIn")

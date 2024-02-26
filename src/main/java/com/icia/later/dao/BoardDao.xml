@@ -4,18 +4,21 @@
   
 <mapper namespace="com.icia.later.dao.BoardDao">
 	<insert id="insertBoard" parameterType="board">
-		INSERT INTO board
-		VALUES (null, #{periodStart}, #{periodEnd}, #{personnel}, 
+		INSERT INTO board ( periodStart, periodEnd, personnel, 
+							companyName, detail, checkInfo,
+							provideType, price, boardFile, 
+							category, customerId)
+		VALUES (#{periodStart}, #{periodEnd}, #{personnel}, 
 				#{companyName}, #{detail}, #{checkInfo}, #{provideType},
-				#{price}, #{boardFile})
+				#{price}, #{boardFile}, #{category}, #{customerId})
 	</insert>
 	
 	<update id="updateBoard" parameterType="board">
 		UPDATE board
 		SET periodStart=#{periodStart}, periodEnd=#{periodEnd}, 
-		personnel=#{personnel}, companyName=#{companyName},
+		personnel=#{personnel},
 		detail=#{detail}, checkInfo=#{checkInfo}, 
-		provideType=#{provideType}, price=#{price}, 
+		price=#{price}, 
 		boardFile=#{boardFile}
 		
 		WHERE boardId = #{boardId}

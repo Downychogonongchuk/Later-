@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.icia.later.dto.BoardDto;
+import com.icia.later.dto.CustomerDto;
 import com.icia.later.service.BoardService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -26,9 +27,17 @@ public class BoardController {
 	
 	//모집등록페이지 전환
 		@GetMapping("writeFrm")
-		public String writeFrm() {
+		public String writeFrm(Model model, HttpSession session) {
 			log.info("writeFrm()");
+			
+			CustomerDto cLogInInfo = (CustomerDto) session.getAttribute("cLogin");
+			
+			System.out.println(cLogInInfo);
+			if(cLogInInfo != null) {
+				model.addAttribute("customer", cLogInInfo);
 				
+			}
+			
 			return "writeFrm";
 		}
 		
@@ -46,10 +55,17 @@ public class BoardController {
 		
 		//업체정보 수정페이지 전환
 		@GetMapping("bUpdate")
-		public String bUpdate(Integer boardId, Model model) {
+		public String bUpdate(Integer boardId, Model model, HttpSession session) {
 			log.info("bUpdate()");
 			
 			bServ.getBoard(boardId, model);
+			
+//			CustomerDto cLogInInfo = (CustomerDto) session.getAttribute("cLogin");
+//			
+//			System.out.println(cLogInInfo);
+//			if(cLogInInfo != null) {
+//				model.addAttribute("customer", cLogInInfo);
+//			}
 			
 			return "bUpdate";
 		}

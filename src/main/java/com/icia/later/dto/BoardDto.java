@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @Alias("board")
 public class BoardDto {
-	private int boardId;
+	private Integer boardId;
 	private String periodStart;
 	private String periodEnd;
 	private int personnel;
@@ -19,5 +19,7 @@ public class BoardDto {
 	private String provideType;
 	private int price;
 	private String boardFile;
+	private String category;
+	private Integer customerId;
 }
 
