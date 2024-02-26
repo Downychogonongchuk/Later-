@@ -22,7 +22,7 @@
 <body>
 	<div class="wrap">
 		<div class="content">
-			<h2 class="form-header">리뷰</h2>
+			<h2 class="form-header">맛집</h2>
 			<div class="detail">
 				<div class="detail-sub">
 					<div class="detail-title">업체 사진</div>
