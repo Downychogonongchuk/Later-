@@ -13,5 +13,8 @@ public interface CustomerDao {
 	
 	// 업데이트
 	void updateCustomer(CustomerDto customer);
+	
+	// 사업자 회원 탈퇴
+	void deleteCustomer(Integer customerId);
 
 }

@@ -20,6 +20,7 @@
 			<div class="button-container">
 				<button class="large-button" id="mSign">체험단회원</button>
 				<button class="large-button" id="cSign">사업자회원</button>
+				<br>
 				<button class="small-button" id="backbtn">홈으로 돌아가기</button>
 			</div>
 

@@ -18,8 +18,10 @@
 		<div class="content">
 			<h2 class="form-header">로그인</h2>
 			<div class="button-container">
-				<button class="large-button" id="mLogin">일반회원</button>
-				<button class="large-button" id="cLogin">사업회원</button>
+				<button class="large-button" id="mLogin">체험단회원</button>
+				<br>
+				<button class="large-button" id="cLogin">사업자회원</button>
+				<br>
 				<button class="small-button" id="backbtn">홈으로 돌아가기</button>
 			</div>
 

@@ -78,7 +78,7 @@ public class CustomerController {
 			return "cUpdate";
 	}
 		
-	// 일반회원정보 수정 처리
+	// 사업자 회원정보 수정 처리
 		@PostMapping("cUpdateProc")
 		public String cUpdateProc(@RequestPart List<MultipartFile> files, 
 				CustomerDto customer,
@@ -90,5 +90,22 @@ public class CustomerController {
 			
 			return view;
 		}
+		
+	// 사업자 회원 정보 탈퇴
+		// 일반회원 탈퇴
+		@GetMapping("cDelete")
+		public String cDelete(Integer customerId,HttpSession session,RedirectAttributes rttr) {
+			log.info("cDelete()");
+			
+			
+			String view = cServ.cDelete(customerId,session,rttr);
+			if (session != null && session.getAttribute("login") != null) {
+		        // 탈퇴 후 세션에 저장되어있는 값 삭제
+		        session.invalidate();
+		    }
+
+			return view;
+		}
+		
 		
 }

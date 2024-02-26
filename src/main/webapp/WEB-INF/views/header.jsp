@@ -31,5 +31,7 @@
 		<i class="fa fa-user-circle-o" aria-hidden="true"></i>
 		<a class="link" href="loginSelect">로그인</a> 
 		<a class="link" href="signSelect">회원가입</a>
+		<a class="link" href="cDelete">사업자 회원탈퇴</a>
+		<a class="link" href="mDelete">일반회원 회원탈퇴</a>
 	</div>
 </div>

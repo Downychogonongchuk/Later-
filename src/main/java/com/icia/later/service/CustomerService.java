@@ -146,5 +146,34 @@ public class CustomerService {
 			}
 
 		}
+
+		// 회원 탈퇴 메서드
+		public String cDelete(Integer customerId, HttpSession session, RedirectAttributes rttr) {
+			log.info("cDelete()");
+			String msg = null;
+			String view = null;
+			CustomerDto loginInfo = (CustomerDto) session.getAttribute("login");
+			int id = loginInfo.getCustomerId();
+
+			try {
+				if (loginInfo != null) {
+					cDao.deleteCustomer(id);
+					System.out.println("cServ" + id);
+
+					view = "redirect:/"; 
+					msg = "탈퇴 성공";
+				}
+
+				// 기존 파일 삭제
+			} catch (Exception e) {
+				e.printStackTrace();
+				view = "redirect:/";
+				msg = "탈퇴 실패";
+			}
+
+			rttr.addFlashAttribute("msg", msg);
+			return view;
+
+		}
 		
 }
