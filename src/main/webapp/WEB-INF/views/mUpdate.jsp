@@ -16,7 +16,7 @@
                 let files = $("#file")[0].files;
                 let fileName = "";
 
-                if(files.length == 1) {
+                if(files.length == 1) {  
                     fileName = files[0].name;
                 }
                 else {

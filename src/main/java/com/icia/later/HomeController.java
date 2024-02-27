@@ -121,6 +121,23 @@ public class HomeController {
 		return view;
 		
 	}
+	
+	//일반회원 아이디찾기
+	@GetMapping("mFindById")
+	public String mFindById() {
+		log.info("mFindById()");
+		
+		return "mFindById";
+	}
+	
+	//일반회원 비번찾기
+		@GetMapping("mFindByPass")
+		public String mFindByPass() {
+			log.info("mFindByPass()");
+			
+			return "mFindByPass";
+		}
+	
 	// 로그아웃 
 	@GetMapping("logout")
 	public String logout(HttpServletRequest request, RedirectAttributes rttr) {

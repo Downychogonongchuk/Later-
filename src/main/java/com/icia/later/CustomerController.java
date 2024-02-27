@@ -73,6 +73,22 @@ public class CustomerController {
 			return view;
 		}
 		
+		//사업자회원 아이디찾기
+				@GetMapping("cFindById")
+				public String cFindById() {
+					log.info("cFindById()");
+					
+					return "cFindById";
+				}
+		
+		//사업자회원 비번찾기
+				@GetMapping("cFindByPass")
+				public String cFindByPass() {
+					log.info("cFindByPass()");
+					
+					return "cFindByPass";
+				}
+		
 	// 사업자 회원정보 수정페이지 이동
 		@GetMapping("cUpdate")
 		public String cUpdate(Model model,HttpSession session) {
