@@ -29,6 +29,77 @@ a {
 	justify-content: space-between;
 	align-items: center; /* 요소를 수직 가운데 정렬 */
 }
+/* 사이드바 스타일 */
+.sidebar {
+	height: 100%;
+	width: 400px;
+	/*             position: fixed; */
+	top: 0;
+	left: 0;
+	background-color: #ffffff;
+	padding: 20px;
+	border-right: 2px solid #006BB9;
+}
+
+.sidebar a {
+	padding: 10px 15px;
+	text-decoration: none;
+	font-size: 20px;
+	color: #495057;
+	display: block;
+}
+
+.sidebar a:hover {
+	background-color: #e9ecef;
+}
+
+.img-box {
+	margin: 0 auto;
+	width: 200px; /* 이미지의 너비 */
+	height: 200px; /* 이미지의 높이 */
+	border-radius: 50%; /* 모서리를 둥글게 만듭니다. 값은 반지름을 나타냅니다. */
+	overflow: hidden;
+	width: 200px; /* 모서리를 둥글게 만든 부분을 이미지가 넘치지 않도록 숨깁니다. */
+}
+
+.img-box img {
+	width: 100%; /* 이미지가 부모 요소인 div에 꽉 차게 설정합니다. */
+	height: auto; /* 이미지의 높이를 자동으로 조정하여 비율을 유지합니다. */
+	display: block; /* 인라인 요소를 블록 요소로 변환합니다. */
+}
+
+.box-line {
+	padding-bottom: 50px;
+	padding-top: 30px;
+	border-bottom: 2px solid #006BB9;
+}
+
+#h4 {
+	text-align: center;
+}
+
+
+.mypage-icon {
+    position: fixed; /* 고정 위치 */
+    top: 650;
+    right: 580; /* 오른쪽 정렬 */
+    margin: 20px; /* 원하는 여백 설정 */
+    z-index: 999; /* 다른 요소 위에 표시되도록 설정 */
+    font-size: 80px;
+    color: grey;
+    opacity: 0.5;
+    user-select: none;
+}
+.mypage-icon-user {
+    position: fixed; /* 고정 위치 */
+    top: 150;
+    right: 500; /* 오른쪽 정렬 */
+    margin: 20px; /* 원하는 여백 설정 */
+    z-index: 999; /* 다른 요소 위에 표시되도록 설정 */
+    font-size: 500px;
+    color: grey;
+    opacity: 0.5;
+}
 
 .review { /* 로고위치 조정 */
 	flex: 1;

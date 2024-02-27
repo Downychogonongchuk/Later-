@@ -34,5 +34,6 @@
 		<a class="link" href="cDelete">사업자 회원탈퇴</a>
 		<a class="link" href="mDelete">일반회원 회원탈퇴</a>
 		<a class="link" href="myPage">마이페이지</a>
+		<a class="link" href="logout">로그아웃</a>
 	</div>
 </div>

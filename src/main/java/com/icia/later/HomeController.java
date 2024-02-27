@@ -106,6 +106,7 @@ public class HomeController {
 		
 		String view = mServ.mLogin(member, session, rttr);
 		return view;
+		
 	}
 	// 로그아웃 
 	@GetMapping("logout")
