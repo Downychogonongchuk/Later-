@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.icia.later.dto.CustomerDto;
@@ -41,6 +42,15 @@ public class CustomerController {
 		String view = cServ.insertCustomer(files, customer, session, rttr);
 		
 		return view;
+	}
+	
+	@PostMapping("cEmailCheck")
+	@ResponseBody
+	public String cEmailCheck(String customerEmailCheck) {
+	log.info("cEmailCheck()" + customerEmailCheck);
+	String res = cServ.cEmailCheck(customerEmailCheck); 
+	
+		return res;
 	}
 	
 	//사업자 로그인 페이지

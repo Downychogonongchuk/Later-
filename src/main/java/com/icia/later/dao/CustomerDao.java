@@ -16,5 +16,8 @@ public interface CustomerDao {
 	
 	// 사업자 회원 탈퇴
 	void deleteCustomer(Integer customerId);
+	
+	// 이메일 중복체크
+	int checkDuplicateId(String customerEmailCheck);
 
 }

@@ -127,6 +127,16 @@ a {
     margin-bottom: 50px;
     text-align: center;
 }
+btn-emailCheck {
+	width: 100px;
+    padding: 5px 16px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 6px;
+    color: #fff;
+    background-color: #006BB9;
+    margin-top: 10px;
+}
 .button-container {
     margin-top : 100px;
     text-align: center;

@@ -20,6 +20,22 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CustomerService {
 	@Autowired CustomerDao cDao;
+	
+	public String cEmailCheck(String customerEmailCheck) {
+		log.info("customerEmailCheck()");
+		int cnt = cDao.checkDuplicateId(customerEmailCheck);
+
+		String res = null;
+		if (cnt > 0) {
+			// 아이디 있음
+			res = "fail";
+		} else {
+			// 아이디 없음
+			res = "ok";
+		}
+
+		return res;
+	}
 
 	public String insertCustomer(List<MultipartFile> files,
 									CustomerDto customer, 

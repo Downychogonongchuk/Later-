@@ -3,6 +3,10 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.icia.later.dao.CustomerDao">
+  
+  <select id="checkDuplicateId" parameterType ="string" resultType ="Integer">
+	SELECT COUNT(*) FROM customer WHERE customerEmail = #{customerEmailCheck}
+	</select>
 
 	<insert id="insertCustomer" parameterType="customer">
 		INSERT INTO customer

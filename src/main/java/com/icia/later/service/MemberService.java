@@ -39,7 +39,6 @@ public class MemberService {
 		return res;
 	}
 	
-
 	public String insertMember(List<MultipartFile> files, MemberDto member, HttpSession session,
 			RedirectAttributes rttr) {
 		log.info("insertMember()");
