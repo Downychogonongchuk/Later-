@@ -18,6 +18,46 @@
 		}
 	});
 </script>
+<style>
+body {
+	background-color: #FFF6E9;
+	color: #000000;
+}
+
+h2.form-header {
+	color: #006BB9;
+}
+
+.detail {
+	background-color: #BBE2EC;
+	color: #000000;
+	margin-bottom: 20px;
+	padding: 10px;
+}
+
+.detail-title {
+	font-weight: bold;
+}
+
+.synopsis-title {
+	color: #000000;
+	font-weight: bold;
+}
+
+.btn-area button {
+	background-color: #006BB9;
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	margin-right: 10px;
+	cursor: pointer; 
+	border-radius: 10px;
+}
+
+.btn-area button:hover {
+	background-color: #0D9276;
+}
+</style> 
 </head>
 <body>
 	<div class="wrap">
