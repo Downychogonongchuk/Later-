@@ -20,7 +20,7 @@
 </script>
 <style>
 body {
-	background-color: #FFFFFF;
+	background-color: #FFF6E9;
 	color: #000000;
 }
 
@@ -29,8 +29,8 @@ h2.form-header {
 }
 
 .detail {
-	background-color: white;
-	color: #333;
+	background-color: #BBE2EC;
+	color: #000000;
 	margin-bottom: 20px;
 	padding: 10px;
 }
@@ -45,12 +45,17 @@ h2.form-header {
 }
 
 .btn-area button {
-	background-color: #52d273;
+	background-color: #006BB9;
 	color: white;
 	border: none;
 	padding: 10px 20px;
 	margin-right: 10px;
 	cursor: pointer;
+	border-radius: 10px;
+}
+
+.btn-area button:hover {
+	background-color: #0D9276;
 }
 </style>
 </head>

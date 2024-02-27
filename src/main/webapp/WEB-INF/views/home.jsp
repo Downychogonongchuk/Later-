@@ -49,7 +49,7 @@
 }
 
 .wr-btn:hover {
-	background-color: #52d273;
+	background-color: #0D9276;
 }
 
 .board-item {
