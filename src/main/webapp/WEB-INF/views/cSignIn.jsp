@@ -36,7 +36,7 @@
 <div class="wrap">
 <jsp:include page="header.jsp" />
 	<div class="content">
-		<form action="mSignInProc" method="post" enctype="multipart/form-data">
+		<form action="cSignInProc" method="post" enctype="multipart/form-data">
             <h2 class="form-header">회원가입</h2>          
                 <!-- 파일 입력 처리 영역 -->
                  <div class="filebox">
@@ -46,37 +46,28 @@
             </div>
             <!-- 개인정보 입력 영역 -->
             <h5>이메일</h5>
-            <input type="email" class="write-input" name="memberEmail" autofocus required="required">
+            <input type="email" class="write-input" name="customerEmail" autofocus required="required">
             <h5>비밀번호</h5>
-            <input type="password" class="write-input" name="memberPass" autofocus required="required">
+            <input type="password" class="write-input" name="customerPass" autofocus required="required">
             <h5>비밀번호 재확인</h5>
             <input type="password" class="write-input" name="" autofocus required="required">
             <h5>이름</h5>
-            <input type="text" class="write-input" name="memberName" autofocus required="required">
-            <h5>전화번호</h5>
-            <input type="text" class="write-input" name="memberPhone" autofocus required="required">
-            <h5>사용하는 SNS</h5>
-            <select name = "snsKind" class="write-input" required autofocus>
-			<option value="없음">==선택해주세요==</option>
-			<option value="facebook">페이스북</option>
-			<option value="instagram">인스타그램</option>
-			<option value="blog">블로그</option>
-			<option value="youtube">유튜브</option>
-            </select>
-            <h5>SNS 링크</h5>       
-            <input type="text" class="write-input" name="snsLink" autofocus required="required">
-            <h5>팔로워 수</h5>       
-            <select name="snsFollower" class="write-input" required autofocus>
-			<option value="없음">==선택해주세요==</option>
-			<option value="1000">1~1,000</option>
-			<option value="5000">1,000~5,000</option>
-			<option value="10000">5,000~10,000</option>
-			<option value="30000">10,000~30,000</option>
-			<option value="50000">30,000~50,000</option>
-			<option value="50001">50,000 이상</option>
-			 </select>
-            
-
+            <input type="text" class="write-input" name="customerName" autofocus required="required">
+            <h5>사업자번호</h5>
+            <input type="text" class="write-input" name="customerNum" autofocus required="required">
+            <h5>업체명</h5>
+            <input type="text" class="write-input" name="companyName" autofocus required="required">
+            <h5>사업장 주소</h5>
+            <input type="text" class="write-input" name="companyAddress" autofocus required="required">
+            <h5>업종</h5>            
+			<select name="sectors" class="write-input" required="required" autofocus>
+			<option value="없음">==카테고리 선택==</option>
+			<option value="요식업">요식업</option>
+			<option value="숙박업">숙박업</option>
+			<option value="가전제품 도소매업">가전제품 도소매업</option>
+			<option value="미용업">미용업</option>
+			<option value="기타">기타</option>
+			 </select>  
             <div class="btn-area">
                 <input type="submit" class="btn-write" value="가입">
                 <input type="button" class="btn-write" value="돌아가기" id="backbtn">

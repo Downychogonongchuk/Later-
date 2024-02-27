@@ -15,16 +15,16 @@
 	<div class="wrap">
 		<jsp:include page="header.jsp" />
 		<div class="content">
-			<form action="mLoginProc" method="post"
+			<form action="cLoginProc" method="post"
 				enctype="multipart/form-data">
-				<h2 class="form-header">일반회원 로그인</h2>
+				<h2 class="form-header">사업자회원 로그인</h2>
 				<!-- 개인정보 입력 영역 -->
 				<div class="loginBox">
 					<h5>이메일</h5>
-					<input type="email" class="write-input" name="memberEmail"
+					<input type="email" class="write-input" name="customerEmail"
 						autofocus placeholder="이메일을 입력해주세요." required="required">
 					<h5>비밀번호</h5>
-					<input type="password" class="write-input" name="memberPass"
+					<input type="password" class="write-input" name="customerPass"
 						autofocus placeholder="비밀번호를 입력해주세요." required="required">
 				</div>
 				<div class="btn-area">

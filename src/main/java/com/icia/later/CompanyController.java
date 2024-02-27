@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.icia.later.dto.BoardDto;
+import com.icia.later.dto.CustomerDto;
 import com.icia.later.dto.MemberDto;
 import com.icia.later.service.BoardService;
 import com.icia.later.service.MemberService;
@@ -74,6 +75,36 @@ public class CompanyController {
 					
 					}
 				}
+			
+			
+			// 모집글 페이지 이동
+						@GetMapping("companyList")
+						
+						public String companyList(Integer pageNum, 
+													Model model,
+													HttpSession session,
+													Integer customerId1 ) {		
+							log.info("companyList()");
+							
+						    Object someValue = session.getAttribute("login");
+
+						    if (someValue instanceof CustomerDto) {
+						    	CustomerDto customerDto = (CustomerDto) someValue;
+
+						        Integer customerId = customerDto.getCustomerId();
+						        
+								 String view = bServ.getBoardListBycustomerId(pageNum, 
+										 model,
+										 session, 
+										 customerId);
+								    return view;
+							} else{
+								
+						        return "redirect:/login"; // 로그인 페이지로 리다이렉트 예시
+								
+								}
+							}
+			
 		}
 
 	  

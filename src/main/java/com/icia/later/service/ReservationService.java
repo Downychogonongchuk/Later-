@@ -2,6 +2,8 @@ package com.icia.later.service;
 
 
 
+
+
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
@@ -40,8 +42,8 @@ public class ReservationService {
 		log.info("insertRev()");
 		String msg = null;
 		String view = null;
+		
 		LocalDateTime currentTime = LocalDateTime.now();
-	
 		ReservationDto reservationDto = new ReservationDto();
 			 
 			reservationDto.setReservationTime(currentTime);

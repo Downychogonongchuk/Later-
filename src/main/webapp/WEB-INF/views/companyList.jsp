@@ -5,8 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>내가 신청한 업체 목록</title>
-<link rel="stylesheet" type="text/css" href="resources/css/applyCompany.css">
+<title>내가 모집한 글 목록</title>
+<link rel="stylesheet" type="text/css" href="resources/css/companyList.css">
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"
 	integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
@@ -20,7 +20,7 @@
                 <!-- 신청 목록 출력 -->
                     <c:if test="${empty bList}">
                         <div class="shop-item">
-                            <span class="none-content">신청한 체험단 모집글이 없습니다.</span>
+                            <span class="none-content">모집글이 없습니다.</span>
                         </div>
                     </c:if><!--if boardList is Empty-->
 
