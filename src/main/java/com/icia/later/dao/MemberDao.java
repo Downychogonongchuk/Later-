@@ -5,7 +5,7 @@ import com.icia.later.dto.MemberDto;
 public interface MemberDao {
 	
 
-	// 회원가입
+			// 회원가입
 			void insertMember(MemberDto member);
 			
 			// 로그인

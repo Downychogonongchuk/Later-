@@ -1,4 +1,4 @@
-/* applyCompany.css */
+
 
 body {
     font-family: Arial, sans-serif;
@@ -22,6 +22,7 @@ body {
 
 .shop-item {
     width: 200px;
+    height: 270px;
     margin: 10px;
     padding: 10px;
     border: 1px solid #ddd;
@@ -35,38 +36,106 @@ body {
     display: block; /* Added to center align the image */
     margin: 0 auto; /* Added to center align the image */
     width: 250px; /* Set the width to 250px */
-    height: 250px; /* Set the height to 250px */
+    height: 140px; /* Set the height to 250px */
 }
 
 .info-pre {
     margin-top: 10px;
+       position: relative; /* 추가: 상대 위치 설정 */
+       width:178px;
+       height:100px;
+}
+
+.content-provide,
+.priceline,
+.content-personnel,
+.content-period1,
+.content-period2 {
+    position: absolute;
+    bottom: 0; /* 추가: 아래로 정렬 */
 }
 
 .title-pre {  /*업체명*/
     font-size: 20px;
     font-weight: bold;
+	
+}
+.title{
+	 color: #000000;
+  text-align: left;
+  font-family: "Inter-Bold", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  position: absolute;
+  width: 180.25px;
+  height: 17.74px;
+  white-space: nowrap; /* 추가 */
+  margin-bottom: 3px;
 }
 
 .content-provide { /*제공타입*/
-    margin-top: 5px;
-    font-size: 14px;
+  color: #fe0202;
+  text-align: left;
+  font-family: "Inter-Bold", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  width: 35.02px;
+  height: 17.74px;
+  white-space: nowrap; /* 추가 */
+  top:16px;
 }
 .content-price { /*가격*/
-    margin-top: 5px;
-    font-size: 16px;
+    color: #888888;
+  text-align: left;
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  position: absolute;
+  width: 54.59px;
+  height: 12.9px;
+  margin-left: 120px;
+  top:20px;
+}
+
+.div3{
+	 color: #888888;
+  text-align: left;
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  position: absolute;
+  width: 54.59px;
+  height: 12.9px;
+  top:40px;
 }
 .content-personnel { /*인원 수*/
-    margin-top: 5px;
-    font-size: 10px;
+  color: #00ff19;
+  text-align: left;
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  position: absolute;
+  width: 39.14px;
+  height: 12.9px;
+  top:40px;
+  margin-left:70px;
 }
 
 .content-period1, .content-period2 { /*기간 컬럼*/
-    margin-top: 5px;
-    font-size: 9px; /* 줄인 글씨 크기 */
+    color: #888888;
+  text-align: left;
+  font-family: "Inter-Bold", sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  position: absolute;
+  width: 128.75px;
+  height: 25.81px;
+  white-space: nowrap; /* 추가 */
 }
 
 .content-period1 {
     margin-bottom: 1px; /* 간격을 더 조절 */
+    top:60px;
 }
 
 

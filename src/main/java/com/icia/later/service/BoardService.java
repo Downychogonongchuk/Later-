@@ -1,6 +1,7 @@
 package com.icia.later.service;
 
 
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +28,12 @@ public class BoardService {
 		@Autowired
 		private BoardDao bDao;
 
+		
+		
+		
+		
+		
+		// 업체 상세 가져오기
 		public void getCompanyDetail(Integer boardId,Model model) {
 			log.info("getCompanyDetail()");
 			//DB에서 데이터 가져오기
@@ -85,6 +92,8 @@ public class BoardService {
 			
 			return pageHtml;
 		}
+
+		
 
 
 		

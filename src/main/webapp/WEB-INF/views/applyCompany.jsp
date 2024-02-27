@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>내가 신청한 업체 목록</title>
-<link rel="stylesheet" type="text/css" href="resources/css/applyCompany.css">
+<link rel="stylesheet" type="text/css" href="resources/css/applyCompany.css?after">
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"
 	integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
@@ -38,22 +38,25 @@
                                             class="poster-pre">
                                     </c:if>
                                 </a>
-                                <div class="info-pre">
+                                <section class="info-pre">
+                              
                                     <div class="title-pre">
-                                        <a href="companyDetail?boardId=${board.boardId}">
+                                        <a class="title" href="companyDetail?boardId=${board.boardId}">
                                             ${board.companyName}
                                         </a>  
                                     </div> <!--title-pre-End-->
                                     
                                     
-                                    <div class="content-provide"><strong>제공타입</strong><br><strong>${board.provideType}</strong></div>
-                                    <div class="content-price"><strong>가격</strong><br><strong>${board.price}</strong></div>
-                                    <div class="content-personnel"><strong>모집인원</strong><br>${board.personnel}</div>
-                                    <div class="content-period1"><strong>신청 시작:</strong>${board.periodStart}</div>
-                                    <div class="content-period2"><strong>신청 마감:</strong>${board.periodEnd}</div>
-                                    
-
-                                </div>
+                                    <div class="content-provide">${board.provideType}</div>
+                                    <div class="content-price">${board.price}</div>
+                                     <div class="priceline"></div>
+                                     <div class="div3">모집인원</div>
+                                    <div class="content-personnel">${board.personnel}</div>
+                                    <div class="content-period1">신청 시작:${board.periodStart}</div>
+                                    <div class="content-period2">신청 마감:${board.periodEnd}</div>
+                                   
+                               
+                                </section>
                             </div>
                         </c:forEach>
                     </c:if>
