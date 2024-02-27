@@ -3,8 +3,7 @@ package com.icia.later.dao;
 import com.icia.later.dto.MemberDto;
 
 public interface MemberDao {
-
-		
+	
 		// 회원가입
 		void insertMember(MemberDto member);
 		
@@ -19,4 +18,6 @@ public interface MemberDao {
 		
 		// 삭제
 		void deleteMember(Integer memberId);
+		// 이메일 중복체크
+		int checkDuplicateId(String memberEmailCheck);
 }

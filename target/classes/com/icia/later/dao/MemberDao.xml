@@ -4,6 +4,10 @@
   
 <mapper namespace="com.icia.later.dao.MemberDao">
 
+	<select id="checkDuplicateId" parameterType ="string" resultType ="Integer">
+	SELECT COUNT(*) FROM member WHERE memberEmail = #{memberEmailCheck}
+	</select>
+
 	<insert id="insertMember" parameterType="member">
 		INSERT INTO Member
 		VALUES (null,#{memberName},#{memberEmail},#{memberPass},#{memberPhone},

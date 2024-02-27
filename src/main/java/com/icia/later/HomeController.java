@@ -10,7 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -66,6 +68,17 @@ public class HomeController {
 		
 		return "mSignIn";
 	}
+	
+	
+	@PostMapping("mEmailCheck")
+	@ResponseBody
+	public String mEmailCheck(String memberEmailCheck) {
+	log.info("mEmailCheck()" + memberEmailCheck);
+	String res = mServ.mEmailCheck(memberEmailCheck); 
+	
+		return res;
+	}
+	
 	// 회원가입 처리 메서드
 	@PostMapping("mSignInProc")
 	public String mSignInProc(@RequestPart List<MultipartFile> files, 

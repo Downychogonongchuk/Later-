@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+import javax.swing.text.View;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -20,6 +22,23 @@ import lombok.extern.slf4j.Slf4j;
 public class MemberService {
 	@Autowired
 	private MemberDao mDao;
+	
+	public String mEmailCheck(String memberEmailCheck) {
+		log.info("memberEmailCheck()");
+		int cnt = mDao.checkDuplicateId(memberEmailCheck);
+
+		String res = null;
+		if (cnt > 0) {
+			// 아이디 있음
+			res = "fail";
+		} else {
+			// 아이디 없음
+			res = "ok";
+		}
+
+		return res;
+	}
+	
 
 	public String insertMember(List<MultipartFile> files, MemberDto member, HttpSession session,
 			RedirectAttributes rttr) {
@@ -194,4 +213,6 @@ public class MemberService {
 		return view;
 
 	}
+
+	
 }
