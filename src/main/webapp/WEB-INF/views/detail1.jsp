@@ -50,14 +50,14 @@ h2.form-header {
 	border: none;
 	padding: 10px 20px;
 	margin-right: 10px;
-	cursor: pointer;
+	cursor: pointer; 
 	border-radius: 10px;
 }
 
 .btn-area button:hover {
 	background-color: #0D9276;
 }
-</style>
+</style> 
 </head>
 <body>
 	<div class="wrap">
@@ -118,7 +118,6 @@ h2.form-header {
 			<button class="btn-write" id="delbtn">삭제</button>
 			<button class="btn-sub" id="backbtn">뒤로</button>
 		</div>
-	</div>
 	</div>
 </body>
 <script>

@@ -79,7 +79,6 @@
 			<button class="btn-sub" id="backbtn">뒤로</button>
 		</div>
 	</div>
-	</div>
 </body>
 <script>
 	$("#backbtn").click(function() {
