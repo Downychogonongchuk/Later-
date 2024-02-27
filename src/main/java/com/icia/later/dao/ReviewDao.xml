@@ -13,4 +13,16 @@
  		INSERT INTO review (reviewFile, time, contents)
  		VALUES (#{reviewFile}, #{time}, #{contents})
  	</insert>
+ 	
+ 	<select id="getReviewList" resultType="review"
+ 		parameterType="HashMap"> 
+ 		SELECT * FROM review
+ 		LIMIT #{pageNum}, #{listCnt}
+ 	</select>
+ 	
+ 	<select id="selectReview" parameterType="Integer"
+ 		resultType="review">
+ 		SELECT * FROM review
+ 		WHERE reviewId=#{reviewId}
+ 	</select>
  </mapper>

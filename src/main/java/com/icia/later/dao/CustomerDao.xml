@@ -29,10 +29,10 @@
 		
 		WHERE customerId=#{customerId}
 	</update>
-	<!-- 
-	<delete id="deleteMember" parameterType="Integer">
-		DELETE FROM test1
-		WHERE memberId=#{memberId}
+	
+	<delete id="deleteCustomer" parameterType="Integer">
+		DELETE FROM customer
+		WHERE customerId=#{customerId}
 	</delete>
-	  -->
+
 </mapper>

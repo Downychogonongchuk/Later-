@@ -6,3 +6,7 @@
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* 자동으로 요소의 크기를 조정하여 가로 정렬 */
     gap: 10px; /* 요소 사이의 간격 */
 }
+
+.provideType-price {
+
+}

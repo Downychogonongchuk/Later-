@@ -58,25 +58,31 @@ public class BoardController {
 		public String bUpdate(Integer boardId, Model model, HttpSession session) {
 			log.info("bUpdate()");
 			
-			bServ.getBoard(boardId, model);
+			boardId = 1;
 			
-//			CustomerDto cLogInInfo = (CustomerDto) session.getAttribute("cLogin");
-//			
-//			System.out.println(cLogInInfo);
-//			if(cLogInInfo != null) {
-//				model.addAttribute("customer", cLogInInfo);
-//			}
+			BoardDto board = bServ.getBoard(boardId);
 			
+			CustomerDto cLogInInfo = (CustomerDto) session.getAttribute("cLogin");
+			
+			System.out.println(cLogInInfo);
+			if(cLogInInfo != null) {
+				model.addAttribute("customer", cLogInInfo);
+			}
+			
+			model.addAttribute("board", board);
 			return "bUpdate";
 		}
 		
 		//업체정보 수정 처리 메서드
 		@PostMapping("bUpdateProc")
 		public String bUpdateProc(@RequestPart List<MultipartFile> files, 
-				BoardDto board,
+				Integer boardId,
 				HttpSession session,
 				RedirectAttributes rttr) {
 			log.info("bUpdateProc()");
+			
+			BoardDto board = bServ.getBoard(boardId);
+			
 			String view = bServ.boardUpdate(files, board, session, rttr);
 			
 			return view;

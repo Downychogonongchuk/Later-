@@ -84,7 +84,7 @@
             제공하는 금액에서 추가적인 비용 발생시 체험신청자와 협의하에 추가비용 청구는 가능합니다.**</h6>
              <h4>제공 가격</h4>  -->
              <input type="hidden" class="write-input" name="provideType"
-                   autofocus value="${board.provideType}" placeholder="제공가격">
+                   autofocus value="무료" placeholder="제공가격">
             
 			
             <div class="btn-area">

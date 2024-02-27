@@ -92,5 +92,20 @@ public class CustomerController {
 			
 			return view;
 		}
+		
+		// 일반회원 탈퇴
+		@GetMapping("cDelete")
+		public String cDelete(Integer customerId,HttpSession session,RedirectAttributes rttr) {
+			log.info("cDelete()");
+			
+			
+			String view = cServ.mDelete(customerId,session,rttr);
+			if (session != null && session.getAttribute("cLogin") != null) {
+		        // 탈퇴 후 세션에 저장되어있는 값 삭제
+		        session.invalidate();
+		    }
+
+			return view;
+		}
 	
 }

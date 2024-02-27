@@ -28,9 +28,8 @@
 		<a href="/later">리뷰엔</a>
 	</div>
 	<div class="login-signin">
-		<a class="link" href="#">마이페이지</a>
-		<a class="link" href="writeFrm">업체 등록</a> 
-		<a class="link" href="bUpdate">업체 수정</a>
+		<a class="link" href="myPage">마이페이지</a>
+		<a class="link" href="writeFrm">업체등록</a>
 		<a class="link" href="cLogout">로그아웃</a>
 	</div>
 </div>

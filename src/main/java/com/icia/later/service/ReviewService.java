@@ -1,17 +1,23 @@
 package com.icia.later.service;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.icia.later.dao.ReviewDao;
+import com.icia.later.dto.CustomerDto;
+import com.icia.later.dto.MemberDto;
 import com.icia.later.dto.ReviewDto;
+import com.icia.later.util.PagingUtil;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -45,16 +51,14 @@ public class ReviewService {
 
 		return view;
 	}
-//	@Autowired
-//	private ReviewDao rDao;
-//	
-//	public ReviewDto getReview(Integer reviewId) {
-//		log.info("getReview()");
-//		
-//		ReviewDto reviewDto = rDao.getReview(reviewId);
-//		
-//		return reviewDto;
-//	}
+
+	public void getReview(Integer reviewId, Model model) {
+		log.info("getReview()");
+		
+		ReviewDto review = rDao.selectReview(reviewId);
+		
+		model.addAttribute("review", review);
+	}
 
 	private void FileUpload(List<MultipartFile> files, HttpSession session, ReviewDto review) throws Exception {
 		log.info("fileUpload()");
@@ -81,6 +85,52 @@ public class ReviewService {
 		mf.transferTo(file); // 하드디스크(경로상의 폴더)에 저장
 		review.setReviewFile(sysname);
 		
+	}
+
+	public String getReviewList(Integer pageNum, Model model, HttpSession session) {
+		log.info("getReviewList()");
+		
+		if(pageNum == null) {
+			pageNum = 1;
+		}
+		
+		int listCnt = 10;
+		
+		Map<String, Integer> pMap = new HashMap<String, Integer>();
+		pMap.put("pageNum", (pageNum - 1) * listCnt);
+		pMap.put("listCnt", listCnt);
+		
+		
+		List<ReviewDto> rList = rDao.getReviewList(pMap);
+		
+		model.addAttribute("rList", rList);
+		
+		// 로그인한 일반 회원 정보(2024-02-26)
+		MemberDto mLogInInfo = (MemberDto) session.getAttribute("mLogin");
+		// 로그인한 사업자 회원 정보(2024-02-26)
+		CustomerDto cLogInInfo = (CustomerDto) session.getAttribute("cLogin");
+	    // 로그인한 회원 정보를 모델에 추가하여 JSP로 전달
+		model.addAttribute("mLogInInfo", mLogInInfo);
+		// 로그인한 사업자 정보를 모델에 추가하여 JSP로 전달
+		model.addAttribute("cLogInInfo", cLogInInfo);
+		String pageHtml = getPaging(pageNum, listCnt);
+		model.addAttribute("paging", pageHtml);
+		return "review";
+	}
+
+	private String getPaging(Integer pageNum, int listCnt) {
+				String pageHtml = null;
+		
+				int maxNum = rDao.cntReview();
+				
+				int pageCnt = 2;
+				
+				PagingUtil paging = new PagingUtil(maxNum, pageNum, 
+												listCnt, pageCnt);
+				
+				pageHtml = paging.makePaging();
+				
+				return pageHtml;
 	}
 
 }

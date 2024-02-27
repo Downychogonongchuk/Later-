@@ -28,7 +28,8 @@
 		<a href="/later">리뷰엔</a>
 	</div>
 	<div class="login-signin">
-		<a class="link" href="#">마이페이지</a>
+		<a class="link" href="myPage">마이페이지</a>
+		<a class="link" href="reviewWrite">리뷰작성</a>
 		<a class="link" href="mLogout">로그아웃</a>
 	</div>
 </div>

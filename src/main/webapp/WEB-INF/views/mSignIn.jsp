@@ -50,4 +50,7 @@
 	</form>
 	<a href="loginPage">로그인 페이지로 이동</a>
 </body>
+<script>
+	
+</script>
 </html>

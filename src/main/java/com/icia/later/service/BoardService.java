@@ -106,14 +106,13 @@ public class BoardService {
 	}
 	
 	//수정할 업체정보 가져오기
-	public void getBoard(Integer boardId, Model model) {
+	public BoardDto getBoard(Integer boardId) {
 		log.info("getBoard()");
-		
 		
 		
 		BoardDto board = bDao.selectBoard(boardId);
 		
-		model.addAttribute("board", board);
+		return board;
 	}
 
 	public List<BoardDto> getBoardList() {

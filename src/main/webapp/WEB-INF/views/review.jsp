@@ -12,7 +12,7 @@
 <link rel="stylesheet"
 	href="resources/css/style.css"/>
 <link rel="stylesheet"
-	href="resources/css/bestBoard.css"/>
+	href="resources/css/review.css"/>
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"
 	integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
@@ -59,6 +59,7 @@
 .nav-link {
 	font-size: 20px;
 }
+
 </style>
 <script>
             let m = "${msg}";
@@ -87,80 +88,45 @@
 				<li class="nav-item"><a class="nav-link" href="#">가전</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">뷰티</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">기타</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">리뷰</a></li>
+				<li class="nav-item"><a class="nav-link" href="review">리뷰</a></li>
 			</ul>
 		</nav>
 		<div>
 			<hr color="orange">
 		</div>
 		<!-- 업체 리스트 (2024-02-26) -->
-		<div class="board">
-		 <c:if test="${empty bList}">
+		<div class="review" >
+		 <c:if test="${empty rList}">
 				등록된 모집글이 없습니다.
 			</c:if>
-			<c:if test="${!empty bList}">
-				<c:forEach var="bitem" items="${bList}" begin="0" end="4" step="1">
-					<div class="board-item">
+			<c:if test="${!empty rList}">
+				<c:forEach var="ritem" items="${rList}">
+					<div class="review-item">
 					<!-- 업체 이미지 (2024-02-26) -->
-					<div class="board-image">
-						<a href="detail?boardId=${bitem.boardId}">
-							<c:if test="${empty bitem.boardFile}">
+					<div class="review-image">
+						<a href="reviewDetail?reviewId=${ritem.reviewId}">
+							<c:if test="${empty ritem.reviewFile}">
 								<img src="resources/images/no_image.jpg"
-									class="poster-pre">
+									class="review-poster">
 							</c:if>
-							<c:if test="${!empty bitem.boardFile}">
-								<img src="resources/upload/${bitem.boardFile}"
-									class="poster-pre">
+							<c:if test="${!empty ritem.reviewFile}">
+								<img src="resources/upload/${ritem.reviewFile}"
+									class="review-poster">
 							</c:if>
 						</a>
 						</div>
 						<!-- 업체 이름 (2024-02-26) -->
-						<div class="board-name">
-							<a href="detail?boardId=${bitem.boardId}">
-								${bitem.companyName}
-							</a>
+						<div class="review-contents">
+						<a href="reviewDetail?reviewId=${ritem.reviewId}">
+								${ritem.contents}
+						</a>
 						</div>
-						<!-- 등록된 가격 (2024-02-26) -->
-						<div class="board-item">${bitem.price}</div>
-						<!-- 모집 인원 (2024-02-26) -->
-						<div class="board-personnel">${bitem.personnel}</div>
 					</div>
 				</c:forEach>
 			</c:if> 
 			</div>
-			<div class="board">
-		 <c:if test="${empty bList}">
-				등록된 모집글이 없습니다.
-			</c:if>
-			<c:if test="${!empty bList}">
-				<c:forEach var="bitem" items="${bList}" begin="5" end="9" step="1">
-					<div class="board-item">
-					<!-- 업체 이미지 (2024-02-26) -->
-					<div class="board-image">
-						<a href="detail?boardId=${bitem.boardId}">
-							<c:if test="${empty bitem.boardFile}">
-								<img src="resources/images/no_image.jpg"
-									class="poster-pre">
-							</c:if>
-							<c:if test="${!empty bitem.boardFile}">
-								<img src="resources/upload/${bitem.boardFile}"
-									class="poster-pre">
-							</c:if>
-						</a>
-						</div>
-						<!-- 업체 이름 (2024-02-26) -->
-						<div class="board-name">
-							<a href="detail?boardId=${bitem.boardId}">
-								${bitem.companyName}
-							</a>
-						</div>
-						<!-- 등록된 가격 (2024-02-26) -->
-						<div class="board-item">${bitem.price}</div>
-						<!-- 모집 인원 (2024-02-26) -->
-						<div class="board-personnel">${bitem.personnel}</div>
-					</div>
-				</c:forEach>
-			</c:if> 
+			<div class="paging-area">
+				<div class="paging">${paging}</div>
 			</div>
 		<jsp:include page="footer.jsp" />
 	</div>

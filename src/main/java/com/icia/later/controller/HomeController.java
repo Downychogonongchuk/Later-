@@ -41,4 +41,21 @@ public class HomeController {
 	    model.addAttribute("bList", bList);
 		return "home";
 	}
+	
+	//마이페이지 이동
+	@GetMapping("myPage")
+	public String myPage(Model model, HttpSession session) {
+		log.info("myPage()");
+		
+		// 로그인한 일반 회원 정보(2024-02-26)
+		MemberDto mLogInInfo = (MemberDto) session.getAttribute("mLogin");
+		// 로그인한 사업자 회원 정보(2024-02-26)
+		CustomerDto cLogInInfo = (CustomerDto) session.getAttribute("cLogin");
+		// 로그인한 회원 정보를 모델에 추가하여 JSP로 전달
+		model.addAttribute("mLogInInfo", mLogInInfo);
+		// 로그인한 사업자 정보를 모델에 추가하여 JSP로 전달
+		model.addAttribute("cLogInInfo", cLogInInfo);
+			    
+	    return "myPage";
+	}
 }

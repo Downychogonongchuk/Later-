@@ -146,5 +146,31 @@ public class CustomerService {
 			}
 
 		}
+
+		public String mDelete(Integer customerId, HttpSession session, RedirectAttributes rttr) {
+			String msg = null;
+			String view = null;
+			CustomerDto loginInfo = (CustomerDto) session.getAttribute("cLogin");
+			int id = loginInfo.getCustomerId();
+
+			try {
+				if (loginInfo != null) {
+					cDao.deleteCustomer(id);
+					System.out.println("mServ" + id);
+
+					view = "redirect:/"; // + member.getMemberId();
+					msg = "Å»Åð ¼º°ø";
+				}
+
+				// ±âÁ¸ ÆÄÀÏ »èÁ¦
+			} catch (Exception e) {
+				e.printStackTrace();
+				view = "redirect:/";// + member.getMemberId();
+				msg = "Å»Åð ½ÇÆÐ";
+			}
+
+			rttr.addFlashAttribute("msg", msg);
+			return view;
+		}
 		
 }

@@ -15,13 +15,12 @@
 	
 	<update id="updateBoard" parameterType="board">
 		UPDATE board
-		SET periodStart=#{periodStart}, periodEnd=#{periodEnd}, 
-		personnel=#{personnel},
-		detail=#{detail}, checkInfo=#{checkInfo}, 
-		price=#{price}, 
-		boardFile=#{boardFile}
-		
-		WHERE boardId = #{boardId}
+		INNER JOIN customer ON board.customerId = customer.customerId
+		SET board.periodStart=#{periodStart}, board.periodEnd=#{periodEnd}, 
+		board.personnel=#{personnel}, board.detail=#{detail}, 
+		board.checkInfo=#{checkInfo}, board.price=#{price}, 
+		board.boardFile=#{boardFile}, board.category=#{category}, board.customerId=#{customerId}
+		WHERE board.boardId = #{boardId}
 	</update>
 	
 	<select id="selectBoard" parameterType="Integer"

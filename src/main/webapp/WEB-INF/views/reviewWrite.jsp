@@ -50,7 +50,7 @@
             </div>
             <input type="date" class="write-input ta" name="time">
             <textarea rows="20" class="write-input ta" name="contents"
-                      placeholder="리뷰작성"></textarea>
+                      placeholder="리뷰와 사용하시는 sns의 링크를 적어주세요."></textarea>
             <div class="btn-area">
                 <input type="submit" class="btn-write" value="작성완료">
                 <input type="button" class="btn-write" value="뒤로가기" id="backbtn">

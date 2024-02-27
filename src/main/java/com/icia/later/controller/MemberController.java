@@ -58,6 +58,19 @@ public class MemberController {
 			}
 				return "mUpdate";
 		}
+			
+			// 회원정보 수정 처리
+			@PostMapping("mUpdateProc")
+			public String mUpdateProc(@RequestPart List<MultipartFile> files, 
+					MemberDto member,
+					HttpSession session,
+					RedirectAttributes rttr) {
+				log.info("updateProc()");
+				System.out.println("mUpdate에서 넘어온 dto"+member);
+				String view = mServ.memberUpdate(files, member, session, rttr);
+				
+				return view;
+			}
 		
 			// 회원가입페이지 이동
 			@GetMapping("mSignIn")
@@ -79,5 +92,20 @@ public class MemberController {
 			String view = mServ.insertMember(files, member, session, rttr);
 			return view;
 			}
+		
+		// 일반회원 탈퇴
+		@GetMapping("mDelete")
+		public String mDelete(Integer memberId,HttpSession session,RedirectAttributes rttr) {
+			log.info("mDelete()");
+			
+			
+			String view = mServ.mDelete(memberId,session,rttr);
+			if (session != null && session.getAttribute("login") != null) {
+		        // 탈퇴 후 세션에 저장되어있는 값 삭제
+		        session.invalidate();
+		    }
+
+			return view;
+		}
 		
 }
