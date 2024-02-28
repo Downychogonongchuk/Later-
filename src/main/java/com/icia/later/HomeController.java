@@ -32,6 +32,7 @@ public class HomeController {
 	//메인페이지
 		@GetMapping("/")
 		public String home() {
+
 			log.info("home()");
 
 			return "home";
@@ -163,7 +164,7 @@ public class HomeController {
 		//비밀번호 찾기 -> 비밀번호 변경페이지
 		@PostMapping("mPassUpdate")
 		public String mPassUpdate() {
-			log.info("mPassUpdate()");
+			log.info("mPassUpdate1()");
 			
 			return "mPassUpdate";
 		}
@@ -172,13 +173,15 @@ public class HomeController {
 		@PostMapping("mUpdatePassProc")
 		public String mUpdatePassProc(MemberDto member,
 									RedirectAttributes rttr) {
-			log.info("mUpdatePassProc()");
+			log.info("mUpdatePassProc1()");
 			
 			String view = mServ.mUpdatePassProc(member,rttr);
 			return view;
 		}
 		
 	//로그아웃 
+
+
 	@GetMapping("logout")
 	public String logout(HttpServletRequest request, RedirectAttributes rttr) {
 	    log.info("logout()");

@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.icia.later.dto.CustomerDto;
-import com.icia.later.dto.MemberDto;
 import com.icia.later.service.CustomerService;
 
 import lombok.extern.slf4j.Slf4j;

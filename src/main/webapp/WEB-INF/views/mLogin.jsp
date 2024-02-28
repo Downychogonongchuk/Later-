@@ -44,6 +44,9 @@
 		
 	</div>
 	<jsp:include page="footer.jsp" />
+
+	</div>
+>>>>>>> branch 'amw' of https://github.com/Downychogonongchuk/Later-.git
 </body>
 <script>
 	$("#backbtn").click(function() {
