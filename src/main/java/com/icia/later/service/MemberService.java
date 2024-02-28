@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -165,6 +166,15 @@ public class MemberService {
 
 		rttr.addFlashAttribute("msg", msg);
 		return view;
+	}
+
+	public void getMember(Integer memberId, Model model) {
+		log.info("getMember()");
+		
+		MemberDto member = mDao.selectMember(memberId);
+		System.out.println(member);
+		model.addAttribute("member", member);
+		
 	}
 
 }

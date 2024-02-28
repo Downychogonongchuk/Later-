@@ -10,8 +10,8 @@
  	</select> -->
  	
  	<insert id="insertReview" parameterType="review">
- 		INSERT INTO review (reviewFile, time, contents)
- 		VALUES (#{reviewFile}, #{time}, #{contents})
+ 		INSERT INTO review (reviewFile, time, contents, memberId)
+ 		VALUES (#{reviewFile}, #{time}, #{contents}, #{memberId})
  	</insert>
  	
  	<select id="getReviewList" resultType="review"
@@ -22,7 +22,8 @@
  	
  	<select id="selectReview" parameterType="Integer"
  		resultType="review">
- 		SELECT * FROM review
+ 		SELECT * 
+ 		FROM review
  		WHERE reviewId=#{reviewId}
  	</select>
  </mapper>

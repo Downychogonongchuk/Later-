@@ -56,7 +56,7 @@ public class ReviewService {
 		log.info("getReview()");
 		
 		ReviewDto review = rDao.selectReview(reviewId);
-		
+		System.out.println(review);
 		model.addAttribute("review", review);
 	}
 
@@ -102,7 +102,7 @@ public class ReviewService {
 		
 		
 		List<ReviewDto> rList = rDao.getReviewList(pMap);
-		
+		System.out.println(rList);
 		model.addAttribute("rList", rList);
 		
 		// 로그인한 일반 회원 정보(2024-02-26)

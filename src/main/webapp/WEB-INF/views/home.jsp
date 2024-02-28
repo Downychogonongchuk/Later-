@@ -112,6 +112,53 @@
 					<div class="board-item">
 					<!-- 업체 이미지 (2024-02-26) -->
 					<div class="board-image">
+						<a href="companyDetail?boardId=${bitem.boardId}">
+							<c:if test="${empty bitem.boardFile}">
+								<img src="resources/images/no_image.jpg"
+									class="poster-pre">
+							</c:if>
+							<c:if test="${!empty bitem.boardFile}">
+								<img src="resources/upload/${bitem.boardFile}"
+									class="poster-pre">
+							</c:if>
+						</a>
+						</div>
+						<!-- 업체 이름 (2024-02-26) -->
+						<div class="board-name">
+							<a href="companyDetail?boardId=${bitem.boardId}">
+								${bitem.companyName}
+							</a>
+						</div>
+						<!-- 제공유형&가격 (2024-02-27) -->
+						<div class="provideType-price">
+						<!-- 제공유형 (2024-02-27) -->
+							<div class="board-provideType">
+								${bitem.provideType}
+							</div>
+						<!-- 등록된 가격 (2024-02-26) -->
+							<div class="board-price">
+								${bitem.price}
+						    </div>							
+						</div>						
+						<!-- 모집 인원 (2024-02-26) -->
+						<div class="board-personnel">모집인원  / ${bitem.personnel}</div>
+					</div>
+				</c:forEach>
+			</c:if> 
+			</div>
+		<div class="coming-soon">
+			<i class="fa fa-hourglass-start" aria-hidden="true"></i> COMING SOON
+		</div>
+		<!-- 업체 리스트 (2024-02-26) -->
+		<div class="board">
+		 <c:if test="${empty bList}">
+				등록된 모집글이 없습니다.
+			</c:if>
+			<c:if test="${!empty bList}">
+				<c:forEach var="bitem" items="${bList}" begin="0" end="4" step="1">
+					<div class="board-item">
+					<!-- 업체 이미지 (2024-02-26) -->
+					<div class="board-image">
 						<a href="detail?boardId=${bitem.boardId}">
 							<c:if test="${empty bitem.boardFile}">
 								<img src="resources/images/no_image.jpg"
@@ -146,17 +193,6 @@
 				</c:forEach>
 			</c:if> 
 			</div>
-		<div class="coming-soon">
-			<i class="fa fa-hourglass-start" aria-hidden="true"></i> COMING SOON
-		</div>
-		<p>Some example text. Some example text. Some example text. Some
-				example text. Some example text.</p>
-			<p>Some example text. Some example text. Some example text. Some
-				example text. Some example text.</p>
-			<p>Some example text. Some example text. Some example text. Some
-				example text. Some example text.</p>
-			<p>Some example text. Some example text. Some example text. Some
-				example text. Some example text.</p>
 		<div>
 			<hr color="gray">
 		</div>

@@ -61,13 +61,6 @@
 }
 
 </style>
-<script>
-            let m = "${msg}";
-            if(m != ""){
-                alert(m);
-            }
-            
-    </script>
 </head>
 <body>
 	<div class="wrap">
@@ -104,7 +97,7 @@
 					<div class="review-item">
 					<!-- 업체 이미지 (2024-02-26) -->
 					<div class="review-image">
-						<a href="reviewDetail?reviewId=${ritem.reviewId}">
+						<a href="reviewDetail?reviewId=${ritem.reviewId}&memberId=${ritem.memberId}">
 							<c:if test="${empty ritem.reviewFile}">
 								<img src="resources/images/no_image.jpg"
 									class="review-poster">

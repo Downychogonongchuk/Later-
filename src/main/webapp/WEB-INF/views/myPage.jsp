@@ -99,7 +99,7 @@
 						<a href="mUpdate">회원정보수정</a>
 					</div>
 					<div>
-						<a href="#">내가 모집한글</a>
+						<a href="companyList?customerId=${cLogInInfo.customerId}">내가 모집한글</a>
 					</div>
 					<div>
 						<a href="writeFrm">업체 등록</a>

@@ -15,5 +15,7 @@ public interface MemberDao {
 
 	//È¸¿ø Å»Åð
 	void deleteMember(int id);
+
+	MemberDto selectMember(Integer memberId);
 	
 }

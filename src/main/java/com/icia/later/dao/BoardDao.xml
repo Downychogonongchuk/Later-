@@ -35,4 +35,13 @@
 	<delete id="deleteBoard" parameterType="Integer">
 		DELETE FROM board WHERE boardId = #{boardId}
 	</delete>
+	
+	<!-- 내가 모집한 글 목록-->
+	<select id="getBoardListBycustomerId" parameterType="HashMap"
+		resultType="board">
+		select * from board
+		where customerId=#{pMap.customerId}
+		LIMIT #{pMap.pageNum},
+		#{pMap.listCnt}
+	</select>	
 </mapper>

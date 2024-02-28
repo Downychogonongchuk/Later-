@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.icia.later.dto.MemberDto;
 import com.icia.later.dto.ReviewDto;
+import com.icia.later.service.MemberService;
 import com.icia.later.service.ReviewService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +25,8 @@ import lombok.extern.slf4j.Slf4j;
 public class ReviewController {
 	@Autowired
 	private ReviewService rServ;
+	@Autowired
+	MemberService mServ;
 	
 	//리뷰 페이지 이동
 	@GetMapping("review")
@@ -38,9 +42,12 @@ public class ReviewController {
 	
 	//리뷰작성 페이지 이동
 	@GetMapping("reviewWrite")
-	public String reviewWrite() {
+	public String reviewWrite(HttpSession session, Model model) {
 		log.info("reviewWrite()");
 		
+		MemberDto member = (MemberDto) session.getAttribute("mLogin");
+		
+		model.addAttribute("member", member);
 		return "reviewWrite";
 	}
 	
@@ -58,8 +65,12 @@ public class ReviewController {
 
 	//리뷰 상세페이지 이동
 	@GetMapping("reviewDetail")
-	public String reviewDetail(Model model, Integer reviewId) {
+	public String reviewDetail(Model model, Integer reviewId, Integer memberId) {
 		log.info("reviewDetail()");
+		
+		
+		
+		mServ.getMember(memberId, model);
 		
 		rServ.getReview(reviewId, model);
 		
