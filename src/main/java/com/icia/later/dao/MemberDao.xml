@@ -8,7 +8,7 @@
 	<insert id="insertMember" parameterType="member">
 		INSERT INTO Member
 		VALUES (null,#{memberName},#{memberEmail},#{memberPass},#{memberPhone},
-				#{snsKind},#{snsFollower},#{snsLink},#{memberProfile})
+				#{snsFollower},#{snsLink},#{memberProfile},#{snsKind})
 	</insert>
 	
 	<select id="login" parameterType="member" resultType="member">

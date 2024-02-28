@@ -15,7 +15,7 @@ public interface ReservationDao {
 	void insertReservation(ReservationDto reserv);
 
 	// 예약 목록 가져오기
-	List<BoardDto> getBoardListBymemberId(@Param("pMap") Map<String, Integer> pMap, Integer memberId11);
+	List<BoardDto> getBoardListBymemberId(@Param("pMap") Map<String, Integer> pMap);
 
 	// 신청한 업체 수 구하기
 	@Select("SELECT count(*) FROM board")

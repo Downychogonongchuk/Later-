@@ -39,7 +39,7 @@ public class CompanyController {
 	@GetMapping("companyDetail")
 	public String companyDetail(Integer boardId, Model model) {
 		log.info("companyDetail()");
-		boardId = 4;
+		//boardId = 15;
 
 		bServ.getCompanyDetail(boardId, model);
 		System.out.println(model);

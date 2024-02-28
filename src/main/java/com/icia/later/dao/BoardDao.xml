@@ -4,6 +4,16 @@
 
 <mapper namespace="com.icia.later.dao.BoardDao">
 	
+	<insert id="insertBoard" parameterType="board">
+		INSERT INTO board ( periodStart, periodEnd, personnel, 
+							companyName, detail, checkInfo,
+							provideType, price, boardFile, 
+							category, customerId)
+		 VALUES (#{board.periodStart}, #{board.periodEnd}, #{board.personnel}, 
+            #{board.companyName}, #{board.detail}, #{board.checkInfo}, #{board.provideType},
+            #{board.price}, #{board.boardFile}, #{board.category}, #{board.customerId})
+	</insert>
+
 
 	<!-- 상세 모집글 -->
 	<select id="selectBoard" parameterType="Integer"

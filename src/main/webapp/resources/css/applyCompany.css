@@ -82,7 +82,7 @@ body {
   width: 35.02px;
   height: 17.74px;
   white-space: nowrap; /* 추가 */
-  top:16px;
+  top:20px;
 }
 .content-price { /*가격*/
     color: #888888;
@@ -95,6 +95,7 @@ body {
   height: 12.9px;
   margin-left: 120px;
   top:20px;
+  text-decoration: line-through; /*취소선*/
 }
 
 .div3{

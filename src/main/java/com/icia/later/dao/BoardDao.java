@@ -11,9 +11,9 @@ import com.icia.later.dto.MemberDto;
 
 public interface BoardDao {
 	
-	
-	
-	
+	// 게시글 등록하기
+	void insertBoard(@Param("board")BoardDto board, Integer customerId);
+		
 
 	
 

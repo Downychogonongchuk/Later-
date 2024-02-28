@@ -85,7 +85,7 @@ public class ReservationService {
 		pMap.put("listCnt", listCnt);
 		pMap.put("memberId11", memberId11);
 		
-		List<BoardDto> bList = rDao.getBoardListBymemberId(pMap,memberId11);
+		List<BoardDto> bList = rDao.getBoardListBymemberId(pMap);
 		System.out.println("bList"+ bList);
 		model.addAttribute("bList", bList);
 		

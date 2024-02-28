@@ -43,7 +43,6 @@ public class ReservationController {
 					RedirectAttributes rttr,
 					Integer boardId) {
 				log.info("rev()");
-				boardId =1;
 				
 				// http session 가져오기
 				HttpSession session11 = request.getSession();
@@ -66,7 +65,7 @@ public class ReservationController {
 					// 세션에 저장된 값이 MemberDto 타입이 아닌 경우 처리
 			        // 예를 들어, 로그인이 되어 있지 않은 상태 등에 대한 처리를 추가할 수 있습니다.
 			        // 여기에 적절한 로직을 추가하세요.
-			        return "redirect:/login"; // 로그인 페이지로 리다이렉트 예시
+			        return "redirect:/mlogin"; // 로그인 페이지로 리다이렉트 예시
 					
 					}
 				}

@@ -6,7 +6,7 @@
 
 	<!-- * DB Table 마다 컬럼 순서 다름 // 컬럼 순서와 테이블명 체크 -->
 
-	<!-- 회원가입 -->
+	<!-- 예약 -->
 	<insert id="insertReservation" parameterType="reserv">
 		INSERT INTO
 		reservation

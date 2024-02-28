@@ -14,34 +14,31 @@
 <body>
 	<jsp:include page="header.jsp" />
 	<!--view-->
-	<div id="content">
-		<div class="left">
-			<section>
-				<div class="detail-title">업체 이미지</div>
-				<!-- 
-				<div class="detail-content">
-					<c:if test="${empty movie.p_sysname}">
-						<img class="poster" src="resources/images/logo.png">
-					</c:if>
-					<c:if test="${!empty movie.p_sysname}">
-						<img class="poster" src="resources/upload/${movie.p_sysname}">
-					</c:if>
-				</div>
-				 -->
-				<!-- detail-content -->
-			</section>
-		<div class="right">
+	
+		
+		
 			<!-- 인포 -->
 			<form id="detailForm" method="post" action="rev"
 				enctype="multipart/form-data">
-				<section class="info">
-					<p>
-						<strong>파일</strong><br>${board.boardFile}</p>
-					<input type="hidden" name="Boardfile" value="${board.boardFile}">
+                <div id="content">
+                <div class="left">
+                    <section>
+                        <p>
+                            <img src="resources/upload/${board.boardFile}" class="boardfile"></p>
+                            <input type="hidden" name="boardFile" value="${board.boardFile}">   
+                        <p>
+                    </section>
+                    <section class="checkInfo">
+                        <p>
+                            <strong><b>체크사항</b>체크사항</strong> <span class="checkContent">"${checkInfo}"</span>
+                        </p>
+                    </section> <!--checkInfoEnd-->	
+                </div>	<!--leftEnd-->
+                    
+                    <div class="right">
+				    <section class="info">
 					
-					<p>
-						<strong>boardId:</strong> ${board.boardId}
-					</p>
+					
 					<input type="hidden" name="boardId" value="${board.boardId}">
 
 					<p class="name">
@@ -81,27 +78,25 @@
 					</p>
 					<ul>
 						<li></li>
-						</li>
-					</ul>
-				</section>
-				<section class="checkInfo">
-					<p>
-						<strong><b>체크사항</b>체크사항</strong> <span class="checkContent">"${checkInfo}"</span>
-					</p>
-					<ul>
-						<li>*</li>
 						
-						</li>
 					</ul>
-				</section>
-				<!-- 인포 완-->
-
-
-				<!-- 결제버튼-->
+				</section> <!--detailEnd-->
+			
+                
+                <div class="buttons">
+                <!-- 결제버튼-->
 				<button type="submit" id="btn-apply" class="btn-apply">신청하기</button>
 				<!-- 결제버튼 완-->
 				<button id="btn-interest" class="btn-interest">찜</button>
+                </div> <!--buttonsEnd-->
+			             </div><!--rightEnd-->
+				
+            </div><!--content-->
 			</form>
+			
+
+<div></div>
+			
 				
 				
 
@@ -111,19 +106,6 @@
 	});
 	
 </script>
-		</div>
-		<!-- 오른쪽  완료-->
-
-		
-			<section></section>
-			<div></div>
-
-		</div>
-	</div>
-
-
-
-
 
 	<jsp:include page="footer.jsp" />
 </body>
