@@ -19,7 +19,7 @@ public interface CustomerDao {
 	
 	// 이메일 중복체크
 	int checkDuplicateId(String customerEmailCheck);
-	
+
 	// 사업자 이메일 찾기
 	CustomerDto FindById(CustomerDto customer);
 	

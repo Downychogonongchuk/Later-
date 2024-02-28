@@ -41,10 +41,15 @@
 				</div>
 			</form>
 		</div>
+<<<<<<< HEAD
 		
 	</div>
 	<jsp:include page="footer.jsp" />
 
+	</div>
+>>>>>>> branch 'amw' of https://github.com/Downychogonongchuk/Later-.git
+=======
+		<jsp:include page="footer.jsp" />
 	</div>
 >>>>>>> branch 'amw' of https://github.com/Downychogonongchuk/Later-.git
 </body>

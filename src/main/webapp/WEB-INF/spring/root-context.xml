@@ -13,8 +13,13 @@
 	<!-- DB 처리용 객체 -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+<<<<<<< HEAD
 		<property name="url" value="jdbc:mysql://127.0.0.1:3306/db_test"/>
 		<property name="username" value="root"/>
+=======
+		<property name="url" value="jdbc:mysql://127.0.0.1:3306/test_db"/>
+		<property name="username" value="db_user"/>
+>>>>>>> branch 'amw' of https://github.com/Downychogonongchuk/Later-.git
 		<property name="password" value="1234"/>
 	</bean>
 	

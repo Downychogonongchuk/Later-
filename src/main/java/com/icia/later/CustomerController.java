@@ -90,7 +90,7 @@ public class CustomerController {
 					return view;
 				}
 		
-		//사업자회원 비번찾기
+				//사업자회원 비번찾기
 				@GetMapping("cFindByPass")
 				public String cFindByPass() {
 					log.info("cFindByPass()");
@@ -98,7 +98,7 @@ public class CustomerController {
 					return "cFindByPass";
 				}
 				
-				//일반회원 비밀번호찾기 가입정보 확인 메서드
+				//사업자회원 비밀번호찾기 가입정보 확인 메서드
 				@PostMapping("cFindByPassProc")
 				public String cFindByPassProc(CustomerDto customer,
 												Model model,

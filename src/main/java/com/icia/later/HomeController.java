@@ -32,7 +32,6 @@ public class HomeController {
 	//메인페이지
 		@GetMapping("/")
 		public String home() {
-
 			log.info("home()");
 
 			return "home";
@@ -178,10 +177,8 @@ public class HomeController {
 			String view = mServ.mUpdatePassProc(member,rttr);
 			return view;
 		}
-		
-	//로그아웃 
 
-
+	// 로그아웃 
 	@GetMapping("logout")
 	public String logout(HttpServletRequest request, RedirectAttributes rttr) {
 	    log.info("logout()");
