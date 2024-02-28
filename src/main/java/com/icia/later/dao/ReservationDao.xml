@@ -25,7 +25,11 @@
 		#{pMap.listCnt}
 		
 	</select> -->
-
+	<select id="selectRev" resultType="reserv" 
+		parameterType="HashMap">
+		SELECT * FROM reservation
+		WHERE memberId=#{pMap.memberId} AND boardId=#{pMap.boardId}
+	</select>
 
 
 </mapper>

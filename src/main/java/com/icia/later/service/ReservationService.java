@@ -1,6 +1,8 @@
 package com.icia.later.service;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -43,6 +45,16 @@ public class ReservationService {
 			System.out.println(msg);
 		
 		return view;
+	}
+
+	public ReservationDto selectRev(Integer memberId, Integer boardId, RedirectAttributes rttr, HttpSession session) {
+		Map<String, Integer> pMap = new HashMap<String, Integer>();
+		pMap.put("memberId", memberId);
+		pMap.put("boardId", boardId);
+		
+		ReservationDto rDto = rDao.selectRev(pMap);
+		
+		return rDto;
 	}
 	
 }

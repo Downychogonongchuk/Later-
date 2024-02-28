@@ -65,7 +65,7 @@
 						<a href="mUpdate">회원정보수정</a>
 					</div>
 					<div>
-						<a href="#">내가 신청한 모집글</a>
+						<a href="applyCompany">내가 신청한 모집글</a>
 					</div>
 					<div>
 						<a href="reviewWrite">리뷰 작성</a>
