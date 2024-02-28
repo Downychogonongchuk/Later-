@@ -41,7 +41,7 @@
 
 .wr-btn {
 	background-color: #006BB9;
-	color: #fff;
+	color: white;
 	border: none;
 	padding: 8px 16px;
 	border-radius: 5px;
@@ -55,6 +55,7 @@
 .board-item {
 	border: 1px solid #e6e6e6;
 	padding: 10px;
+	cursor: pointer; 
 	margin-bottom: 10px;
 	border-radius: 5px;
 }
@@ -142,7 +143,7 @@
 									<strong>가격:</strong> ${board.price}
 								</div>
 								<div>
-									<strong>게시글 업체 사진:</strong> <img
+									<strong>업체 사진:</strong> <img
 										src="resources/upload/${board.boardfile}" class="board-img">
 								</div>
 							</div>

@@ -4,10 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
-@Controller
+import com.icia.later.service.BoardService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Controller
+@Slf4j
 public class HomeController {
 	@Autowired
+	private BoardService bServ;
 
 	@GetMapping("/")
 	public String home() {
@@ -16,6 +21,7 @@ public class HomeController {
 
 	@GetMapping("/detail1")
 	public String detail1() {
+		bServ.getCategory();
 		return "detail1";
 	}
 
