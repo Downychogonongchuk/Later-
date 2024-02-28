@@ -1,0 +1,182 @@
+* {
+	box-sizing: border-box;
+}
+html {
+	height: 100%;
+}
+body {
+	margin: 0;
+	height: 100%;
+	background-color: white;
+}
+a {
+	text-decoration: none;
+	color: black;
+}
+.wrap {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+.content {
+	padding: 15px 30px;
+	margin: 0 auto;
+	width: 800px;
+	flex: 1;
+}
+.form-header {
+	margin-top: 30px;
+	margin-bottom: 30px;
+	font-size: 2em;
+	text-align: center;
+	font-size: 1.8em;
+}
+
+.button-container {
+	margin-top : 100px;
+  text-align: center;
+}
+.button-container .small-button {
+	margin-top : 100px;
+}
+
+.large-button, .small-button {
+	outline: none; /* 윤곽선 제거 */
+}
+.large-button {
+  width: 400px; /* 너비를 400px로 고정 */
+  padding: 50px 0; /* 패딩값을 수직 중앙 정렬되도록 수정 */
+  font-size: 30px;
+  background-color: #006BB9;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.small-button {
+  padding: 10px 20px;
+  font-size: 14px;
+  background-color: black;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  margin: 10px;
+  cursor: pointer;
+}
+.btn-area {
+	width: 500px;
+	margin: 0px auto;
+	margin-bottom: 100px;
+	text-align: center;
+}
+.btn-area .paging {
+	width: 100%;
+	height: 30px;
+	margin: 0px auto;
+	opacity: 0.8;
+	text-align: center;
+}
+.paging .pno {
+	display: inline-block;
+	background-color: #efefef;
+	margin: 2px;
+	border: 1px solid #6c6c6c;
+	border-radius: 3px;
+	line-height: 1.8;
+	font-size: 15px;
+	width: 30px;
+	height: 30px;
+}
+font.pno {
+	color: #0B3736;
+	font-weight: bold;
+}
+.paging>a {
+	text-decoration: none;
+}
+.paging>a:visited {
+	color: #575757;
+}
+.wr-btn {
+	padding: 10px 16px;
+	font-size: 16px;
+	line-height: 1.5;
+	border-radius: 6px;
+	color: #fff;
+	background-color: #1877F2;
+
+.btn-write {
+	width: 100px;
+	padding: 10px 16px;
+	font-size: 16px;
+	line-height: 1.5;
+	border-radius: 6px;
+	color: #fff;
+	background-color: #1877F2;
+	margin-top: 10px;
+}
+.btn-write[type="button"] {
+	background-color: black;
+}
+
+/*
+ * Responsive css
+ */
+@media only screen and (max-width: 768px) {
+	.content {
+		max-width: 100%;
+	}
+	.list-title>button {
+		width: 50%;
+	}
+	.movie-item {
+		width: 100%;
+		flex-direction: column;
+	}
+	.movie-item>a {
+		width: 100%;
+	}
+	.poster-pre {
+		height: 100%;
+		width: 100%;
+		margin-right: 0;
+		margin-bottom: 20px;
+	}
+	.info-pre {
+		text-align: center;
+		width: 100%;
+	}
+	.info-pre>div {
+		margin-bottom: 5px;
+	}
+		width: 100%;
+	}
+	.btn-area {
+		width: 100%;
+	}
+	.filebox label {
+		text-align: center;
+		width: 100%;
+	}
+	.filebox .upload-name {
+		width: 100%;
+	}
+	.detail {
+		padding: 15px;
+	}
+	.detail-title {
+		width: 100%;
+		margin-bottom: 5px;
+		font-size: 1.4em;
+	}
+	.detail-content {
+		font-size: 1.2em;
+	}
+	.synopsis-title {
+		font-size: 1.4em;
+		text-align: center;
+	}
+}
