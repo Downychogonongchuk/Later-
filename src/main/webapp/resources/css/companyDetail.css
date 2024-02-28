@@ -26,8 +26,9 @@ body {
     align-items: center;
     height: 100vh;
 }
-.boardFile{
-	
+.boardfile{
+	width:400px;
+	height:300px;
 }
 
 .left {
@@ -35,24 +36,24 @@ body {
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 48%; /* 반응형으로 나란히 두기 위해 너비 조절 */
-    box-sizing: border-box; /* 너비에 padding, border 포함 */
-
-    /* 반응형 스타일 */
-    max-width: 800px; /* 최대 너비 설정 */
+    width: 48%; 
+    box-sizing: border-box; 
+    max-width: 800px; 
 }
 
-.right  {
+
+.right {
     background-color: #ffffff;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 48%; /* 반응형으로 나란히 두기 위해 너비 조절 */
+    width: 48%; 
     box-sizing: border-box; /* 너비에 padding, border 포함 */
-
     /* 반응형 스타일 */
     max-width: 800px; /* 최대 너비 설정 */
 }
+
+
 
 .info {
     margin-bottom: 20px;
@@ -106,23 +107,9 @@ body {
     font-size: 18px;
     cursor: pointer;
 }
-.btn-interest{
-    display: block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #3498db;
-    color: #ffffff;
-    border: none;
-    border-radius: 5px;
-    font-size: 18px;
-    cursor: pointer;
-    margin-left: 10px;
-}
+
 
 .btn-apply:hover {
-    background-color: #2980b9;
-}
-.btn-interest:hover {
     background-color: #2980b9;
 }
 

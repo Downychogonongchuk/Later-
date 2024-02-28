@@ -87,7 +87,6 @@
                 <!-- 결제버튼-->
 				<button type="submit" id="btn-apply" class="btn-apply">신청하기</button>
 				<!-- 결제버튼 완-->
-				<button id="btn-interest" class="btn-interest">찜</button>
                 </div> <!--buttonsEnd-->
 			             </div><!--rightEnd-->
 				
