@@ -20,8 +20,8 @@ public class HomeController {
 	}
 
 	@GetMapping("/detail1")
-	public String detail1() {
-		bServ.getCategory();
+	public String detail1() { 	// 수정해야 함
+		bServ.getCategory();	// 수정해야 함
 		return "detail1";
 	}
 
