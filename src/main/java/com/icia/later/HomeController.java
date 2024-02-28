@@ -32,7 +32,7 @@ public class HomeController {
 	//메인페이지
 		@GetMapping("/")
 		public String home() {
-			log.info("home()");
+			log.info("home1()");
 
 			return "home";
 		}
