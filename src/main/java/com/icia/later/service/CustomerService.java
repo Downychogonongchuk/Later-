@@ -106,7 +106,7 @@ public class CustomerService {
 
 				System.out.println(loggedInCustomer);
 				// 로그인시 세션에 저장
-				session.setAttribute("login", loggedInCustomer);
+				session.setAttribute("cLogin", loggedInCustomer);
 				System.out.println(loggedInCustomer);
 
 			} else {

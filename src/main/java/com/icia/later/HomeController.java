@@ -40,9 +40,9 @@ public class HomeController {
 		        model.addAttribute("mLogInInfo", logInInfo);
 		        System.out.println(logInInfo);
 		        }
-			CustomerDto logInInfo1 = (CustomerDto) session.getAttribute("login");
+			CustomerDto logInInfo1 = (CustomerDto) session.getAttribute("cLogin");
 			
-			if (logInInfo1 != null && session.getAttribute("login") != null) {
+			if (logInInfo1 != null && session.getAttribute("cLogin") != null) {
 		        // 로그인한 회원 정보를 모델에 추가하여 JSP로 전달
 		        model.addAttribute("cLogInInfo", logInInfo1);
 		        	        	        	        
