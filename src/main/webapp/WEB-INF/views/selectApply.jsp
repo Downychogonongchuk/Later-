@@ -10,7 +10,7 @@
 <link rel="stylesheet"
 	href="resources/css/style.css"/>
 <link rel="stylesheet"
-	href="resources/css/reviewDetail.css"/>
+	href="resources/css/companyDetail.css"/>
 </head>
 <style>
 	.wrap {
@@ -59,58 +59,74 @@
 		<c:if test="${!empty cLogInInfo}">
 			<jsp:include page="cHeader.jsp" />
 		</c:if>
-		<nav class="navbar navbar-expand-sm bg-light navbar-light">
-			<!-- Links -->
-			<ul class="navbar-nav">
-				<li class="nav-item"><a class="nav-link" href="#">맛집</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">숙소</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">가전</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">뷰티</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">기타</a></li>
-				<li class="nav-item"><a class="nav-link" href="review">리뷰</a></li>
-			</ul>
-		</nav>
-		<div>
-			<hr color="orange">
-		</div>
-<div class="detail-all">
-	<div class="image">
-		<c:if test="${empty review.reviewFile}">
-			<img src="resources/images/no_image.jpg"
-				class="detail-poster">
+		<c:if test="${empty rList}">
+			<div class="shop-item">
+                 <span class="none-content">신청한 체험단이 없습니다.</span>
+            </div>
 		</c:if>
-		<c:if test="${!empty review.reviewFile}">
-			<img src="resources/upload/${review.reviewFile}"
-				class="detail-poster">
-		</c:if>
-	</div>
-	<div class="contents">
-		<!-- 게시글 상세 내용 출력(div) -->
-		<div class="detail">
-			<div class="detail-sub">
-				<div class="img-box">
-					<c:if test="${empty member.memberProfile}">
-						<img src="resources/images/no_image.jpg"
-							class="img-poster">
-					</c:if>
-					<c:if test="${!empty member.memberProfile}">
-						<img src="resources/upload/${member.memberProfile}"
-							class="img-poster">
-					</c:if>
-				</div>
-				<div class="detailcontent">${member.memberName}</div>
-				<div class="detailcontent">${review.time}</div>
-			</div>
-			<hr color="gray">
-			<div class="detail-sub">
-				<div class="detail-contents">${review.contents}</div>
-			</div>
-			
+		<c:if test="${!empty rList}">
+			<c:forEach var="reservation" items="${rList}">
+			<div class="right">
+				    <section class="info">
+					
+					
+					<input type="hidden" name="reservationId" value="${reservation.reservationId}">
 
-		</div>
+					<p class="name">
+						<strong>업체이름</strong><br>${board.companyName}</p>
+					<!-- Hidden input fields to hold the data -->
+					<input type="hidden" name="companyName"
+						value="${board.companyName}">
+
+					<p>
+						<strong>모집인원</strong><br>${board.personnel}</p>
+					<input type="hidden" name="personnel" value="${board.personnel}">
+
+					<p>
+						<strong>모집신청일자</strong><br>${board.periodStart}</p>
+					<input type="hidden" name="periodStart"
+						value="${board.periodStart}">
+
+					<p>
+						<strong>모집마감일자</strong><br>${board.periodEnd}</p>
+					<input type="hidden" name="periodEnd" value="${board.periodEnd}">
+
+					<p>
+						<strong>제공타입</strong><br>${board.provideType}</p>
+					<input type="hidden" name="provideType"
+						value="${board.provideType}">
+
+					<p>
+						<strong>가격</strong><br>${board.price}</p>
+					<input type="hidden" name="price" value="${board.price}">
+
+				</section>
+
+				<section class="detail">
+					<p>
+						<strong><b>상세정보</b></strong> <span class="detailContent">
+							"${detail}"</span>
+					</p>
+					<ul>
+						<li></li>
+						
+					</ul>
+				</section> <!--detailEnd-->
+			
+                
+                <div class="buttons">
+                <!-- 결제버튼-->
+				<button type="submit" id="btn-apply" class="btn-apply">신청하기</button>
+				<!-- 결제버튼 완-->
+				<button id="btn-interest" class="btn-interest">찜</button>
+                </div> <!--buttonsEnd-->
+			             </div><!--rightEnd-->
+    </c:forEach>
+		
+	</c:if>
+	<jsp:include page="footer.jsp" />
 	</div>
-</div>
-		<jsp:include page="footer.jsp" />
-	</div>
+
+ 
 </body>
 </html>

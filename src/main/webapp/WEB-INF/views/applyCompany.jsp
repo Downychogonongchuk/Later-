@@ -13,7 +13,7 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
-	<jsp:include page="header.jsp" />
+	<jsp:include page="cHeader.jsp" />
 	 <div id="content">
         <section id="applyCompany">
             <div class="data-area">

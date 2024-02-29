@@ -1,5 +1,7 @@
 package com.icia.later.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +10,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.icia.later.dto.BoardDto;
+import com.icia.later.dto.CustomerDto;
 import com.icia.later.dto.MemberDto;
+import com.icia.later.dto.ReservationDto;
 import com.icia.later.service.BoardService;
+import com.icia.later.service.ReservationService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -18,13 +23,21 @@ import lombok.extern.slf4j.Slf4j;
 public class CompanyController {
 	@Autowired
 	private BoardService bServ;
-//	@Autowired
-//	private BoardService bServ;	
+	@Autowired
+	private ReservationService rServ;	
 	
 	//업체 상세페이지
 	@GetMapping("companyDetail")
-	public String companyDetail(Integer boardId, Model model) {
+	public String companyDetail(Integer boardId, Model model, HttpSession session) {
 		log.info("companyDetail()");
+		
+		MemberDto mLogInInfo = (MemberDto) session.getAttribute("mLogin");
+		// 로그인한 사업자 회원 정보(2024-02-26)
+		CustomerDto cLogInInfo = (CustomerDto) session.getAttribute("cLogin");
+	    // 로그인한 회원 정보를 모델에 추가하여 JSP로 전달
+	    model.addAttribute("mLogInInfo", mLogInInfo);
+	    // 로그인한 사업자 정보를 모델에 추가하여 JSP로 전달
+	    model.addAttribute("cLogInInfo", cLogInInfo);
 		
 		BoardDto board = bServ.getBoard(boardId);
 		
@@ -48,30 +61,56 @@ public class CompanyController {
 			    return view;
 		}
 	
-//	// 신청 예약페이지 이동
-//	@GetMapping("applyCompany")
+	// 신청 예약페이지 이동
+	@GetMapping("applyCompany")
 	
-//	public String applyCompany(Integer pageNum, 
-//								Model model,
-//								HttpSession session,
-//								Integer memberId1 ) {		
-//		log.info("applyCompany()");
-//		
-//	    MemberDto member = (MemberDto) session.getAttribute("mLogin");
-//
-//	    if (member != null) {
-//
-//	        Integer memberId = member.getMemberId();
-//	        
-////			 String view = rServ.getBoardListBymemberId(pageNum, 
-////					 model,
-////					 session, 
-////					 memberId);
-////			    return view;
-//		} else{
-//			
-//	        return "redirect:/login"; // 로그인 페이지로 리다이렉트 예시
-//			
-//			}
+	public String applyCompany(Integer pageNum, 
+								Model model,
+								HttpSession session,
+								Integer memberId1 ) {		
+		log.info("applyCompany()");
+		
+	    MemberDto member = (MemberDto) session.getAttribute("mLogin");
+
+	    if (member != null) {
+
+	        Integer memberId = member.getMemberId();
+	        
+			 String view = rServ.getBoardListBymemberId(pageNum, 
+					 model,
+					 session, 
+					 memberId);
+			    return view;
+	} else{
+			
+	        return "redirect:/login"; // 로그인 페이지로 리다이렉트 예시
+		
+			}
+		}
+	
+	// 업체를 신청한 회원을 보여주는 페이지
+	@GetMapping("selectApply")
+	public String selectApply(Model model, Integer boardId, HttpSession session) {
+		log.info("selectApply()");
+		
+		List<ReservationDto> rList = rServ.getReservationList(boardId);
+		
+		System.out.println(rList);
+		
+//		for(int i=0; i<=rList.size(); i++) {
+//			MemberDto mDto = mDao.
 //		}
+		
+		MemberDto mLogInInfo = (MemberDto) session.getAttribute("mLogin");
+		// 로그인한 사업자 회원 정보(2024-02-26)
+		CustomerDto cLogInInfo = (CustomerDto) session.getAttribute("cLogin");
+	    // 로그인한 회원 정보를 모델에 추가하여 JSP로 전달
+	    model.addAttribute("mLogInInfo", mLogInInfo);
+	    // 로그인한 사업자 정보를 모델에 추가하여 JSP로 전달
+	    model.addAttribute("cLogInInfo", cLogInInfo);
+		model.addAttribute("rList", rList);
+		
+		
+		return "selectApply";
+	}
 }

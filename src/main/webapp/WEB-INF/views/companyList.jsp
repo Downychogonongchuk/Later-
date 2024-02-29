@@ -13,7 +13,7 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
-	<jsp:include page="header.jsp" />
+	<jsp:include page="cHeader.jsp" />
 	 <div id="content">
         <section id="applyCompany">
             <div class="data-area">
@@ -27,7 +27,7 @@
                     <c:if test="${!empty bList}">
                         <c:forEach var="board" items="${bList}">
                             <div class="shop-item">
-                                <a href="companyDetail?boardId=${board.boardId}">
+                                <a href="selectApply?boardId=${board.boardId}">
                                     <c:if test="${empty board.boardFile}">
                                         <img src="resources/images/no_image.jpg"
                                             class="poster-pre">
@@ -40,7 +40,7 @@
                                 </a>
                                 <div class="info-pre">
                                     <div class="title-pre">
-                                        <a href="companyDetail?boardId=${board.boardId}">
+                                        <a href="selectApply?boardId=${board.boardId}">
                                             ${board.companyName}
                                         </a>  
                                     </div> <!--title-pre-End-->

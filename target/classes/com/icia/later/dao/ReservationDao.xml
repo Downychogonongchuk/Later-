@@ -14,22 +14,28 @@
 		(null,#{reservationTime},#{status},#{memberId},#{boardId})
 	</insert>
 
-<!--  	<select id="getBoardListBymemberId" resultType="board"
+    <select id="getBoardListBymemberId" resultType="board"
 		parameterType="HashMap">
 
 		SELECT Board.*
 		FROM Board
 		JOIN Reservation ON Board.boardId = Reservation.boardId
-		WHERE Reservation.memberId = #{pMap.memberId11}
+		WHERE Reservation.memberId = #{pMap.memberId}
 		LIMIT #{pMap.pageNum},
 		#{pMap.listCnt}
 		
-	</select> -->
+	</select> 
 	<select id="selectRev" resultType="reserv" 
 		parameterType="HashMap">
 		SELECT * FROM reservation
 		WHERE memberId=#{pMap.memberId} AND boardId=#{pMap.boardId}
 	</select>
 
+
+	<select id="getReservationList" resultType="reserv"
+		parameterType="Integer">
+		SELECT * FROM reservation
+		WHERE boardId=#{boardId}	
+	</select>
 
 </mapper>

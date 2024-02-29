@@ -9,10 +9,9 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+
 <link rel="stylesheet"
-	href="resources/css/style.css"/>
-<link rel="stylesheet"
-	href="resources/css/bestBoard.css"/>
+	href="resources/css/applyCompany.css"/>
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"
 	integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
@@ -103,96 +102,108 @@
 		</div>
 		
 		<!-- 업체 리스트 (2024-02-26) -->
-		<div class="board">
-		 <c:if test="${empty bList}">
-				등록된 모집글이 없습니다.
-			</c:if>
-			<c:if test="${!empty bList}">
-				<c:forEach var="bitem" items="${bList}" begin="0" end="4" step="1">
-					<div class="board-item">
-					<!-- 업체 이미지 (2024-02-26) -->
-					<div class="board-image">
-						<a href="companyDetail?boardId=${bitem.boardId}">
-							<c:if test="${empty bitem.boardFile}">
-								<img src="resources/images/no_image.jpg"
-									class="poster-pre">
-							</c:if>
-							<c:if test="${!empty bitem.boardFile}">
-								<img src="resources/upload/${bitem.boardFile}"
-									class="poster-pre">
-							</c:if>
-						</a>
-						</div>
-						<!-- 업체 이름 (2024-02-26) -->
-						<div class="board-name">
-							<a href="companyDetail?boardId=${bitem.boardId}">
-								${bitem.companyName}
-							</a>
-						</div>
-						<!-- 제공유형&가격 (2024-02-27) -->
-						<div class="provideType-price">
-						<!-- 제공유형 (2024-02-27) -->
-							<div class="board-provideType">
-								${bitem.provideType}
-							</div>
-						<!-- 등록된 가격 (2024-02-26) -->
-							<div class="board-price">
-								${bitem.price}
-						    </div>							
-						</div>						
-						<!-- 모집 인원 (2024-02-26) -->
-						<div class="board-personnel">모집인원  / ${bitem.personnel}</div>
-					</div>
-				</c:forEach>
-			</c:if> 
-			</div>
+<div id="content">
+        <section id="applyCompany">
+            <div class="data-area">
+                <!-- 신청 목록 출력 -->
+                    <c:if test="${empty bList}">
+                        <div class="shop-item">
+                            <span class="none-content">신청한 체험단 모집글이 없습니다.</span>
+                        </div>
+                    </c:if><!--if boardList is Empty-->
+
+                    <c:if test="${!empty bList}">
+                        <c:forEach var="board" items="${bList}" begin="0" end="4" step="1">
+                            <div class="shop-item">
+                                <a href="companyDetail?boardId=${board.boardId}">
+                                    <c:if test="${empty board.boardFile}">
+                                        <img src="resources/images/no_image.jpg"
+                                            class="poster-pre">
+                                    </c:if> <!--!empty boardList End-->
+
+                                    <c:if test="${!empty board.boardFile}">
+                                        <img src="resources/upload/${board.boardFile}"
+                                            class="poster-pre">
+                                    </c:if>
+                                </a>
+                                <section class="info-pre">
+                              
+                                    <div class="title-pre">
+                                        <a class="title" href="companyDetail?boardId=${board.boardId}">
+                                            ${board.companyName}
+                                        </a>  
+                                    </div> <!--title-pre-End-->
+                                    
+                                    
+                                    <div class="content-provide">${board.provideType}</div>
+                                    <div class="content-price">${board.price}</div>
+                                     <div class="priceline"></div>
+                                     <div class="div3">모집인원</div>
+                                    <div class="content-personnel">${board.personnel}</div>
+                                    <div class="content-period1">신청 시작:${board.periodStart}</div>
+                                    <div class="content-period2">신청 마감:${board.periodEnd}</div>
+                                   
+                               
+                                </section>
+                            </div>
+                        </c:forEach>
+                    </c:if>
+                </div> <!-- data-area End -->
+        </section> <!--applyCompany End-->
+    </div> <!--content End-->
 		<div class="coming-soon">
 			<i class="fa fa-hourglass-start" aria-hidden="true"></i> COMING SOON
 		</div>
 		<!-- 업체 리스트 (2024-02-26) -->
-		<div class="board">
-		 <c:if test="${empty bList}">
-				등록된 모집글이 없습니다.
-			</c:if>
-			<c:if test="${!empty bList}">
-				<c:forEach var="bitem" items="${bList}" begin="0" end="4" step="1">
-					<div class="board-item">
-					<!-- 업체 이미지 (2024-02-26) -->
-					<div class="board-image">
-						<a href="detail?boardId=${bitem.boardId}">
-							<c:if test="${empty bitem.boardFile}">
-								<img src="resources/images/no_image.jpg"
-									class="poster-pre">
-							</c:if>
-							<c:if test="${!empty bitem.boardFile}">
-								<img src="resources/upload/${bitem.boardFile}"
-									class="poster-pre">
-							</c:if>
-						</a>
-						</div>
-						<!-- 업체 이름 (2024-02-26) -->
-						<div class="board-name">
-							<a href="detail?boardId=${bitem.boardId}">
-								${bitem.companyName}
-							</a>
-						</div>
-						<!-- 제공유형&가격 (2024-02-27) -->
-						<div class="provideType-price">
-						<!-- 제공유형 (2024-02-27) -->
-							<div class="board-provideType">
-								${bitem.provideType}
-							</div>
-						<!-- 등록된 가격 (2024-02-26) -->
-							<div class="board-price">
-								${bitem.price}
-						    </div>							
-						</div>						
-						<!-- 모집 인원 (2024-02-26) -->
-						<div class="board-personnel">모집인원  / ${bitem.personnel}</div>
-					</div>
-				</c:forEach>
-			</c:if> 
-			</div>
+	<div id="content">
+        <section id="applyCompany">
+            <div class="data-area">
+                <!-- 신청 목록 출력 -->
+                    <c:if test="${empty bList}">
+                        <div class="shop-item">
+                            <span class="none-content">신청한 체험단 모집글이 없습니다.</span>
+                        </div>
+                    </c:if><!--if boardList is Empty-->
+
+                    <c:if test="${!empty bList}">
+                        <c:forEach var="board" items="${bList}" begin="0" end="4" step="1">
+                            <div class="shop-item">
+                                <a href="companyDetail?boardId=${board.boardId}">
+                                    <c:if test="${empty board.boardFile}">
+                                        <img src="resources/images/no_image.jpg"
+                                            class="poster-pre">
+                                    </c:if> <!--!empty boardList End-->
+
+                                    <c:if test="${!empty board.boardFile}">
+                                        <img src="resources/upload/${board.boardFile}"
+                                            class="poster-pre">
+                                    </c:if>
+                                </a>
+                                <section class="info-pre">
+                              
+                                    <div class="title-pre">
+                                        <a class="title" href="companyDetail?boardId=${board.boardId}">
+                                            ${board.companyName}
+                                        </a>  
+                                    </div> <!--title-pre-End-->
+                                    
+                                    
+                                    <div class="content-provide">${board.provideType}</div>
+                                    <div class="content-price">${board.price}</div>
+                                     <div class="priceline"></div>
+                                     <div class="div3">모집인원</div>
+                                    <div class="content-personnel">${board.personnel}</div>
+                                    <div class="content-period1">신청 시작:${board.periodStart}</div>
+                                    <div class="content-period2">신청 마감:${board.periodEnd}</div>
+                                   
+                               
+                                </section>
+                            </div>
+                        </c:forEach>
+                    </c:if>
+                </div> <!-- data-area End -->
+        </section> <!--applyCompany End-->
+    </div> <!--content End-->
 		<div>
 			<hr color="gray">
 		</div>
