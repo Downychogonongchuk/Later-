@@ -11,6 +11,14 @@
 <link rel="stylesheet"
 	href="resources/css/header.css"/>
 
+
+<script
+	src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
 <div class="top-bar"> 
 	<div class="review">
 		<a href="/later"><img alt="로고" src="resources/images/logo.png" class="logo"></a>
@@ -23,9 +31,5 @@
 		<i class="fa fa-user-circle-o" aria-hidden="true"></i>
 		<a class="link" href="loginSelect">로그인</a> 
 		<a class="link" href="signSelect">회원가입</a>
-		<a class="link" href="cDelete">사업자 회원탈퇴</a>
-		<a class="link" href="mDelete">일반회원 회원탈퇴</a>
-		<a class="link" href="myPage">마이페이지</a>
-		<a class="link" href="logout">로그아웃</a>
 	</div>
 </div>

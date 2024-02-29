@@ -104,7 +104,7 @@ public class MemberService {
 
 			System.out.println(loggedInMember);
 			// 로그인시 세션에 저장
-			session.setAttribute("login", loggedInMember);
+			session.setAttribute("mLogin", loggedInMember);
 			System.out.println(loggedInMember);
 
 		} else {
@@ -123,7 +123,8 @@ public class MemberService {
 			log.info("logout()");
 			String msg = "로그아웃 성공";
 
-			session.removeAttribute("login");
+			session.removeAttribute("mLogin");
+			session.removeAttribute("cLogin");
 
 			rttr.addFlashAttribute("msg", msg);
 			return "redirect:/";

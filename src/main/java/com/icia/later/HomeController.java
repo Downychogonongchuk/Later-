@@ -31,8 +31,22 @@ public class HomeController {
 			
 	//메인페이지
 		@GetMapping("/")
-		public String home() {
+		public String home(Model model,HttpSession session) {
 			log.info("home()");
+			MemberDto logInInfo = (MemberDto) session.getAttribute("mLogin");
+			
+			if (logInInfo != null && session.getAttribute("mLogin") != null) {
+		        // 로그인한 회원 정보를 모델에 추가하여 JSP로 전달
+		        model.addAttribute("mLogInInfo", logInInfo);
+		        System.out.println(logInInfo);
+		        }
+			CustomerDto logInInfo1 = (CustomerDto) session.getAttribute("login");
+			
+			if (logInInfo1 != null && session.getAttribute("login") != null) {
+		        // 로그인한 회원 정보를 모델에 추가하여 JSP로 전달
+		        model.addAttribute("cLogInInfo", logInInfo1);
+		        	        	        	        
+		}
 
 			return "home";
 		}
@@ -41,12 +55,11 @@ public class HomeController {
 		@GetMapping("myPage")
 		public String myPage(Model model,HttpSession session) {
 			log.info("myPage()");
+			MemberDto logInInfo = (MemberDto) session.getAttribute("mLogin");
 			
-			MemberDto logInInfo = (MemberDto) session.getAttribute("login");
-			
-			if (logInInfo != null && session.getAttribute("login") != null) {
+			if (logInInfo != null && session.getAttribute("mLogin") != null) {
 		        // 로그인한 회원 정보를 모델에 추가하여 JSP로 전달
-		        model.addAttribute("logInInfo", logInInfo);
+		        model.addAttribute("mLogInInfo", logInInfo);
 		        System.out.println(logInInfo);
 			}
 			return "myPage";
@@ -186,7 +199,7 @@ public class HomeController {
 
 	    HttpSession session = request.getSession(false); // false 플래그는 새로운 세션이 생성되지 않도록 합니다.
 
-	    if (session != null && session.getAttribute("login") != null) {
+	    if (session != null && session.getAttribute("mLogin") != null) {
 	        // 세션이 비어있지 않을 때 로그아웃 처리
 	        session.invalidate();
 	        System.out.println(session);
@@ -209,11 +222,11 @@ public class HomeController {
 	public String mUpdate(Model model,HttpSession session) {
 		log.info("mUpdate()");
 		
-		MemberDto logInInfo = (MemberDto) session.getAttribute("login");
+		MemberDto logInInfo = (MemberDto) session.getAttribute("mLogin");
 		
-		if (logInInfo != null && session.getAttribute("login") != null) {
+		if (logInInfo != null && session.getAttribute("mLogin") != null) {
 	        // 로그인한 회원 정보를 모델에 추가하여 JSP로 전달
-	        model.addAttribute("logInInfo", logInInfo);
+	        model.addAttribute("mLogInInfo", logInInfo);
 	        	        	        	        
 	}
 		return "mUpdate";

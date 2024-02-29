@@ -136,7 +136,7 @@ public class CustomerController {
 			
 			if (logInInfo != null && session.getAttribute("login") != null) {
 		        // 로그인한 회원 정보를 모델에 추가하여 JSP로 전달
-		        model.addAttribute("logInInfo", logInInfo);
+		        model.addAttribute("cLogInInfo", logInInfo);
 		        	        	        	        
 		}
 			return "cUpdate";

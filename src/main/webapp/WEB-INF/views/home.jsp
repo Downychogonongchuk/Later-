@@ -9,14 +9,15 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+
 <link rel="stylesheet"
-	href="resources/css/style.css"/>
+	href="resources/css/applyCompany.css"/>
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"
 	integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
 	crossorigin="anonymous"></script>
-<!-- <script
-	src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script> -->
+<script
+	src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script
@@ -68,14 +69,14 @@
 </head>
 <body>
 	<div class="wrap">
-		<c:if test="${empty logInInfo && empty logInInfo1}">
+		<c:if test="${empty mLogInInfo and empty cLogInInfo}">
 			<jsp:include page="header.jsp" />
 		</c:if>
-		<c:if test="${!empty logInInfo}">
-			<jsp:include page="mheader.jsp" />
+		<c:if test="${!empty mLogInInfo}">
+			<jsp:include page="mHeader.jsp" />
 		</c:if>
-		<c:if test="${!empty logInInfo1}">
-			<jsp:include page="cheader.jsp" />
+		<c:if test="${!empty cLogInInfo}">
+			<jsp:include page="cHeader.jsp" />
 		</c:if>
 		<nav class="navbar navbar-expand-sm bg-light navbar-light">
 			<!-- Links -->
@@ -85,7 +86,7 @@
 				<li class="nav-item"><a class="nav-link" href="#">가전</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">뷰티</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">기타</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">리뷰</a></li>
+				<li class="nav-item"><a class="nav-link" href="review">리뷰</a></li>
 			</ul>
 		</nav>
 		<div>
@@ -99,48 +100,110 @@
 		<div>
 			<hr color="gray">
 		</div>
-		 <!-- <c:if test="${empty bList}">
-				등록된 모집글이 없습니다.
-			</c:if>
-			<c:if test="${!empty bList}">
-				<c:forEach var="bitem" items="${bList}">
-					<div class="board-item">
-						<a href="detail?boardId=${bitem.boardId}">
-							<c:if test="${empty bitem.boardFile}">
-								등록된 이미지가 없습니다.
-							</c:if>
-							<c:if test="${!empty bitem.boardFile}">
-								<div>${bitem.boardFile}</div>
-							</c:if>
-						</a>
-						<a href="detail?boardId=${bitem.boardId}">
-							${bitem.companyName}
-						</a>
-						<div>${bitem.price}</div>
-						<div>${bitem.personnel}</div>
-					</div>
-				</c:forEach>
-			</c:if> -->
-			<p>Some example text. Some example text. Some example text. Some
-				example text. Some example text.</p>
-			<p>Some example text. Some example text. Some example text. Some
-				example text. Some example text.</p>
-			<p>Some example text. Some example text. Some example text. Some
-				example text. Some example text.</p>
-			<p>Some example text. Some example text. Some example text. Some
-				example text. Some example text.</p>
 		
+		<!-- 업체 리스트 (2024-02-26) -->
+<div id="content">
+        <section id="applyCompany">
+            <div class="data-area">
+                <!-- 신청 목록 출력 -->
+                    <c:if test="${empty bList}">
+                        <div class="shop-item">
+                            <span class="none-content">신청한 체험단 모집글이 없습니다.</span>
+                        </div>
+                    </c:if><!--if boardList is Empty-->
+
+                    <c:if test="${!empty bList}">
+                        <c:forEach var="board" items="${bList}" begin="0" end="4" step="1">
+                            <div class="shop-item">
+                                <a href="companyDetail?boardId=${board.boardId}">
+                                    <c:if test="${empty board.boardFile}">
+                                        <img src="resources/images/no_image.jpg"
+                                            class="poster-pre">
+                                    </c:if> <!--!empty boardList End-->
+
+                                    <c:if test="${!empty board.boardFile}">
+                                        <img src="resources/upload/${board.boardFile}"
+                                            class="poster-pre">
+                                    </c:if>
+                                </a>
+                                <section class="info-pre">
+                              
+                                    <div class="title-pre">
+                                        <a class="title" href="companyDetail?boardId=${board.boardId}">
+                                            ${board.companyName}
+                                        </a>  
+                                    </div> <!--title-pre-End-->
+                                    
+                                    
+                                    <div class="content-provide">${board.provideType}</div>
+                                    <div class="content-price">${board.price}</div>
+                                     <div class="priceline"></div>
+                                     <div class="div3">모집인원</div>
+                                    <div class="content-personnel">${board.personnel}</div>
+                                    <div class="content-period1">신청 시작:${board.periodStart}</div>
+                                    <div class="content-period2">신청 마감:${board.periodEnd}</div>
+                                   
+                               
+                                </section>
+                            </div>
+                        </c:forEach>
+                    </c:if>
+                </div> <!-- data-area End -->
+        </section> <!--applyCompany End-->
+    </div> <!--content End-->
 		<div class="coming-soon">
 			<i class="fa fa-hourglass-start" aria-hidden="true"></i> COMING SOON
 		</div>
-		<p>Some example text. Some example text. Some example text. Some
-				example text. Some example text.</p>
-			<p>Some example text. Some example text. Some example text. Some
-				example text. Some example text.</p>
-			<p>Some example text. Some example text. Some example text. Some
-				example text. Some example text.</p>
-			<p>Some example text. Some example text. Some example text. Some
-				example text. Some example text.</p>
+		<!-- 업체 리스트 (2024-02-26) -->
+	<div id="content">
+        <section id="applyCompany">
+            <div class="data-area">
+                <!-- 신청 목록 출력 -->
+                    <c:if test="${empty bList}">
+                        <div class="shop-item">
+                            <span class="none-content">신청한 체험단 모집글이 없습니다.</span>
+                        </div>
+                    </c:if><!--if boardList is Empty-->
+
+                    <c:if test="${!empty bList}">
+                        <c:forEach var="board" items="${bList}" begin="0" end="4" step="1">
+                            <div class="shop-item">
+                                <a href="companyDetail?boardId=${board.boardId}">
+                                    <c:if test="${empty board.boardFile}">
+                                        <img src="resources/images/no_image.jpg"
+                                            class="poster-pre">
+                                    </c:if> <!--!empty boardList End-->
+
+                                    <c:if test="${!empty board.boardFile}">
+                                        <img src="resources/upload/${board.boardFile}"
+                                            class="poster-pre">
+                                    </c:if>
+                                </a>
+                                <section class="info-pre">
+                              
+                                    <div class="title-pre">
+                                        <a class="title" href="companyDetail?boardId=${board.boardId}">
+                                            ${board.companyName}
+                                        </a>  
+                                    </div> <!--title-pre-End-->
+                                    
+                                    
+                                    <div class="content-provide">${board.provideType}</div>
+                                    <div class="content-price">${board.price}</div>
+                                     <div class="priceline"></div>
+                                     <div class="div3">모집인원</div>
+                                    <div class="content-personnel">${board.personnel}</div>
+                                    <div class="content-period1">신청 시작:${board.periodStart}</div>
+                                    <div class="content-period2">신청 마감:${board.periodEnd}</div>
+                                   
+                               
+                                </section>
+                            </div>
+                        </c:forEach>
+                    </c:if>
+                </div> <!-- data-area End -->
+        </section> <!--applyCompany End-->
+    </div> <!--content End-->
 		<div>
 			<hr color="gray">
 		</div>

@@ -25,10 +25,11 @@ public class CustomerService {
 	public String cEmailCheck(String customerEmailCheck) {
 		log.info("customerEmailCheck()");
 		int cnt = cDao.checkDuplicateId(customerEmailCheck);
-
 		String res = null;
+		System.out.println(cnt);
 		if (cnt > 0) {
 			// 아이디 있음
+			
 			res = "fail";
 		} else {
 			// 아이디 없음

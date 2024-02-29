@@ -31,14 +31,14 @@
 <body>
 	<div class="wrap">
 		<div>
-			<c:if test="${empty logInInfo && empty logInInfo1}">
+			<c:if test="${empty mLogInInfo && empty cLogInInfo}">
 				<jsp:include page="header.jsp" />
 			</c:if>
-			<c:if test="${!empty logInInfo}">
-				<jsp:include page="mheader.jsp" />
+			<c:if test="${!empty mLogInInfo}">
+				<jsp:include page="mHeader.jsp" />
 			</c:if>
-			<c:if test="${!empty logInInfo1}">
-				<jsp:include page="cheader.jsp" />
+			<c:if test="${!empty cLogInInfo}">
+				<jsp:include page="cHeader.jsp" />
 			</c:if>
 		</div>
 
