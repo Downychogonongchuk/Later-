@@ -43,7 +43,7 @@ public class ReservationController {
 					RedirectAttributes rttr,
 					Integer boardId) {
 				log.info("rev()");
-				
+				    
 				MemberDto member = (MemberDto) session.getAttribute("mLogin");
 				
 				if(member != null) {
