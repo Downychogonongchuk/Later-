@@ -6,30 +6,30 @@ import com.icia.later.dto.MemberDto;
 
 public interface MemberDao {
 	
-		// È¸¿ø°¡ÀÔ
+		// íšŒì›ê°€ì…
 		void insertMember(MemberDto member);
 		
-		// ·Î±×ÀÎ
+		// ë¡œê·¸ì¸
 		MemberDto login(MemberDto member);
 	
-		// È¸¿øÁ¤º¸ »ó¼¼ °¡Á®¿À±â
+		// íšŒì›ì •ë³´ ìƒì„¸ ê°€ì ¸ì˜¤ê¸°
 		MemberDto selectMember(Integer memberId);
 		
-		// ¾÷µ¥ÀÌÆ®
+		// ì—…ë°ì´íŠ¸
 		void updateMember(MemberDto member);
 		
-		// »èÁ¦
+		// ì‚­ì œ
 		void deleteMember(Integer memberId);
 		
-		// ÀÌ¸ŞÀÏ Áßº¹Ã¼Å©
+		// ì´ë©”ì¼ ì¤‘ë³µì²´í¬
 		int checkDuplicateId(String memberEmailCheck);
 		
-		// ÀÌ¸ŞÀÏ Ã£±â
+		// ì´ë©”ì¼ ì°¾ê¸°
 		MemberDto FindById(MemberDto member);
 		
-		// ºñ¹Ğ¹øÈ£ Ã£±â
+		// ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°
 		MemberDto FindByPass(MemberDto member);
 		
-		// ºñ¹Ğ¹øÈ£ ¾÷µ¥ÀÌÆ®
+		// ë¹„ë°€ë²ˆí˜¸ ì—…ë°ì´íŠ¸
 		void mUpdatePassProc(MemberDto member);
 }

@@ -48,7 +48,7 @@
 <body>
 
 <div class="wrap">
-<jsp:include page="header.jsp" />
+<jsp:include page="cHeader.jsp" />
 	<div class="content">
 		<form action="cUpdateProc" method="post" enctype="multipart/form-data">
             <h2 class="form-header">회원정보 수정</h2>          

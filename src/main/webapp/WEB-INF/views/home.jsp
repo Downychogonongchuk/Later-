@@ -73,10 +73,10 @@
 			<jsp:include page="header.jsp" />
 		</c:if>
 		<c:if test="${!empty mLogInInfo}">
-			<jsp:include page="mheader.jsp" />
+			<jsp:include page="mHeader.jsp" />
 		</c:if>
 		<c:if test="${!empty cLogInInfo}">
-			<jsp:include page="cheader.jsp" />
+			<jsp:include page="cHeader.jsp" />
 		</c:if>
 		<nav class="navbar navbar-expand-sm bg-light navbar-light">
 			<!-- Links -->

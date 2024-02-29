@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-
 @Getter
 @Setter
 @ToString
@@ -17,9 +16,11 @@ public class MemberDto {
 	private String memberEmail;
 	private String memberPass;
 	private String memberPhone;
+	private String snsKind;
 	private String snsFollower;
 	private String snsLink;
 	private String memberProfile;
-	private String snsKind;
-
+	
+	
+	
 }

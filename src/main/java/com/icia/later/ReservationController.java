@@ -37,45 +37,39 @@ public class ReservationController {
 	
 
 	
-	// ����ó��
+	// 예약처리
 			@PostMapping("rev")
-			public String rev(HttpSession session,
+			public String rev(HttpServletRequest request,HttpSession session,
 					RedirectAttributes rttr,
 					Integer boardId) {
 				log.info("rev()");
+				boardId =1;
 				
-				MemberDto member = (MemberDto) session.getAttribute("mLogin");
+				// http session 가져오기
+				HttpSession session11 = request.getSession();
 				
-				if(member != null) {
-					Integer memberId = member.getMemberId();
-					System.out.println(memberId);
-					ReservationDto rDto = rServ.selectRev(memberId, boardId, rttr, session);
-					if (rDto == null) {
-						String view = rServ.insertRev(memberId, boardId, rttr, session);
-						return view;
-					} else {
-						String msg = "�̹� ��û�ϼ̽��ϴ�.";
-						String view = "redirect:/";
-						rttr.addFlashAttribute("msg", msg);
-						return view;
-					}
-					
-					
-				} else {
-					
-					return "redirect:mlogin";
-				}
-			}
-}
-				
+				Object someValue = (Object) session11.getAttribute("login");
 			
-	
-	
-	
-	
-
-	
-	
-	
-	
-
+				// 속성이 null이 아니고  // 로그인 정보가 MemberDto의 인스턴스인지 확인
+				if (someValue != null && someValue instanceof MemberDto) {
+					
+				    // 로그인 정보(객체)를 MemberDto로 형변환합니다.
+					 MemberDto memberDto = (MemberDto) someValue;
+					 
+					 // 회원 ID 가져오기
+					 Integer memberId1 = memberDto.getMemberId();
+					 System.out.println(memberId1);
+					 
+					 String view = rServ.insertRev(memberId1, boardId, rttr, session);
+					    return view;
+				} else{
+					// 세션에 저장된 값이 MemberDto 타입이 아닌 경우 처리
+			        // 예를 들어, 로그인이 되어 있지 않은 상태 등에 대한 처리를 추가할 수 있습니다.
+			        // 여기에 적절한 로직을 추가하세요.
+			        return "redirect:/login"; // 로그인 페이지로 리다이렉트 예시
+					
+					}
+				}
+				   
+				
+			}
