@@ -37,5 +37,11 @@
 		SELECT * FROM reservation
 		WHERE boardId=#{boardId}	
 	</select>
-
+	
+	<update id="updateStatus" parameterType="HashMap">
+		UPDATE reservation
+		SET status=#{pMap.status}
+		WHERE reservationId=#{pMap.reservationId}
+	</update>
+	
 </mapper>

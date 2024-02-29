@@ -112,13 +112,31 @@ String pageHtml = null;
 		return rList;
 	}
 
-//	public String updateStatus(Integer reservationId, String status, Model model) {
-//		log.info("updateStatus()");
-//		Map<String>
-//		
-//		rDao.updateStatus()
-//		
-//		model.addAttribute(status, model);
-//	}
+	public String updateStatus(Integer reservationId, String status, Model model, RedirectAttributes rttr) {
+		log.info("updateStatus()");
+		String view = null;
+		String msg = null;
+		
+		if("확정".equals(status)) {
+			Map<String, Object> pMap = new HashMap<>();
+			pMap.put("reservationId", reservationId);
+			pMap.put("status", status);
+			
+			rDao.updateStatus(pMap);
+			view = "redirect:selectApply ";
+			msg = "신청한 회원을 확정하였습니다.";
+		} else {
+			Map<String, Object> pMap = new HashMap<>();
+			pMap.put("reservationId", reservationId);
+			pMap.put("status", status);
+			
+			rDao.updateStatus(pMap);
+			view = "redirect:selectApply";
+			msg = "신청한 회원을 거절하였습니다.";
+		}
+
+		rttr.addFlashAttribute("msg", msg);
+		return view;
+	}
 	
 }

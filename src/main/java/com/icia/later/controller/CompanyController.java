@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.icia.later.dto.BoardDto;
 import com.icia.later.dto.CustomerDto;
@@ -115,12 +116,12 @@ public class CompanyController {
 		return "selectApply";
 	}
 	
-//	@PostMapping("select")
-//	public String select(Integer reservationId, String status, Model model) {
-//		log.info("select()");
-//		
-//		String view = rServ.updateStatus(reservationId, status, model);
-//		
-//		return view;
-//	}
+	@PostMapping("select")
+	public String select(Integer reservationId, String status, Model model, RedirectAttributes rttr) {
+		log.info("select()");
+		
+		String view = rServ.updateStatus(reservationId, status, model, rttr);
+		
+		return view;
+	}
 }

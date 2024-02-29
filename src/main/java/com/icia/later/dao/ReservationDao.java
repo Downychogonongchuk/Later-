@@ -22,4 +22,6 @@ public interface ReservationDao {
 
 	List<ReservationDto> getReservationList(Integer boardId);
 
+	void updateStatus(Map<String, Object> pMap);
+
 }

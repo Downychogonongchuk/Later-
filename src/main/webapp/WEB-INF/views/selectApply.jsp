@@ -86,8 +86,8 @@
 
 					<p>
 						<strong>신청 상태</strong><br>${reserv.status}</p>
-					<input type="hidden" name="status"
-						value="${reserv.status}">
+					<!--  <input type="hidden" name="status"
+						value="${reserv.status}"> -->
 
 					<p>
 						<strong>모집마감일자</strong><br>${board.periodEnd}</p>
@@ -118,9 +118,9 @@
                 
                 <div class="buttons">
                 <!-- 결제버튼-->
-				<button type="submit" id="btn-yes" class="btn-yes">확정</button>
+				<button type="submit" id="btn-yes" class="btn-yes" name="status" value="확정">확정</button>
 				<!-- 결제버튼 완-->
-				<button type="submit" id="btn-no"class="btn-no">거절</button>
+				<button type="submit" id="btn-no"class="btn-no" name="status" value="거절">거절</button>
                 </div> <!--buttonsEnd-->
 			             </div><!--rightEnd-->
     </c:forEach>
@@ -131,41 +131,11 @@
 	</div>
 </body>
 <script>
-$(document).ready(function() {
-    // 확정 버튼 클릭 시
-    $("#btn-yes").click(function(e) {
-        e.preventDefault(); // 기본 동작인 form submit을 막음
-        var reservationId = $("input[name='reservationId']").val();
-        updateReservationStatus(reservationId, "확정");
-    });
-
-    // 거절 버튼 클릭 시
-    $("#btn-no").click(function(e) {
-        e.preventDefault(); // 기본 동작인 form submit을 막음
-        var reservationId = $("input[name='reservationId']").val();
-        updateReservationStatus(reservationId, "거절");
-    });
-
-    function updateReservationStatus(reservationId, reservationTime, status, memberId, boardId) {
-        $.ajax({
-            type: "POST",
-            url: "select", // 실제로 상태를 업데이트하는 서블릿의 경로로 변경해야 합니다.
-            data: {
-                reservationId: reservationId,
-                status: status
-            },
-            success: function(response) {
-                // 서버로부터 성공적인 응답을 받았을 때 처리할 내용
-                alert("상태가 업데이트되었습니다.");
-                // 여기서 필요한 경우 추가적인 작업 수행
-            },
-            error: function(xhr, status, error) {
-                // 서버 요청에 실패했을 때 처리할 내용
-                console.error("상태 업데이트 실패:", error);
-                // 오류 메시지를 사용자에게 표시하거나 다른 처리를 수행
-            }
-        });
-    }
+$("#btn-yes").click(function() {
+	location.href = `./selectApply`;
+});
+$("#btn-no").click(function() {
+	location.href = `./selectApply`;
 });
 </script>
 
