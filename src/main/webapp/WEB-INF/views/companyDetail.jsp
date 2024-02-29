@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
@@ -84,28 +84,31 @@
 			
                 
                 <div class="buttons">
+                <c:if test="${!empty mLogInInfo}">
                 <!-- 결제버튼-->
 				<button type="submit" id="btn-apply" class="btn-apply">신청하기</button>
-				<!-- 결제버튼 완-->
+				</c:if><!--!empty mLogInInfo -->
+				
+				<c:if test="${!empty cLogInInfo}">
+                <a href="modifyDetail.jsp" class="btn-modifyDetail">수정</a>
+				</c:if><!--!empty cLogInInfo -->
+				
+				
                 </div> <!--buttonsEnd-->
-			             </div><!--rightEnd-->
+			    </div><!--rightEnd-->
 				
             </div><!--content-->
 			</form>
-			
-
-<div></div>
-			
+		
 				
-				
-
-<script>
+	<jsp:include page="footer.jsp" />
+	
+	<script>
 	$("#btn-apply").click(function() {
 		location.href = `./`;
 	});
 	
 </script>
 
-	<jsp:include page="footer.jsp" />
 </body>
 </html>

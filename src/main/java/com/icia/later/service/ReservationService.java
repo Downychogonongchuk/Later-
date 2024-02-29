@@ -34,6 +34,7 @@ public class ReservationService {
 	private ReservationDao rDao;
 	@Autowired
 	private BoardDao bDao;
+	
 
 	// 예약 정보 저장 
 	public String insertRev(Integer memberId1, Integer boardId1, RedirectAttributes rttr,
@@ -112,6 +113,21 @@ public class ReservationService {
 		pageHtml = paging.makePaging();
 		
 		return pageHtml;
+	}
+
+
+
+	public ReservationDto selectRev(Integer memberId, Integer boardId, RedirectAttributes rttr, HttpSession session) {
+		
+		
+		Map<String, Integer> pMap = new HashMap<String, Integer>();
+		pMap.put("memberId", memberId);
+		pMap.put("boardId", boardId);
+		
+		ReservationDto rDto = rDao.selectRev(pMap);
+		
+		return rDto;
+	
 	}
 
 

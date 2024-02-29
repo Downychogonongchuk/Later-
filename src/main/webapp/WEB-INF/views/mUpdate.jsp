@@ -5,31 +5,58 @@
 <head>
 	<meta charset="UTF-8">
 	<title>회원정보수정 - WRITE</title>
-	<link rel="stylesheet" href="resources/css/amw.css">
+	<link rel="stylesheet" href="resources/css/mUpdate.css">
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js" 
 			integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" 
 			crossorigin="anonymous"></script>
-	<script>
-            
-          	//파일 업로드 시 선택한 파일명 출력
+	<!-- 파일 업로드 시 선택한 파일명 출력을 위한 스크립트 -->
+    <script>
+        $(document).ready(function() {
             $("#file").on("change", function () {
-                //파일 입력창(input type=file)에서 파일 목록 가져오기
                 let files = $("#file")[0].files;
-                console.log(files);
-
                 let fileName = "";
 
-                if(files.length == 1) {
+                if(files.length == 1) {  
                     fileName = files[0].name;
                 }
-                else {//파일 선택 창에서 '취소' 버튼을 클릭
+                else {
                     fileName = "파일선택";
                 }
 
                 $(".upload-name").val(fileName);
             });
+        });
     </script>
-  
+
+    <!-- 기존의 SNS 종류 값 가져와서 선택 상태 설정하는 스크립트 -->
+    <script>
+        $(document).ready(function() {
+            let snsKindValue = "${logInInfo.snsKind}";
+
+            $("select[name='snsKind'] option").each(function() {
+                let optionValue = $(this).val();
+
+                if (optionValue === snsKindValue) {
+                    $(this).prop("selected", true);
+                }
+            });
+        });
+    </script>
+
+    <!-- 기존의 팔로워 수 값 가져와서 선택 상태 설정하는 스크립트 -->
+    <script>
+        $(document).ready(function() {
+            let snsFollowerValue = "${logInInfo.snsFollower}";
+
+            $("select[name='snsFollower'] option").each(function() {
+                let optionValue = $(this).val();
+
+                if (optionValue === snsFollowerValue) {
+                    $(this).prop("selected", true);
+                }
+            });
+        });
+    </script>
 </head>
 <body>
 
@@ -51,28 +78,28 @@
             autofocus value="${logInInfo.memberName}">
             <input type="hidden" class="write-input" name="memberEmail"
                    autofocus value="${logInInfo.memberEmail}">
-            <h4>비밀번호</h4>
+            <h5>비밀번호</h5>
             <input type="password" class="write-input" name="memberPass"
                    autofocus value="${logInInfo.memberPass}">
-            <h4>비밀번호 재확인</h4>
+            <h5>비밀번호 재확인</h5>
             <input type="password" class="write-input" name=""
                    autofocus placeholder="변동사항 없을시 미입력">
-            <h4>연락처</h4>
+            <h5>연락처</h5>
             <input type="text" class="write-input" name="memberPhone"
                    autofocus value="${logInInfo.memberPhone}">
-            <h4>사용하는 SNS</h4>
-            <select name = "snsKind" class="write-input" required autofocus>
+            <h5>사용하는 SNS</h5>
+            <select name = "snsKind" class="write-input" required="required" autofocus>
 			<option value="없음">==선택해주세요==</option>
 			<option value="facebook">페이스북</option>
 			<option value="instagram">인스타그램</option>
 			<option value="blog">블로그</option>
 			<option value="youtube">유튜브</option>
             </select>
-            <h4>본인의 SNS또는 BLOG 링크</h4>
+            <h5>본인의 SNS또는 BLOG 링크</h5>
             <input type="text" class="write-input" name="snsLink"
                    value="${logInInfo.snsLink}">
-            <h4>팔로워 수</h4>       
-            <select name="snsFollower" class="write-input" required autofocus>
+            <h5>팔로워 수</h5>       
+            <select name="snsFollower" class="write-input" required="required" autofocus>
 			<option value="없음">==선택해주세요==</option>
 			<option value="1000">1~1,000</option>
 			<option value="5000">1,000~5,000</option>

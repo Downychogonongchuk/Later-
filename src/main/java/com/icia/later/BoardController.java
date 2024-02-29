@@ -33,7 +33,7 @@ public class BoardController {
 		public String writeFrm(Model model, HttpSession session) {
 			log.info("writeFrm()");
 			
-			CustomerDto cLogInInfo = (CustomerDto) session.getAttribute("login");
+			CustomerDto cLogInInfo = (CustomerDto) session.getAttribute("cLogin");
 			
 			System.out.println(cLogInInfo);
 			if(cLogInInfo != null) {
@@ -57,7 +57,7 @@ public class BoardController {
 			HttpSession session1 = request.getSession();
 			System.out.println("session1"+session1);
 			
-			Object someValue = (Object) session1.getAttribute("login");
+			Object someValue = (Object) session1.getAttribute("cLogin");
 			
 		
 			// 속성이 null이 아니고  // 로그인 정보가 MemberDto의 인스턴스인지 확인

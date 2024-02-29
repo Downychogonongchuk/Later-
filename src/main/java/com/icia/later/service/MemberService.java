@@ -4,13 +4,14 @@ import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+import javax.swing.text.View;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.icia.later.ReservationController;
 import com.icia.later.dao.MemberDao;
 import com.icia.later.dto.MemberDto;
 
@@ -21,7 +22,23 @@ import lombok.extern.slf4j.Slf4j;
 public class MemberService {
 	@Autowired
 	private MemberDao mDao;
+	
+	public String mEmailCheck(String memberEmailCheck) {
+		log.info("memberEmailCheck()");
+		int cnt = mDao.checkDuplicateId(memberEmailCheck);
 
+		String res = null;
+		if (cnt > 0) {
+			// 아이디 있음
+			res = "fail";
+		} else {
+			// 아이디 없음
+			res = "ok";
+		}
+
+		return res;
+	}
+	
 	public String insertMember(List<MultipartFile> files, MemberDto member, HttpSession session,
 			RedirectAttributes rttr) {
 		log.info("insertMember()");
@@ -87,7 +104,7 @@ public class MemberService {
 
 			System.out.println(loggedInMember);
 			// 로그인시 세션에 저장
-			session.setAttribute("login", loggedInMember);
+			session.setAttribute("mLogin", loggedInMember);
 			System.out.println(loggedInMember);
 
 		} else {
@@ -106,7 +123,7 @@ public class MemberService {
 			log.info("logout()");
 			String msg = "로그아웃 성공";
 
-			session.removeAttribute("login");
+			session.removeAttribute("mLogin");
 
 			rttr.addFlashAttribute("msg", msg);
 			return "redirect:/";
@@ -142,12 +159,12 @@ public class MemberService {
 			mDao.updateMember(member);
 			System.out.println("mServ" + member);
 
-			view = "redirect:/"; // + member.getMemberId();
+			view = "redirect:/"; 
 			msg = "수정 성공";
 			// 기존 파일 삭제
 		} catch (Exception e) {
 			e.printStackTrace();
-			view = "redirect:mUpdate?memberId=" + member.getMemberId();
+			view = "redirect:/";
 			msg = "수정 실패";
 		}
 
@@ -172,7 +189,7 @@ public class MemberService {
 		log.info("mDelete()");
 		String msg = null;
 		String view = null;
-		MemberDto loginInfo = (MemberDto) session.getAttribute("login");
+		MemberDto loginInfo = (MemberDto) session.getAttribute("mLogin");
 		int id = loginInfo.getMemberId();
 
 		try {
@@ -195,4 +212,57 @@ public class MemberService {
 		return view;
 
 	}
+
+	// 일반회원 이메일찾기
+	public String mFindById(MemberDto member, Model model, RedirectAttributes rttr) {
+	    log.info("mFindById()");
+	    System.out.println(member);
+	    String msg = null;
+	    MemberDto EmailResult = mDao.FindById(member);
+	    System.out.println(EmailResult);
+	    
+	    if(EmailResult == null) {
+	        msg = "가입된 정보가 없습니다 다시 확인해주세요.";
+	        rttr.addFlashAttribute("msg", msg);
+	        return "redirect:/mFindById";
+	    } else {
+	        model.addAttribute("EmailResult", EmailResult);
+	        return "mFindById";
+	    }
+	}
+	
+	// 일반회원 비밀번호찾기
+		public String mFindByPass(MemberDto member, Model model, RedirectAttributes rttr) {
+		    log.info("mFindByPass()");
+		    System.out.println(member);
+		    String msg = null;
+		    MemberDto PassResult = mDao.FindByPass(member);
+		    System.out.println(PassResult);
+		    
+		    if(PassResult == null) {
+		        msg = "가입된 정보가 없습니다 다시 확인해주세요.";
+		        rttr.addFlashAttribute("msg", msg);
+		        return "redirect:/mFindByPass";
+		    } else {
+		        model.addAttribute("PassResult", PassResult);
+		        return "mPassUpdate";
+		    }
+		}
+		
+		//일반회원 비밀번호 처리 메서드
+		public String mUpdatePassProc(MemberDto member,RedirectAttributes rttr) {
+			log.info("mUpdatePassProc()");
+			System.out.println(member);
+			String msg = null;
+			String view = null;
+			mDao.mUpdatePassProc(member);
+			
+			
+			msg = "수정이 완료되었습니다 로그인 후 이용해주세요";
+			view = "redirect:/mLogin";
+			rttr.addFlashAttribute("msg", msg);
+			
+			return view;
+		}
+
 }

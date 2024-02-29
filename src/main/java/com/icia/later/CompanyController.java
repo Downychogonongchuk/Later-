@@ -57,7 +57,7 @@ public class CompanyController {
 										Integer memberId1 ) {		
 				log.info("applyCompany()");
 				
-			    Object someValue = session.getAttribute("login");
+			    Object someValue = session.getAttribute("mLogin");
 
 			    if (someValue instanceof MemberDto) {
 			        MemberDto memberDto = (MemberDto) someValue;
@@ -71,7 +71,7 @@ public class CompanyController {
 					    return view;
 				} else{
 					
-			        return "redirect:/login"; // 로그인 페이지로 리다이렉트 예시
+			        return "redirect:/mlogin"; // 로그인 페이지로 리다이렉트 예시
 					
 					}
 				}
@@ -86,7 +86,7 @@ public class CompanyController {
 													Integer customerId1 ) {		
 							log.info("companyList()");
 							
-						    Object someValue = session.getAttribute("login");
+						    Object someValue = session.getAttribute("cLogin");
 
 						    if (someValue instanceof CustomerDto) {
 						    	CustomerDto customerDto = (CustomerDto) someValue;
@@ -100,7 +100,7 @@ public class CompanyController {
 								    return view;
 							} else{
 								
-						        return "redirect:/login"; // 로그인 페이지로 리다이렉트 예시
+						        return "redirect:/clogin"; // 로그인 페이지로 리다이렉트 예시
 								
 								}
 							}

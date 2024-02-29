@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.icia.later.dto.CustomerDto;
@@ -43,6 +44,15 @@ public class CustomerController {
 		return view;
 	}
 	
+	@PostMapping("cEmailCheck")
+	@ResponseBody
+	public String cEmailCheck(String customerEmailCheck) {
+	log.info("cEmailCheck()" + customerEmailCheck);
+	String res = cServ.cEmailCheck(customerEmailCheck); 
+	
+		return res;
+	}
+	
 	//사업자 로그인 페이지
 		@GetMapping("cLogin")
 		public String cLogin() {
@@ -63,16 +73,71 @@ public class CustomerController {
 			return view;
 		}
 		
+		//사업자회원 아이디찾기
+				@GetMapping("cFindById")
+				public String cFindById() {
+					log.info("cFindById()");
+					
+					return "cFindById";
+				}
+				
+				//사업자 아이디찾기 처리
+				@PostMapping("cFindByIdProc")
+				public String cFindByIdProc(CustomerDto customer, Model model, RedirectAttributes rttr) {
+					log.info("cFindById()");
+					String view = cServ.cFindById(customer, model, rttr);
+
+					return view;
+				}
+		
+				//사업자회원 비번찾기
+				@GetMapping("cFindByPass")
+				public String cFindByPass() {
+					log.info("cFindByPass()");
+					
+					return "cFindByPass";
+				}
+				
+				//사업자회원 비밀번호찾기 가입정보 확인 메서드
+				@PostMapping("cFindByPassProc")
+				public String cFindByPassProc(CustomerDto customer,
+												Model model,
+												RedirectAttributes rttr) {
+					log.info("cFindByPassProc()");
+					String view = cServ.cFindByPass(customer,model,rttr);
+					
+					return view;
+				}
+				
+				//비밀번호 찾기 -> 비밀번호 변경페이지
+				@PostMapping("cPassUpdate")
+				public String cPassUpdate() {
+					log.info("cPassUpdate()");
+					
+					return "cPassUpdate";
+				}
+				
+				//비밀번호 변경 처리 메서드
+				@PostMapping("cUpdatePassProc")
+				public String cUpdatePassProc(CustomerDto customer,
+											RedirectAttributes rttr) {
+					log.info("cUpdatePassProc()");
+					
+					String view = cServ.cUpdatePassProc(customer,rttr);
+					return view;
+				}
+		
 	// 사업자 회원정보 수정페이지 이동
 		@GetMapping("cUpdate")
 		public String cUpdate(Model model,HttpSession session) {
 			log.info("cUpdate()");
 			
-			CustomerDto logInInfo = (CustomerDto) session.getAttribute("login");
+			CustomerDto logInInfo = (CustomerDto) session.getAttribute("cLogin");
 			
-			if (logInInfo != null && session.getAttribute("login") != null) {
+			
+			if (logInInfo != null && session.getAttribute("cLogin") != null) {
 		        // 로그인한 회원 정보를 모델에 추가하여 JSP로 전달
-		        model.addAttribute("logInInfo", logInInfo);
+		        model.addAttribute("cLogInInfo", logInInfo);
 		        	        	        	        
 		}
 			return "cUpdate";
@@ -99,7 +164,7 @@ public class CustomerController {
 			
 			
 			String view = cServ.cDelete(customerId,session,rttr);
-			if (session != null && session.getAttribute("login") != null) {
+			if (session != null && session.getAttribute("cLogin") != null) {
 		        // 탈퇴 후 세션에 저장되어있는 값 삭제
 		        session.invalidate();
 		    }

@@ -33,7 +33,7 @@
 					<br>
 					<h5>이메일, 비밀번호를 잊으셨나요?</h5>
 					<div class="link-area">
-					<a href="" class="link1">아이디 /</a><a href="" class="link1"> 비밀번호 찾기</a><br>
+					<a href="mFindById" class="link1">아이디 /</a><a href="mFindByPass" class="link1"> 비밀번호 찾기</a><br>
 					<a href="signSelect" class="link1">회원가입</a>
 					<br> <input type="button" class="btn-write" value="홈으로 돌아가기"
 						id="backbtn">
@@ -41,8 +41,17 @@
 				</div>
 			</form>
 		</div>
+<<<<<<< HEAD
+		
+	</div>
+	<jsp:include page="footer.jsp" />
+
+	</div>
+>>>>>>> branch 'amw' of https://github.com/Downychogonongchuk/Later-.git
+=======
 		<jsp:include page="footer.jsp" />
 	</div>
+>>>>>>> branch 'amw' of https://github.com/Downychogonongchuk/Later-.git
 </body>
 <script>
 	$("#backbtn").click(function() {

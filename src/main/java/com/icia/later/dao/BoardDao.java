@@ -33,6 +33,8 @@ public interface BoardDao {
 	@Select("SELECT count(*) FROM board")
 	int cntBoard();
 
+
+
 	
 
 	

@@ -1,3 +1,4 @@
+@charset "UTF-8";
 * {
     box-sizing: border-box;
 }
@@ -121,12 +122,6 @@ a {
 .data-area {
     margin-bottom: 10px;
 }
-.paging-area {
-    width: 300px;
-    margin: 0px auto;
-    margin-bottom: 50px;
-    text-align: center;
-}
 btn-emailCheck {
 	width: 100px;
     padding: 5px 16px;
@@ -137,6 +132,12 @@ btn-emailCheck {
     background-color: #006BB9;
     margin-top: 10px;
 }
+.paging-area {
+    width: 300px;
+    margin: 0px auto;
+    margin-bottom: 50px;
+    text-align: center;
+}
 .button-container {
     margin-top : 100px;
     text-align: center;
@@ -145,7 +146,7 @@ btn-emailCheck {
     margin-top : 100px;
 }
 .large-button, .small-button {
-    outline: none; /* À±°û¼± Á¦°Å */
+    outline: none; /* ìœ¤ê³½ì„  ì œê±° */
 }
 .large-button {
     padding: 50px 250px;
@@ -234,6 +235,18 @@ font.pno {
     color: #fff;
     background-color: #1877F2;
     margin-top: 10px;
+}
+.btn-write-lc {
+    width: 100px;
+    padding: 5px 14px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 6px;
+    color: #fff;
+    background-color: #1877F2;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-align: center;
 }
 .btn-write[type="button"] {
     background-color: black;

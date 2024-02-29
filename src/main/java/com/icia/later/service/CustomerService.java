@@ -7,12 +7,13 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.icia.later.dao.CustomerDao;
 import com.icia.later.dto.CustomerDto;
-
+import com.icia.later.dto.MemberDto;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -20,6 +21,22 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CustomerService {
 	@Autowired CustomerDao cDao;
+	
+	public String cEmailCheck(String customerEmailCheck) {
+		log.info("customerEmailCheck()");
+		int cnt = cDao.checkDuplicateId(customerEmailCheck);
+
+		String res = null;
+		if (cnt > 0) {
+			// 아이디 있음
+			res = "fail";
+		} else {
+			// 아이디 없음
+			res = "ok";
+		}
+
+		return res;
+	}
 
 	public String insertCustomer(List<MultipartFile> files,
 									CustomerDto customer, 
@@ -88,7 +105,7 @@ public class CustomerService {
 
 				System.out.println(loggedInCustomer);
 				// 로그인시 세션에 저장
-				session.setAttribute("login", loggedInCustomer);
+				session.setAttribute("cLogin", loggedInCustomer);
 				System.out.println(loggedInCustomer);
 
 			} else {
@@ -152,7 +169,7 @@ public class CustomerService {
 			log.info("cDelete()");
 			String msg = null;
 			String view = null;
-			CustomerDto loginInfo = (CustomerDto) session.getAttribute("login");
+			CustomerDto loginInfo = (CustomerDto) session.getAttribute("cLogin");
 			int id = loginInfo.getCustomerId();
 
 			try {
@@ -176,4 +193,55 @@ public class CustomerService {
 
 		}
 		
+		// 사업자회원 이메일찾기
+		public String cFindById(CustomerDto customer, Model model, RedirectAttributes rttr) {
+		    log.info("cFindById()");
+		    System.out.println(customer);
+		    String msg = null;
+		    CustomerDto EmailResult = cDao.FindById(customer);
+		    System.out.println(EmailResult);
+		    
+		    if(EmailResult == null) {
+		        msg = "가입된 정보가 없습니다 다시 확인해주세요.";
+		        rttr.addFlashAttribute("msg", msg);
+		        return "redirect:/cFindById";
+		    } else {
+		        model.addAttribute("EmailResult", EmailResult);
+		        return "cFindById";
+		    }
+		}
+		
+		// 사업자회원 비밀번호찾기
+				public String cFindByPass(CustomerDto customer, Model model, RedirectAttributes rttr) {
+				    log.info("cFindByPass()");
+				    System.out.println(customer);
+				    String msg = null;
+				    CustomerDto PassResult = cDao.FindByPass(customer);
+				    System.out.println(PassResult);
+				    
+				    if(PassResult == null) {
+				        msg = "가입된 정보가 없습니다 다시 확인해주세요.";
+				        rttr.addFlashAttribute("msg", msg);
+				        return "redirect:/cFindByPass";
+				    } else {
+				        model.addAttribute("PassResult", PassResult);
+				        return "cPassUpdate";
+				    }
+				}
+				
+				//사업자회원 비밀번호 처리 메서드
+				public String cUpdatePassProc(CustomerDto customer,RedirectAttributes rttr) {
+					log.info("cUpdatePassProc()");
+					System.out.println(customer);
+					String msg = null;
+					String view = null;
+					cDao.cUpdatePassProc(customer);
+					
+					
+					msg = "수정이 완료되었습니다 로그인 후 이용해주세요";
+					view = "redirect:/cLogin";
+					rttr.addFlashAttribute("msg", msg);
+					
+					return view;
+				}
 }

@@ -20,6 +20,9 @@ public interface ReservationDao {
 	// 신청한 업체 수 구하기
 	@Select("SELECT count(*) FROM board")
 	int cntBoard();
+
+	// 에약 유무 확인 데이터 가져오기
+	ReservationDto selectRev(@Param("pMap") Map<String, Integer> pMap);
 	
 	
 }

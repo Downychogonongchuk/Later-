@@ -19,12 +19,21 @@
 
 		SELECT Board.*
 		FROM Board
-		JOIN Reservation ON Board.boardId = Reservation.boardId
-		WHERE Reservation.memberId = #{pMap.memberId11}
+		JOIN Reservation ON
+		Board.boardId = Reservation.boardId
+		WHERE Reservation.memberId =
+		#{pMap.memberId11}
 		LIMIT #{pMap.pageNum},
 		#{pMap.listCnt}
-		
 	</select>
+
+
+	<select id="selectRev" parameterType="HashMap"
+		resultType="reserv">
+		select * from reservation
+		where memberId=#{pMap.memberId} and boardId=#{pMap.boardId}
+	</select>
+
 
 
 
