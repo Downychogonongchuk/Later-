@@ -53,7 +53,7 @@ public class CustomerController {
 		return res;
 	}
 	
-	//»ç¾÷ÀÚ ·Î±×ÀÎ ÆäÀÌÁö
+	//ì‚¬ì—…ì ë¡œê·¸ì¸ í˜ì´ì§€
 		@GetMapping("cLogin")
 		public String cLogin() {
 			log.info("cLogin()");
@@ -61,7 +61,7 @@ public class CustomerController {
 			return "cLogin";
 		}
 	
-	// ·Î±×ÀÎ Ã³¸® ¸Ş¼­µå
+	// ë¡œê·¸ì¸ ì²˜ë¦¬ ë©”ì„œë“œ
 		@PostMapping("cLoginProc")
 		public String cLoginProc(CustomerDto customer,
 								HttpSession session,
@@ -73,7 +73,7 @@ public class CustomerController {
 			return view;
 		}
 		
-		//»ç¾÷ÀÚÈ¸¿ø ¾ÆÀÌµğÃ£±â
+		//ì‚¬ì—…ìíšŒì› ì•„ì´ë””ì°¾ê¸°
 				@GetMapping("cFindById")
 				public String cFindById() {
 					log.info("cFindById()");
@@ -81,7 +81,7 @@ public class CustomerController {
 					return "cFindById";
 				}
 				
-				//»ç¾÷ÀÚ ¾ÆÀÌµğÃ£±â Ã³¸®
+				//ì‚¬ì—…ì ì•„ì´ë””ì°¾ê¸° ì²˜ë¦¬
 				@PostMapping("cFindByIdProc")
 				public String cFindByIdProc(CustomerDto customer, Model model, RedirectAttributes rttr) {
 					log.info("cFindById()");
@@ -90,7 +90,7 @@ public class CustomerController {
 					return view;
 				}
 		
-				//»ç¾÷ÀÚÈ¸¿ø ºñ¹øÃ£±â
+				//ì‚¬ì—…ìíšŒì› ë¹„ë²ˆì°¾ê¸°
 				@GetMapping("cFindByPass")
 				public String cFindByPass() {
 					log.info("cFindByPass()");
@@ -98,7 +98,7 @@ public class CustomerController {
 					return "cFindByPass";
 				}
 				
-				//»ç¾÷ÀÚÈ¸¿ø ºñ¹Ğ¹øÈ£Ã£±â °¡ÀÔÁ¤º¸ È®ÀÎ ¸Ş¼­µå
+				//ì‚¬ì—…ìíšŒì› ë¹„ë°€ë²ˆí˜¸ì°¾ê¸° ê°€ì…ì •ë³´ í™•ì¸ ë©”ì„œë“œ
 				@PostMapping("cFindByPassProc")
 				public String cFindByPassProc(CustomerDto customer,
 												Model model,
@@ -109,7 +109,7 @@ public class CustomerController {
 					return view;
 				}
 				
-				//ºñ¹Ğ¹øÈ£ Ã£±â -> ºñ¹Ğ¹øÈ£ º¯°æÆäÀÌÁö
+				//ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸° -> ë¹„ë°€ë²ˆí˜¸ ë³€ê²½í˜ì´ì§€
 				@PostMapping("cPassUpdate")
 				public String cPassUpdate() {
 					log.info("cPassUpdate()");
@@ -117,7 +117,7 @@ public class CustomerController {
 					return "cPassUpdate";
 				}
 				
-				//ºñ¹Ğ¹øÈ£ º¯°æ Ã³¸® ¸Ş¼­µå
+				//ë¹„ë°€ë²ˆí˜¸ ë³€ê²½ ì²˜ë¦¬ ë©”ì„œë“œ
 				@PostMapping("cUpdatePassProc")
 				public String cUpdatePassProc(CustomerDto customer,
 											RedirectAttributes rttr) {
@@ -127,45 +127,44 @@ public class CustomerController {
 					return view;
 				}
 		
-	// »ç¾÷ÀÚ È¸¿øÁ¤º¸ ¼öÁ¤ÆäÀÌÁö ÀÌµ¿
+	// ì‚¬ì—…ì íšŒì›ì •ë³´ ìˆ˜ì •í˜ì´ì§€ ì´ë™
 		@GetMapping("cUpdate")
 		public String cUpdate(Model model,HttpSession session) {
 			log.info("cUpdate()");
 			
-			CustomerDto logInInfo = (CustomerDto) session.getAttribute("cLogin");
+			CustomerDto logInInfo = (CustomerDto) session.getAttribute("login");
 			
-			
-			if (logInInfo != null && session.getAttribute("cLogin") != null) {
-		        // ·Î±×ÀÎÇÑ È¸¿ø Á¤º¸¸¦ ¸ğµ¨¿¡ Ãß°¡ÇÏ¿© JSP·Î Àü´Ş
+			if (logInInfo != null && session.getAttribute("login") != null) {
+		        // ë¡œê·¸ì¸í•œ íšŒì› ì •ë³´ë¥¼ ëª¨ë¸ì— ì¶”ê°€í•˜ì—¬ JSPë¡œ ì „ë‹¬
 		        model.addAttribute("cLogInInfo", logInInfo);
 		        	        	        	        
 		}
 			return "cUpdate";
 	}
 		
-	// »ç¾÷ÀÚ È¸¿øÁ¤º¸ ¼öÁ¤ Ã³¸®
+	// ì‚¬ì—…ì íšŒì›ì •ë³´ ìˆ˜ì • ì²˜ë¦¬
 		@PostMapping("cUpdateProc")
 		public String cUpdateProc(@RequestPart List<MultipartFile> files, 
 				CustomerDto customer,
 				HttpSession session,
 				RedirectAttributes rttr) {
 			log.info("cUpdateProc()");
-			System.out.println("cUpdate¿¡¼­ ³Ñ¾î¿Â dto"+customer);
+			System.out.println("cUpdateì—ì„œ ë„˜ì–´ì˜¨ dto"+customer);
 			String view = cServ.customerUpdate(files, customer, session, rttr);
 			
 			return view;
 		}
 		
-	// »ç¾÷ÀÚ È¸¿ø Á¤º¸ Å»Åğ
-		// ÀÏ¹İÈ¸¿ø Å»Åğ
+	// ì‚¬ì—…ì íšŒì› ì •ë³´ íƒˆí‡´
+		// ì¼ë°˜íšŒì› íƒˆí‡´
 		@GetMapping("cDelete")
 		public String cDelete(Integer customerId,HttpSession session,RedirectAttributes rttr) {
 			log.info("cDelete()");
 			
 			
 			String view = cServ.cDelete(customerId,session,rttr);
-			if (session != null && session.getAttribute("cLogin") != null) {
-		        // Å»Åğ ÈÄ ¼¼¼Ç¿¡ ÀúÀåµÇ¾îÀÖ´Â °ª »èÁ¦
+			if (session != null && session.getAttribute("login") != null) {
+		        // íƒˆí‡´ í›„ ì„¸ì…˜ì— ì €ì¥ë˜ì–´ìˆëŠ” ê°’ ì‚­ì œ
 		        session.invalidate();
 		    }
 

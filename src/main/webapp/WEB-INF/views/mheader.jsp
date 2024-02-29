@@ -30,6 +30,7 @@
 	<div class="login-signin">
 		<a class="link" href="myPage">마이페이지</a>
 		<a class="link" href="reviewWrite">리뷰작성</a>
-		<a class="link" href="logout">로그아웃</a>
+		<a class="link" href="mLogout">로그아웃</a>
+		<a class="link" href="logout">로그아웃(임시))</a>
 	</div>
 </div>

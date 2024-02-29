@@ -2,18 +2,13 @@ package com.icia.later.service;
 
 
 
-
-
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
 
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.icia.later.dao.BoardDao;
@@ -22,7 +17,6 @@ import com.icia.later.dao.ReservationDao;
 import com.icia.later.dto.BoardDto;
 import com.icia.later.dto.MemberDto;
 import com.icia.later.dto.ReservationDto;
-import com.icia.later.util.PagingUtil;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -32,31 +26,28 @@ import lombok.extern.slf4j.Slf4j;
 public class ReservationService {
 	@Autowired
 	private ReservationDao rDao;
-	@Autowired
-	private BoardDao bDao;
-	
 
-	// ¿¹¾à Á¤º¸ ÀúÀå 
+
 	public String insertRev(Integer memberId1, Integer boardId1, RedirectAttributes rttr,
 			HttpSession session) {
 
 		log.info("insertRev()");
 		String msg = null;
 		String view = null;
-		
 		LocalDateTime currentTime = LocalDateTime.now();
+	
 		ReservationDto reservationDto = new ReservationDto();
 			 
 			reservationDto.setReservationTime(currentTime);
-			reservationDto.setStatus("´ë±âÁß");
+			reservationDto.setStatus("ëŒ€ê¸°ì¤‘");
 			reservationDto.setMemberId(memberId1);
 			reservationDto.setBoardId(boardId1);
-			rDao.insertReservation(reservationDto); // µ¥ÀÌÅÍº£ÀÌ½º¿¡ ¿¹¾à Á¤º¸ ÀúÀå
+			rDao.insertReservation(reservationDto); // ë°ì´í„°ë² ì´ìŠ¤ì— ì˜ˆì•½ ì •ë³´ ì €ì¥
 
-			msg = "½ÅÃ»ÇÏ¿´½À´Ï´Ù.";
+			msg = "ì‹ ì²­í•˜ì˜€ìŠµë‹ˆë‹¤.";
 			view = "redirect:/";
-			// ¼¼¼ÇÀÌ Á¸ÀçÇÏ°í ºñ¾î ÀÖÁö ¾ÊÀº °æ¿ì
-			// ¼¼¼ÇÀ» »ç¿ëÇÏ¿© ÇÊ¿äÇÑ ÀÛ¾÷À» ¼öÇàÇÕ´Ï´Ù.
+			// ì„¸ì…˜ì´ ì¡´ì¬í•˜ê³  ë¹„ì–´ ìˆì§€ ì•Šì€ ê²½ìš°
+			// ì„¸ì…˜ì„ ì‚¬ìš©í•˜ì—¬ í•„ìš”í•œ ì‘ì—…ì„ ìˆ˜í–‰í•©ë‹ˆë‹¤.
 			
 			rttr.addFlashAttribute("msg", msg);
 			System.out.println(msg);
@@ -65,95 +56,4 @@ public class ReservationService {
 	}
 	
 	
-
-	// ½ÅÃ» ¸ñ·ÏÀ» °¡Á®¿Í¼­ ÄÁÆ®·Ñ·¯¿¡ ³Ñ±â´Â ¸Ş¼Òµå
-	public String getBoardListBymemberId(Integer pageNum, 
-			Model model,
-			HttpSession session,
-			Integer memberId11) {
-		log.info("getBoardListBymemberId()");
-		System.out.println("mId"+memberId11);
-		
-		if(pageNum == null) {
-			pageNum = 1;//Ã³À½¿¡ »çÀÌÆ®°¡ ¿­¸± ¶§ Ã¹ÆäÀÌÁö°¡ µÇµµ·Ï ¼³Á¤.
-		}
-		
-		int listCnt = 5;//ÆäÀÌÁö´ç º¸¿©Áú ÄÜÅÙÃ÷ °³¼ö
-		
-		Map<String, Integer> pMap = new HashMap<String, Integer>();
-		
-		pMap.put("pageNum", (pageNum - 1) * listCnt);
-		pMap.put("listCnt", listCnt);
-		pMap.put("memberId11", memberId11);
-		
-		List<BoardDto> bList = rDao.getBoardListBymemberId(pMap);
-		System.out.println("bList"+ bList);
-		model.addAttribute("bList", bList);
-		
-		//ÆäÀÌÂ¡ Ã³¸®
-		String pageHtml = getPaging(pageNum, listCnt);
-		model.addAttribute("paging", pageHtml);
-		
-		session.setAttribute("pageNum", pageNum);
-		
-		return "applyCompany";
-	}
-
-	
-	private String getPaging(Integer pageNum, Integer listCnt) {
-		String pageHtml = null;
-		
-		//½ÅÃ»ÇÑ ¾÷Ã¼ °³¼ö
-		int maxNum = rDao.cntBoard();
-		//ÆäÀÌÁö ´ç º¸¿©Áú ¹øÈ£ °³¼ö
-		int pageCnt = 2;
-		
-		PagingUtil paging = new PagingUtil(maxNum, pageCnt, listCnt, pageCnt);
-		
-		pageHtml = paging.makePaging();
-		
-		return pageHtml;
-	}
-
-
-
-	public ReservationDto selectRev(Integer memberId, Integer boardId, RedirectAttributes rttr, HttpSession session) {
-		
-		
-		Map<String, Integer> pMap = new HashMap<String, Integer>();
-		pMap.put("memberId", memberId);
-		pMap.put("boardId", boardId);
-		
-		ReservationDto rDto = rDao.selectRev(pMap);
-		
-		return rDto;
-	
-	}
-
-
-		
-		
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+}

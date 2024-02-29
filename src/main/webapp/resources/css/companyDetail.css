@@ -1,10 +1,6 @@
 @charset "UTF-8";
-.container {
-    display: flex;
-    justify-content: space-between;
-}
+
 #content {
-    
     box-sizing: border-box;
     padding-bottom: 50px; /* 푸터의 높이만큼 하단 여백을 추가합니다 */
 }
@@ -26,34 +22,13 @@ body {
     align-items: center;
     height: 100vh;
 }
-.boardfile{
-	width:400px;
-	height:300px;
-}
-
-.left {
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 48%; 
-    box-sizing: border-box; 
-    max-width: 800px; 
-}
-
 
 .right {
     background-color: #ffffff;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 48%; 
-    box-sizing: border-box; /* 너비에 padding, border 포함 */
-    /* 반응형 스타일 */
-    max-width: 800px; /* 최대 너비 설정 */
 }
-
-
 
 .info {
     margin-bottom: 20px;
@@ -96,7 +71,7 @@ body {
     color: #777;
 }
 
-.btn-apply{
+.btn-apply {
     display: block;
     margin-top: 20px;
     padding: 10px 20px;
@@ -107,7 +82,6 @@ body {
     font-size: 18px;
     cursor: pointer;
 }
-
 
 .btn-apply:hover {
     background-color: #2980b9;
@@ -127,9 +101,7 @@ background-color: #fff;
 color: #333;
 cursor: pointer;
 }
-.buttons {
-    display: flex; 
-}
+
 
 /* ... (기존 스타일은 여기에 있음) ... */
 

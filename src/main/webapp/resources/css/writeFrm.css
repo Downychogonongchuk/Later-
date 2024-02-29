@@ -1,4 +1,3 @@
-@charset "UTF-8";
 * {
 	box-sizing: border-box;
 }
@@ -146,7 +145,7 @@ a {
 }
 
 .large-button, .small-button {
-	outline: none; /* À±°û¼± Á¦°Å */
+	outline: none; /* 윤곽선 제거 */
 }
 .large-button {
   padding: 50px 250px;
