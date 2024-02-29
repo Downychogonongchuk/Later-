@@ -8,12 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.icia.later.dto.BoardDto;
 import com.icia.later.dto.CustomerDto;
 import com.icia.later.dto.MemberDto;
 import com.icia.later.dto.ReservationDto;
 import com.icia.later.service.BoardService;
+import com.icia.later.service.MemberService;
 import com.icia.later.service.ReservationService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +27,8 @@ public class CompanyController {
 	private BoardService bServ;
 	@Autowired
 	private ReservationService rServ;	
+	@Autowired
+	private MemberService mServ;
 	
 	//업체 상세페이지
 	@GetMapping("companyDetail")
@@ -90,16 +94,13 @@ public class CompanyController {
 	
 	// 업체를 신청한 회원을 보여주는 페이지
 	@GetMapping("selectApply")
-	public String selectApply(Model model, Integer boardId, HttpSession session) {
+	public String selectApply(Model model,Integer memberId, Integer boardId, HttpSession session) {
 		log.info("selectApply()");
 		
 		List<ReservationDto> rList = rServ.getReservationList(boardId);
 		
 		System.out.println(rList);
 		
-//		for(int i=0; i<=rList.size(); i++) {
-//			MemberDto mDto = mDao.
-//		}
 		
 		MemberDto mLogInInfo = (MemberDto) session.getAttribute("mLogin");
 		// 로그인한 사업자 회원 정보(2024-02-26)
@@ -113,4 +114,13 @@ public class CompanyController {
 		
 		return "selectApply";
 	}
+	
+//	@PostMapping("select")
+//	public String select(Integer reservationId, String status, Model model) {
+//		log.info("select()");
+//		
+//		String view = rServ.updateStatus(reservationId, status, model);
+//		
+//		return view;
+//	}
 }

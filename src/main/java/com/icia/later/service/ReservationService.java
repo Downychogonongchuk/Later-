@@ -111,5 +111,14 @@ String pageHtml = null;
 		
 		return rList;
 	}
+
+//	public String updateStatus(Integer reservationId, String status, Model model) {
+//		log.info("updateStatus()");
+//		Map<String>
+//		
+//		rDao.updateStatus()
+//		
+//		model.addAttribute(status, model);
+//	}
 	
 }
