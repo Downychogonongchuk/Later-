@@ -38,7 +38,7 @@
 </head>
 <body>
 <div class="wrap">
-<jsp:include page="cheader.jsp" />
+<jsp:include page="header.jsp" />
 	<div class="content">
 		<form action="writeProc" method="post" enctype="multipart/form-data">
             <h2 class="form-header">모집 등록</h2>
@@ -55,9 +55,7 @@
 			<option value="3">가전</option>
 			<option value="4">뷰티</option>
 			<option value="5">기타</option>
-			 </select>
-			<input type="hidden" class="write-input" name="customerId"
-				   value="${customer.customerId}">  
+			 </select>  
             <input type="text" class="write-input" name="companyName"
                    autofocus placeholder="가게명" required>
             <input type="text" class="write-input" name="periodStart"
@@ -74,7 +72,7 @@
                    value="무료"placeholder="제공가격" required readonly="readonly">
             <textarea rows="10" class="write-input ta" name="detail"
                       placeholder="상세설명"></textarea>
-            <textarea rows="10" class="write-input ta" name="checkInfo"
+            <textarea rows="10" class="write-input ta" name="CheckInfo"
                       placeholder="체크사항 및 요청사항"></textarea>
             <div class="btn-area">
                 <input type="submit" class="btn-write" value="작성완료">

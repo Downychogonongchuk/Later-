@@ -3,43 +3,15 @@ package com.icia.later.dao;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-
 import com.icia.later.dto.BoardDto;
 import com.icia.later.dto.MemberDto;
 
 public interface BoardDao {
+	//ê²Œì‹œê¸€ ëª©ë¡ ê°€ì ¸ì˜¤ê¸°
+		List<BoardDto> getBoardList(Map<String, Integer> pMap);
 	
-	// °Ô½Ã±Û µî·ÏÇÏ±â
-	void insertBoard(@Param("board")BoardDto board, Integer customerId);
-		
-
 	
-
-	// °Ô½Ã±Û Á¤º¸ »ó¼¼º¸±â
-	BoardDto selectBoard(Integer boardId);
-
-	// ·Î±×ÀÎ
-	MemberDto login(BoardDto board);
-
-	// ByMemberId ÆäÀÌÂ¡  // ³»°¡ ½ÅÃ»ÇÑ ±Û ¸ñ·Ï 
-	int getTotalgetBoardByMemberId(String memberId);
-
-	// ¸ğÁı±Û ¸ñ·Ï º¸±â // ³»°¡ ¸ğÁıÇÑ ±Û ¸ñ·Ï
-	List<BoardDto> getBoardListBycustomerId(@Param("pMap") Map<String, Integer> pMap, Integer customerId);
-
-	// ¸ğÁı±Û ¼ö ±¸ÇÏ±â
-	@Select("SELECT count(*) FROM board")
-	int cntBoard();
-
-
-
 	
-
-	
-
-
-
-
+	//ê²Œì‹œê¸€ ì •ë³´ ìƒì„¸ë³´ê¸°
+		BoardDto selectBoard(Integer boardId);
 }

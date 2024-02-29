@@ -119,10 +119,10 @@
 	                console.log(data);
 	                const idErrorMessage = $("#id-error-message");
 	                if (data == "fail") {
-	                    idErrorMessage.text("이미 사용 중인 아이디입니다.");
+	                    idErrorMessage.text("이미 사용 중인 아이디입니다.").css("color", "red");
 	                    $("#joinSubmitBtn").prop("disabled", true);
 	                } else {
-	                    idErrorMessage.text("사용가능한 아이디입니다.");
+	                    idErrorMessage.text("사용가능한 아이디입니다.").css("color", "green");
 	                    $("#joinSubmitBtn").prop("disabled", false);
 	                }
 	            },
@@ -138,14 +138,17 @@
 	    const regExp = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/;
 	    const m_idError = document.getElementById("id-confirm-message");
 	    
-	    if (!regExp.test(m_id)) {
-	        m_idError.innerText = "아이디 형식이 올바르지 않습니다.";
-	        return false;
-	    } else {
-	        m_idError.innerText = "";
-	        return true;
+	    if (m_id !== null && m_id.trim() !== '') { // 입력값이 존재하는 경우
+	        if (!regExp.test(m_id)) {
+	            $(m_idError).text("아이디 형식이 올바르지 않습니다.").css("color","red");
+	            return false;
+	        } else {
+	            $(m_idError).text("");
+	            return true;
+	        }
+	    } else { // 입력값이 없는 경우
+	        m_idError.innerText = ""; // 에러 메시지 초기화
 	    }
-		
 	}
 
 	// 아이디 입력란 변경 시 에러 메시지 초기화
@@ -155,15 +158,21 @@
 	});
 
 	// 비밀번호 일치 여부 확인
-$("#memberPassword, #memberPasswordCheck").on("keyup", function() {
+	$("#memberPassword, #memberPasswordCheck").on("keyup", function() {
     let password = $("#memberPassword").val();
     let confirmPassword = $("#memberPasswordCheck").val();
+    let pwConfirmError = $("#pw-confirm-error-message");
+
+    if (password === "" || confirmPassword === "") {
+        pwConfirmError.text(""); // 입력값이 비어있을 때는 메시지 초기화
+        return;
+    }
 
     if (password !== confirmPassword) {
-        $("#pw-confirm-error-message").text("비밀번호가 일치하지 않습니다.");
+        pwConfirmError.text("비밀번호가 일치하지 않습니다.").css("color", "red");
         $("#joinSubmitBtn").prop("disabled", true);
     } else {
-        $("#pw-confirm-error-message").text("비밀번호가 일치합니다!");
+        pwConfirmError.text("비밀번호가 일치합니다!").css("color", "green");
         $("#joinSubmitBtn").prop("disabled", false);
     }
 });

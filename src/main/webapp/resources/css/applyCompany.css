@@ -41,7 +41,7 @@ body {
 
 .info-pre {
     margin-top: 10px;
-       position: relative; /* Ãß°¡: »ó´ë À§Ä¡ ¼³Á¤ */
+       position: relative; /* ì¶”ê°€: ìƒëŒ€ ìœ„ì¹˜ ì„¤ì • */
        width:178px;
        height:100px;
 }
@@ -52,10 +52,10 @@ body {
 .content-period1,
 .content-period2 {
     position: absolute;
-    bottom: 0; /* Ãß°¡: ¾Æ·¡·Î Á¤·Ä */
+    bottom: 0; /* ì¶”ê°€: ì•„ë˜ë¡œ ì •ë ¬ */
 }
 
-.title-pre {  /*¾÷Ã¼¸í*/
+.title-pre {  /*ì—…ì²´ëª…*/
     font-size: 20px;
     font-weight: bold;
 	
@@ -69,11 +69,11 @@ body {
   position: absolute;
   width: 180.25px;
   height: 17.74px;
-  white-space: nowrap; /* Ãß°¡ */
+  white-space: nowrap; /* ì¶”ê°€ */
   margin-bottom: 3px;
 }
 
-.content-provide { /*Á¦°øÅ¸ÀÔ*/
+.content-provide { /*ì œê³µíƒ€ì…*/
   color: #fe0202;
   text-align: left;
   font-family: "Inter-Bold", sans-serif;
@@ -81,10 +81,10 @@ body {
   font-weight: 700;
   width: 35.02px;
   height: 17.74px;
-  white-space: nowrap; /* Ãß°¡ */
+  white-space: nowrap; /* ì¶”ê°€ */
   top:20px;
 }
-.content-price { /*°¡°İ*/
+.content-price { /*ê°€ê²©*/
     color: #888888;
   text-align: left;
   font-family: "Inter-Regular", sans-serif;
@@ -95,7 +95,7 @@ body {
   height: 12.9px;
   margin-left: 120px;
   top:20px;
-  text-decoration: line-through; /*Ãë¼Ò¼±*/
+  text-decoration: line-through; /*ì·¨ì†Œì„ */
 }
 
 .div3{
@@ -109,7 +109,7 @@ body {
   height: 12.9px;
   top:40px;
 }
-.content-personnel { /*ÀÎ¿ø ¼ö*/
+.content-personnel { /*ì¸ì› ìˆ˜*/
   color: #00ff19;
   text-align: left;
   font-family: "Inter-Regular", sans-serif;
@@ -122,7 +122,7 @@ body {
   margin-left:70px;
 }
 
-.content-period1, .content-period2 { /*±â°£ ÄÃ·³*/
+.content-period1, .content-period2 { /*ê¸°ê°„ ì»¬ëŸ¼*/
     color: #888888;
   text-align: left;
   font-family: "Inter-Bold", sans-serif;
@@ -131,11 +131,11 @@ body {
   position: absolute;
   width: 128.75px;
   height: 25.81px;
-  white-space: nowrap; /* Ãß°¡ */
+  white-space: nowrap; /* ì¶”ê°€ */
 }
 
 .content-period1 {
-    margin-bottom: 1px; /* °£°İÀ» ´õ Á¶Àı */
+    margin-bottom: 1px; /* ê°„ê²©ì„ ë” ì¡°ì ˆ */
     top:60px;
 }
 
