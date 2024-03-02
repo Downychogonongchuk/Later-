@@ -90,7 +90,9 @@
 				</c:if><!--!empty mLogInInfo -->
 				
 				<c:if test="${!empty cLogInInfo}">
-                <a href="modifyDetail.jsp" class="btn-modifyDetail">수정</a>
+                <button type="button" id="btn-bUpdate" class="btn-bUpdate btn-apply" >수정</button>
+                <button type="button" id="btn-bDelete" class="btn-bDelete btn-apply">삭제</button>
+                <button type="button" id="btn-selectApply" class="btn-selectApply btn-apply">신청한 회원 보기</button>
 				</c:if><!--!empty cLogInInfo -->
 				
 				
@@ -103,12 +105,24 @@
 				
 	<jsp:include page="footer.jsp" />
 	
+
+</body>
 	<script>
-	$("#btn-apply").click(function() {
-		location.href = `./`;
+	// 업체 정보 수정 페이지로 이동
+	$("#btn-bUpdate").click(function() {
+		location.href = `./bUpdate?boardId=${board.boardId}`;
+	});
+	
+	// 업체 삭제
+	$("#btn-bDelete").click(function() {
+		location.href = `./bDelete?boardId=${board.boardId}`;
+	});
+	
+	// 내 업체를 신청한 회원 정보 페이지로 이동
+	$("#btn-selectApply").click(function() {
+		location.href = `./selectApply?boardId=${board.boardId}`;
 	});
 	
 </script>
 
-</body>
 </html>

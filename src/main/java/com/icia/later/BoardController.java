@@ -60,8 +60,6 @@ public class BoardController {
 			public String bUpdate(Integer boardId, Model model, HttpSession session) {
 				log.info("bUpdate()");
 				
-				boardId = 1;
-				
 				BoardDto board = bServ.getBoard(boardId);
 				
 				CustomerDto cLogInInfo = (CustomerDto) session.getAttribute("cLogin");

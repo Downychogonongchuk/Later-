@@ -31,6 +31,6 @@ public interface ReservationDao {
 	List<ReservationDto> getReservationList(Integer boardId);
 
 	// 신청 상태
-	void updateStatus(Map<String, Object> pMap);
+	void updateStatus(@Param("pMap") Map<String, Object> pMap);
 	
 }

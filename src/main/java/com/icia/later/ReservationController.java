@@ -54,7 +54,7 @@ public class ReservationController {
 					
 				} else {
 					
-					return "redirect:mlogin";
+					return "redirect:mLogin";
 				}
 			}
 }

@@ -86,8 +86,8 @@
 
 					<p>
 						<strong>신청 상태</strong><br>${reserv.status}</p>
-					<!--  <input type="hidden" name="status"
-						value="${reserv.status}"> -->
+					<input type="hidden" name="status"
+						value="${reserv.status}"> 
 
 					<p>
 						<strong>모집마감일자</strong><br>${board.periodEnd}</p>
@@ -118,9 +118,9 @@
                 
                 <div class="buttons">
                 <!-- 결제버튼-->
-				<button type="submit" id="btn-yes" class="btn-yes" name="status" value="확정">확정</button>
+				<button type="submit" id="btn-yes" class="btn-yes">확정</button>
 				<!-- 결제버튼 완-->
-				<button type="submit" id="btn-no"class="btn-no" name="status" value="거절">거절</button>
+				<button type="submit" id="btn-no"class="btn-no">거절</button>
                 </div> <!--buttonsEnd-->
 			             </div><!--rightEnd-->
     </c:forEach>
@@ -131,12 +131,24 @@
 	</div>
 </body>
 <script>
-$("#btn-yes").click(function() {
-	location.href = `./selectApply`;
-});
-$("#btn-no").click(function() {
-	location.href = `./selectApply`;
-});
-</script>
+$(document).ready(function() {
+	  $("#btn-yes").click(function() {
+	        // 확정 버튼을 눌렀을 때
+	        $("input[name='status']").val("확정"); // status 값을 확정으로 변경
+	        $("#detailForm").submit(); // 폼 서브밋
+	    });
 
+	    $("#btn-no").click(function() {
+	        // 거절 버튼을 눌렀을 때
+	        $("input[name='status']").val("거절"); // status 값을 거절으로 변경
+	        $("#detailForm").submit(); // 폼 서브밋
+	    });
+	});
+	</script>
+	<script>
+		let m = "${msg}";
+		if (m != "") {
+			alert(m);
+		}
+	</script>
 </html>

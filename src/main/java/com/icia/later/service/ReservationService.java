@@ -123,7 +123,7 @@ public class ReservationService {
 		return rList;
 	}
 	
-	// 신청 진행 상태 
+	// 신청 진행 상태 (확정 or 거절)
 	public String updateStatus(Integer reservationId, String status, Model model, RedirectAttributes rttr) {
 		log.info("updateStatus()");
 		String view = null;
@@ -135,7 +135,7 @@ public class ReservationService {
 			pMap.put("status", status);
 			
 			rDao.updateStatus(pMap);
-			view = "redirect:selectApply ";
+			view = "redirect:/";
 			msg = "신청한 회원을 확정하였습니다.";
 		} else {
 			Map<String, Object> pMap = new HashMap<>();
@@ -143,7 +143,7 @@ public class ReservationService {
 			pMap.put("status", status);
 			
 			rDao.updateStatus(pMap);
-			view = "redirect:selectApply";
+			view = "redirect:/";
 			msg = "신청한 회원을 거절하였습니다.";
 		}
 
