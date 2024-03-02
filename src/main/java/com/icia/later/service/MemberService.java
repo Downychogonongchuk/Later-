@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.icia.later.dao.MemberDao;
+import com.icia.later.dao.ReservationDao;
 import com.icia.later.dto.MemberDto;
 
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +23,8 @@ import lombok.extern.slf4j.Slf4j;
 public class MemberService {
 	@Autowired
 	private MemberDao mDao;
+	@Autowired
+	private ReservationDao rDao;
 	
 	public String mEmailCheck(String memberEmailCheck) {
 		log.info("memberEmailCheck()");
@@ -190,11 +193,12 @@ public class MemberService {
 		log.info("mDelete()");
 		String msg = null;
 		String view = null;
-		MemberDto loginInfo = (MemberDto) session.getAttribute("login");
+		MemberDto loginInfo = (MemberDto) session.getAttribute("mLogin");
 		int id = loginInfo.getMemberId();
 
 		try {
 			if (loginInfo != null) {
+				rDao.deleteApplyCompany(id);
 				mDao.deleteMember(id);
 				System.out.println("mServ" + id);
 

@@ -56,6 +56,13 @@ public class HomeController {
 		public String myPage(Model model,HttpSession session) {
 			log.info("myPage()");
 			MemberDto logInInfo = (MemberDto) session.getAttribute("mLogin");
+			CustomerDto logInInfo1 = (CustomerDto) session.getAttribute("cLogin");
+			
+			if (logInInfo1 != null && session.getAttribute("cLogin") != null) {
+		        // 로그인한 회원 정보를 모델에 추가하여 JSP로 전달
+		        model.addAttribute("cLogInInfo", logInInfo1);
+		        System.out.println(logInInfo1);
+			}
 			
 			if (logInInfo != null && session.getAttribute("mLogin") != null) {
 		        // 로그인한 회원 정보를 모델에 추가하여 JSP로 전달
@@ -191,10 +198,10 @@ public class HomeController {
 			return view;
 		}
 
-	// 로그아웃 
-	@GetMapping("logout")
-	public String logout(HttpServletRequest request, RedirectAttributes rttr) {
-	    log.info("logout()");
+	// 일반회원 로그아웃 
+	@GetMapping("mLogout")
+	public String mLogout(HttpServletRequest request, RedirectAttributes rttr) {
+	    log.info("mLogout()");
 	    String msg = null;
 
 	    HttpSession session = request.getSession(false); // false 플래그는 새로운 세션이 생성되지 않도록 합니다.
@@ -252,7 +259,7 @@ public class HomeController {
 		
 		
 		String view = mServ.mDelete(memberId,session,rttr);
-		if (session != null && session.getAttribute("login") != null) {
+		if (session != null && session.getAttribute("mLogin") != null) {
 	        // 탈퇴 후 세션에 저장되어있는 값 삭제
 	        session.invalidate();
 	    }

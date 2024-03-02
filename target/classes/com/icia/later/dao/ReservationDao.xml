@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.icia.later.dao.ReservationDao">
+
+	<!-- * DB Table 마다 컬럼 순서 다름 // 컬럼 순서와 테이블명 체크 -->
+
+	<!-- 예약 -->
+	<insert id="insertReservation" parameterType="reserv">
+		INSERT INTO
+		reservation
+		VALUES
+		(null,#{reservationTime},#{status},#{memberId},#{boardId})
+	</insert>
+	
+	<!-- 회원탈퇴시 신청글 삭제 -->
+	<delete id="deleteApplyCompany" parameterType="Integer">
+		DELETE FROM Reservation
+		WHERE memberId=#{memberId}
+	</delete>
+
+	<!-- 예약 목록 -->
+	<select id="getBoardListBymemberId" resultType="board"
+		parameterType="HashMap">
+
+		SELECT Board.*
+		FROM Board
+		JOIN Reservation ON
+		Board.boardId = Reservation.boardId
+		WHERE Reservation.memberId = 
+		#{pMap.memberId11}
+		LIMIT #{pMap.pageNum},
+		#{pMap.listCnt}
+	</select>
+
+	<!-- 예약 유무 중복 -->
+	<select id="selectRev" parameterType="HashMap"
+		resultType="reserv">
+		select * from reservation
+		where memberId=#{pMap.memberId} and boardId=#{pMap.boardId}
+	</select>
+
+	<!-- 내 업체 신청한 사람 목록 -->
+	<select id="getReservationList" resultType="reserv"
+		parameterType="Integer">
+		SELECT * FROM reservation
+		WHERE boardId=#{boardId}	
+	</select>
+	<!--  신청 상태 -->
+	<update id="updateStatus" parameterType="HashMap">
+		UPDATE reservation
+		SET status=#{pMap.status}
+		WHERE reservationId=#{pMap.reservationId}
+	</update>
+
+
+</mapper>

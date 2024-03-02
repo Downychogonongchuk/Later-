@@ -42,45 +42,88 @@
 			</c:if>
 		</div>
 
-		<div class="sidebar">
+		
+				<c:if test="${!empty mLogInInfo}">
+				<div class="sidebar">
 			<div class="box-line">
 				<div class="img-box">
-					<c:if test="${!empty logInInfo.memberProfile}">
-						<img src="resources/upload/${logInInfo.memberProfile}"
+					<c:if test="${!empty mLogInInfo.memberProfile}">
+						<img src="resources/upload/${mLogInInfo.memberProfile}"
 							class="poster-pre">
 					</c:if>
-					<c:if test="${empty logInInfo.memberProfile}">
+					<c:if test="${empty mLogInInfo.memberProfile}">
 						<img src="resources/images/no_image.jpg" class="poster-pre">
 					</c:if>
 				</div>
-				<h4 id="h4">
-					<strong>${logInInfo.memberName}</strong>
-				</h4>
+					<h4 id="h4">
+						<strong>${mLogInInfo.memberName}</strong>
+					</h4>
+				</div>
+					<div class="div-box">
+					<div>
+						<a href="mUpdate">회원정보수정</a>
+					</div>
+					<div>
+						<a href="applyCompany">내가 신청한 모집글</a>
+					</div>
+					<div>
+						<a href="reviewWrite">리뷰 작성</a>
+					</div>
+					<div>
+						<a href="mDelete">회원탈퇴</a>
+					</div>
 			</div>
-
-			<div class="div-box">
-				<div>
-					<a href="mUpdate">회원정보수정</a>
-				</div>
-				<div>
-					<a href="#">내가 신청한 모집글</a>
-				</div>
-				<div>
-					<a href="#">내가 모집한글</a>
-				</div>
-				<div>
-					<a href="mDelete">회원탈퇴</a>
-				</div>
+			
+			
 			</div>
+				</c:if>
+				<c:if test="${!empty cLogInInfo}">
+				<div class="sidebar">
+					<div class="box-line">
+					<div class="img-box">
+					<c:if test="${!empty cLogInInfo.customerProfile}">
+						<img src="resources/upload/${cLogInInfo.customerProfile}"
+							class="poster-pre">
+					</c:if>
+					<c:if test="${empty cLogInInfo.customerProfile}">
+						<img src="resources/images/no_image.jpg" class="poster-pre">
+					</c:if>
+					</div>
+					<h4 id="h4">
+					<strong>${cLogInInfo.customerName}</strong>
+					</h4>
+					</div>
+					<div class="div-box">
+					<div>
+						<a href="mUpdate">회원정보수정</a>
+					</div>
+					<div>
+						<a href="companyList?customerId=${cLogInInfo.customerId}">내가 모집한글</a>
+					</div>
+					<div>
+						<a href="writeFrm">업체 등록</a>
+					</div>
+					<div>
+						<a href="bUpdate">업체 수정</a>
+					</div>
+					<div>
+						<a href="cDelete">회원탈퇴</a>
+					</div>
+					</div>
+				
+			
 		</div>
+				</c:if>
+				<div>
+		<jsp:include page="footer.jsp" />
+	</div>
+				</div>
+
 		<span class="mypage-icon-user"><i class="fa fa-user-circle-o"></i></span><br>
 		<span class="mypage-icon">
 		<strong>My Page</strong>
 		</span>
-			<div>
-		<jsp:include page="footer.jsp" />
-	</div>
-	</div>
+			
 
 
 </body>

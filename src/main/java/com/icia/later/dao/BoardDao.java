@@ -38,6 +38,9 @@ public interface BoardDao {
 	// 모집글 수 구하기
 	@Select("SELECT count(*) FROM board")
 	int cntBoard();
+	
+	//사업자 탈퇴시 모집한글도 삭제
+	void deleteCompanyList(Integer Id);
 
 
 

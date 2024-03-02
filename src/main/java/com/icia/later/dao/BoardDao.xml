@@ -56,5 +56,10 @@
 		LIMIT #{pMap.pageNum},
 		#{pMap.listCnt}
 	</select>
-
+	
+	<!-- 사업자 탈퇴시 모집한글 삭제 -->
+	<delete id="deleteCompanyList" parameterType="Integer">
+		DELETE FROM board WHERE customerId = #{customerId}
+	</delete>
+	
 </mapper>

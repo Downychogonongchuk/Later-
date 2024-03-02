@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.icia.later.dao.BoardDao;
 import com.icia.later.dao.CustomerDao;
 import com.icia.later.dto.CustomerDto;
 import com.icia.later.dto.MemberDto;
@@ -21,6 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CustomerService {
 	@Autowired CustomerDao cDao;
+	@Autowired BoardDao bDao;
 	
 	public String cEmailCheck(String customerEmailCheck) {
 		log.info("customerEmailCheck()");
@@ -170,11 +172,12 @@ public class CustomerService {
 			log.info("cDelete()");
 			String msg = null;
 			String view = null;
-			CustomerDto loginInfo = (CustomerDto) session.getAttribute("login");
+			CustomerDto loginInfo = (CustomerDto) session.getAttribute("cLogin");
 			int id = loginInfo.getCustomerId();
 
 			try {
 				if (loginInfo != null) {
+					bDao.deleteCompanyList(id);
 					cDao.deleteCustomer(id);
 					System.out.println("cServ" + id);
 

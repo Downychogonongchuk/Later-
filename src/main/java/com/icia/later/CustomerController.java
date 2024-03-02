@@ -3,6 +3,7 @@ package com.icia.later;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -155,15 +156,14 @@ public class CustomerController {
 			return view;
 		}
 		
-	// 사업자 회원 정보 탈퇴
-		// 일반회원 탈퇴
+		//사업자 회원 탈퇴
 		@GetMapping("cDelete")
 		public String cDelete(Integer customerId,HttpSession session,RedirectAttributes rttr) {
 			log.info("cDelete()");
 			
 			
 			String view = cServ.cDelete(customerId,session,rttr);
-			if (session != null && session.getAttribute("login") != null) {
+			if (session != null && session.getAttribute("cLogin") != null) {
 		        // 탈퇴 후 세션에 저장되어있는 값 삭제
 		        session.invalidate();
 		    }
@@ -171,5 +171,29 @@ public class CustomerController {
 			return view;
 		}
 		
+		// 사업자회원 로그아웃 
+		@GetMapping("cLogout")
+		public String cLogout(HttpServletRequest request, RedirectAttributes rttr) {
+		    log.info("cLogout()");
+		    String msg = null;
+
+		    HttpSession session = request.getSession(false); // false 플래그는 새로운 세션이 생성되지 않도록 합니다.
+
+		    if (session != null && session.getAttribute("cLogin") != null) {
+		        // 세션이 비어있지 않을 때 로그아웃 처리
+		        session.invalidate();
+		        System.out.println(session);
+		        msg = "로그아웃 되었습니다. 감사합니다.";
+		        
+		    } else {
+		        // 이미 로그아웃 되어있거나 세션이 없는 경우
+		    	System.out.println(session);
+		    	msg = "이미 로그아웃 되어 있습니다.";
+		        
+		    }
+
+		    rttr.addFlashAttribute("msg", msg);
+		    return "redirect:/";
+		}
 		
 }
