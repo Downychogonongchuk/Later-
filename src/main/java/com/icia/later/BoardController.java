@@ -1,4 +1,5 @@
 package com.icia.later;
+
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,67 +27,77 @@ import lombok.extern.slf4j.Slf4j;
 public class BoardController {
 	@Autowired
 	private BoardService bServ;
-	
 
-	//¸ğÁıµî·ÏÆäÀÌÁö ÀüÈ¯
-		@GetMapping("writeFrm")
-		public String writeFrm(Model model, HttpSession session) {
-			log.info("writeFrm()");
-			
-			CustomerDto cLogInInfo = (CustomerDto) session.getAttribute("cLogin");
-			
-			System.out.println(cLogInInfo);
-			if(cLogInInfo != null) {
-				model.addAttribute("customer", cLogInInfo);
-				
-			}
-			
-			return "writeFrm";
+	// ëª¨ì§‘ë“±ë¡í˜ì´ì§€ ì „í™˜
+	@GetMapping("writeFrm")
+	public String writeFrm(Model model, HttpSession session) {
+		log.info("writeFrm()");
+
+		CustomerDto cLogInInfo = (CustomerDto) session.getAttribute("cLogin");
+
+		System.out.println(cLogInInfo);
+		if (cLogInInfo != null) {
+			model.addAttribute("customer", cLogInInfo);
+
 		}
+
+		return "writeFrm";
+	}
+
+	// ëª¨ì§‘ë“±ë¡ ì²˜ë¦¬ ë©”ì„œë“œ
+	@PostMapping("writeProc")
+	public String writeProc(@RequestPart List<MultipartFile> files, 
+			BoardDto board,
+			HttpSession session,
+			RedirectAttributes rttr) {
+		log.info("writeProc()");
 		
-	// ¸ğÁıµî·Ï Ã³¸® ¸Ş¼­µå
-		@PostMapping("writeProc")
-		public String writeProc(@RequestPart List<MultipartFile> files, 
-				HttpServletRequest request,
-				@Param("board")BoardDto board,
-				HttpSession session,
-				RedirectAttributes rttr) {
-			log.info("writeProc()");
-			
-			// http session °¡Á®¿À±â
-			HttpSession session1 = request.getSession();
-			System.out.println("session1"+session1);
-			
-			Object someValue = (Object) session1.getAttribute("cLogin");
-			
-		
-			// ¼Ó¼ºÀÌ nullÀÌ ¾Æ´Ï°í  // ·Î±×ÀÎ Á¤º¸°¡ MemberDtoÀÇ ÀÎ½ºÅÏ½ºÀÎÁö È®ÀÎ
-			if (someValue != null && someValue instanceof CustomerDto) {
+		String view = bServ.insertBoard(files, board, session, rttr);
+		return view;
+	}
+	//ì—…ì²´ì •ë³´ ìˆ˜ì •í˜ì´ì§€ ì „í™˜
+			@GetMapping("bUpdate")
+			public String bUpdate(Integer boardId, Model model, HttpSession session) {
+				log.info("bUpdate()");
 				
-			    // ·Î±×ÀÎ Á¤º¸(°´Ã¼)¸¦ MemberDto·Î Çüº¯È¯ÇÕ´Ï´Ù.
-				CustomerDto customerDto = (CustomerDto) someValue;
-				 
-				 // È¸¿ø ID °¡Á®¿À±â
-				 Integer customerId = customerDto.getCustomerId();
-				 System.out.println("customerId"+customerId);
-				 
-				 String view = bServ.insertBoard(files,customerId, board, rttr, session);
-				    return view;
-			} else{
+				boardId = 1;
 				
-		        return "redirect:/login"; // ·Î±×ÀÎ ÆäÀÌÁö·Î ¸®´ÙÀÌ·ºÆ® ¿¹½Ã
+				BoardDto board = bServ.getBoard(boardId);
 				
+				CustomerDto cLogInInfo = (CustomerDto) session.getAttribute("cLogin");
+				
+				System.out.println(cLogInInfo);
+				if(cLogInInfo != null) {
+					model.addAttribute("customer", cLogInInfo);
 				}
+				
+				model.addAttribute("board", board);
+				return "bUpdate";
 			}
 			
+			//ì—…ì²´ì •ë³´ ìˆ˜ì • ì²˜ë¦¬ ë©”ì„œë“œ
+			@PostMapping("bUpdateProc")
+			public String bUpdateProc(@RequestPart List<MultipartFile> files, 
+					Integer boardId,
+					HttpSession session,
+					RedirectAttributes rttr) {
+				log.info("bUpdateProc()");
+				
+				BoardDto board = bServ.getBoard(boardId);
+				
+				String view = bServ.boardUpdate(files, board, session, rttr);
+				
+				return view;
+			}
 			
-			
-		}
-		
-	
-	
-		
-		
-		
-		
-		
+			// ì—…ì²´ ì‚­ì œ ë©”ì„œë“œ
+			@GetMapping("bDelete")
+			public String bDelete(Integer boardId,
+								  HttpSession session,
+								  RedirectAttributes rttr) {
+				log.info("bDelete()");
+				String view = bServ.boardDelete(boardId, session, rttr);
+				return view;
+			}
+
+}

@@ -1,27 +1,20 @@
 package com.icia.later;
 
-import java.time.LocalDateTime;
-import java.util.List;
 
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
+
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
+
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.multipart.MultipartFile;
+
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.icia.later.dto.BoardDto;
+
 import com.icia.later.dto.MemberDto;
 import com.icia.later.dto.ReservationDto;
-import com.icia.later.service.BoardService;
-import com.icia.later.service.MemberService;
+
 import com.icia.later.service.ReservationService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -31,13 +24,11 @@ import lombok.extern.slf4j.Slf4j;
 public class ReservationController {
 	
 	@Autowired
-	private BoardService bServ;
-	@Autowired
 	private ReservationService rServ;
 	
 
 	
-	// øπæ‡√≥∏Æ
+	// ÏòàÏïΩÏ≤òÎ¶¨
 			@PostMapping("rev")
 			public String rev(HttpSession session,
 					RedirectAttributes rttr,
@@ -54,7 +45,7 @@ public class ReservationController {
 						String view = rServ.insertRev(memberId, boardId, rttr, session);
 						return view;
 					} else {
-						String msg = "¿ÃπÃ Ω≈√ª«œºÃΩ¿¥œ¥Ÿ.";
+						String msg = "Ïù¥ÎØ∏ Ïã†Ï≤≠ÌïòÏÖ®ÏäµÎãàÎã§.";
 						String view = "redirect:/";
 						rttr.addFlashAttribute("msg", msg);
 						return view;

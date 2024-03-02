@@ -11,27 +11,36 @@ import com.icia.later.dto.MemberDto;
 
 public interface BoardDao {
 	
-	// °Ô½Ã±Û µî·ÏÇÏ±â
-	void insertBoard(@Param("board")BoardDto board, Integer customerId);
+	// ê²Œì‹œê¸€ ë“±ë¡í•˜ê¸°
+	void insertBoard(BoardDto board);
 		
-
+	// ê²Œì‹œê¸€ ìˆ˜ì •
+	void updateBoard(BoardDto board);
 	
+	//ìˆ˜ì •í•  ì—…ì²´ ì •ë³´ ê°€ì ¸ì˜¤ê¸°
+	List<BoardDto> getBoardList();
+	
+	// ì—…ì²´ ì‚­ì œ
+	void deleteBoard(Integer boardId);
 
-	// °Ô½Ã±Û Á¤º¸ »ó¼¼º¸±â
+	// ê²Œì‹œê¸€ ì •ë³´ ìƒì„¸ë³´ê¸°
 	BoardDto selectBoard(Integer boardId);
 
-	// ·Î±×ÀÎ
+	// ë¡œê·¸ì¸
 	MemberDto login(BoardDto board);
 
-	// ByMemberId ÆäÀÌÂ¡  // ³»°¡ ½ÅÃ»ÇÑ ±Û ¸ñ·Ï 
+	// ByMemberId í˜ì´ì§•  // ë‚´ê°€ ì‹ ì²­í•œ ê¸€ ëª©ë¡ 
 	int getTotalgetBoardByMemberId(String memberId);
 
-	// ¸ğÁı±Û ¸ñ·Ï º¸±â // ³»°¡ ¸ğÁıÇÑ ±Û ¸ñ·Ï
+	// ëª¨ì§‘ê¸€ ëª©ë¡ ë³´ê¸° // ë‚´ê°€ ëª¨ì§‘í•œ ê¸€ ëª©ë¡
 	List<BoardDto> getBoardListBycustomerId(@Param("pMap") Map<String, Integer> pMap, Integer customerId);
 
-	// ¸ğÁı±Û ¼ö ±¸ÇÏ±â
+	// ëª¨ì§‘ê¸€ ìˆ˜ êµ¬í•˜ê¸°
 	@Select("SELECT count(*) FROM board")
 	int cntBoard();
+	
+	//ì‚¬ì—…ì íƒˆí‡´ì‹œ ëª¨ì§‘í•œê¸€ë„ ì‚­ì œ
+	void deleteCompanyList(Integer Id);
 
 
 

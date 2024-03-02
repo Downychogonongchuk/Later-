@@ -9,15 +9,15 @@ import lombok.Data;
 @Alias("board")
 public class BoardDto {	
 		 private int boardId;  
-		 private String category; // Ä«Å×°í¸®
-		 private String companyName; // ¾÷Ã¼¸í
-		 private String periodStart; // ¸ğÁı ½ÃÀÛ 
-		 private String periodEnd;  // ¸ğÁı ¸¶°¨
-		 private String personnel;  // ¸ğÁı ÀÎ¿ø 
-		 private int price; // °¡°İ
-		 private String provideType; // Á¦°øÅ¸ÀÔ
-		 private String detail;  // »ó¼¼¼³¸í 
-		 private String checkInfo;  // Ã¼Å©»çÇ×
-		 private String boardFile; // °Ô½Ã±Û ¾÷Ã¼»çÁø 
-		 private int customerId; //  »ç¾÷ÀÚ ¾ÆÀÌµğ  // Ãß°¡ dao controller
+		 private String category; // ì¹´í…Œê³ ë¦¬
+		 private String companyName; // ì—…ì²´ëª…
+		 private String periodStart; // ëª¨ì§‘ ì‹œì‘ 
+		 private String periodEnd;  // ëª¨ì§‘ ë§ˆê°
+		 private String personnel;  // ëª¨ì§‘ ì¸ì› 
+		 private int price; // ê°€ê²©
+		 private String provideType; // ì œê³µíƒ€ì…
+		 private String detail;  // ìƒì„¸ì„¤ëª… 
+		 private String checkInfo;  // ì²´í¬ì‚¬í•­
+		 private String boardFile; // ê²Œì‹œê¸€ ì—…ì²´ì‚¬ì§„ 
+		 private int customerId; //  ì‚¬ì—…ì ì•„ì´ë””  // ì¶”ê°€ dao controller
 }

@@ -1,14 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
 	<title>회원가입</title>
 	<link rel="stylesheet" href="resources/css/cSignIn.css">
-	<script src="https://code.jquery.com/jquery-3.7.1.min.js" 
-			integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" 
-			crossorigin="anonymous"></script>
 
 </head>
 <body>
@@ -23,14 +21,15 @@
             <!-- 개인정보 입력 영역 -->
             <h5>이메일</h5>
             <input type="email" class="write-input" name="customerEmail" autofocus required="required" id="customerEmailCheck" onblur="validateCustomerId()">
-            <input type="button" class="btn-emailCheck" value="중복확인" id="checkIdBtn">
+            <input type="button" class="btn-emailCheck" value="중복확인" id="checkIdBtn-c">
             <span id="id-confirm-message"></span>
-				 <span id="id-error-message">${error}</span>
+			<span id="id-error-message">${error}</span>
             <h5>비밀번호</h5>
-            <input type="password" class="write-input" name="customerPass" autofocus required="required" id="customerPassword">
+			<input type="password" class="write-input" name="customerPass" autofocus required="required" id="customerPassword" onblur="validateCustomerId()">
+			<span id="pw-error-message"></span>
             <h5>비밀번호 재확인</h5>
-            <input type="password" class="write-input" name="customerPassCheck" autofocus required="required" id="customerPasswordCheck">
-            <span id="pw-confirm-error-message"></span>
+			<input type="password" class="write-input" name="customerPassCheck" autofocus required="required" id="customerPasswordCheck">
+			<span id="pw-confirm-error-message"></span>
             <h5>이름</h5>
             <input type="text" class="write-input" name="customerName" autofocus required="required">
             <h5>사업자번호</h5>
@@ -62,6 +61,9 @@
 	<jsp:include page="footer.jsp" />
 </div>
 </body>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" 
+	integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" 
+	crossorigin="anonymous"></script>
 <script>
 
 	//파일 업로드 시 선택한 파일명 출력
@@ -85,6 +87,7 @@
 	$("#backbtn").click(function() {
 		location.href = `./`;
 	});
+	
 	//메세지 출력
 	let m = "${msg}";
 	if (m != "") {
@@ -92,28 +95,28 @@
 	}
 	
 	// 정규식 및 중복체크
-	$("#checkIdBtn").on("click", function() {
+	$("#checkIdBtn-c").on("click", function() {
 	    const c_id = $("#customerEmailCheck").val();
 	    if (c_id === "") {
 	        alert("아이디를 입력해주세요 !");
 	        return;
 	    }
 
-	    if (validateCustomerId()) { // 이메일 형식이 올바르면 중복 확인을 진행
+	    if (validateCustomerId()) { //이메일 형식이 올바르면 중복 확인을 진행
 	        $.ajax({
 	            url: "cEmailCheck",
 	            method: "POST",
 	            data: {
-	                "CustomerEmailCheck": c_id
+	                "customerEmailCheck": c_id
 	            },
 	            success: function(data) {
 	                console.log(data);
 	                const idErrorMessage = $("#id-error-message");
 	                if (data == "fail") {
-	                    idErrorMessage.text("이미 사용 중인 아이디입니다.");
+	                    idErrorMessage.text("이미 사용 중인 아이디입니다.").css("color", "red");
 	                    $("#joinSubmitBtn").prop("disabled", true);
 	                } else {
-	                    idErrorMessage.text("사용가능한 아이디입니다.");
+	                    idErrorMessage.text("사용가능한 아이디입니다.").css("color", "green");
 	                    $("#joinSubmitBtn").prop("disabled", false);
 	                }
 	            },
@@ -129,32 +132,35 @@
 	    const regExp = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/;
 	    const c_idError = document.getElementById("id-confirm-message");
 	    
-	    if (!regExp.test(c_id)) {
-	        c_idError.innerText = "아이디 형식이 올바르지 않습니다.";
-	        return false;
-	    } else {
-	        c_idError.innerText = "";
-	        return true;
+	    if (c_id !== null && c_id.trim() !== '') { // 입력값이 존재하는 경우
+	        if (!regExp.test(c_id)) {
+	            $(c_idError).text("아이디 형식이 올바르지 않습니다.").css("color","red");
+	            return false;
+	        } else {
+	            $(c_idError).text("");
+	            return true;
+	        }
+	    } else { // 입력값이 없는 경우
+	        c_idError.innerText = ""; // 에러 메시지 초기화
 	    }
-		
 	}
-
-	// 아이디 입력란 변경 시 에러 메시지 초기화
-	$("#customerEmailCheck").on("input", function() {
-	    const c_idError = document.getElementById("id-confirm-message");
-	    c_idError.innerText = ""; // 에러 메시지 초기화
-	});
-
+	
 	// 비밀번호 일치 여부 확인
-$("#customerPassword, #customerPasswordCheck").on("keyup", function() {
+	$("#customerPassword, #customerPasswordCheck").on("keyup", function() {
     let password = $("#customerPassword").val();
     let confirmPassword = $("#customerPasswordCheck").val();
+    let pwConfirmError = $("#pw-confirm-error-message");
+
+    if (password === "" || confirmPassword === "") {
+        pwConfirmError.text(""); // 입력값이 비어있을 때는 메시지 초기화
+        return;
+    }
 
     if (password !== confirmPassword) {
-        $("#pw-confirm-error-message").text("비밀번호가 일치하지 않습니다.");
+        pwConfirmError.text("비밀번호가 일치하지 않습니다.").css("color", "red");
         $("#joinSubmitBtn").prop("disabled", true);
     } else {
-        $("#pw-confirm-error-message").text("비밀번호가 일치합니다!");
+        pwConfirmError.text("비밀번호가 일치합니다!").css("color", "green");
         $("#joinSubmitBtn").prop("disabled", false);
     }
 });

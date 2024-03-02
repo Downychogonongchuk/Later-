@@ -29,39 +29,43 @@ public class HomeController {
 	@Autowired
 	private MemberService mServ;
 			
-	//¸ŞÀÎÆäÀÌÁö
+	//ë©”ì¸í˜ì´ì§€
 		@GetMapping("/")
 		public String home(Model model,HttpSession session) {
 			log.info("home()");
-
 			MemberDto logInInfo = (MemberDto) session.getAttribute("mLogin");
 			
 			if (logInInfo != null && session.getAttribute("mLogin") != null) {
-		        // ·Î±×ÀÎÇÑ È¸¿ø Á¤º¸¸¦ ¸ğµ¨¿¡ Ãß°¡ÇÏ¿© JSP·Î Àü´Ş
+		        // ë¡œê·¸ì¸í•œ íšŒì› ì •ë³´ë¥¼ ëª¨ë¸ì— ì¶”ê°€í•˜ì—¬ JSPë¡œ ì „ë‹¬
 		        model.addAttribute("mLogInInfo", logInInfo);
 		        System.out.println(logInInfo);
-			}
-			
+		        }
 			CustomerDto logInInfo1 = (CustomerDto) session.getAttribute("cLogin");
 			
-			
 			if (logInInfo1 != null && session.getAttribute("cLogin") != null) {
-		        // ·Î±×ÀÎÇÑ È¸¿ø Á¤º¸¸¦ ¸ğµ¨¿¡ Ãß°¡ÇÏ¿© JSP·Î Àü´Ş
+		        // ë¡œê·¸ì¸í•œ íšŒì› ì •ë³´ë¥¼ ëª¨ë¸ì— ì¶”ê°€í•˜ì—¬ JSPë¡œ ì „ë‹¬
 		        model.addAttribute("cLogInInfo", logInInfo1);
 		        	        	        	        
 		}
+
 			return "home";
 		}
 		
-	// ¸¶ÀÌÆäÀÌÁö È¨ ÀÌµ¿
+	// ë§ˆì´í˜ì´ì§€ í™ˆ ì´ë™
 		@GetMapping("myPage")
 		public String myPage(Model model,HttpSession session) {
 			log.info("myPage()");
-			
 			MemberDto logInInfo = (MemberDto) session.getAttribute("mLogin");
+			CustomerDto logInInfo1 = (CustomerDto) session.getAttribute("cLogin");
+			
+			if (logInInfo1 != null && session.getAttribute("cLogin") != null) {
+		        // ë¡œê·¸ì¸í•œ íšŒì› ì •ë³´ë¥¼ ëª¨ë¸ì— ì¶”ê°€í•˜ì—¬ JSPë¡œ ì „ë‹¬
+		        model.addAttribute("cLogInInfo", logInInfo1);
+		        System.out.println(logInInfo1);
+			}
 			
 			if (logInInfo != null && session.getAttribute("mLogin") != null) {
-		        // ·Î±×ÀÎÇÑ È¸¿ø Á¤º¸¸¦ ¸ğµ¨¿¡ Ãß°¡ÇÏ¿© JSP·Î Àü´Ş
+		        // ë¡œê·¸ì¸í•œ íšŒì› ì •ë³´ë¥¼ ëª¨ë¸ì— ì¶”ê°€í•˜ì—¬ JSPë¡œ ì „ë‹¬
 		        model.addAttribute("mLogInInfo", logInInfo);
 		        System.out.println(logInInfo);
 			}
@@ -69,7 +73,7 @@ public class HomeController {
 		}
 	
 	
-	// È¸¿ø°¡ÀÔ À¯Çü¼±ÅÃÆäÀÌÁö
+	// íšŒì›ê°€ì… ìœ í˜•ì„ íƒí˜ì´ì§€
 	@GetMapping("signSelect")
 	public String signSelect() {
 		log.info("signSelect()");
@@ -77,7 +81,7 @@ public class HomeController {
 		return "signSelect";
 	}
 	
-	// ÀÏ¹İÈ¸¿ø °¡ÀÔÆäÀÌÁö ÀÌµ¿
+	// ì¼ë°˜íšŒì› ê°€ì…í˜ì´ì§€ ì´ë™
 	@GetMapping("mSignIn")
 	public String mSignIn() {
 		log.info("mSignIn()");
@@ -85,7 +89,7 @@ public class HomeController {
 		return "mSignIn";
 	}
 	
-	// ÀÏ¹İÈ¸¿ø ÀÌ¸ŞÀÏ Áßº¹Ã¼Å©
+	// ì¼ë°˜íšŒì› ì´ë©”ì¼ ì¤‘ë³µì²´í¬
 	@PostMapping("mEmailCheck")
 	@ResponseBody
 	public String mEmailCheck(String memberEmailCheck) {
@@ -95,7 +99,7 @@ public class HomeController {
 		return res;
 	}
 	
-	// È¸¿ø°¡ÀÔ Ã³¸® ¸Ş¼­µå
+	// íšŒì›ê°€ì… ì²˜ë¦¬ ë©”ì„œë“œ
 	@PostMapping("mSignInProc")
 	public String mSignInProc(@RequestPart List<MultipartFile> files, 
 			MemberDto member,
@@ -108,7 +112,7 @@ public class HomeController {
 		return view;
 		}
 	
-	// ·Î±×ÀÎ¼±ÅÃ ÆäÀÌÁö ÀÌµ¿
+	// ë¡œê·¸ì¸ì„ íƒ í˜ì´ì§€ ì´ë™
 	@GetMapping("loginSelect")
 	public String loginSelect() {
 		log.info("login()");
@@ -116,7 +120,7 @@ public class HomeController {
 		return "loginSelect";
 	}
 	
-	//ÀÏ¹İ ·Î±×ÀÎ ÆäÀÌÁö
+	//ì¼ë°˜ ë¡œê·¸ì¸ í˜ì´ì§€
 	@GetMapping("mLogin")
 	public String mLogin() {
 		log.info("mLogin()");
@@ -125,7 +129,7 @@ public class HomeController {
 	}
 	
 	
-	// ÀÏ¹İÈ¸¿ø ·Î±×ÀÎ Ã³¸® ¸Ş¼­µå
+	// ì¼ë°˜íšŒì› ë¡œê·¸ì¸ ì²˜ë¦¬ ë©”ì„œë“œ
 	@PostMapping("mLoginProc")
 	public String mLoginProc(MemberDto member,
 							HttpSession session,
@@ -138,7 +142,7 @@ public class HomeController {
 		
 	}
 	
-	//ÀÏ¹İÈ¸¿ø ¾ÆÀÌµğÃ£±â
+	//ì¼ë°˜íšŒì› ì•„ì´ë””ì°¾ê¸°
 	@GetMapping("mFindById")
 	public String mFindById() {
 		log.info("mFindById()");
@@ -146,7 +150,7 @@ public class HomeController {
 		return "mFindById";
 	}
 	
-	//ÀÏ¹İÈ¸¿ø ¾ÆÀÌµğÃ£±â Ã³¸® ¸Ş¼­µå
+	//ì¼ë°˜íšŒì› ì•„ì´ë””ì°¾ê¸° ì²˜ë¦¬ ë©”ì„œë“œ
 	@PostMapping("mFindByIdProc")
 	public String mFindByIdProc(MemberDto member,
 								Model model,
@@ -157,7 +161,7 @@ public class HomeController {
 		return view;
 	}
 	
-	//ÀÏ¹İÈ¸¿ø ºñ¹øÃ£±â ÆäÀÌÁö
+	//ì¼ë°˜íšŒì› ë¹„ë²ˆì°¾ê¸° í˜ì´ì§€
 		@GetMapping("mFindByPass")
 		public String mFindByPass() {
 			log.info("mFindByPass()");
@@ -165,7 +169,7 @@ public class HomeController {
 			return "mFindByPass";
 		}
 		
-		//ÀÏ¹İÈ¸¿ø ºñ¹Ğ¹øÈ£Ã£±â °¡ÀÔÁ¤º¸ È®ÀÎ ¸Ş¼­µå
+		//ì¼ë°˜íšŒì› ë¹„ë°€ë²ˆí˜¸ì°¾ê¸° ê°€ì…ì •ë³´ í™•ì¸ ë©”ì„œë“œ
 		@PostMapping("mFindByPassProc")
 		public String mFindByPassProc(MemberDto member,
 										Model model,
@@ -176,7 +180,7 @@ public class HomeController {
 			return view;
 		}
 		
-		//ºñ¹Ğ¹øÈ£ Ã£±â -> ºñ¹Ğ¹øÈ£ º¯°æÆäÀÌÁö
+		//ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸° -> ë¹„ë°€ë²ˆí˜¸ ë³€ê²½í˜ì´ì§€
 		@PostMapping("mPassUpdate")
 		public String mPassUpdate() {
 			log.info("mPassUpdate1()");
@@ -184,7 +188,7 @@ public class HomeController {
 			return "mPassUpdate";
 		}
 		
-		//ºñ¹Ğ¹øÈ£ º¯°æ Ã³¸® ¸Ş¼­µå
+		//ë¹„ë°€ë²ˆí˜¸ ë³€ê²½ ì²˜ë¦¬ ë©”ì„œë“œ
 		@PostMapping("mUpdatePassProc")
 		public String mUpdatePassProc(MemberDto member,
 									RedirectAttributes rttr) {
@@ -194,24 +198,24 @@ public class HomeController {
 			return view;
 		}
 
-	// ·Î±×¾Æ¿ô 
-	@GetMapping("logout")
-	public String logout(HttpServletRequest request, RedirectAttributes rttr) {
-	    log.info("logout()");
+	// ì¼ë°˜íšŒì› ë¡œê·¸ì•„ì›ƒ 
+	@GetMapping("mLogout")
+	public String mLogout(HttpServletRequest request, RedirectAttributes rttr) {
+	    log.info("mLogout()");
 	    String msg = null;
 
-	    HttpSession session = request.getSession(false); // false ÇÃ·¡±×´Â »õ·Î¿î ¼¼¼ÇÀÌ »ı¼ºµÇÁö ¾Êµµ·Ï ÇÕ´Ï´Ù.
+	    HttpSession session = request.getSession(false); // false í”Œë˜ê·¸ëŠ” ìƒˆë¡œìš´ ì„¸ì…˜ì´ ìƒì„±ë˜ì§€ ì•Šë„ë¡ í•©ë‹ˆë‹¤.
 
 	    if (session != null && session.getAttribute("mLogin") != null) {
-	        // ¼¼¼ÇÀÌ ºñ¾îÀÖÁö ¾ÊÀ» ¶§ ·Î±×¾Æ¿ô Ã³¸®
+	        // ì„¸ì…˜ì´ ë¹„ì–´ìˆì§€ ì•Šì„ ë•Œ ë¡œê·¸ì•„ì›ƒ ì²˜ë¦¬
 	        session.invalidate();
 	        System.out.println(session);
-	        msg = "·Î±×¾Æ¿ô µÇ¾ú½À´Ï´Ù. °¨»çÇÕ´Ï´Ù.";
+	        msg = "ë¡œê·¸ì•„ì›ƒ ë˜ì—ˆìŠµë‹ˆë‹¤. ê°ì‚¬í•©ë‹ˆë‹¤.";
 	        
 	    } else {
-	        // ÀÌ¹Ì ·Î±×¾Æ¿ô µÇ¾îÀÖ°Å³ª ¼¼¼ÇÀÌ ¾ø´Â °æ¿ì
+	        // ì´ë¯¸ ë¡œê·¸ì•„ì›ƒ ë˜ì–´ìˆê±°ë‚˜ ì„¸ì…˜ì´ ì—†ëŠ” ê²½ìš°
 	    	System.out.println(session);
-	    	msg = "ÀÌ¹Ì ·Î±×¾Æ¿ô µÇ¾î ÀÖ½À´Ï´Ù.";
+	    	msg = "ì´ë¯¸ ë¡œê·¸ì•„ì›ƒ ë˜ì–´ ìˆìŠµë‹ˆë‹¤.";
 	        
 	    }
 
@@ -220,7 +224,7 @@ public class HomeController {
 	}
 	
 	
-	// ÀÏ¹İÈ¸¿øÁ¤º¸ ¼öÁ¤ÆäÀÌÁö ÀÌµ¿
+	// ì¼ë°˜íšŒì›ì •ë³´ ìˆ˜ì •í˜ì´ì§€ ì´ë™
 	@GetMapping("mUpdate")
 	public String mUpdate(Model model,HttpSession session) {
 		log.info("mUpdate()");
@@ -228,27 +232,27 @@ public class HomeController {
 		MemberDto logInInfo = (MemberDto) session.getAttribute("mLogin");
 		
 		if (logInInfo != null && session.getAttribute("mLogin") != null) {
-	        // ·Î±×ÀÎÇÑ È¸¿ø Á¤º¸¸¦ ¸ğµ¨¿¡ Ãß°¡ÇÏ¿© JSP·Î Àü´Ş
+	        // ë¡œê·¸ì¸í•œ íšŒì› ì •ë³´ë¥¼ ëª¨ë¸ì— ì¶”ê°€í•˜ì—¬ JSPë¡œ ì „ë‹¬
 	        model.addAttribute("mLogInInfo", logInInfo);
 	        	        	        	        
 	}
 		return "mUpdate";
 }
 	
-	// ÀÏ¹İÈ¸¿øÁ¤º¸ ¼öÁ¤ Ã³¸®
+	// ì¼ë°˜íšŒì›ì •ë³´ ìˆ˜ì • ì²˜ë¦¬
 	@PostMapping("mUpdateProc")
 	public String mUpdateProc(@RequestPart List<MultipartFile> files, 
 			MemberDto member,
 			HttpSession session,
 			RedirectAttributes rttr) {
 		log.info("updateProc()");
-		System.out.println("mUpdate¿¡¼­ ³Ñ¾î¿Â dto"+member);
+		System.out.println("mUpdateì—ì„œ ë„˜ì–´ì˜¨ dto"+member);
 		String view = mServ.memberUpdate(files, member, session, rttr);
 		
 		return view;
 	}
 	
-	// ÀÏ¹İÈ¸¿ø Å»Åğ
+	// ì¼ë°˜íšŒì› íƒˆí‡´
 	@GetMapping("mDelete")
 	public String mDelete(Integer memberId,HttpSession session,RedirectAttributes rttr) {
 		log.info("mDelete()");
@@ -256,7 +260,7 @@ public class HomeController {
 		
 		String view = mServ.mDelete(memberId,session,rttr);
 		if (session != null && session.getAttribute("mLogin") != null) {
-	        // Å»Åğ ÈÄ ¼¼¼Ç¿¡ ÀúÀåµÇ¾îÀÖ´Â °ª »èÁ¦
+	        // íƒˆí‡´ í›„ ì„¸ì…˜ì— ì €ì¥ë˜ì–´ìˆëŠ” ê°’ ì‚­ì œ
 	        session.invalidate();
 	    }
 

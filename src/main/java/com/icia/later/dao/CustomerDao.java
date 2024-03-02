@@ -1,32 +1,32 @@
 package com.icia.later.dao;
 
 import com.icia.later.dto.CustomerDto;
-
+import com.icia.later.dto.MemberDto;
 
 public interface CustomerDao {
 	
-	// »ç¾÷ÀÚ È¸¿ø°¡ÀÔ
-		void insertCustomer(CustomerDto customer);
-		
-		// »ç¾÷ÀÚ ·Î±×ÀÎ
-		CustomerDto login(CustomerDto customer);
-		
-		// ¾÷µ¥ÀÌÆ®
-		void updateCustomer(CustomerDto customer);
-		
-		// »ç¾÷ÀÚ È¸¿ø Å»Åğ
-		void deleteCustomer(Integer customerId);
-		
-		// ÀÌ¸ŞÀÏ Áßº¹Ã¼Å©
-		int checkDuplicateId(String customerEmailCheck);
+	// ì‚¬ì—…ì íšŒì›ê°€ì…
+	void insertCustomer(CustomerDto customer);
+	
+	// ì‚¬ì—…ì ë¡œê·¸ì¸
+	CustomerDto login(CustomerDto customer);
+	
+	// ì—…ë°ì´íŠ¸
+	void updateCustomer(CustomerDto customer);
+	
+	// ì‚¬ì—…ì íšŒì› íƒˆí‡´
+	void deleteCustomer(Integer customerId);
+	
+	// ì´ë©”ì¼ ì¤‘ë³µì²´í¬
+	int checkDuplicateId(String customerEmailCheck);
 
-		// »ç¾÷ÀÚ ÀÌ¸ŞÀÏ Ã£±â
-		CustomerDto FindById(CustomerDto customer);
-		
-		// ºñ¹Ğ¹øÈ£ Ã£±â
-		CustomerDto FindByPass(CustomerDto customer);
-				
-		// ºñ¹Ğ¹øÈ£ ¾÷µ¥ÀÌÆ®
-		void cUpdatePassProc(CustomerDto customer);
+	// ì‚¬ì—…ì ì´ë©”ì¼ ì°¾ê¸°
+	CustomerDto FindById(CustomerDto customer);
+	
+	// ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°
+	CustomerDto FindByPass(CustomerDto customer);
+			
+	// ë¹„ë°€ë²ˆí˜¸ ì—…ë°ì´íŠ¸
+	void cUpdatePassProc(CustomerDto customer);
 
-	}
+}

@@ -35,10 +35,10 @@
 				<jsp:include page="header.jsp" />
 			</c:if>
 			<c:if test="${!empty mLogInInfo}">
-				<jsp:include page="mheader.jsp" />
+				<jsp:include page="mHeader.jsp" />
 			</c:if>
 			<c:if test="${!empty cLogInInfo}">
-				<jsp:include page="cheader.jsp" />
+				<jsp:include page="cHeader.jsp" />
 			</c:if>
 		</div>
 
@@ -82,7 +82,7 @@
 					<div class="box-line">
 					<div class="img-box">
 					<c:if test="${!empty cLogInInfo.customerProfile}">
-						<img src="resources/upload/${cLogInInfo.customerFile}"
+						<img src="resources/upload/${cLogInInfo.customerProfile}"
 							class="poster-pre">
 					</c:if>
 					<c:if test="${empty cLogInInfo.customerProfile}">
@@ -107,7 +107,7 @@
 						<a href="bUpdate">업체 수정</a>
 					</div>
 					<div>
-						<a href="mDelete">회원탈퇴</a>
+						<a href="cDelete">회원탈퇴</a>
 					</div>
 					</div>
 				

@@ -11,18 +11,26 @@ import com.icia.later.dto.ReservationDto;
 
 public interface ReservationDao {
 
-	// Ã¼Çè´Ü ½ÅÃ» Á¤º¸ ÀúÀå
+	// ì²´í—˜ë‹¨ ì‹ ì²­ ì •ë³´ ì €ì¥
 	void insertReservation(ReservationDto reserv);
+	
+	//íšŒì›íƒˆí‡´ì‹œ ëª¨ì§‘ì‹ ì²­ë„ ì‚­ì œ
+	void deleteApplyCompany(Integer id);
 
-	// ¿¹¾à ¸ñ·Ï °¡Á®¿À±â
+	// ì˜ˆì•½ ëª©ë¡ ê°€ì ¸ì˜¤ê¸°
 	List<BoardDto> getBoardListBymemberId(@Param("pMap") Map<String, Integer> pMap);
 
-	// ½ÅÃ»ÇÑ ¾÷Ã¼ ¼ö ±¸ÇÏ±â
+	// ì‹ ì²­í•œ ì—…ì²´ ìˆ˜ êµ¬í•˜ê¸°
 	@Select("SELECT count(*) FROM board")
 	int cntBoard();
 
-	// ¿¡¾à À¯¹« È®ÀÎ µ¥ÀÌÅÍ °¡Á®¿À±â
+	// ì—ì•½ ìœ ë¬´ í™•ì¸ ë°ì´í„° ê°€ì ¸ì˜¤ê¸° // ì‹ ì²­ ì¤‘ë³µ
 	ReservationDto selectRev(@Param("pMap") Map<String, Integer> pMap);
 	
+	// ë‚´ ì—…ì²´ ì‹ ì²­í•œ ì‚¬ëŒ ëª©ë¡ ê°€ì ¸ì˜¤ê¸°
+	List<ReservationDto> getReservationList(Integer boardId);
+
+	// ì‹ ì²­ ìƒíƒœ
+	void updateStatus(Map<String, Object> pMap);
 	
 }

@@ -48,7 +48,7 @@
 <body>
 
 <div class="wrap">
-<jsp:include page="cheader.jsp" />
+<jsp:include page="cHeader.jsp" />
 	<div class="content">
 		<form action="bUpdateProc" method="post" enctype="multipart/form-data">
             <h2 class="form-header">업체 정보 수정</h2>          
@@ -110,4 +110,4 @@ if(m != ""){
 }
 
 </script>
-</html>s
+</html>

@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.icia.later.dao.MemberDao;
+import com.icia.later.dao.ReservationDao;
 import com.icia.later.dto.MemberDto;
 
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +23,8 @@ import lombok.extern.slf4j.Slf4j;
 public class MemberService {
 	@Autowired
 	private MemberDao mDao;
+	@Autowired
+	private ReservationDao rDao;
 	
 	public String mEmailCheck(String memberEmailCheck) {
 		log.info("memberEmailCheck()");
@@ -29,10 +32,10 @@ public class MemberService {
 
 		String res = null;
 		if (cnt > 0) {
-			// ¾ÆÀÌµğ ÀÖÀ½
+			// ì•„ì´ë”” ìˆìŒ
 			res = "fail";
 		} else {
-			// ¾ÆÀÌµğ ¾øÀ½
+			// ì•„ì´ë”” ì—†ìŒ
 			res = "ok";
 		}
 
@@ -42,10 +45,10 @@ public class MemberService {
 	public String insertMember(List<MultipartFile> files, MemberDto member, HttpSession session,
 			RedirectAttributes rttr) {
 		log.info("insertMember()");
-		String msg = null; // DB¿¡ ÀúÀå ¼º°ø/½ÇÆĞ °ü·Ã ¸Ş¼¼Áö ÀúÀå
-		String view = null;// ´ë»ó ÆäÀÌÁö ÁöÁ¤ º¯¼ö
+		String msg = null; // DBì— ì €ì¥ ì„±ê³µ/ì‹¤íŒ¨ ê´€ë ¨ ë©”ì„¸ì§€ ì €ì¥
+		String view = null;// ëŒ€ìƒ í˜ì´ì§€ ì§€ì • ë³€ìˆ˜
 		String upFile = files.get(0).getOriginalFilename();
-		// ¾÷·ÎµåÇÏ´Â ÆÄÀÏÀÇ ÀÌ¸§À» ÃßÃâ.
+		// ì—…ë¡œë“œí•˜ëŠ” íŒŒì¼ì˜ ì´ë¦„ì„ ì¶”ì¶œ.
 
 		try {
 			if (!upFile.equals("")) {
@@ -53,11 +56,11 @@ public class MemberService {
 			}
 			mDao.insertMember(member);
 			view = "redirect:/";
-			msg = "°¡ÀÔ ¼º°ø";
-		} catch (Exception e) {// ÀúÀå ½ÇÆĞÀÎ °æ¿ì
+			msg = "ê°€ì… ì„±ê³µ";
+		} catch (Exception e) {// ì €ì¥ ì‹¤íŒ¨ì¸ ê²½ìš°
 			e.printStackTrace();
 			view = "redirect:/";
-			msg = "°¡ÀÔ ½ÇÆĞ";
+			msg = "ê°€ì… ì‹¤íŒ¨";
 		}
 		rttr.addFlashAttribute("msg", msg);
 
@@ -67,16 +70,16 @@ public class MemberService {
 	private void FileUpload(List<MultipartFile> files, HttpSession session, MemberDto member) throws Exception {
 		log.info("fileUpload()");
 
-		String sysname = null;// º¯°æÇÏ´Â ÆÄÀÏ¸í
-		String oriname = null;// ¿ø·¡ ÆÄÀÏ¸í
+		String sysname = null;// ë³€ê²½í•˜ëŠ” íŒŒì¼ëª…
+		String oriname = null;// ì›ë˜ íŒŒì¼ëª…
 
 		String realPath = session.getServletContext().getRealPath("/");
 		log.info(realPath);
 		realPath += "resources/upload/";
 		File folder = new File(realPath);
-//isDirectory() : ÇØ´ç ÀÌ¸§ÀÌ Æú´õ°¡ ¾Æ´Ï°Å³ª Á¸ÀçÇÏÁö¾ÊÀ¸¸é false
+//isDirectory() : í•´ë‹¹ ì´ë¦„ì´ í´ë”ê°€ ì•„ë‹ˆê±°ë‚˜ ì¡´ì¬í•˜ì§€ì•Šìœ¼ë©´ false
 		if (folder.isDirectory() == false) {
-			folder.mkdir();// Æú´õ»ı¼º ¸Ş¼Òµå
+			folder.mkdir();// í´ë”ìƒì„± ë©”ì†Œë“œ
 		}
 
 		MultipartFile mf = files.get(0);
@@ -86,11 +89,11 @@ public class MemberService {
 
 		File file = new File(realPath + sysname);
 
-		mf.transferTo(file); // ÇÏµåµğ½ºÅ©(°æ·Î»óÀÇ Æú´õ)¿¡ ÀúÀå
+		mf.transferTo(file); // í•˜ë“œë””ìŠ¤í¬(ê²½ë¡œìƒì˜ í´ë”)ì— ì €ì¥
 		member.setMemberProfile(sysname);
 	}
 
-	// ÀÏ¹İÈ¸¿ø ·Î±×ÀÎ±â´É
+	// ì¼ë°˜íšŒì› ë¡œê·¸ì¸ê¸°ëŠ¥
 	public String mLogin(MemberDto member, HttpSession session, RedirectAttributes rttr) {
 		log.info("mLogin()");
 		String msg = null;
@@ -99,16 +102,16 @@ public class MemberService {
 		System.out.println(loggedInMember);
 		
 		if (loggedInMember != null) {
-			msg = "·Î±×ÀÎ ¼º°ø";
+			msg = "ë¡œê·¸ì¸ ì„±ê³µ";
 			view = "redirect:/";
 
 			System.out.println(loggedInMember);
-			// ·Î±×ÀÎ½Ã ¼¼¼Ç¿¡ ÀúÀå
+			// ë¡œê·¸ì¸ì‹œ ì„¸ì…˜ì— ì €ì¥
 			session.setAttribute("mLogin", loggedInMember);
 			System.out.println(loggedInMember);
 
 		} else {
-			msg = "ÀÌ¸ŞÀÏ ¹× ºñ¹Ğ¹øÈ£¸¦ ´Ù½Ã È®ÀÎÇØÁÖ¼¼¿ä.";
+			msg = "ì´ë©”ì¼ ë° ë¹„ë°€ë²ˆí˜¸ë¥¼ ë‹¤ì‹œ í™•ì¸í•´ì£¼ì„¸ìš”.";
 			view = "redirect:mLogin";
 		}
 
@@ -118,40 +121,41 @@ public class MemberService {
 		return view;
 	}
 
-	// ·Î±×¾Æ¿ô Ã³¸®
+	// ë¡œê·¸ì•„ì›ƒ ì²˜ë¦¬
 		public String logout(HttpSession session, RedirectAttributes rttr) {
 			log.info("logout()");
-			String msg = "·Î±×¾Æ¿ô ¼º°ø";
+			String msg = "ë¡œê·¸ì•„ì›ƒ ì„±ê³µ";
 
 			session.removeAttribute("mLogin");
+			session.removeAttribute("cLogin");
 
 			rttr.addFlashAttribute("msg", msg);
 			return "redirect:/";
 		}
 
-	// »ó¼¼º¸±â Ã³¸® ¸Ş¼Òµå
+	// ìƒì„¸ë³´ê¸° ì²˜ë¦¬ ë©”ì†Œë“œ
 	public void getMember(Integer memberId, Model model, HttpSession session) {
 		log.info("getMember()");
-		// DB¿¡¼­ µ¥ÀÌÅÍ °¡Á®¿À±â
+		// DBì—ì„œ ë°ì´í„° ê°€ì ¸ì˜¤ê¸°
 		session.setAttribute("", session);
 		MemberDto member = mDao.selectMember(memberId);
-		// model¿¡ ´ã±â
+		// modelì— ë‹´ê¸°
 		model.addAttribute("member", member);
 	}
 
-	// È¸¿øÁ¤º¸ ¼öÁ¤ Ã³¸®
+	// íšŒì›ì •ë³´ ìˆ˜ì • ì²˜ë¦¬
 	public String memberUpdate(List<MultipartFile> files, MemberDto member, HttpSession session,
 			RedirectAttributes rttr) {
 		log.info("memberUpdate()");
 		String msg = null;
 		String view = null;
-		String poster = member.getMemberProfile();// ±âÁ¸ÆÄÀÏ(Æ÷½ºÅÍ)
+		String poster = member.getMemberProfile();// ê¸°ì¡´íŒŒì¼(í¬ìŠ¤í„°)
 		
 		try {
 			if (!files.get(0).isEmpty()) {
 				FileUpload(files, session, member);
 
-				// ±âÁ¸ÆÄÀÏ »èÁ¦
+				// ê¸°ì¡´íŒŒì¼ ì‚­ì œ
 				if (poster != null) {
 					mFileDelete(poster, session);
 				}
@@ -160,19 +164,19 @@ public class MemberService {
 			System.out.println("mServ" + member);
 
 			view = "redirect:/"; 
-			msg = "¼öÁ¤ ¼º°ø";
-			// ±âÁ¸ ÆÄÀÏ »èÁ¦
+			msg = "ìˆ˜ì • ì„±ê³µ";
+			// ê¸°ì¡´ íŒŒì¼ ì‚­ì œ
 		} catch (Exception e) {
 			e.printStackTrace();
 			view = "redirect:/";
-			msg = "¼öÁ¤ ½ÇÆĞ";
+			msg = "ìˆ˜ì • ì‹¤íŒ¨";
 		}
 
 		rttr.addFlashAttribute("msg", msg);
 		return view;
 	}
 
-	// ±âÁ¸ ¾÷·ÎµåÀÌ¹ÌÁö »èÁ¦ Ã³¸® ¸Ş¼­µå
+	// ê¸°ì¡´ ì—…ë¡œë“œì´ë¯¸ì§€ ì‚­ì œ ì²˜ë¦¬ ë©”ì„œë“œ
 	private void mFileDelete(String poster, HttpSession session) throws Exception {
 		log.info("fileDelete()");
 
@@ -184,7 +188,7 @@ public class MemberService {
 		}
 
 	}
-	// È¸¿ø Å»Åğ ¸Ş¼­µå
+	// íšŒì› íƒˆí‡´ ë©”ì„œë“œ
 	public String mDelete(Integer memberId, HttpSession session, RedirectAttributes rttr) {
 		log.info("mDelete()");
 		String msg = null;
@@ -194,18 +198,19 @@ public class MemberService {
 
 		try {
 			if (loginInfo != null) {
+				rDao.deleteApplyCompany(id);
 				mDao.deleteMember(id);
 				System.out.println("mServ" + id);
 
 				view = "redirect:/"; // + member.getMemberId();
-				msg = "Å»Åğ ¼º°ø";
+				msg = "íƒˆí‡´ ì„±ê³µ";
 			}
 
-			// ±âÁ¸ ÆÄÀÏ »èÁ¦
+			// ê¸°ì¡´ íŒŒì¼ ì‚­ì œ
 		} catch (Exception e) {
 			e.printStackTrace();
 			view = "redirect:/";// + member.getMemberId();
-			msg = "Å»Åğ ½ÇÆĞ";
+			msg = "íƒˆí‡´ ì‹¤íŒ¨";
 		}
 
 		rttr.addFlashAttribute("msg", msg);
@@ -213,7 +218,7 @@ public class MemberService {
 
 	}
 
-	// ÀÏ¹İÈ¸¿ø ÀÌ¸ŞÀÏÃ£±â
+	// ì¼ë°˜íšŒì› ì´ë©”ì¼ì°¾ê¸°
 	public String mFindById(MemberDto member, Model model, RedirectAttributes rttr) {
 	    log.info("mFindById()");
 	    System.out.println(member);
@@ -222,7 +227,7 @@ public class MemberService {
 	    System.out.println(EmailResult);
 	    
 	    if(EmailResult == null) {
-	        msg = "°¡ÀÔµÈ Á¤º¸°¡ ¾ø½À´Ï´Ù ´Ù½Ã È®ÀÎÇØÁÖ¼¼¿ä.";
+	        msg = "ê°€ì…ëœ ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤ ë‹¤ì‹œ í™•ì¸í•´ì£¼ì„¸ìš”.";
 	        rttr.addFlashAttribute("msg", msg);
 	        return "redirect:/mFindById";
 	    } else {
@@ -231,7 +236,7 @@ public class MemberService {
 	    }
 	}
 	
-	// ÀÏ¹İÈ¸¿ø ºñ¹Ğ¹øÈ£Ã£±â
+	// ì¼ë°˜íšŒì› ë¹„ë°€ë²ˆí˜¸ì°¾ê¸°
 		public String mFindByPass(MemberDto member, Model model, RedirectAttributes rttr) {
 		    log.info("mFindByPass()");
 		    System.out.println(member);
@@ -240,7 +245,7 @@ public class MemberService {
 		    System.out.println(PassResult);
 		    
 		    if(PassResult == null) {
-		        msg = "°¡ÀÔµÈ Á¤º¸°¡ ¾ø½À´Ï´Ù ´Ù½Ã È®ÀÎÇØÁÖ¼¼¿ä.";
+		        msg = "ê°€ì…ëœ ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤ ë‹¤ì‹œ í™•ì¸í•´ì£¼ì„¸ìš”.";
 		        rttr.addFlashAttribute("msg", msg);
 		        return "redirect:/mFindByPass";
 		    } else {
@@ -249,7 +254,7 @@ public class MemberService {
 		    }
 		}
 		
-		//ÀÏ¹İÈ¸¿ø ºñ¹Ğ¹øÈ£ Ã³¸® ¸Ş¼­µå
+		//ì¼ë°˜íšŒì› ë¹„ë°€ë²ˆí˜¸ ì²˜ë¦¬ ë©”ì„œë“œ
 		public String mUpdatePassProc(MemberDto member,RedirectAttributes rttr) {
 			log.info("mUpdatePassProc()");
 			System.out.println(member);
@@ -258,7 +263,7 @@ public class MemberService {
 			mDao.mUpdatePassProc(member);
 			
 			
-			msg = "¼öÁ¤ÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù ·Î±×ÀÎ ÈÄ ÀÌ¿ëÇØÁÖ¼¼¿ä";
+			msg = "ìˆ˜ì •ì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤ ë¡œê·¸ì¸ í›„ ì´ìš©í•´ì£¼ì„¸ìš”";
 			view = "redirect:/mLogin";
 			rttr.addFlashAttribute("msg", msg);
 			
@@ -266,3 +271,4 @@ public class MemberService {
 		}
 
 }
+

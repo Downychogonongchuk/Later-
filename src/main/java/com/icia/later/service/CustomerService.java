@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.icia.later.dao.BoardDao;
 import com.icia.later.dao.CustomerDao;
 import com.icia.later.dto.CustomerDto;
 import com.icia.later.dto.MemberDto;
@@ -21,17 +22,19 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CustomerService {
 	@Autowired CustomerDao cDao;
+	@Autowired BoardDao bDao;
 	
 	public String cEmailCheck(String customerEmailCheck) {
 		log.info("customerEmailCheck()");
 		int cnt = cDao.checkDuplicateId(customerEmailCheck);
-
 		String res = null;
+		System.out.println(cnt);
 		if (cnt > 0) {
-			// ¾ÆÀÌµğ ÀÖÀ½
+			// ì•„ì´ë”” ìˆìŒ
+			
 			res = "fail";
 		} else {
-			// ¾ÆÀÌµğ ¾øÀ½
+			// ì•„ì´ë”” ì—†ìŒ
 			res = "ok";
 		}
 
@@ -43,10 +46,10 @@ public class CustomerService {
 									HttpSession session,
 									RedirectAttributes rttr) {
 		log.info("insertCustomer()");
-		String msg = null; // DB¿¡ ÀúÀå ¼º°ø/½ÇÆĞ °ü·Ã ¸Ş¼¼Áö ÀúÀå
-		String view = null;// ´ë»ó ÆäÀÌÁö ÁöÁ¤ º¯¼ö
+		String msg = null; // DBì— ì €ì¥ ì„±ê³µ/ì‹¤íŒ¨ ê´€ë ¨ ë©”ì„¸ì§€ ì €ì¥
+		String view = null;// ëŒ€ìƒ í˜ì´ì§€ ì§€ì • ë³€ìˆ˜
 		String upFile = files.get(0).getOriginalFilename();
-		// ¾÷·ÎµåÇÏ´Â ÆÄÀÏÀÇ ÀÌ¸§À» ÃßÃâ.
+		// ì—…ë¡œë“œí•˜ëŠ” íŒŒì¼ì˜ ì´ë¦„ì„ ì¶”ì¶œ.
 
 		try {
 			if (!upFile.equals("")) {
@@ -54,11 +57,11 @@ public class CustomerService {
 			}
 			cDao.insertCustomer(customer);
 			view = "redirect:/";
-			msg = "°¡ÀÔ ¼º°ø";
-		} catch (Exception e) {// ÀúÀå ½ÇÆĞÀÎ °æ¿ì
+			msg = "ê°€ì… ì„±ê³µ";
+		} catch (Exception e) {// ì €ì¥ ì‹¤íŒ¨ì¸ ê²½ìš°
 			e.printStackTrace();
 			view = "redirect:/";
-			msg = "°¡ÀÔ ½ÇÆĞ";
+			msg = "ê°€ì… ì‹¤íŒ¨";
 		}
 		rttr.addFlashAttribute("msg", msg);
 
@@ -66,18 +69,18 @@ public class CustomerService {
 	}
 	
 	private void FileUpload(List<MultipartFile> files, HttpSession session, CustomerDto customer) throws Exception {
-		log.info("cServ¿¡ fileUpload()");
+		log.info("cServì— fileUpload()");
 
-		String sysname = null;// º¯°æÇÏ´Â ÆÄÀÏ¸í
-		String oriname = null;// ¿ø·¡ ÆÄÀÏ¸í
+		String sysname = null;// ë³€ê²½í•˜ëŠ” íŒŒì¼ëª…
+		String oriname = null;// ì›ë˜ íŒŒì¼ëª…
 
 		String realPath = session.getServletContext().getRealPath("/");
 		log.info(realPath);
 		realPath += "resources/upload/";
 		File folder = new File(realPath);
-//isDirectory() : ÇØ´ç ÀÌ¸§ÀÌ Æú´õ°¡ ¾Æ´Ï°Å³ª Á¸ÀçÇÏÁö¾ÊÀ¸¸é false
+//isDirectory() : í•´ë‹¹ ì´ë¦„ì´ í´ë”ê°€ ì•„ë‹ˆê±°ë‚˜ ì¡´ì¬í•˜ì§€ì•Šìœ¼ë©´ false
 		if (folder.isDirectory() == false) {
-			folder.mkdir();// Æú´õ»ı¼º ¸Ş¼Òµå
+			folder.mkdir();// í´ë”ìƒì„± ë©”ì†Œë“œ
 		}
 
 		MultipartFile mf = files.get(0);
@@ -87,11 +90,11 @@ public class CustomerService {
 
 		File file = new File(realPath + sysname);
 
-		mf.transferTo(file); // ÇÏµåµğ½ºÅ©(°æ·Î»óÀÇ Æú´õ)¿¡ ÀúÀå
+		mf.transferTo(file); // í•˜ë“œë””ìŠ¤í¬(ê²½ë¡œìƒì˜ í´ë”)ì— ì €ì¥
 		customer.setCustomerProfile(sysname);
 	}
 
-	// ·Î±×ÀÎ±â´É
+	// ë¡œê·¸ì¸ê¸°ëŠ¥
 		public String cLogin(CustomerDto customer, HttpSession session, RedirectAttributes rttr) {
 			log.info("login2()");
 			String msg = null;
@@ -100,16 +103,16 @@ public class CustomerService {
 			System.out.println(loggedInCustomer);
 			
 			if (loggedInCustomer != null) {
-				msg = "·Î±×ÀÎ ¼º°ø";
+				msg = "ë¡œê·¸ì¸ ì„±ê³µ";
 				view = "redirect:/";
 
 				System.out.println(loggedInCustomer);
-				// ·Î±×ÀÎ½Ã ¼¼¼Ç¿¡ ÀúÀå
+				// ë¡œê·¸ì¸ì‹œ ì„¸ì…˜ì— ì €ì¥
 				session.setAttribute("cLogin", loggedInCustomer);
 				System.out.println(loggedInCustomer);
 
 			} else {
-				msg = "ÀÌ¸ŞÀÏ ¹× ºñ¹Ğ¹øÈ£¸¦ ´Ù½Ã È®ÀÎÇØÁÖ¼¼¿ä.";
+				msg = "ì´ë©”ì¼ ë° ë¹„ë°€ë²ˆí˜¸ë¥¼ ë‹¤ì‹œ í™•ì¸í•´ì£¼ì„¸ìš”.";
 				view = "redirect:cLogin";
 			}
 
@@ -118,19 +121,19 @@ public class CustomerService {
 
 			return view;
 		}
-	// È¸¿øÁ¤º¸ ¼öÁ¤ Ã³¸®
+	// íšŒì›ì •ë³´ ìˆ˜ì • ì²˜ë¦¬
 		public String customerUpdate(List<MultipartFile> files, CustomerDto customer, HttpSession session,
 				RedirectAttributes rttr) {
 			log.info("customerUpdate()");
 			String msg = null;
 			String view = null;
-			String poster = customer.getCustomerProfile();// ±âÁ¸ÆÄÀÏ(Æ÷½ºÅÍ)
+			String poster = customer.getCustomerProfile();// ê¸°ì¡´íŒŒì¼(í¬ìŠ¤í„°)
 			
 			try {
 				if (!files.get(0).isEmpty()) {
 					FileUpload(files, session, customer);
 
-					// ±âÁ¸ÆÄÀÏ »èÁ¦
+					// ê¸°ì¡´íŒŒì¼ ì‚­ì œ
 					if (poster != null) {
 						cFileDelete(poster, session);
 					}
@@ -139,19 +142,19 @@ public class CustomerService {
 				System.out.println("cServ" + customer);
 
 				view = "redirect:/"; // + member.getMemberId();
-				msg = "¼öÁ¤ ¼º°ø";
-				// ±âÁ¸ ÆÄÀÏ »èÁ¦
+				msg = "ìˆ˜ì • ì„±ê³µ";
+				// ê¸°ì¡´ íŒŒì¼ ì‚­ì œ
 			} catch (Exception e) {
 				e.printStackTrace();
 				view = "redirect:mUpdate?memberId=" + customer.getCustomerId();
-				msg = "¼öÁ¤ ½ÇÆĞ";
+				msg = "ìˆ˜ì • ì‹¤íŒ¨";
 			}
 
 			rttr.addFlashAttribute("msg", msg);
 			return view;
 		}
 		
-		// ±âÁ¸ ¾÷·ÎµåÀÌ¹ÌÁö »èÁ¦ Ã³¸® ¸Ş¼­µå
+		// ê¸°ì¡´ ì—…ë¡œë“œì´ë¯¸ì§€ ì‚­ì œ ì²˜ë¦¬ ë©”ì„œë“œ
 		private void cFileDelete(String poster, HttpSession session) throws Exception {
 			log.info("fileDelete()");
 
@@ -164,7 +167,7 @@ public class CustomerService {
 
 		}
 
-		// È¸¿ø Å»Åğ ¸Ş¼­µå
+		// íšŒì› íƒˆí‡´ ë©”ì„œë“œ
 		public String cDelete(Integer customerId, HttpSession session, RedirectAttributes rttr) {
 			log.info("cDelete()");
 			String msg = null;
@@ -174,18 +177,19 @@ public class CustomerService {
 
 			try {
 				if (loginInfo != null) {
+					bDao.deleteCompanyList(id);
 					cDao.deleteCustomer(id);
 					System.out.println("cServ" + id);
 
 					view = "redirect:/"; 
-					msg = "Å»Åğ ¼º°ø";
+					msg = "íƒˆí‡´ ì„±ê³µ";
 				}
 
-				// ±âÁ¸ ÆÄÀÏ »èÁ¦
+				// ê¸°ì¡´ íŒŒì¼ ì‚­ì œ
 			} catch (Exception e) {
 				e.printStackTrace();
 				view = "redirect:/";
-				msg = "Å»Åğ ½ÇÆĞ";
+				msg = "íƒˆí‡´ ì‹¤íŒ¨";
 			}
 
 			rttr.addFlashAttribute("msg", msg);
@@ -193,7 +197,7 @@ public class CustomerService {
 
 		}
 		
-		// »ç¾÷ÀÚÈ¸¿ø ÀÌ¸ŞÀÏÃ£±â
+		// ì‚¬ì—…ìíšŒì› ì´ë©”ì¼ì°¾ê¸°
 		public String cFindById(CustomerDto customer, Model model, RedirectAttributes rttr) {
 		    log.info("cFindById()");
 		    System.out.println(customer);
@@ -202,7 +206,7 @@ public class CustomerService {
 		    System.out.println(EmailResult);
 		    
 		    if(EmailResult == null) {
-		        msg = "°¡ÀÔµÈ Á¤º¸°¡ ¾ø½À´Ï´Ù ´Ù½Ã È®ÀÎÇØÁÖ¼¼¿ä.";
+		        msg = "ê°€ì…ëœ ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤ ë‹¤ì‹œ í™•ì¸í•´ì£¼ì„¸ìš”.";
 		        rttr.addFlashAttribute("msg", msg);
 		        return "redirect:/cFindById";
 		    } else {
@@ -211,7 +215,7 @@ public class CustomerService {
 		    }
 		}
 		
-		// »ç¾÷ÀÚÈ¸¿ø ºñ¹Ğ¹øÈ£Ã£±â
+		// ì‚¬ì—…ìíšŒì› ë¹„ë°€ë²ˆí˜¸ì°¾ê¸°
 				public String cFindByPass(CustomerDto customer, Model model, RedirectAttributes rttr) {
 				    log.info("cFindByPass()");
 				    System.out.println(customer);
@@ -220,7 +224,7 @@ public class CustomerService {
 				    System.out.println(PassResult);
 				    
 				    if(PassResult == null) {
-				        msg = "°¡ÀÔµÈ Á¤º¸°¡ ¾ø½À´Ï´Ù ´Ù½Ã È®ÀÎÇØÁÖ¼¼¿ä.";
+				        msg = "ê°€ì…ëœ ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤ ë‹¤ì‹œ í™•ì¸í•´ì£¼ì„¸ìš”.";
 				        rttr.addFlashAttribute("msg", msg);
 				        return "redirect:/cFindByPass";
 				    } else {
@@ -229,7 +233,7 @@ public class CustomerService {
 				    }
 				}
 				
-				//»ç¾÷ÀÚÈ¸¿ø ºñ¹Ğ¹øÈ£ Ã³¸® ¸Ş¼­µå
+				//ì‚¬ì—…ìíšŒì› ë¹„ë°€ë²ˆí˜¸ ì²˜ë¦¬ ë©”ì„œë“œ
 				public String cUpdatePassProc(CustomerDto customer,RedirectAttributes rttr) {
 					log.info("cUpdatePassProc()");
 					System.out.println(customer);
@@ -238,7 +242,7 @@ public class CustomerService {
 					cDao.cUpdatePassProc(customer);
 					
 					
-					msg = "¼öÁ¤ÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù ·Î±×ÀÎ ÈÄ ÀÌ¿ëÇØÁÖ¼¼¿ä";
+					msg = "ìˆ˜ì •ì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤ ë¡œê·¸ì¸ í›„ ì´ìš©í•´ì£¼ì„¸ìš”";
 					view = "redirect:/cLogin";
 					rttr.addFlashAttribute("msg", msg);
 					
