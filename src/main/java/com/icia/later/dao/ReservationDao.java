@@ -33,4 +33,7 @@ public interface ReservationDao {
 	// 신청 상태
 	void updateStatus(@Param("pMap") Map<String, Object> pMap);
 	
+	// 업체 삭제 시 예약 삭제
+	void deleteReservation(Integer boardId);
+	
 }

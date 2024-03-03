@@ -12,7 +12,15 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
-	<jsp:include page="header.jsp" />
+	<c:if test="${empty mLogInInfo and empty cLogInInfo}">
+			<jsp:include page="header.jsp" />
+		</c:if>
+		<c:if test="${!empty mLogInInfo}">
+			<jsp:include page="mHeader.jsp" />
+		</c:if>
+		<c:if test="${!empty cLogInInfo}">
+			<jsp:include page="cHeader.jsp" />
+		</c:if>
 	<!--view-->
 	
 		

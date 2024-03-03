@@ -53,6 +53,10 @@
 		SET status=#{pMap.status}
 		WHERE reservationId=#{pMap.reservationId}
 	</update>
-
-
+	
+	<!-- 업체 삭제 시 예약 삭제 -->
+	<delete id="deleteReservation" parameterType="Integer">
+		DELETE FROM reservation 
+		WHERE boardId=#{boardId}
+	</delete>
 </mapper>
