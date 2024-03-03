@@ -269,6 +269,14 @@ public class MemberService {
 			
 			return view;
 		}
+		
+		// 리뷰를 작성한 회원 정보 가져오는 메서드
+		public void getReviewByMemberId(Integer memberId, Model model) {
+			log.info("getReviewByMemberId()");
+			
+			MemberDto member = mDao.getReviewByMemberId(memberId);
+			model.addAttribute("member", member);
+		}
 
 }
 
