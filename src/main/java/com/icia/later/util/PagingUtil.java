@@ -27,8 +27,7 @@ public class PagingUtil {
 				pageNum / pageCnt;
 		
 		//3. 번호 그룹의 시작 번호
-		int start = (curGroup * pageCnt) - (pageCnt - 1);
-		//두번째 그룹 시작번호 : 2 * pageCnt(5) - (5 - 1) = 6  
+		int start = (curGroup - 1) * pageCnt + 1;
 		
 		//4. 번호 그룹의 마지막 번호
 		int end = (curGroup * pageCnt) >= totalPage ?
@@ -36,16 +35,16 @@ public class PagingUtil {
 		//두번째 그룹 마지막번호 : 2 * pageCnt(5) = 10 
 		
 		//5. 이전 버튼 처리
-		if(start != 1) {
-			sb.append("<a class='pno' href='./?pageNum=");
-			sb.append((start - 1) + "'>");
-			sb.append("◀</a>");
+		if(start - pageCnt > 0) {
+		    sb.append("<a class='pno' href='./companyList?pageNum=");
+		    sb.append((start - pageCnt) + "'>");
+		    sb.append("◀</a>");
 		}//<a class='pno' href='./?pageNum=5'>◀</a>
 		
 		//6. 중간 번호 버튼 처리
 		for(int i = start; i <= end; i++) {
 			if(pageNum != i){//현재 보이는 페이지가 아닌 경우
-				sb.append("<a class='pno' href='./?pageNum=");
+				sb.append("<a class='pno' href='./companyList?pageNum=");
 				sb.append(i + "'>" + i + "</a>");
 			}//<a class='pno' href='./?pageNum=2'>2</a>
 			else {//현재 보이는 페이지인 경우
@@ -55,7 +54,7 @@ public class PagingUtil {
 		
 		//7. 다음 버튼 처리
 		if(end != totalPage) {
-			sb.append("<a class='pno' href='./?pageNum=");
+			sb.append("<a class='pno' href='./companyList?pageNum=");
 			sb.append((end + 1) + "'>");
 			sb.append("▶</a>");
 		}//<a class='pno' href='./?pageNum=6'>▶</a>

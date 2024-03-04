@@ -218,7 +218,7 @@ public class BoardService {
 		// 신청한 업체 개수
 		int maxNum = bDao.cntBoard();
 		// 페이지 당 보여질 번호 개수
-		int pageCnt = 2;
+		int pageCnt = 5;
 
 		PagingUtil paging = new PagingUtil(maxNum, pageCnt, listCnt, pageCnt);
 
