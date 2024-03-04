@@ -42,8 +42,11 @@ public interface BoardDao {
 	//사업자 탈퇴시 모집한글도 삭제
 	void deleteCompanyList(Integer Id);
 
+	// 카테고리에 속한 게시글 수 구하기
+	int cntBoardByCategoryId(Integer categoryId);
 
-
+	// 카테고리에 속한 게시글 목록 가져오기
+	List<BoardDto> getBoardListByCategory(Map<String, Integer> pMap);
 	
 
 	

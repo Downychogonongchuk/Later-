@@ -62,4 +62,11 @@
 		DELETE FROM board WHERE customerId = #{customerId}
 	</delete>
 	
+	<!-- 카테고리별 게시글 목록 조회 -->
+	<select id="getBoardListByCategory" parameterType="HashMap" resultType="board">
+		select * from board
+		where category=#{cateNum}
+		limit #{pageNum}, #{listCnt}
+	</select>
+	
 </mapper>
