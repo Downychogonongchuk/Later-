@@ -220,5 +220,10 @@ public class BoardService {
 
 		return pageHtml;
 	}
+	// 카테고리 목록 가져오기
+	public String getCategoryList(Integer pageNum, Model model, HttpSession session) {
+		
+		return null;
+	}
 
 }
