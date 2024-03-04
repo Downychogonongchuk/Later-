@@ -81,11 +81,11 @@
 		<nav class="navbar navbar-expand-sm bg-light navbar-light">
 			<!-- Links -->
 			<ul class="navbar-nav">
-				<li class="nav-item"><a class="nav-link" href="#">맛집</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">숙소</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">가전</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">뷰티</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">기타</a></li>
+				<li class="nav-item"><a class="nav-link" href="category?cateNum=1">맛집</a></li>
+				<li class="nav-item"><a class="nav-link" href="category?cateNum=2">숙소</a></li>
+				<li class="nav-item"><a class="nav-link" href="category?cateNum=3">가전</a></li>
+				<li class="nav-item"><a class="nav-link" href="category?cateNum=4">뷰티</a></li>
+				<li class="nav-item"><a class="nav-link" href="category?cateNum=5">기타</a></li>
 				<li class="nav-item"><a class="nav-link" href="review">리뷰</a></li>
 			</ul>
 		</nav>
