@@ -11,8 +11,8 @@
  	
  	<!-- 리뷰 작성 -->
  	<insert id="insertReview" parameterType="review">
- 		INSERT INTO review (reviewFile, time, contents, memberId)
- 		VALUES (#{reviewFile}, #{time}, #{contents}, #{memberId})
+ 		INSERT INTO review (reviewFile, reviewTitle ,time, reviewLink, contents, memberId)
+ 		VALUES (#{reviewFile}, #{reviewTitle}, #{time}, #{reviewLink}, #{contents}, #{memberId})
  	</insert>
  	
  	<!-- 리뷰 작성 리스트 가져오기 -->

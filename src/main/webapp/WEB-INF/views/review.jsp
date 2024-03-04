@@ -90,7 +90,7 @@
 		<!-- 업체 리스트 (2024-02-26) -->
 		<div class="review" >
 		 <c:if test="${empty rList}">
-				등록된 모집글이 없습니다.
+				등록된 리뷰가 없습니다.
 			</c:if>
 			<c:if test="${!empty rList}">
 				<c:forEach var="ritem" items="${rList}">
@@ -106,6 +106,12 @@
 								<img src="resources/upload/${ritem.reviewFile}"
 									class="review-poster">
 							</c:if>
+						</a>
+						</div>
+						<!-- 제목 (2024-03-04) -->
+						<div class="review-title">
+						<a href="reviewDetail?reviewId=${ritem.reviewId}">
+								${ritem.reviewTitle}
 						</a>
 						</div>
 						<!-- 업체 이름 (2024-02-26) -->

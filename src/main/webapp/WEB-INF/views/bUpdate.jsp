@@ -63,10 +63,10 @@
             autofocus value="${board.customerId}">
             <input type="hidden" class="write-input" name="boardId"
             autofocus value="${board.boardId}">
-            <input type="text" class="write-input" name="periodStart"
-            autofocus value="${board.periodStart}" placeholder="모집시작일ex)2024-02-00">
-            <input type="text" class="write-input" name="periodEnd"
-                   autofocus value="${board.periodEnd}" placeholder="모집종료일ex)2024-02-00">
+            <input type="datetime-local" class="write-input" name="periodStart"
+            autofocus value="${board.periodStart}" required="required">
+            <input type="datetime-local" class="write-input" name="periodEnd"
+                   autofocus value="${board.periodEnd}" required="required">
             <input type="text" class="write-input" name="personnel"
                    value="${board.personnel}" placeholder="모집인원">
             <input type="hidden" class="write-input" name="companyName"

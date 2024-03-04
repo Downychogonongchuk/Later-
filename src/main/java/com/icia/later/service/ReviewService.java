@@ -41,10 +41,12 @@ public class ReviewService {
 				FileUpload(files, session, review);
 			}
 			rDao.insertReview(review);
+			System.out.println(review);
 			view = "redirect:/";
 			msg = "작성 성공";
 		} catch (Exception e) {// 저장 실패인 경우
 			e.printStackTrace();
+			System.out.println(review);
 			view = "redirect:/";
 			msg = "작성 실패";
 		}

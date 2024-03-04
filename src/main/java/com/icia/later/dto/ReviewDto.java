@@ -13,7 +13,9 @@ import lombok.ToString;
 public class ReviewDto {
 	 private int reviewId;
 	 private String reviewFile;
+	 private String reviewTitle;
 	 private String time;
+	 private String reviewLink;
 	 private String contents;
 	 private int memberId;
 	 private int boardId;

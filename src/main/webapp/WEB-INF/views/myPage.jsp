@@ -101,10 +101,7 @@
 						<a href="companyList?customerId=${cLogInInfo.customerId}">내가 모집한글</a>
 					</div>
 					<div>
-						<a href="writeFrm">업체 등록</a>
-					</div>
-					<div>
-						<a href="bUpdate">업체 수정</a>
+						<a href="writeFrm">모집글 등록</a>
 					</div>
 					<div>
 						<a href="cDelete">회원탈퇴</a>
