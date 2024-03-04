@@ -44,6 +44,9 @@ public interface BoardDao {
 
 	//홈페이지 커밍순 모집글 가져오기
 	List<BoardDto> getComingList();
+	
+	// 업체 예약자 수 수정
+	void updateHits(Map<String, Integer> pMap);
 
 	
 

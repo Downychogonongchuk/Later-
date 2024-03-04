@@ -52,6 +52,10 @@ public class HomeController {
 				// 로그인한 사업자 정보를 모델에 추가하여 JSP로 전달
 		        model.addAttribute("cLogInInfo", logInInfo1);	        	        	        
 		}
+			// 인기 업체 리스트 가져오기
+		    List<BoardDto> bList = bServ.getBoardList();
+		    model.addAttribute("bList", bList);
+			
 			model.addAttribute("cbList", cbList);
 			System.out.println(cbList);
 			return "home";

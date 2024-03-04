@@ -239,4 +239,17 @@ public class BoardService {
 		return cbList;
 	}
 
+		// 업체 예약자 수 증가하는 메서드
+		public void updateHits(Integer boardId, Integer hits) {
+			log.info("updateHits()");
+			System.out.println(boardId);
+			System.out.println(hits);
+			
+			Map<String, Integer> pMap = new HashMap<String, Integer>();
+			pMap.put("boardId", boardId);
+			pMap.put("hits", hits);
+			bDao.updateHits(pMap);
+			System.out.println(hits);
+		}
+
 }

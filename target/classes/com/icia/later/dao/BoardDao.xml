@@ -7,11 +7,11 @@
 	<!-- 모집글 등록 -->
 	<insert id="insertBoard" parameterType="board">
 		INSERT INTO board ( category,companyName,periodStart, periodEnd,personnel,price,provideType,detail,checkInfo,
-		boardFile, customerId)
+		boardFile, hits, customerId)
 		
 		VALUES (#{category},#{companyName},#{periodStart}, #{periodEnd}, #{personnel}, 
 				#{price}, #{provideType},#{detail}, #{checkInfo}, 
-				 #{boardFile}, #{customerId})
+				 #{boardFile}, #{hits}, #{customerId})
 	</insert>
 	
 		<!--업체 수정  -->
@@ -66,4 +66,10 @@
 		select * from board order by periodStart asc
 	</select>
 	
+	<!-- 업체 예약자 수 수정 -->
+	<update id="updateHits" parameterType="HashMap">
+		UPDATE board 
+		SET hits=#{pMap.hits}
+		WHERE boardId=#{pMap.boardId}
+	</update>
 </mapper>
