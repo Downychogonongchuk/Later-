@@ -137,7 +137,7 @@ public class ReservationService {
 			rDao.updateStatus(pMap);
 			view = "redirect:/";
 			msg = "신청한 회원을 확정하였습니다.";
-		} else {
+		} else if("거절".equals(status)){
 			Map<String, Object> pMap = new HashMap<>();
 			pMap.put("reservationId", reservationId);
 			pMap.put("status", status);
