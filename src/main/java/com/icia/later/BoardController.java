@@ -46,58 +46,62 @@ public class BoardController {
 
 	// 모집등록 처리 메서드
 	@PostMapping("writeProc")
-	public String writeProc(@RequestPart List<MultipartFile> files, 
-			BoardDto board,
-			HttpSession session,
+	public String writeProc(@RequestPart List<MultipartFile> files, BoardDto board, HttpSession session,
 			RedirectAttributes rttr) {
 		log.info("writeProc()");
-		
+
 		String view = bServ.insertBoard(files, board, session, rttr);
 		return view;
 	}
-	//업체정보 수정페이지 전환
-			@GetMapping("bUpdate")
-			public String bUpdate(Integer boardId, Model model, HttpSession session) {
-				log.info("bUpdate()");
-				
-				boardId = 1;
-				
-				BoardDto board = bServ.getBoard(boardId);
-				
-				CustomerDto cLogInInfo = (CustomerDto) session.getAttribute("cLogin");
-				
-				System.out.println(cLogInInfo);
-				if(cLogInInfo != null) {
-					model.addAttribute("customer", cLogInInfo);
-				}
-				
-				model.addAttribute("board", board);
-				return "bUpdate";
-			}
-			
-			//업체정보 수정 처리 메서드
-			@PostMapping("bUpdateProc")
-			public String bUpdateProc(@RequestPart List<MultipartFile> files, 
-					Integer boardId,
-					HttpSession session,
-					RedirectAttributes rttr) {
-				log.info("bUpdateProc()");
-				
-				BoardDto board = bServ.getBoard(boardId);
-				
-				String view = bServ.boardUpdate(files, board, session, rttr);
-				
-				return view;
-			}
-			
-			// 업체 삭제 메서드
-			@GetMapping("bDelete")
-			public String bDelete(Integer boardId,
-								  HttpSession session,
-								  RedirectAttributes rttr) {
-				log.info("bDelete()");
-				String view = bServ.boardDelete(boardId, session, rttr);
-				return view;
-			}
+
+	// 업체정보 수정페이지 전환
+	@GetMapping("bUpdate")
+	public String bUpdate(Integer boardId, Model model, HttpSession session) {
+		log.info("bUpdate()");
+
+		boardId = 1;
+
+		BoardDto board = bServ.getBoard(boardId);
+
+		CustomerDto cLogInInfo = (CustomerDto) session.getAttribute("cLogin");
+
+		System.out.println(cLogInInfo);
+		if (cLogInInfo != null) {
+			model.addAttribute("customer", cLogInInfo);
+		}
+
+		model.addAttribute("board", board);
+		return "bUpdate";
+	}
+
+	// 업체정보 수정 처리 메서드
+	@PostMapping("bUpdateProc")
+	public String bUpdateProc(@RequestPart List<MultipartFile> files, Integer boardId, HttpSession session,
+			RedirectAttributes rttr) {
+		log.info("bUpdateProc()");
+
+		BoardDto board = bServ.getBoard(boardId);
+
+		String view = bServ.boardUpdate(files, board, session, rttr);
+
+		return view;
+	}
+
+	// 업체 삭제 메서드
+	@GetMapping("bDelete")
+	public String bDelete(Integer boardId, HttpSession session, RedirectAttributes rttr) {
+		log.info("bDelete()");
+		String view = bServ.boardDelete(boardId, session, rttr);
+		return view;
+	}
+
+	// 카테고리를 처리하는 메소드
+	@GetMapping("category")
+	private String handleCategory(Integer cateNum, Integer pageNum, Model model, HttpSession session) {
+		log.info("handleCategory() cn: {}", cateNum);
+
+		// BoardService를 통해 카테고리 목록을 가져옴
+		return bServ.getCategoryList(cateNum, pageNum, model, session);
+	}
 
 }
