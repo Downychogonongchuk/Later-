@@ -2,6 +2,7 @@ package com.icia.later.service;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -122,14 +123,15 @@ public class BoardService {
 		return board;
 	}
 
-	public List<BoardDto> getBoardList() {
+		//게시되어있는 모집글 전부 가져오는 메서드
+		public List<BoardDto> getBoardList() {
 
 		List<BoardDto> bList = bDao.getBoardList();
 
 		return bList;
 	}
 
-	public String boardDelete(Integer boardId, HttpSession session, RedirectAttributes rttr) {
+		public String boardDelete(Integer boardId, HttpSession session, RedirectAttributes rttr) {
 		log.info("boardDelete()");
 		String view = null;
 		String msg = null;
@@ -223,6 +225,18 @@ public class BoardService {
 		pageHtml = paging.makePaging();
 
 		return pageHtml;
+	}
+	
+	//모집시작 날짜별로 리스트 가져오기
+	 public List<BoardDto> getComingList(Model model){
+		 log.info("getComingList()");
+		List<BoardDto> cbList = bDao.getComingList();
+		for (int i = 0; i < cbList.size(); i++) {
+			System.out.println(cbList.get(i));
+		}
+		model.addAttribute("cbList", cbList);
+		
+		return cbList;
 	}
 
 }

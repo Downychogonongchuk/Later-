@@ -42,7 +42,8 @@ public interface BoardDao {
 	//사업자 탈퇴시 모집한글도 삭제
 	void deleteCompanyList(Integer Id);
 
-
+	//홈페이지 커밍순 모집글 가져오기
+	List<BoardDto> getComingList();
 
 	
 

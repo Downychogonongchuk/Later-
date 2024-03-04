@@ -8,46 +8,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet"
-	href="resources/css/style.css"/>
-<link rel="stylesheet"
 	href="resources/css/reviewDetail.css"/>
 </head>
-<style>
-	.wrap {
-	display: flex;
-	flex-direction: column;
-	height: 100%;
-}
-
-.hotpick {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.hotpick-color {
-	color: red;
-	font-size: 35px;
-}
-
-.coming-soon {
-	background-color: #000000;
-	color: #fff;
-	font-size: 20px;
-	line-height: 50px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-.fa-star {
-	color: red;
-}
-
-.nav-link {
-	font-size: 20px;
-}
-	
-</style>
 <body>
 <div class="wrap">
 		<c:if test="${empty mLogInInfo and empty cLogInInfo}">
@@ -110,7 +72,8 @@
 		</div>
 	</div>
 </div>
-		<jsp:include page="footer.jsp" />
+	<jsp:include page="footer.jsp" />
 	</div>
+
 </body>
 </html>

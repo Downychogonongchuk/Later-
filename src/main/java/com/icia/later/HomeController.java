@@ -1,5 +1,6 @@
 package com.icia.later;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,8 +16,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.icia.later.dto.BoardDto;
 import com.icia.later.dto.CustomerDto;
 import com.icia.later.dto.MemberDto;
+import com.icia.later.dto.ReservationDto;
+import com.icia.later.service.BoardService;
 import com.icia.later.service.MemberService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -27,12 +31,15 @@ import lombok.extern.slf4j.Slf4j;
 public class HomeController {
 	@Autowired
 	private MemberService mServ;
+	@Autowired 
+	private BoardService bServ;
 			
 	//메인페이지
 		@GetMapping("/")
 		public String home(Model model,HttpSession session) {
 			log.info("home()");
 			MemberDto logInInfo = (MemberDto) session.getAttribute("mLogin");
+			List<BoardDto> cbList = bServ.getComingList(model);
 			
 			if (logInInfo != null && session.getAttribute("mLogin") != null) {
 				// 로그인한 회원 정보를 모델에 추가하여 JSP로 전달
@@ -43,10 +50,10 @@ public class HomeController {
 			
 			if (logInInfo1 != null && session.getAttribute("cLogin") != null) {
 				// 로그인한 사업자 정보를 모델에 추가하여 JSP로 전달
-		        model.addAttribute("cLogInInfo", logInInfo1);
-		        	        	        	        
+		        model.addAttribute("cLogInInfo", logInInfo1);	        	        	        
 		}
-
+			model.addAttribute("cbList", cbList);
+			System.out.println(cbList);
 			return "home";
 		}
 		

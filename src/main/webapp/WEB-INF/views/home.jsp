@@ -159,42 +159,42 @@
         <section id="applyCompany">
             <div class="data-area">
                 <!-- 신청 목록 출력 -->
-                    <c:if test="${empty bList}">
+                    <c:if test="${empty cbList}">
                         <div class="shop-item">
                             <span class="none-content">신청한 체험단 모집글이 없습니다.</span>
                         </div>
                     </c:if><!--if boardList is Empty-->
 
-                    <c:if test="${!empty bList}">
-                        <c:forEach var="board" items="${bList}" begin="0" end="4" step="1">
+                    <c:if test="${!empty cbList}">
+                        <c:forEach var="cbList" items="${cbList}" begin="0" end="4" step="1">
                             <div class="shop-item">
-                                <a href="companyDetail?boardId=${board.boardId}">
-                                    <c:if test="${empty board.boardFile}">
+                                <a href="companyDetail?boardId=${cbList.boardId}">
+                                    <c:if test="${empty cbList.boardFile}">
                                         <img src="resources/images/no_image.jpg"
                                             class="poster-pre">
                                     </c:if> <!--!empty boardList End-->
 
-                                    <c:if test="${!empty board.boardFile}">
-                                        <img src="resources/upload/${board.boardFile}"
+                                    <c:if test="${!empty cbList.boardFile}">
+                                        <img src="resources/upload/${cbList.boardFile}"
                                             class="poster-pre">
                                     </c:if>
                                 </a>
                                 <section class="info-pre">
                               
                                     <div class="title-pre">
-                                        <a class="title" href="companyDetail?boardId=${board.boardId}">
-                                            ${board.companyName}
+                                        <a class="title" href="companyDetail?boardId=${cbList.boardId}">
+                                            ${cbList.companyName}
                                         </a>  
                                     </div> <!--title-pre-End-->
                                     
-                                    
-                                    <div class="content-provide">${board.provideType}</div>
-                                    <div class="content-price">${board.price}</div>
+                                  
+                                    <div class="content-provide">${cbList.provideType}</div>
+                                    <div class="content-price">${cbList.price}</div>
                                      <div class="priceline"></div>
                                      <div class="div3">모집인원</div>
-                                    <div class="content-personnel">${board.personnel}</div>
-                                    <div class="content-period1">신청 시작:${board.periodStart}</div>
-                                    <div class="content-period2">신청 마감:${board.periodEnd}</div>
+                                    <div class="content-personnel">${cbList.personnel}</div>
+                                    <div class="content-period1">신청 시작:${cbList.periodStart}</div>
+                                    <div class="content-period2">신청 마감:${cbList.periodEnd}</div>
                                    
                                
                                 </section>

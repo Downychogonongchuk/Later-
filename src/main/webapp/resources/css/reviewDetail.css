@@ -1,14 +1,47 @@
+	.wrap {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+.hotpick {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.hotpick-color {
+	color: red;
+	font-size: 35px;
+}
+
+.coming-soon {
+	background-color: #000000;
+	color: #fff;
+	font-size: 20px;
+	line-height: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.fa-star {
+	color: red;
+}
+
+.nav-link {
+	font-size: 20px;
+}
 .detail-all {
 	display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* ÀÚµ¿À¸·Î ¿ä¼ÒÀÇ Å©±â¸¦ Á¶Á¤ÇÏ¿© °¡·Î Á¤·Ä */
-    gap: 10px; /* ¿ä¼Ò »çÀÌÀÇ °£°Ý */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ Å©ï¿½â¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
+    gap: 10px; /* ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
 }
 
 .detail-poster {
-		height: 100%;
-		width: 100%;
-		margin-right: 0;
-		margin-bottom: 20px; 
+		height: 80%;
+		width: 80%;
+		margin-left : 90px;
+		margin-top : 60px;
 }
 
 .contents {
@@ -17,25 +50,32 @@
 }
 
 .detail-contents {
-    width: 100%; /* divÀÇ ³Êºñ ¼³Á¤ */
-	word-wrap: break-word; /* ´Ü¾î ´ÜÀ§·Î ÁÙ¹Ù²Þ */
+    width: 100%; /* divï¿½ï¿½ ï¿½Êºï¿½ ï¿½ï¿½ï¿½ï¿½ */
+	word-wrap: break-word; /* ï¿½Ü¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¹Ù²ï¿½ */
 	font-size: 20px;
 	font-family: inherit;
+	margin-left : 10px;
+}
+.detail-sub {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	padding: 10px 0;
 }
 
 .img-box {
 	margin: 0 auto;
-	width: 100px; /* ÀÌ¹ÌÁöÀÇ ³Êºñ */
-	height: 100px; /* ÀÌ¹ÌÁöÀÇ ³ôÀÌ */
-	border-radius: 50%; /* ¸ð¼­¸®¸¦ µÕ±Û°Ô ¸¸µì´Ï´Ù. °ªÀº ¹ÝÁö¸§À» ³ªÅ¸³À´Ï´Ù. */
+	width: 100px; /* ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Êºï¿½ */
+	height: 100px; /* ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
+	border-radius: 50%; /* ï¿½ð¼­¸ï¿½ï¿½ï¿½ ï¿½Õ±Û°ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½Ï´ï¿½. */
 	overflow: hidden;
 	
 }
 
 .img-box img {
-	width: 100%; /* ÀÌ¹ÌÁö°¡ ºÎ¸ð ¿ä¼ÒÀÎ div¿¡ ²Ë Â÷°Ô ¼³Á¤ÇÕ´Ï´Ù. */
-	height: auto; /* ÀÌ¹ÌÁöÀÇ ³ôÀÌ¸¦ ÀÚµ¿À¸·Î Á¶Á¤ÇÏ¿© ºñÀ²À» À¯ÁöÇÕ´Ï´Ù. */
-	display: block; /* ÀÎ¶óÀÎ ¿ä¼Ò¸¦ ºí·Ï ¿ä¼Ò·Î º¯È¯ÇÕ´Ï´Ù. */
+	width: 100%; /* ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Î¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ divï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½. */
+	height: auto; /* ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½. */
+	display: block; /* ï¿½Î¶ï¿½ï¿½ï¿½ ï¿½ï¿½Ò¸ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½Ò·ï¿½ ï¿½ï¿½È¯ï¿½Õ´Ï´ï¿½. */
 }
 
 .img-poster {

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.icia.later.dto.CustomerDto;
 import com.icia.later.dto.MemberDto;
 import com.icia.later.dto.ReviewDto;
 import com.icia.later.service.MemberService;
@@ -67,14 +68,19 @@ public class ReviewController {
 
 	//리뷰 상세페이지 이동
 	@GetMapping("reviewDetail")
-	public String reviewDetail(Model model, Integer reviewId, Integer memberId) {
+	public String reviewDetail(Model model, Integer reviewId, Integer memberId,HttpSession session) {
 		log.info("reviewDetail()");
+		
+		MemberDto mLogInInfo = (MemberDto) session.getAttribute("mLogin");
+		CustomerDto cLogInInfo = (CustomerDto) session.getAttribute("cLogin");
 		
 		// 리뷰를 작성한 회원의 정보 가져오기
 		mServ.getReviewByMemberId(memberId, model);
 		
 		// 리뷰 정보 가져오기
 		rServ.getReview(reviewId, model);
+		model.addAttribute("mLogInInfo", mLogInInfo);
+		model.addAttribute("cLogInInfo", cLogInInfo);
 		
 		return "reviewDetail";
 	}

@@ -62,4 +62,8 @@
 		DELETE FROM board WHERE customerId = #{customerId}
 	</delete>
 	
+	<select id="getComingList" resultType="board">
+		select * from board order by periodStart asc
+	</select>
+	
 </mapper>

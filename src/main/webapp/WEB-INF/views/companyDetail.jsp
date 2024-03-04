@@ -38,7 +38,7 @@
                     </section>
                     <section class="checkInfo">
                         <p>
-                            <strong><b>체크사항</b>체크사항</strong> <span class="checkContent">"${checkInfo}"</span>
+                            <strong></b>체크사항</strong> <span class="checkContent">"${board.checkInfo}"</span>
                         </p>
                     </section> <!--checkInfoEnd-->	
                 </div>	<!--leftEnd-->
@@ -82,7 +82,7 @@
 				<section class="detail">
 					<p>
 						<strong><b>상세정보</b></strong> <span class="detailContent">
-							"${detail}"</span>
+							"${board.detail}"</span>
 					</p>
 					<ul>
 						<li></li>
