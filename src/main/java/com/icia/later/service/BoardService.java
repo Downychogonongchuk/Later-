@@ -220,10 +220,56 @@ public class BoardService {
 
 		return pageHtml;
 	}
-	// 카테고리 목록 가져오기
-	public String getCategoryList(Integer pageNum, Model model, HttpSession session) {
+//	// 카테고리 목록 가져오기
+//	public String getCategoryList(Integer cateNum, Integer pageNum, Model model, HttpSession session) {
+//		
+//		return null;
+//	}
+	public String getCategoryList(Integer cateNum, Integer pageNum, Model model, HttpSession session) {
+		log.info("getCategoryList()");
+
+		if (pageNum == null) {
+			pageNum = 1; // 처음에 사이트가 열릴 때 첫페이지가 되도록 설정
+		}
+
+		int listCnt = 5; // 페이지당 보여질 콘텐츠 개수
 		
-		return null;
+		// 페이징을 위한 매개변수 설정
+		Map<String, Integer> pMap = new HashMap<>();
+		pMap.put("pageNum", (pageNum - 1) * listCnt);
+		pMap.put("listCnt", listCnt);
+		pMap.put("cateNum", cateNum);
+		
+		// DAO를 통해 카테고리 목록을 가져옴
+		List<BoardDto> bList = bDao.getBoardListByCategory(pMap);
+
+		// 게시글 목록 추가
+		model.addAttribute("bList", bList);
+
+		// 페이징 처리
+		String pageHtml = getPaging(pageNum, listCnt);
+		model.addAttribute("pageHtml", pageHtml);
+		model.addAttribute("pageNum", pageNum);
+
+		return "category" + cateNum;
 	}
+
+	private String getPaging2(Integer pageNum, Integer listCnt) {
+		String pageHtml = null;
+
+		int maxNum = bDao.cntBoard(); // 게시물 총 개수
+		int pageCnt = 5; // 페이지당 보일 번호 개수
+		
+		// 전체 페이지 수 
+		PagingUtil paging = new PagingUtil(maxNum, pageCnt, maxNum, pageCnt);
+		pageHtml = paging.makePaging();
+
+		return pageHtml;
+	}
+
+	public void getCategory() {
+
+	}
+
 
 }
