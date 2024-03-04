@@ -17,15 +17,39 @@ public class CategoryController {
 	@Autowired
 	private BoardService bServ;
 
+	private String handleCategory(Integer pageNum, Model model, HttpSession session) {
+		log.info("handleCategory()");
+
+		return bServ.getCategoryList(pageNum, model, session);
+	}
+
 	@GetMapping("/category1")
-	public String home(Integer pageNum,
-						Model model, 
-						HttpSession session) {
-		log.info("home()");
-		
-//		String view = bServ.getCategoryList(pageNum, model, session);
-		
-		return "category1";
-				
+	public String category1(Integer pageNum, Model model, HttpSession session) {
+		return handleCategory(pageNum, model, session);
+
+	}
+
+	@GetMapping("/category2")
+	public String category2(Integer pageNum, Model model, HttpSession session) {
+		return handleCategory(pageNum, model, session);
+
+	}
+
+	@GetMapping("/category3")
+	public String category3(Integer pageNum, Model model, HttpSession session) {
+		return handleCategory(pageNum, model, session);
+
+	}
+
+	@GetMapping("/category4")
+	public String category4(Integer pageNum, Model model, HttpSession session) {
+		return handleCategory(pageNum, model, session);
+
+	}
+
+	@GetMapping("/category5")
+	public String category5(Integer pageNum, Model model, HttpSession session) {
+		return handleCategory(pageNum, model, session);
+
 	}
 }
