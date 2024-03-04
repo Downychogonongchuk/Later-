@@ -133,7 +133,7 @@ public class CompanyController {
 							return "selectApply";
 						}
 
-						// 진행 상태 status
+						// 진행 상태 status 변경 메서드(확정 or 거절)
 						@PostMapping("select")
 						public String select(Integer reservationId, String status, Model model, RedirectAttributes rttr) {
 							log.info("select()");

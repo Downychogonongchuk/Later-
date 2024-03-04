@@ -1,0 +1,52 @@
+.detail-all {
+	display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* 자동으로 요소의 크기를 조정하여 가로 정렬 */
+    gap: 10px; /* 요소 사이의 간격 */
+}
+
+.detail-poster {
+		height: 100%;
+		width: 100%;
+		margin-right: 0;
+		margin-bottom: 20px; 
+}
+
+.contents {
+	border-left: 2px solid #000000;
+	margin-bottom: 10px;
+}
+
+.detail-contents {
+    width: 100%; /* div의 너비 설정 */
+	word-wrap: break-word; /* 단어 단위로 줄바꿈 */
+	font-size: 20px;
+	font-family: inherit;
+}
+
+.img-box {
+	margin: 0 auto;
+	width: 100px; /* 이미지의 너비 */
+	height: 100px; /* 이미지의 높이 */
+	border-radius: 50%; /* 모서리를 둥글게 만듭니다. 값은 반지름을 나타냅니다. */
+	overflow: hidden;
+	
+}
+
+.img-box img {
+	width: 100%; /* 이미지가 부모 요소인 div에 꽉 차게 설정합니다. */
+	height: auto; /* 이미지의 높이를 자동으로 조정하여 비율을 유지합니다. */
+	display: block; /* 인라인 요소를 블록 요소로 변환합니다. */
+}
+
+.img-poster {
+		height: 100%;
+		width: 100%;
+		margin-right: 0;
+		margin-bottom: 20px; 
+}
+
+.detailcontent {
+	padding-top: 40px;
+	margin: 0 auto;
+	
+}

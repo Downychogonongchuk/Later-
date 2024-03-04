@@ -56,4 +56,9 @@
 		WHERE memberId=#{memberId}
 	</delete>
 	
+	<select id="getReviewByMemberId" parameterType="Integer"
+		resultType="member">
+		SELECT * FROM member
+		WHERE memberId=#{memberId}
+		</select>
 </mapper>

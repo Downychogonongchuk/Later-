@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.icia.later.dao.BoardDao;
+import com.icia.later.dao.ReservationDao;
 import com.icia.later.dto.BoardDto;
 import com.icia.later.dto.MemberDto;
 import com.icia.later.util.PagingUtil;
@@ -26,6 +27,8 @@ public class BoardService {
 	// DAO
 	@Autowired
 	private BoardDao bDao;
+	@Autowired
+	private ReservationDao rDao;
 
 	// 모집글 작성
 	public String insertBoard(List<MultipartFile> files, BoardDto board, HttpSession session, RedirectAttributes rttr) {
@@ -139,8 +142,9 @@ public class BoardService {
 			if (poster != null) {
 				fileDelete(poster, session);
 			}
+			// 업체 삭제 시 예약 삭제
+			rDao.deleteReservation(boardId);
 			bDao.deleteBoard(boardId);
-
 			view = "redirect:/";
 			msg = "삭제 성공";
 		} catch (Exception e) {
