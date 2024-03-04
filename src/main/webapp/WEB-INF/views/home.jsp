@@ -101,7 +101,7 @@
 			<hr color="gray">
 		</div>
 		
-		<!-- 업체 리스트 (2024-02-26) -->
+		<!-- 인기글 리스트 (2024-02-26) -->
 <div id="content">
         <section id="applyCompany">
             <div class="data-area">

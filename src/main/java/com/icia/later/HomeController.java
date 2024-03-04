@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.icia.later.dto.BoardDto;
 import com.icia.later.dto.CustomerDto;
 import com.icia.later.dto.MemberDto;
+import com.icia.later.service.BoardService;
 import com.icia.later.service.MemberService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -27,6 +29,8 @@ import lombok.extern.slf4j.Slf4j;
 public class HomeController {
 	@Autowired
 	private MemberService mServ;
+	@Autowired
+	private BoardService bServ;
 			
 	//메인페이지
 		@GetMapping("/")
@@ -46,6 +50,10 @@ public class HomeController {
 		        model.addAttribute("cLogInInfo", logInInfo1);
 		        	        	        	        
 		}
+		// 인기 업체 리스트 가져오기
+	    List<BoardDto> bList = bServ.getBoardList();
+	    
+	    model.addAttribute("bList", bList);
 
 			return "home";
 		}

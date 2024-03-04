@@ -121,7 +121,7 @@ public class BoardService {
 
 		return board;
 	}
-
+	// 인기 업체 리스트 가져오기
 	public List<BoardDto> getBoardList() {
 
 		List<BoardDto> bList = bDao.getBoardList();
@@ -223,6 +223,19 @@ public class BoardService {
 		pageHtml = paging.makePaging();
 
 		return pageHtml;
+	}
+	
+	// 업체 예약자 수 증가하는 메서드
+	public void updateHits(Integer boardId, Integer hits) {
+		log.info("updateHits()");
+		System.out.println(boardId);
+		System.out.println(hits);
+		
+		Map<String, Integer> pMap = new HashMap<String, Integer>();
+		pMap.put("boardId", boardId);
+		pMap.put("hits", hits);
+		bDao.updateHits(pMap);
+		System.out.println(hits);
 	}
 
 }

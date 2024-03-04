@@ -35,6 +35,7 @@
             });
         });
     </script>
+
 </head>
 <body>
 <div class="wrap">
@@ -76,6 +77,7 @@
                       placeholder="상세설명"></textarea>
             <textarea rows="10" class="write-input ta" name="checkInfo"
                       placeholder="체크사항 및 요청사항"></textarea>
+            <input type="hidden" class="write-input" name="hits" id="hits">
             <div class="btn-area">
                 <input type="submit" class="btn-write" value="작성완료">
                 <input type="button" class="btn-write" value="뒤로가기" id="backbtn">
@@ -85,9 +87,14 @@
 	<jsp:include page="footer.jsp" />
 </div>
 </body>
+
 <script>
     $("#backbtn").click(function () {
     	location.href = `./`;
     });
+</script>
+    <script>
+		var hits = 0;
+		document.getElementById("hits").value = hits;
 </script>
 </html>

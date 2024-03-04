@@ -7,11 +7,11 @@
 	<!-- 모집글 등록 -->
 	<insert id="insertBoard" parameterType="board">
 		INSERT INTO board ( category,companyName,periodStart, periodEnd,personnel,price,provideType,detail,checkInfo,
-		boardFile, customerId)
+		boardFile, hits, customerId)
 		
 		VALUES (#{category},#{companyName},#{periodStart}, #{periodEnd}, #{personnel}, 
 				#{price}, #{provideType},#{detail}, #{checkInfo}, 
-				 #{boardFile}, #{customerId})
+				 #{boardFile}, #{hits}, #{customerId})
 	</insert>
 	
 		<!--업체 수정  -->
@@ -28,9 +28,9 @@
 	<delete id="deleteBoard" parameterType="Integer">
 		DELETE FROM board WHERE boardId = #{boardId}
 	</delete>
-	<!-- 수정할 업체 불러오기 -->
+	<!-- 인기 업체 리스트 가져오기 -->
 	<select id="getBoardList" resultType="board">
-		SELECT * FROM board
+		SELECT * FROM board ORDER BY hits DESC;
 	</select>
 
 	<!-- 상세 모집글 -->
@@ -62,4 +62,10 @@
 		DELETE FROM board WHERE customerId = #{customerId}
 	</delete>
 	
+	<!-- 업체 예약자 수 수정 -->
+	<update id="updateHits" parameterType="HashMap">
+		UPDATE board 
+		SET hits=#{pMap.hits}
+		WHERE boardId=#{pMap.boardId}
+	</update>
 </mapper>

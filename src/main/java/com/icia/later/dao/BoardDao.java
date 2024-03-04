@@ -41,6 +41,9 @@ public interface BoardDao {
 	
 	//사업자 탈퇴시 모집한글도 삭제
 	void deleteCompanyList(Integer Id);
+	
+	// 업체 예약자 수 수정
+	void updateHits(@Param("pMap") Map<String, Integer> pMap);
 
 
 

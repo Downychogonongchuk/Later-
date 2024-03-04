@@ -1,3 +1,4 @@
+
 .detail-all {
 	display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* 자동으로 요소의 크기를 조정하여 가로 정렬 */
