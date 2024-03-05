@@ -48,8 +48,8 @@ public interface BoardDao {
 	// 카테고리에 속한 게시글 목록 가져오기
 	List<BoardDto> getBoardListByCategory(Map<String, Integer> pMap);
 	
-
-	
+	// 카테고리에 속한 게시글 수 조회
+	int cntBoardByCategory(Integer cateNum);
 
 
 
