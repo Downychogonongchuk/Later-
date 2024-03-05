@@ -56,6 +56,7 @@ public class HomeController {
 		    List<BoardDto> bList = bServ.getBoardList();
 		    model.addAttribute("bList", bList);
 			
+		    // coming soon 업체 리스트 가져오기
 			model.addAttribute("cbList", cbList);
 			System.out.println(cbList);
 			return "home";

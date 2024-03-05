@@ -139,7 +139,7 @@
                                     <div class="content-price">${board.price}</div>
                                      <div class="priceline"></div>
                                      <div class="div3">모집인원</div>
-                                    <div class="content-personnel">${board.personnel}</div>
+                                    <div class="content-personnel">${board.hits} / ${board.personnel}</div>
                                     <div class="content-period1">신청 시작:${board.periodStart}</div>
                                     <div class="content-period2">신청 마감:${board.periodEnd}</div>
                                    
@@ -192,7 +192,7 @@
                                     <div class="content-price">${cbList.price}</div>
                                      <div class="priceline"></div>
                                      <div class="div3">모집인원</div>
-                                    <div class="content-personnel">${cbList.personnel}</div>
+                                    <div class="content-personnel">${cbList.hits} / ${cbList.personnel}</div>
                                     <div class="content-period1">신청 시작:${cbList.periodStart}</div>
                                     <div class="content-period2">신청 마감:${cbList.periodEnd}</div>
                                    

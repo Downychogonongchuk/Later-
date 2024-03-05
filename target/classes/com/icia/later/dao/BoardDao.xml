@@ -7,11 +7,11 @@
 	<!-- 모집글 등록 -->
 	<insert id="insertBoard" parameterType="board">
 		INSERT INTO board ( category,companyName,periodStart, periodEnd,personnel,price,provideType,detail,checkInfo,
-		boardFile, hits, customerId)
+		boardFile, customerId, hits)
 		
 		VALUES (#{category},#{companyName},#{periodStart}, #{periodEnd}, #{personnel}, 
 				#{price}, #{provideType},#{detail}, #{checkInfo}, 
-				 #{boardFile}, #{hits}, #{customerId})
+				 #{boardFile}, #{customerId}, #{hits})
 	</insert>
 	
 		<!--업체 수정  -->
@@ -30,7 +30,7 @@
 	</delete>
 	<!-- 수정할 업체 불러오기 -->
 	<select id="getBoardList" resultType="board">
-		SELECT * FROM board
+		SELECT * FROM board ORDER BY hits DESC
 	</select>
 
 	<!-- 상세 모집글 -->
