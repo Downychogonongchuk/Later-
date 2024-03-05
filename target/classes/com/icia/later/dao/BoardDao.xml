@@ -69,4 +69,10 @@
 		limit #{pageNum}, #{listCnt}
 	</select>
 	
+	<!-- 카테고리에 속하는 게시글 수 계산 -->
+	<select id="cntBoardByCategory" parameterType="Integer" resultType="Integer">
+		select count(*) from board
+		where category=#{cateNum}
+	</select>
+	
 </mapper>
