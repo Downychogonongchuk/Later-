@@ -3,6 +3,7 @@ package com.icia.later.dto;
 import java.time.LocalDateTime;
 
 import org.apache.ibatis.type.Alias;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Data;
 
@@ -13,8 +14,10 @@ public class BoardDto {
 		 private int boardId;  
 		 private String category; // 카테고리
 		 private String companyName; // 업체명
+		 @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 		 private LocalDateTime periodStart; // 모집 시작 
-		 private LocalDateTime periodEnd;  // 모집 마감
+		 @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+		 private LocalDateTime periodEnd; // 모집 마감
 		 private String personnel;  // 모집 인원 
 		 private int price; // 가격
 		 private String provideType; // 제공타입

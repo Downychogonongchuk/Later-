@@ -123,13 +123,31 @@ public class BoardService {
 		return board;
 	}
 
-		//게시되어있는 모집글 전부 가져오는 메서드
+		//모집시작기간이 된 모집글만 전부 가져오는 메서드
 		public List<BoardDto> getBoardList() {
-
-		List<BoardDto> bList = bDao.getBoardList();
-
-		return bList;
+		
+		// 현재 날짜와 시간을 가져옵니다.
+	    LocalDateTime now = LocalDateTime.now();
+	    
+	    // DB에서 모든 게시글을 가져옵니다.
+	    List<BoardDto> bList = bDao.getBoardList();
+	    
+	    // 아직 기간이 남은 게시글을 담을 리스트를 생성합니다.
+	    List<BoardDto> HotList = new ArrayList<>();
+	    
+	    // 모든 게시글을 순회하며, periodStart가 현재 날짜와 시간보다 이후인 게시글을 찾습니다.
+	    for (BoardDto board : bList) {
+	        // 문자열 형식의 periodStart를 LocalDateTime으로 변환합니다.
+	        LocalDateTime periodStart = board.getPeriodStart();
+	        
+	        if (periodStart.isBefore(now)) {
+	        	HotList.add(board); // 아직 기간이 남은 게시글을 리스트에 추가합니다.
+	        }
+	    }
+	    
+	    return HotList;
 	}
+
 
 		public String boardDelete(Integer boardId, Integer customerId, HttpSession session, RedirectAttributes rttr) {
 		log.info("boardDelete()");
@@ -176,10 +194,11 @@ public class BoardService {
 
 	// 업체 상세 가져오기
 	public void getCompanyDetail(Integer boardId, Model model) {
+		LocalDateTime now = LocalDateTime.now();
 		log.info("getCompanyDetail()");
 		// DB에서 데이터 가져오기
 		BoardDto board = bDao.selectBoard(boardId);
-		// DB에서 데이터 가져오기
+		
 		model.addAttribute("board", board);
 		System.out.println(model);
 
