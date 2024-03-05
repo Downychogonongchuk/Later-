@@ -101,7 +101,8 @@ public class BoardController {
 		log.info("handleCategory() cn: {}", cateNum);
 
 		// BoardService를 통해 카테고리 목록을 가져옴
-		return bServ.getCategoryList(cateNum, pageNum, model, session);
+		return bServ.getCategoryList(cateNum, pageNum, model, session);				
+		
 	}
 
 }
