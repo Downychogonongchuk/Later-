@@ -62,7 +62,7 @@
                     </c:if>
                 </div> <!-- data-area End -->
                 <div class="paging-area">
-			<div class="paging">${paging}</div>
+			<div class="paging">${pageHtml}</div>
 		</div>
         </section> <!--applyCompany End-->
     </div> <!--content End-->
