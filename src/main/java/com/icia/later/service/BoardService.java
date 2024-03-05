@@ -131,7 +131,7 @@ public class BoardService {
 		return bList;
 	}
 
-		public String boardDelete(Integer boardId, HttpSession session, RedirectAttributes rttr) {
+		public String boardDelete(Integer boardId, Integer customerId, HttpSession session, RedirectAttributes rttr) {
 		log.info("boardDelete()");
 		String view = null;
 		String msg = null;
@@ -146,7 +146,10 @@ public class BoardService {
 			}
 			// 업체 삭제 시 예약 삭제
 			rDao.deleteReservation(boardId);
-			bDao.deleteBoard(boardId);
+			Map<String, Integer> pMap = new HashMap<String, Integer>();
+			pMap.put("boardId", boardId);
+			pMap.put("customerId", customerId);
+			bDao.deleteBoard(pMap);
 			view = "redirect:/";
 			msg = "삭제 성공";
 		} catch (Exception e) {
@@ -234,7 +237,7 @@ public class BoardService {
 		for (int i = 0; i < cbList.size(); i++) {
 			System.out.println(cbList.get(i));
 		}
-		model.addAttribute("cbList", cbList);
+		// model.addAttribute("cbList", cbList);
 		
 		return cbList;
 	}

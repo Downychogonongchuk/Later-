@@ -1,6 +1,7 @@
 package com.icia.later;
 
 
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ public class ReservationController {
 			@PostMapping("rev")
 			public String rev(HttpSession session,
 					RedirectAttributes rttr,
-					Integer boardId) {
+					Integer boardId, String periodStart) {
 				log.info("rev()");
 				
 				MemberDto member = (MemberDto) session.getAttribute("mLogin");

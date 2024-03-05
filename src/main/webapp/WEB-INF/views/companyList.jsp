@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>내가 모집한 글 목록</title>
-<link rel="stylesheet" type="text/css" href="resources/css/companyList.css">
+<link rel="stylesheet" type="text/css" href="resources/css/applycompany.css">
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"
 	integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="

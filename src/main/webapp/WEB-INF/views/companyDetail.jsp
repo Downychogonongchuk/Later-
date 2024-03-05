@@ -1,6 +1,7 @@
  <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -72,11 +73,10 @@
                     <strong>제공타입</strong><br>${board.provideType}</p>
                 <input type="hidden" name="provideType"
                     value="${board.provideType}">
-
                 <p class="info5">
                     <strong>가격</strong><br>${board.price}</p>
                 <input type="hidden" name="price" value="${board.price}">
-
+				<input type="hidden" name="hits" value="${board.hits}">
             </section>
 
             <section class="detail">
@@ -89,9 +89,10 @@
                     
                 </ul>
             </section> <!--detailEnd-->
-        
+
             
             <div class="buttons">
+       
             <c:if test="${!empty mLogInInfo}">
             <!-- 결제버튼-->
             <button type="submit" id="btn-apply" class="btn-common btn-apply">신청하기</button>
@@ -106,6 +107,7 @@
             <button type="button" id="btn-selectApply" class="btn-common btn-selectApply">신청한 회원 보기</button>
             </div>
             </c:if><!--!empty cLogInInfo -->
+            
            	</div> <!--buttonsEnd-->
             </section>
             

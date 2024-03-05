@@ -94,7 +94,11 @@ public class BoardController {
 								  HttpSession session,
 								  RedirectAttributes rttr) {
 				log.info("bDelete()");
-				String view = bServ.boardDelete(boardId, session, rttr);
+				CustomerDto cLogInInfo = (CustomerDto) session.getAttribute("cLogin");
+				
+				Integer customerId = cLogInInfo.getCustomerId();
+				System.out.println(customerId);
+				String view = bServ.boardDelete(boardId, customerId, session, rttr);
 				return view;
 			}
 

@@ -21,7 +21,7 @@ public interface BoardDao {
 	List<BoardDto> getBoardList();
 	
 	// 업체 삭제
-	void deleteBoard(Integer boardId);
+	void deleteBoard(@Param("pMap") Map<String, Integer> pMap);
 
 	// 게시글 정보 상세보기
 	BoardDto selectBoard(Integer boardId);
@@ -46,7 +46,7 @@ public interface BoardDao {
 	List<BoardDto> getComingList();
 	
 	// 업체 예약자 수 수정
-	void updateHits(Map<String, Integer> pMap);
+	void updateHits(@Param("pMap") Map<String, Integer> pMap);
 
 	
 

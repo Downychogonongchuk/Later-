@@ -25,8 +25,8 @@
 		WHERE board.boardId = #{boardId}
 	</update>
 	<!-- 업체 삭제 -->
-	<delete id="deleteBoard" parameterType="Integer">
-		DELETE FROM board WHERE boardId = #{boardId}
+	<delete id="deleteBoard" parameterType="HashMap">
+		DELETE FROM board WHERE boardId = #{pMap.boardId} AND customerId = #{pMap.customerId}
 	</delete>
 	<!-- 수정할 업체 불러오기 -->
 	<select id="getBoardList" resultType="board">
@@ -63,7 +63,11 @@
 	</delete>
 	
 	<select id="getComingList" resultType="board">
-		select * from board order by periodStart asc
+		SELECT *
+FROM board
+WHERE periodStart > CURDATE()
+AND periodStart != CURDATE()
+order by periodStart asc;
 	</select>
 	
 	<!-- 업체 예약자 수 수정 -->
