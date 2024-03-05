@@ -2,67 +2,62 @@ package com.icia.later.util;
 
 import lombok.AllArgsConstructor;
 
-
 @AllArgsConstructor
 public class PagingUtil {
-	private int maxNum;//ÀüÃ¼ ÄÜÅÙÃ÷ °³¼ö ÀúÀå º¯¼ö
-	private int pageNum;//ÇöÀç º¸ÀÌ´Â ÆäÀÌÁöÀÇ ¹øÈ£ ÀúÀå º¯¼ö
-	private int listCnt;//ÇÑ ÆäÀÌÁö ´ç º¸ÀÏ ÄÜÅÙÃ÷ °³¼ö ÀúÀå º¯¼ö
-	private int pageCnt;//º¸¿©Áú ÆäÀÌÁö ¹øÈ£ °³¼ö ÀúÀå º¯¼ö
-	
-	//ÆäÀÌÂ¡¿ë html ÄÚµå¸¦ ¸¸µå´Â ¸Ş¼Òµå
+	private int maxNum;// ì „ì²´ ì½˜í…ì¸  ê°œìˆ˜ ì €ì¥ ë³€ìˆ˜
+	private int pageNum;// í˜„ì¬ ë³´ì´ëŠ” í˜ì´ì§€ì˜ ë²ˆí˜¸ ì €ì¥ ë³€ìˆ˜
+	private int listCnt;// í•œ í˜ì´ì§€ ë‹¹ ë³´ì¼ ì½˜í…ì¸  ê°œìˆ˜ ì €ì¥ ë³€ìˆ˜
+	private int pageCnt;// ë³´ì—¬ì§ˆ í˜ì´ì§€ ë²ˆí˜¸ ê°œìˆ˜ ì €ì¥ ë³€ìˆ˜
+	private String urlName;// ë³´ì—¬ì§ˆ í˜ì´ì§€ ë§í¬ url
+
+	// í˜ì´ì§•ìš© html ì½”ë“œë¥¼ ë§Œë“œëŠ” ë©”ì†Œë“œ
 	public String makePaging() {
 		String pageStr = null;
 		StringBuffer sb = new StringBuffer();
-		
-		//1. ÀüÃ¼ ÆäÀÌÁö °³¼ö ±¸ÇÏ±â
-		// ÀüÃ¼ ÄÜÅÙÃ÷ °³¼ö 5, ÆäÀÌÁö 5°³¾¿ Ãâ·Â
-		int totalPage = (maxNum % listCnt) > 0 ?
-				maxNum / listCnt + 1 :
-				maxNum / listCnt;
-		
-		//2. ÇöÀç ÆäÀÌÁö°¡ ¼ÓÇØ ÀÖ´Â ¹øÈ£ ±×·ì ±¸ÇÏ±â
-		int curGroup = (pageNum % pageCnt) > 0 ?
-				pageNum / pageCnt + 1 :
-				pageNum / pageCnt;
-		
-		//3. ¹øÈ£ ±×·ìÀÇ ½ÃÀÛ ¹øÈ£
+
+		// 1. ì „ì²´ í˜ì´ì§€ ê°œìˆ˜ êµ¬í•˜ê¸°
+		// ì „ì²´ ì½˜í…ì¸  ê°œìˆ˜ 5, í˜ì´ì§€ 5ê°œì”© ì¶œë ¥
+		int totalPage = (maxNum % listCnt) > 0 ? maxNum / listCnt + 1 : maxNum / listCnt;
+
+		// 2. í˜„ì¬ í˜ì´ì§€ê°€ ì†í•´ ìˆëŠ” ë²ˆí˜¸ ê·¸ë£¹ êµ¬í•˜ê¸°
+		int curGroup = (pageNum % pageCnt) > 0 ? pageNum / pageCnt + 1 : pageNum / pageCnt;
+
+		// 3. ë²ˆí˜¸ ê·¸ë£¹ì˜ ì‹œì‘ ë²ˆí˜¸
 		int start = (curGroup * pageCnt) - (pageCnt - 1);
-		//µÎ¹øÂ° ±×·ì ½ÃÀÛ¹øÈ£ : 2 * pageCnt(5) - (5 - 1) = 6  
-		
-		//4. ¹øÈ£ ±×·ìÀÇ ¸¶Áö¸· ¹øÈ£
-		int end = (curGroup * pageCnt) >= totalPage ?
-				totalPage : curGroup * pageCnt;
-		//µÎ¹øÂ° ±×·ì ¸¶Áö¸·¹øÈ£ : 2 * pageCnt(5) = 10 
-		
-		//5. ÀÌÀü ¹öÆ° Ã³¸®
-		if(start != 1) {
-			sb.append("<a class='pno' href='./?pageNum=");
+		// ë‘ë²ˆì§¸ ê·¸ë£¹ ì‹œì‘ë²ˆí˜¸ : 2 * pageCnt(5) - (5 - 1) = 6
+
+		// 4. ë²ˆí˜¸ ê·¸ë£¹ì˜ ë§ˆì§€ë§‰ ë²ˆí˜¸
+		int end = (curGroup * pageCnt) >= totalPage ? totalPage : curGroup * pageCnt;
+		// ë‘ë²ˆì§¸ ê·¸ë£¹ ë§ˆì§€ë§‰ë²ˆí˜¸ : 2 * pageCnt(5) = 10
+
+		// 5. ì´ì „ ë²„íŠ¼ ì²˜ë¦¬
+		if (start != 1) {
+			sb.append("<a class='pno' href='./" + urlName + "?pageNum=");
 			sb.append((start - 1) + "'>");
-			sb.append("¢¸</a>");
-		}//<a class='pno' href='./?pageNum=5'>¢¸</a>
-		
-		//6. Áß°£ ¹øÈ£ ¹öÆ° Ã³¸®
-		for(int i = start; i <= end; i++) {
-			if(pageNum != i){//ÇöÀç º¸ÀÌ´Â ÆäÀÌÁö°¡ ¾Æ´Ñ °æ¿ì
-				sb.append("<a class='pno' href='./?pageNum=");
+			sb.append("â—€</a>");
+		} // <a class='pno' href='./category?pageNum=5'>â—€</a>
+
+		// 6. ì¤‘ê°„ ë²ˆí˜¸ ë²„íŠ¼ ì²˜ë¦¬
+		for (int i = start; i <= end; i++) {
+			if (pageNum != i) {// í˜„ì¬ ë³´ì´ëŠ” í˜ì´ì§€ê°€ ì•„ë‹Œ ê²½ìš°
+				sb.append("<a class='pno' href='./" + urlName + "?pageNum=");
 				sb.append(i + "'>" + i + "</a>");
-			}//<a class='pno' href='./?pageNum=2'>2</a>
-			else {//ÇöÀç º¸ÀÌ´Â ÆäÀÌÁöÀÎ °æ¿ì
+			} // <a class='pno' href='./?pageNum=2'>2</a>
+			else {// í˜„ì¬ ë³´ì´ëŠ” í˜ì´ì§€ì¸ ê²½ìš°
 				sb.append("<font class='pno'>" + i + "</font>");
-			}//<font class='pno'>3</font>
+			} // <font class='pno'>3</font>
 		}
-		
-		//7. ´ÙÀ½ ¹öÆ° Ã³¸®
-		if(end != totalPage) {
-			sb.append("<a class='pno' href='./?pageNum=");
+
+		// 7. ë‹¤ìŒ ë²„íŠ¼ ì²˜ë¦¬
+		if (end != totalPage) {
+			sb.append("<a class='pno' href='./" + urlName + "?pageNum=");
 			sb.append((end + 1) + "'>");
-			sb.append("¢º</a>");
-		}//<a class='pno' href='./?pageNum=6'>¢º</a>
-		
-		//StringBuffer¿¡ ÀúÀåµÈ ³»¿ëÀ» ¹®ÀÚ¿­·Î º¯È¯
+			sb.append("â–¶</a>");
+		} // <a class='pno' href='./?pageNum=6'>â–¶</a>
+
+		// StringBufferì— ì €ì¥ëœ ë‚´ìš©ì„ ë¬¸ìì—´ë¡œ ë³€í™˜
 		pageStr = sb.toString();
-		
+
 		return pageStr;
 	}
 }
