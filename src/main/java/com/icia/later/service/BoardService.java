@@ -214,17 +214,19 @@ public class BoardService {
 		// 페이지 당 보여질 번호 개수
 		int pageCnt = 2;
 
-		PagingUtil paging = new PagingUtil(maxNum, pageCnt, listCnt, pageCnt);
+		PagingUtil paging = new PagingUtil(maxNum, pageCnt, listCnt, pageCnt, null);
 
 		pageHtml = paging.makePaging();
 
 		return pageHtml;
 	}
+
 //	// 카테고리 목록 가져오기
 //	public String getCategoryList(Integer cateNum, Integer pageNum, Model model, HttpSession session) {
 //		
 //		return null;
 //	}
+	// 카테고리 목록 가져오기
 	public String getCategoryList(Integer cateNum, Integer pageNum, Model model, HttpSession session) {
 		log.info("getCategoryList()");
 
@@ -233,13 +235,13 @@ public class BoardService {
 		}
 
 		int listCnt = 5; // 페이지당 보여질 콘텐츠 개수
-		
+
 		// 페이징을 위한 매개변수 설정
 		Map<String, Integer> pMap = new HashMap<>();
 		pMap.put("pageNum", (pageNum - 1) * listCnt);
 		pMap.put("listCnt", listCnt);
 		pMap.put("cateNum", cateNum);
-		
+
 		// DAO를 통해 카테고리 목록을 가져옴
 		List<BoardDto> bList = bDao.getBoardListByCategory(pMap);
 
@@ -247,29 +249,43 @@ public class BoardService {
 		model.addAttribute("bList", bList);
 
 		// 페이징 처리
-		String pageHtml = getPaging(pageNum, listCnt);
+		String pageHtml = getPagingByCategory(cateNum, pageNum, listCnt);
 		model.addAttribute("pageHtml", pageHtml);
 		model.addAttribute("pageNum", pageNum);
 
-		return "category" + cateNum;
+		return "category" + cateNum; // 해당 카테고리 페이지로 이동
 	}
 
+	// 카테고리별 페이징 처리 
+	private String getPagingByCategory(Integer cateNum, Integer pageNum, int listCnt) {
+		String pageHtml = null;
+		// 카테고리별 개시글 개수
+		int maxNum = bDao.cntBoardByCategory(cateNum);
+		int pageCnt = 5; // 페이지당 보일 번호 개수
+
+		String urlName = "category"; 
+
+		PagingUtil paging = new PagingUtil(maxNum, pageNum, listCnt, pageCnt, urlName);
+		pageHtml = paging.makePaging();
+
+		return pageHtml;
+	}
+	// 전체 게시글 페이징 처리
 	private String getPaging2(Integer pageNum, Integer listCnt) {
 		String pageHtml = null;
 
 		int maxNum = bDao.cntBoard(); // 게시물 총 개수
 		int pageCnt = 5; // 페이지당 보일 번호 개수
-		
-		// 전체 페이지 수 
-		PagingUtil paging = new PagingUtil(maxNum, pageCnt, maxNum, pageCnt);
+
+		// 전체 페이지 수
+		PagingUtil paging = new PagingUtil(maxNum, pageCnt, maxNum, pageCnt, null);
 		pageHtml = paging.makePaging();
 
 		return pageHtml;
 	}
 
-	public void getCategory() {
-
-	}
-
+//	public void getCategory() {
+//
+//	}
 
 }
