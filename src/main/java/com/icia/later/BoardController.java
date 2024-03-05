@@ -101,5 +101,27 @@ public class BoardController {
 				String view = bServ.boardDelete(boardId, customerId, session, rttr);
 				return view;
 			}
+			// 카테고리를 처리하는 메소드
+						@GetMapping("category")
+						private String handleCategory(Integer cateNum, Integer pageNum, Model model, HttpSession session) {
+							log.info("handleCategory() cn: {}", cateNum);
+							
+							MemberDto logInInfo = (MemberDto) session.getAttribute("mLogin");
+							
+							if (logInInfo != null && session.getAttribute("mLogin") != null) {
+								// 로그인한 회원 정보를 모델에 추가하여 JSP로 전달
+						        model.addAttribute("mLogInInfo", logInInfo);
+						        System.out.println(logInInfo);
+						        }
+							CustomerDto logInInfo1 = (CustomerDto) session.getAttribute("cLogin");
+							
+							if (logInInfo1 != null && session.getAttribute("cLogin") != null) {
+								// 로그인한 사업자 정보를 모델에 추가하여 JSP로 전달
+						        model.addAttribute("cLogInInfo", logInInfo1);	        	        	        
+						}
+
+							// BoardService를 통해 카테고리 목록을 가져옴
+							return bServ.getCategoryList(cateNum, pageNum, model, session);
+						}
 
 }

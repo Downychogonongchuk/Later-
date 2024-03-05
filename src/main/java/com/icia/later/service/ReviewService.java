@@ -133,7 +133,7 @@ public class ReviewService {
 				int pageCnt = 2;
 				
 				PagingUtil paging = new PagingUtil(maxNum, pageNum, 
-												listCnt, pageCnt);
+												listCnt, pageCnt, null);
 				
 				pageHtml = paging.makePaging();
 				

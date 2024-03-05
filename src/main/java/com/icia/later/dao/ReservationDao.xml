@@ -13,10 +13,11 @@
 		VALUES
 		(null,#{reservationTime},#{status},#{memberId},#{boardId})
 	</insert>
-	
+
 	<!-- 회원탈퇴시 신청글 삭제 -->
 	<delete id="deleteApplyCompany" parameterType="Integer">
-		DELETE FROM Reservation
+		DELETE FROM
+		Reservation
 		WHERE memberId=#{memberId}
 	</delete>
 
@@ -28,35 +29,50 @@
 		FROM Board
 		JOIN Reservation ON
 		Board.boardId = Reservation.boardId
-		WHERE Reservation.memberId = 
+		WHERE Reservation.memberId =
 		#{pMap.memberId11}
 		LIMIT #{pMap.pageNum},
 		#{pMap.listCnt}
 	</select>
 
+	<!-- 내가 신청한 업체 수 계산 -->
+	<select id="cntBoardByApplyList" parameterType="Integer"
+		resultType="Integer">
+		SELECT COUNT(*) AS total_count
+		FROM Board
+		JOIN Reservation ON Board.boardId = Reservation.boardId
+		WHERE Reservation.memberId = #{memberId11}
+	</select>
+
+
 	<!-- 예약 유무 중복 -->
 	<select id="selectRev" parameterType="HashMap"
 		resultType="reserv">
 		select * from reservation
-		where memberId=#{pMap.memberId} and boardId=#{pMap.boardId}
+		where memberId=#{pMap.memberId}
+		and boardId=#{pMap.boardId}
 	</select>
 
 	<!-- 내 업체 신청한 사람 목록 -->
 	<select id="getReservationList" resultType="reserv"
 		parameterType="Integer">
 		SELECT * FROM reservation
-		WHERE boardId=#{boardId}	
+		WHERE boardId=#{boardId}
 	</select>
-	<!--  신청 상태 -->
+
+
+	<!-- 신청 상태 -->
 	<update id="updateStatus" parameterType="HashMap">
 		UPDATE reservation
-		SET status=#{pMap.status}
+		SET
+		status=#{pMap.status}
 		WHERE reservationId=#{pMap.reservationId}
 	</update>
-	
+
 	<!-- 업체 삭제 시 예약 삭제 -->
 	<delete id="deleteReservation" parameterType="Integer">
-		DELETE FROM reservation 
+		DELETE FROM
+		reservation
 		WHERE boardId=#{boardId}
 	</delete>
 </mapper>

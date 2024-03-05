@@ -78,26 +78,26 @@ public class ReservationService {
 		List<BoardDto> bList = rDao.getBoardListBymemberId(pMap);
 		System.out.println("bList" + bList);
 		model.addAttribute("bList", bList);
-
+		
 		// 페이징 처리
-		String pageHtml = getPaging(pageNum, listCnt);
+		String pageHtml = getPagingApplyList(memberId11,pageNum, listCnt);
 		model.addAttribute("paging", pageHtml);
-
 		session.setAttribute("pageNum", pageNum);
 
 		return "applyCompany";
 	}
 	// 페이징
-	private String getPaging(Integer pageNum, Integer listCnt) {
+	private String getPagingApplyList(Integer memberId11, Integer pageNum, Integer listCnt) {
 		String pageHtml = null;
 
 		// 신청한 업체 개수
-		int maxNum = rDao.cntBoard();
+		int maxNum = rDao.cntBoardByApplyList(memberId11);
 		// 페이지 당 보여질 번호 개수
-		int pageCnt = 2;
+		int pageCnt = 5;
 
-		PagingUtil paging = new PagingUtil(maxNum, pageCnt, listCnt, pageCnt);
-
+		String urlName = "applyCompany";
+		
+		PagingUtil paging = new PagingUtil(maxNum, pageCnt, listCnt, pageCnt, urlName);
 		pageHtml = paging.makePaging();
 
 		return pageHtml;

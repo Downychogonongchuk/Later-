@@ -9,7 +9,8 @@ public class PagingUtil {
 	private int pageNum;//현재 보이는 페이지의 번호 저장 변수
 	private int listCnt;//한 페이지 당 보일 콘텐츠 개수 저장 변수
 	private int pageCnt;//보여질 페이지 번호 개수 저장 변수
-	
+	private String urlName;// 보여질 페이지 링크 url
+
 	//페이징용 html 코드를 만드는 메소드
 	public String makePaging() {
 		String pageStr = null;
@@ -36,7 +37,7 @@ public class PagingUtil {
 		
 		//5. 이전 버튼 처리
 		if(start - pageCnt > 0) {
-		    sb.append("<a class='pno' href='./companyList?pageNum=");
+			sb.append("<a class='pno' href='./" + urlName + "?pageNum=");
 		    sb.append((start - pageCnt) + "'>");
 		    sb.append("◀</a>");
 		}//<a class='pno' href='./?pageNum=5'>◀</a>
@@ -44,7 +45,7 @@ public class PagingUtil {
 		//6. 중간 번호 버튼 처리
 		for(int i = start; i <= end; i++) {
 			if(pageNum != i){//현재 보이는 페이지가 아닌 경우
-				sb.append("<a class='pno' href='./companyList?pageNum=");
+				sb.append("<a class='pno' href='./" + urlName + "?pageNum=");
 				sb.append(i + "'>" + i + "</a>");
 			}//<a class='pno' href='./?pageNum=2'>2</a>
 			else {//현재 보이는 페이지인 경우
@@ -54,7 +55,7 @@ public class PagingUtil {
 		
 		//7. 다음 버튼 처리
 		if(end != totalPage) {
-			sb.append("<a class='pno' href='./companyList?pageNum=");
+			sb.append("<a class='pno' href='./" + urlName + "?pageNum=");
 			sb.append((end + 1) + "'>");
 			sb.append("▶</a>");
 		}//<a class='pno' href='./?pageNum=6'>▶</a>

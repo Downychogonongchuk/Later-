@@ -20,6 +20,9 @@ public interface ReservationDao {
 	// 예약 목록 가져오기
 	List<BoardDto> getBoardListBymemberId(@Param("pMap") Map<String, Integer> pMap);
 
+	// 내가 예약한 업체 수 구하기
+	int cntBoardByApplyList(Integer memberId11);
+	
 	// 신청한 업체 수 구하기
 	@Select("SELECT count(*) FROM board")
 	int cntBoard();
@@ -35,5 +38,7 @@ public interface ReservationDao {
 	
 	// 업체 삭제 시 예약 삭제
 	void deleteReservation(Integer boardId);
+
+	
 	
 }

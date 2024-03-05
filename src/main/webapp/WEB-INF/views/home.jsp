@@ -24,41 +24,6 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
 
-<style type="text/css">
-.wrap {
-	display: flex;
-	flex-direction: column;
-	height: 100%;
-}
-
-.hotpick {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.hotpick-color {
-	color: red;
-	font-size: 35px;
-}
-
-.coming-soon {
-	background-color: #000000;
-	color: #fff;
-	font-size: 20px;
-	line-height: 50px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-.fa-star {
-	color: red;
-}
-
-.nav-link {
-	font-size: 20px;
-}
-</style>
 <script>
             let m = "${msg}";
             if(m != ""){
@@ -81,11 +46,11 @@
 		<nav class="navbar navbar-expand-sm bg-light navbar-light">
 			<!-- Links -->
 			<ul class="navbar-nav">
-				<li class="nav-item"><a class="nav-link" href="#">맛집</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">숙소</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">가전</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">뷰티</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">기타</a></li>
+				<li class="nav-item"><a class="nav-link" href="category?cateNum=1">맛집</a></li>
+				<li class="nav-item"><a class="nav-link" href="category?cateNum=2">숙소</a></li>
+				<li class="nav-item"><a class="nav-link" href="category?cateNum=3">가전</a></li>
+				<li class="nav-item"><a class="nav-link" href="category?cateNum=4">뷰티</a></li>
+				<li class="nav-item"><a class="nav-link" href="category?cateNum=5">기타</a></li>
 				<li class="nav-item"><a class="nav-link" href="review">리뷰</a></li>
 			</ul>
 		</nav>

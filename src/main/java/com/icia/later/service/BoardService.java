@@ -123,31 +123,13 @@ public class BoardService {
 		return board;
 	}
 
-		//모집시작기간이 된 모집글만 전부 가져오는 메서드
+		//게시되어있는 모집글 전부 가져오는 메서드
 		public List<BoardDto> getBoardList() {
-		
-		// 현재 날짜와 시간을 가져옵니다.
-	    LocalDateTime now = LocalDateTime.now();
-	    
-	    // DB에서 모든 게시글을 가져옵니다.
-	    List<BoardDto> bList = bDao.getBoardList();
-	    
-	    // 아직 기간이 남은 게시글을 담을 리스트를 생성합니다.
-	    List<BoardDto> HotList = new ArrayList<>();
-	    
-	    // 모든 게시글을 순회하며, periodStart가 현재 날짜와 시간보다 이후인 게시글을 찾습니다.
-	    for (BoardDto board : bList) {
-	        // 문자열 형식의 periodStart를 LocalDateTime으로 변환합니다.
-	        LocalDateTime periodStart = board.getPeriodStart();
-	        
-	        if (periodStart.isBefore(now)) {
-	        	HotList.add(board); // 아직 기간이 남은 게시글을 리스트에 추가합니다.
-	        }
-	    }
-	    
-	    return HotList;
-	}
 
+		List<BoardDto> bList = bDao.getBoardList();
+
+		return bList;
+	}
 
 		public String boardDelete(Integer boardId, Integer customerId, HttpSession session, RedirectAttributes rttr) {
 		log.info("boardDelete()");
@@ -194,11 +176,10 @@ public class BoardService {
 
 	// 업체 상세 가져오기
 	public void getCompanyDetail(Integer boardId, Model model) {
-		LocalDateTime now = LocalDateTime.now();
 		log.info("getCompanyDetail()");
 		// DB에서 데이터 가져오기
 		BoardDto board = bDao.selectBoard(boardId);
-		
+		// DB에서 데이터 가져오기
 		model.addAttribute("board", board);
 		System.out.println(model);
 
@@ -226,24 +207,26 @@ public class BoardService {
 		model.addAttribute("bList", bList);
 
 		// 페이징 처리
-		String pageHtml = getPaging(pageNum, listCnt);
+		String pageHtml = getPagingBoardList(customerId, pageNum, listCnt);
 		model.addAttribute("paging", pageHtml);
-
 		session.setAttribute("pageNum", pageNum);
 
-		return "applyCompany";
+		return "companyList";
 	}
+	
 
-	private String getPaging(Integer pageNum, Integer listCnt) {
+
+	private String getPagingBoardList(Integer customerId, Integer pageNum, Integer listCnt) {
 		String pageHtml = null;
 
 		// 신청한 업체 개수
-		int maxNum = bDao.cntBoard();
+		int maxNum = bDao.cntBoardByBoardList(customerId);
 		// 페이지 당 보여질 번호 개수
 		int pageCnt = 5;
 
-		PagingUtil paging = new PagingUtil(maxNum, pageCnt, listCnt, pageCnt);
-
+		String urlName = "companyList";
+		
+		PagingUtil paging = new PagingUtil(maxNum, pageNum, listCnt, pageCnt, urlName);
 		pageHtml = paging.makePaging();
 
 		return pageHtml;
@@ -287,5 +270,64 @@ public class BoardService {
 			bDao.updateHits(pMap);
 			System.out.println(hits);
 		}
+
+		// 카테고리 목록 가져오기
+		public String getCategoryList(Integer cateNum, Integer pageNum, Model model, HttpSession session) {
+			log.info("getCategoryList()");
+
+			if (pageNum == null) {
+				pageNum = 1; // 처음에 사이트가 열릴 때 첫페이지가 되도록 설정
+			}
+
+			int listCnt = 5; // 페이지당 보여질 콘텐츠 개수
+
+			// 페이징을 위한 매개변수 설정
+			Map<String, Integer> pMap = new HashMap<>();
+			pMap.put("pageNum", (pageNum - 1) * listCnt);
+			pMap.put("listCnt", listCnt);
+			pMap.put("cateNum", cateNum);
+
+			// DAO를 통해 카테고리 목록을 가져옴
+			List<BoardDto> bList = bDao.getBoardListByCategory(pMap);
+
+			// 게시글 목록 추가
+			model.addAttribute("bList", bList);
+
+			// 페이징 처리
+			String pageHtml = getPagingByCategory(cateNum, pageNum, listCnt);
+			model.addAttribute("pageHtml", pageHtml);
+			model.addAttribute("pageNum", pageNum);
+
+			return "category" + cateNum; // 해당 카테고리 페이지로 이동
+		}
+
+		// 카테고리별 페이징 처리 
+		private String getPagingByCategory(Integer cateNum, Integer pageNum, int listCnt) {
+			String pageHtml = null;
+			// 카테고리별 개시글 개수
+			int maxNum = bDao.cntBoardByCategory(cateNum);
+			int pageCnt = 5; // 페이지당 보일 번호 개수
+
+			String urlName = "category"; 
+
+			PagingUtil paging = new PagingUtil(maxNum, pageNum, listCnt, pageCnt, urlName);
+			pageHtml = paging.makePaging();
+
+			return pageHtml;
+		}
+		// 전체 게시글 페이징 처리
+		private String getPaging(Integer pageNum, Integer listCnt) {
+			String pageHtml = null;
+
+			int maxNum = bDao.cntBoard(); // 게시물 총 개수
+			int pageCnt = 5; // 페이지당 보일 번호 개수
+
+			// 전체 페이지 수
+			PagingUtil paging = new PagingUtil(maxNum, pageCnt, maxNum, pageCnt, null);
+			pageHtml = paging.makePaging();
+
+			return pageHtml;
+		}
+
 
 }
