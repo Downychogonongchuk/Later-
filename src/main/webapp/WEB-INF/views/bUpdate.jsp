@@ -55,7 +55,7 @@
                 <!-- 파일 입력 처리 영역 -->
                  <div class="filebox">
                 <label for="file">업체 사진</label>
-                <input type="file" name="files" id="file">
+                <input type="file" name="files" id="file"> 
                 <input type="text" class="upload-name" value="파일명" readonly>
             </div>
             <!-- 변경할 업체 정보 입력 -->
@@ -85,7 +85,8 @@
              <h4>제공 가격</h4>  -->
              <input type="hidden" class="write-input" name="provideType"
                    autofocus value="무료" placeholder="제공가격">
-            
+            <input type="hidden" class="write-input" name="hits"
+            		autofocus value="${board.hits}">
 			
             <div class="btn-area">
                 <input type="submit" class="btn-write" value="수정완료">

@@ -13,6 +13,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.icia.later.dao.BoardDao;
 import com.icia.later.dao.CustomerDao;
+import com.icia.later.dao.ReservationDao;
+import com.icia.later.dto.BoardDto;
 import com.icia.later.dto.CustomerDto;
 import com.icia.later.dto.MemberDto;
 
@@ -23,6 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 public class CustomerService {
 	@Autowired CustomerDao cDao;
 	@Autowired BoardDao bDao;
+	@Autowired ReservationDao rDao;
 	
 	public String cEmailCheck(String customerEmailCheck) {
 		log.info("customerEmailCheck()");
@@ -177,7 +180,19 @@ public class CustomerService {
 
 			try {
 				if (loginInfo != null) {
+					// 사업자가 등록한 업체 리스트 가져오기
+					List<BoardDto> board = bDao.selectCompanyListByCustomerId(id);
+					System.out.println(board);
+					for(BoardDto boardDto : board) {
+						Integer boardId = boardDto.getBoardId();
+						System.out.println(boardId);
+						// 사업자가 등록한 업체의 예약 삭제
+						rDao.deleteReservation(boardId);
+						
+					}
+					// 사업자가 등록한 업체 삭제
 					bDao.deleteCompanyList(id);
+					// 사업자 탈퇴
 					cDao.deleteCustomer(id);
 					System.out.println("cServ" + id);
 

@@ -277,6 +277,12 @@ public class MemberService {
 			MemberDto member = mDao.getReviewByMemberId(memberId);
 			model.addAttribute("member", member);
 		}
+		
+		// 예약한 회원의 정보 가져오는 메서드
+		public MemberDto getMemberDto(Integer memberId) {
+			MemberDto mDto = mDao.getReservationByMemberId(memberId);
+			return mDto;
+		}
 
 }
 

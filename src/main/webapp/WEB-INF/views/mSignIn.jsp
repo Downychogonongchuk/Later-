@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원가입</title>
+<title>체험단 회원가입</title>
 <link rel="stylesheet" href="resources/css/mSignIn.css">
 
 </head>

@@ -61,6 +61,8 @@ public interface BoardDao {
 	// 카테고리에 속한 게시글 수 조회
 	int cntBoardByCategory(Integer cateNum);
 
+	List<BoardDto> selectCompanyListByCustomerId(Integer id);
+
 	
 
 }

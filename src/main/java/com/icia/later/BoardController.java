@@ -76,12 +76,11 @@ public class BoardController {
 			//업체정보 수정 처리 메서드
 			@PostMapping("bUpdateProc")
 			public String bUpdateProc(@RequestPart List<MultipartFile> files, 
-					Integer boardId,
+					BoardDto board,
 					HttpSession session,
 					RedirectAttributes rttr) {
 				log.info("bUpdateProc()");
-				
-				BoardDto board = bServ.getBoard(boardId);
+				// BoardDto board = bServ.getBoard(boardId);
 				
 				String view = bServ.boardUpdate(files, board, session, rttr);
 				

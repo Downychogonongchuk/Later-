@@ -1,5 +1,6 @@
 package com.icia.later;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -16,6 +17,7 @@ import com.icia.later.dto.CustomerDto;
 import com.icia.later.dto.MemberDto;
 import com.icia.later.dto.ReservationDto;
 import com.icia.later.service.BoardService;
+import com.icia.later.service.MemberService;
 import com.icia.later.service.ReservationService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -23,14 +25,13 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @Slf4j
 public class CompanyController {
-
-	
-	
 	@Autowired
 	private BoardService bServ;
 	@Autowired
 	private ReservationService rServ;
-
+	@Autowired
+	private MemberService mServ;
+	
 	// 업체 상세페이지
 	@GetMapping("companyDetail")
 	public String companyDetail(Integer boardId, Model model, HttpSession session) {
@@ -107,13 +108,19 @@ public class CompanyController {
 						
 						// 업체를 신청한 회원을 보여주는 페이지 // 내 업체를 신청한 사람들
 						@GetMapping("selectApply")
-						public String selectApply(Model model,Integer memberId, Integer boardId, HttpSession session) {
+						public String selectApply(Model model, Integer boardId, HttpSession session) {
 							log.info("selectApply()");
 							
 							List<ReservationDto> rList = rServ.getReservationList(boardId);
-							
+							// 예약한 회원정보 가져오기
+							List<MemberDto> mList = new ArrayList<MemberDto>();
+							for(ReservationDto rDto : rList) {
+								Integer memberId = rDto.getMemberId();
+								MemberDto mDto = mServ.getMemberDto(memberId);
+								mList.add(mDto);
+							}
 							System.out.println(rList);
-							
+							System.out.println(mList);
 							
 							MemberDto mLogInInfo = (MemberDto) session.getAttribute("mLogin");
 							// 로그인한 사업자 회원 정보(2024-02-26)
@@ -122,6 +129,7 @@ public class CompanyController {
 						    model.addAttribute("mLogInInfo", mLogInInfo);
 						    // 로그인한 사업자 정보를 모델에 추가하여 JSP로 전달
 						    model.addAttribute("cLogInInfo", cLogInInfo);
+						    model.addAttribute("mList", mList);
 							model.addAttribute("rList", rList);
 							
 							

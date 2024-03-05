@@ -98,11 +98,12 @@ public class BoardService {
 					fileDelete(poster, session);
 				}
 			}
-			bDao.updateBoard(board);
-			System.out.println("mServ" + board);
+				bDao.updateBoard(board);
+				System.out.println("mServ" + board);
 
-			view = "redirect:/"; // + member.getMemberId();
-			msg = "수정 성공";
+				view = "redirect:/"; // + member.getMemberId();
+				msg = "수정 성공";
+
 			// 기존 파일 삭제
 		} catch (Exception e) {
 			e.printStackTrace();

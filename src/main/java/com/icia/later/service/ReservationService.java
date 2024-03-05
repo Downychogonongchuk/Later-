@@ -128,7 +128,7 @@ public class ReservationService {
 		log.info("updateStatus()");
 		String view = null;
 		String msg = null;
-		
+		System.out.println(status);
 		if("확정".equals(status)) {
 			Map<String, Object> pMap = new HashMap<>();
 			pMap.put("reservationId", reservationId);

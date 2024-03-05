@@ -21,15 +21,14 @@
 	<!--업체 수정 -->
 	<update id="updateBoard" parameterType="board">
 		UPDATE board
-		INNER JOIN
-		customer ON board.customerId = customer.customerId
-		SET
-		board.periodStart=#{periodStart}, board.periodEnd=#{periodEnd},
-		board.personnel=#{personnel}, board.detail=#{detail},
-		board.checkInfo=#{checkInfo}, board.price=#{price},
-		board.boardFile=#{boardFile}, board.category=#{category},
-		board.customerId=#{customerId}
-		WHERE board.boardId = #{boardId}
+		SET boardId=#{boardId},
+		category=#{category}, companyName=#{companyName},
+		periodStart=#{periodStart}, periodEnd=#{periodEnd},
+		personnel=#{personnel}, price=#{price},
+		provideType=#{provideType}, detail=#{detail}, 
+		checkInfo=#{checkInfo}, boardFile=#{boardFile}, 
+		hits=#{hits}, customerId=#{customerId}
+		WHERE boardId = #{boardId}
 	</update>
 	<!-- 업체 삭제 -->
 	<delete id="deleteBoard" parameterType="HashMap">
@@ -77,7 +76,8 @@
 		DELETE FROM board
 		WHERE customerId = #{customerId}
 	</delete>
-
+	
+	<!-- comingsoon 업체 리스트 -->
 	<select id="getComingList" resultType="board">
 		SELECT *
 		FROM board
@@ -106,6 +106,11 @@
 		where category=#{cateNum}
 	</select>
 	
+	<!-- 사업자가 등록한 업체 리스트 -->
+		<select id="selectCompanyListByCustomerId" parameterType="Integer"
+		resultType="board">
+		SELECT * FROM board WHERE customerId=#{customerId}
+	</select>
 </mapper>
 
 

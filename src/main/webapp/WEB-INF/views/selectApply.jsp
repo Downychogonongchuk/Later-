@@ -6,14 +6,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet"
-	href="resources/css/style.css"/>
-<link rel="stylesheet"
-	href="resources/css/selectApply.css"/>
+<title>신청한 체험단 선택</title>
+<link rel="stylesheet" href="resources/css/style.css" />
+<link rel="stylesheet" href="resources/css/selectApply.css" />
 </head>
 <style>
-	.wrap {
+.wrap {
 	display: flex;
 	flex-direction: column;
 	height: 100%;
@@ -39,6 +37,7 @@
 	justify-content: center;
 	align-items: center;
 }
+
 .fa-star {
 	color: red;
 }
@@ -46,10 +45,9 @@
 .nav-link {
 	font-size: 20px;
 }
-	
 </style>
 <body>
-<div class="wrap">
+	<div class="wrap">
 		<c:if test="${empty mLogInInfo and empty cLogInInfo}">
 			<jsp:include page="header.jsp" />
 		</c:if>
@@ -59,96 +57,84 @@
 		<c:if test="${!empty cLogInInfo}">
 			<jsp:include page="cHeader.jsp" />
 		</c:if>
-		<form id="detailForm" method="post" action="select"
-      enctype="multipart/form-data">
+
+
 		<c:if test="${empty rList}">
 			<div class="shop-item">
-                 <span class="none-content">신청한 체험단이 없습니다.</span>
-            </div>
+				<span class="none-content">신청한 체험단이 없습니다.</span>
+			</div>
 		</c:if>
 		<c:if test="${!empty rList}">
 			<c:forEach var="reserv" items="${rList}">
-			<div class="right">
-				    <section class="info">
-					
-					
-					<input type="hidden" name="reservationId" value="${reserv.reservationId}">
+				<c:forEach var="member" items="${mList}">
+					<c:if test="${reserv.memberId == member.memberId}">
 
-					<!-- <p class="name">
-						<strong>업체이름</strong><br>${board.companyName}</p>
-					 Hidden input fields to hold the data 
-					<input type="hidden" name="companyName"
-						value="${board.companyName}">  -->
 
-					<p>
-						<strong>신청시간</strong><br>${reserv.reservationTime}</p>
-					<input type="hidden" name="reservationTime" value="${reserv.reservationTime}">
+						<div class="right">
+							<section class="info">
+								<p>
+									<strong>회원이름</strong><br>${member.memberName}</p>
+								<p>
+									<strong>신청시간</strong><br>${reserv.reservationTime}</p>
+								<p>
+									<strong>신청 상태</strong><br>${reserv.status}</p>
+								<p>
+									<strong>sns팔로워 수</strong><br>${member.snsFollower}</p>
+								<p>
+									<strong>sns링크</strong><br>${member.snsLink}</p>
 
-					<p>
-						<strong>신청 상태</strong><br>${reserv.status}</p>
-					<input type="hidden" name="status"
-						value="${reserv.status}"> 
+							</section>
+							<form id="detailForm" method="post" action="select"
+								enctype="multipart/form-data">
+								<input type="hidden" name="reservationId"
+									value="${reserv.reservationId}"> <input type="hidden"
+									name="reservationTime" value="${reserv.reservationTime}">
+								<input type="hidden" name="status" value="${reserv.status}">
+								<input type="hidden" name="memberId" value="${reserv.memberId}">
+								<input type="hidden" name="boardId" value="${reserv.boardId}">
 
-					<p>
-						<strong>모집마감일자</strong><br>${board.periodEnd}</p>
-					<input type="hidden" name="memberId" value="${reserv.memberId}">
+								<div class="buttons">
+									<!-- 결제버튼-->
+									<button type="submit" id="btn-yes" class="btn-yes">확정</button>
+									<!-- 결제버튼 완-->
+									<button type="submit" id="btn-no" class="btn-no">거절</button>
+								</div>
+								<!--buttonsEnd-->
+							</form>
+							<!-- formEnd -->
+						</div>
+						<!--rightEnd-->
 
-					<p>
-						<strong>제공타입</strong><br>${board.provideType}</p>
-					<input type="hidden" name="boardId"
-						value="${reserv.boardId}">
+					</c:if>
+				</c:forEach>
+				<!-- mList End -->
+			</c:forEach>
+			<!-- rList End -->
 
-					<p>
-						<!--  <strong>가격</strong><br>${board.price}</p>
-					<input type="hidden" name="price" value="${board.price}">
-                    -->
-				</section>
+		</c:if>
 
-				<!--  <section class="detail">
-					<p>
-						<strong><b>상세정보</b></strong> <span class="detailContent">
-							"${detail}"</span>
-					</p>
-					<ul>
-						<li></li>
-						
-					</ul>
-				</section> detailEnd
-			-->
-                
-                <div class="buttons">
-                <!-- 결제버튼-->
-				<button type="submit" id="btn-yes" class="btn-yes">확정</button>
-				<!-- 결제버튼 완-->
-				<button type="submit" id="btn-no"class="btn-no">거절</button>
-                </div> <!--buttonsEnd-->
-			             </div><!--rightEnd-->
-    </c:forEach>
-
-	</c:if>
-	</form>
-	<jsp:include page="footer.jsp" />
+		<jsp:include page="footer.jsp" />
 	</div>
 </body>
 <script>
-$(document).ready(function() {
-	  $("#btn-yes").click(function() {
-	        // 확정 버튼을 눌렀을 때
-	        $("input[name='status']").val("확정"); // status 값을 확정으로 변경
-	        $("#detailForm").submit(); // 폼 서브밋
-	    });
+	$(document).ready(function() {
+		$(".btn-yes").click(function() {
+			// 확정 버튼을 눌렀을 때
+			$(this).closest("form").find("input[name='status']").val("확정"); // status 값을 확정으로 변경
+			$(this).closest("form").submit(); // 폼 서브밋
+		});
 
-	    $("#btn-no").click(function() {
-	        // 거절 버튼을 눌렀을 때
-	        $("input[name='status']").val("거절"); // status 값을 거절으로 변경
-	        $("#detailForm").submit(); // 폼 서브밋
-	    });
+		$(".btn-no").click(function() {
+			// 거절 버튼을 눌렀을 때
+			$(this).closest("form").find("input[name='status']").val("거절"); // status 값을 거절으로 변경
+			$(this).closest("form").submit(); // 폼 서브밋
+		});
 	});
-	</script>
-	<script>
-		let m = "${msg}";
-		if (m != "") {
-			alert(m);
-		}
-	</script>
+</script>
+<script>
+	let m = "${msg}";
+	if (m != "") {
+		alert(m);
+	}
+</script>
 </html>

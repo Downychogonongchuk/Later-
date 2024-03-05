@@ -35,4 +35,7 @@ public interface MemberDao {
 		
 		// 리뷰를 작성한 회원 정보 가져오기
 		MemberDto getReviewByMemberId(Integer memberId);
+		
+		// 예약한 회원의 정보 가져오기
+		MemberDto getReservationByMemberId(Integer memberId);
 }

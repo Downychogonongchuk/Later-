@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>reviewDetail</title>
 <link rel="stylesheet"
 	href="resources/css/reviewDetail.css"/>
 </head>
