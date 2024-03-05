@@ -1,8 +1,9 @@
 package com.icia.later.service;
 
 import java.io.File;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -17,7 +18,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.icia.later.dao.BoardDao;
 import com.icia.later.dao.ReservationDao;
 import com.icia.later.dto.BoardDto;
-import com.icia.later.dto.MemberDto;
 import com.icia.later.util.PagingUtil;
 
 import lombok.extern.slf4j.Slf4j;
@@ -231,15 +231,29 @@ public class BoardService {
 	}
 	
 	//모집시작 날짜별로 리스트 가져오기
-	 public List<BoardDto> getComingList(Model model){
-		 log.info("getComingList()");
-		List<BoardDto> cbList = bDao.getComingList();
-		for (int i = 0; i < cbList.size(); i++) {
-			System.out.println(cbList.get(i));
-		}
-		// model.addAttribute("cbList", cbList);
-		
-		return cbList;
+	public List<BoardDto> getComingList(Model model) {
+	    log.info("getComingList()");
+	    
+	    // 현재 날짜와 시간을 가져옵니다.
+	    LocalDateTime now = LocalDateTime.now();
+	    
+	    // DB에서 모든 게시글을 가져옵니다.
+	    List<BoardDto> cbList = bDao.getComingList();
+	    
+	    // 아직 기간이 남은 게시글을 담을 리스트를 생성합니다.
+	    List<BoardDto> comingList = new ArrayList<>();
+	    
+	    // 모든 게시글을 순회하며, periodStart가 현재 날짜와 시간보다 이후인 게시글을 찾습니다.
+	    for (BoardDto board : cbList) {
+	        // 문자열 형식의 periodStart를 LocalDateTime으로 변환합니다.
+	        LocalDateTime periodStart = board.getPeriodStart();
+	        
+	        if (periodStart.isAfter(now)) {
+	            comingList.add(board); // 아직 기간이 남은 게시글을 리스트에 추가합니다.
+	        }
+	    }
+	    
+	    return comingList;
 	}
 
 		// 업체 예약자 수 증가하는 메서드

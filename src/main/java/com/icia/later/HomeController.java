@@ -1,6 +1,5 @@
 package com.icia.later;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +18,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.icia.later.dto.BoardDto;
 import com.icia.later.dto.CustomerDto;
 import com.icia.later.dto.MemberDto;
-import com.icia.later.dto.ReservationDto;
 import com.icia.later.service.BoardService;
 import com.icia.later.service.MemberService;
 
