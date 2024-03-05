@@ -25,8 +25,7 @@
 	<!--view-->
 	
 		
-		
-			<!-- 인포 -->
+		<!-- 인포 -->
 			<form id="detailForm" method="post" action="rev"
 				enctype="multipart/form-data">
                 <div id="content">
@@ -39,86 +38,81 @@
                     </section>
                     <section class="checkInfo">
                         <p>
-                            <strong><b>체크사항</b></strong><br><span class="checkContent">"${board.checkInfo}"</span>
+                            <strong><b>체크사항</b>체크사항</strong> <span class="checkContent">"${checkInfo}"</span>
                         </p>
                     </section> <!--checkInfoEnd-->	
                 </div>	<!--leftEnd-->
                     
-                     <div class="right">
-                <section class="info">
+                    <div class="right">
+				    <section class="info">
+					
+					
+					<input type="hidden" name="boardId" value="${board.boardId}">
+
+					<p class="name">
+						<strong>업체이름</strong><br>${board.companyName}</p>
+					<!-- Hidden input fields to hold the data -->
+					<input type="hidden" name="companyName"
+						value="${board.companyName}">
+
+					<p>
+						<strong>모집인원</strong><br>${board.personnel}</p>
+					<input type="hidden" name="personnel" value="${board.personnel}">
+
+					<p>
+						<strong>모집신청일자</strong><br>${board.periodStart}</p>
+					<input type="hidden" name="periodStart"
+						value="${board.periodStart}">
+
+					<p>
+						<strong>모집마감일자</strong><br>${board.periodEnd}</p>
+					<input type="hidden" name="periodEnd" value="${board.periodEnd}">
+
+					<p>
+						<strong>제공타입</strong><br>${board.provideType}</p>
+					<input type="hidden" name="provideType"
+						value="${board.provideType}">
+
+					<p>
+						<strong>가격</strong><br>${board.price}</p>
+					<input type="hidden" name="price" value="${board.price}">
+					
+					<input type="hidden" name="hits" value="${board.hits}">
+	
+	
+				</section>
+
+				<section class="detail">
+					<p>
+						<strong><b>상세정보</b></strong> <span class="detailContent">
+							"${detail}"</span>
+					</p>
+					<ul>
+						<li></li>
+						
+					</ul>
+				</section> <!--detailEnd-->
+			
                 
-                <section class="leftContent">
-                <input type="hidden" name="boardId" value="${board.boardId}">
-
-                <p class="name">
-                    <strong>업체이름</strong><br><span class="companyName">[${board.companyName}]</span></p>
-                <!-- Hidden input fields to hold the data -->
-                <input type="hidden" name="companyName"
-                    value="${board.companyName}">
-
-                <p class="info5">
-                    <strong>모집인원</strong><br>${board.personnel}</p>
-                <input type="hidden" name="personnel" value="${board.personnel}">
-
-                <p class="info5">
-                    <strong>모집신청일자</strong><br>${board.periodStart}</p>
-                <input type="hidden" name="periodStart"
-                    value="${board.periodStart}">
-
-                    <p class="info5">
-                    <strong>모집마감일자</strong><br>${board.periodEnd}</p>
-                <input type="hidden" name="periodEnd" value="${board.periodEnd}">
-
-                <p class="info5">
-                    <strong>제공타입</strong><br>${board.provideType}</p>
-                <input type="hidden" name="provideType"
-                    value="${board.provideType}">
-                <p class="info5">
-                    <strong>가격</strong><br>${board.price}</p>
-                <input type="hidden" name="price" value="${board.price}">
-				<input type="hidden" name="hits" value="${board.hits}">
-            </section>
-
-            <section class="detail">
-                <p>
-                    <strong><b>상세정보</b></strong><br> <span class="detailContent">
-                        "${board.detail}"</span>
-                </p>
-                <ul>
-                    <li></li>
-                    
-                </ul>
-            </section> <!--detailEnd-->
-
-            
-            <div class="buttons">
-       
-            <c:if test="${!empty mLogInInfo}">
-            <!-- 결제버튼-->
-            <button type="submit" id="btn-apply" class="btn-common btn-apply">신청하기</button>
-            </c:if><!--!empty mLogInInfo -->
-            
-            <c:if test="${!empty cLogInInfo}">
-            <div class="btn-cLogin">
-            <button type="button" id="btn-bUpdate" class="btn-common btn-bUpdate" >수정</button>
-            <div class="btn-cLogin"></div>
-            <button type="button" id="btn-bDelete" class="btn-common btn-bDelete">삭제</button>
-            <div class="btn-cLogin"></div>
-            <button type="button" id="btn-selectApply" class="btn-common btn-selectApply">신청한 회원 보기</button>
-            </div>
-            </c:if><!--!empty cLogInInfo -->
-            
-           	</div> <!--buttonsEnd-->
-            </section>
-            
-
-            </div><!--rightEnd-->
-            
-        </div><!--content-->
-        </form>
-    
-            
-<jsp:include page="footer.jsp" />
+                <div class="buttons">
+                <c:if test="${!empty mLogInInfo}">
+                <!-- 결제버튼-->
+				<button type="submit" id="btn-apply" class="btn-apply">신청하기</button>
+				</c:if><!--!empty mLogInInfo -->
+				
+				<c:if test="${!empty cLogInInfo}">
+                <a href="modifyDetail.jsp" class="btn-modifyDetail">수정</a>
+				</c:if><!--!empty cLogInInfo -->
+				
+				
+                </div> <!--buttonsEnd-->
+			    </div><!--rightEnd-->
+				
+            </div><!--content-->
+			</form>
+		
+				
+	<jsp:include page="footer.jsp" />
 	
 
 </body>
