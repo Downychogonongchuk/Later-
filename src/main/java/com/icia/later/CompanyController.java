@@ -45,7 +45,6 @@ public class CompanyController {
 	    model.addAttribute("cLogInInfo", cLogInInfo);
 		
 		bServ.getCompanyDetail(boardId, model);
-		System.out.println(model);
 	
 		return "companyDetail";
 	}
@@ -119,8 +118,6 @@ public class CompanyController {
 								MemberDto mDto = mServ.getMemberDto(memberId);
 								mList.add(mDto);
 							}
-							System.out.println(rList);
-							System.out.println(mList);
 							
 							MemberDto mLogInInfo = (MemberDto) session.getAttribute("mLogin");
 							// 로그인한 사업자 회원 정보(2024-02-26)

@@ -39,6 +39,9 @@ public interface ReservationDao {
 	// 업체 삭제 시 예약 삭제
 	void deleteReservation(Integer boardId);
 
+	// 로그인한 회원이 예약한 리스트 가져오기
+	List<ReservationDto> getReservationListByMemberId(Integer memberId);
+
 	
 	
 }

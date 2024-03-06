@@ -22,4 +22,8 @@ public interface ReviewDao {
 	@Select("SELECT count(*) FROM review")
 	int cntReview();
 
+	// 멤버 탈퇴시 fk삭제용
+	void deleteReview(int id);
+	
+
 }

@@ -41,12 +41,10 @@ public class ReviewService {
 				FileUpload(files, session, review);
 			}
 			rDao.insertReview(review);
-			System.out.println(review);
 			view = "redirect:/";
 			msg = "작성 성공";
 		} catch (Exception e) {// 저장 실패인 경우
 			e.printStackTrace();
-			System.out.println(review);
 			view = "redirect:/";
 			msg = "작성 실패";
 		}
@@ -60,7 +58,6 @@ public class ReviewService {
 		log.info("getReview()");
 		
 		ReviewDto review = rDao.selectReview(reviewId);
-		System.out.println(review);
 		model.addAttribute("review", review);
 	}
 	
@@ -108,7 +105,6 @@ public class ReviewService {
 		
 		
 		List<ReviewDto> rList = rDao.getReviewList(pMap);
-		System.out.println(rList);
 		model.addAttribute("rList", rList);
 		
 		// 로그인한 일반 회원 정보(2024-02-26)

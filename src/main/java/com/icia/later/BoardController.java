@@ -64,7 +64,6 @@ public class BoardController {
 				
 				CustomerDto cLogInInfo = (CustomerDto) session.getAttribute("cLogin");
 				
-				System.out.println(cLogInInfo);
 				if(cLogInInfo != null) {
 					model.addAttribute("customer", cLogInInfo);
 				}
@@ -96,7 +95,6 @@ public class BoardController {
 				CustomerDto cLogInInfo = (CustomerDto) session.getAttribute("cLogin");
 				
 				Integer customerId = cLogInInfo.getCustomerId();
-				System.out.println(customerId);
 				String view = bServ.boardDelete(boardId, customerId, session, rttr);
 				return view;
 			}
@@ -110,7 +108,6 @@ public class BoardController {
 							if (logInInfo != null && session.getAttribute("mLogin") != null) {
 								// 로그인한 회원 정보를 모델에 추가하여 JSP로 전달
 						        model.addAttribute("mLogInInfo", logInInfo);
-						        System.out.println(logInInfo);
 						        }
 							CustomerDto logInInfo1 = (CustomerDto) session.getAttribute("cLogin");
 							

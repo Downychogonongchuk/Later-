@@ -76,7 +76,6 @@ public class ReviewController {
 		
 		// 리뷰를 작성한 회원의 정보 가져오기
 		mServ.getReviewByMemberId(memberId, model);
-		
 		// 리뷰 정보 가져오기
 		rServ.getReview(reviewId, model);
 		model.addAttribute("mLogInInfo", mLogInInfo);

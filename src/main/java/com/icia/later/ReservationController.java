@@ -55,9 +55,7 @@ public class ReservationController {
 	                BoardDto board = bServ.getBoard(boardId);
 	                // 예약을 했을 때 hits 증가
 	                Integer hits = board.getHits();
-	                System.out.println(hits);
 	                hits++;
-	                System.out.println(hits);
 	                // 증가한 hits 수정
 	                bServ.updateHits(boardId, hits);
 	                view = rServ.insertRev(memberId, boardId, rttr, session);

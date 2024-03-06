@@ -53,7 +53,6 @@ public class ReservationService {
 		// 세션을 사용하여 필요한 작업을 수행합니다.
 
 		rttr.addFlashAttribute("msg", msg);
-		System.out.println(msg);
 
 		return view;
 	}
@@ -76,7 +75,6 @@ public class ReservationService {
 		pMap.put("memberId11", memberId11);
 
 		List<BoardDto> bList = rDao.getBoardListBymemberId(pMap);
-		System.out.println("bList" + bList);
 		model.addAttribute("bList", bList);
 		
 		// 페이징 처리
@@ -125,10 +123,9 @@ public class ReservationService {
 	
 	// 신청 진행 상태 (확정 or 거절)
 	public String updateStatus(Integer reservationId, Integer boardId, String status, Model model, RedirectAttributes rttr) {
-		log.info("updateStatus()");
+		log.info("updateStatus()1");
 		String view = null;
 		String msg = null;
-		System.out.println(status);
 		if("확정".equals(status)) {
 			Map<String, Object> pMap = new HashMap<>();
 			pMap.put("reservationId", reservationId);

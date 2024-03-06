@@ -42,7 +42,6 @@ public class HomeController {
 			if (logInInfo != null && session.getAttribute("mLogin") != null) {
 				// 로그인한 회원 정보를 모델에 추가하여 JSP로 전달
 		        model.addAttribute("mLogInInfo", logInInfo);
-		        System.out.println(logInInfo);
 		        }
 			CustomerDto logInInfo1 = (CustomerDto) session.getAttribute("cLogin");
 			
@@ -56,7 +55,6 @@ public class HomeController {
 			
 		    // coming soon 업체 리스트 가져오기
 			model.addAttribute("cbList", cbList);
-			System.out.println(cbList);
 			return "home";
 		}
 		
@@ -70,13 +68,11 @@ public class HomeController {
 			if (logInInfo1 != null && session.getAttribute("cLogin") != null) {
 				// 로그인한 회원 정보를 모델에 추가하여 JSP로 전달
 		        model.addAttribute("cLogInInfo", logInInfo1);
-		        System.out.println(logInInfo1);
 			}
 			
 			if (logInInfo != null && session.getAttribute("mLogin") != null) {
 				// 로그인한 사업자 정보를 모델에 추가하여 JSP로 전달
 		        model.addAttribute("mLogInInfo", logInInfo);
-		        System.out.println(logInInfo);
 			}
 			return "myPage";
 		}
@@ -102,7 +98,7 @@ public class HomeController {
 	@PostMapping("mEmailCheck")
 	@ResponseBody
 	public String mEmailCheck(String memberEmailCheck) {
-	log.info("mEmailCheck()" + memberEmailCheck);
+	log.info("mEmailCheck()");
 	String res = mServ.mEmailCheck(memberEmailCheck); 
 	
 		return res;
@@ -144,7 +140,6 @@ public class HomeController {
 							HttpSession session,
 							RedirectAttributes rttr) {
 		log.info("mLoginProc()");
-		System.out.println(member);
 		
 		String view = mServ.mLogin(member, session, rttr);
 		return view;
@@ -218,12 +213,10 @@ public class HomeController {
 	    if (session != null && session.getAttribute("mLogin") != null) {
 	    	// 세션이 비어있지 않을 때 로그아웃 처리
 	        session.invalidate();
-	        System.out.println(session);
 	        msg = "로그아웃 되었습니다. 감사합니다.";
 	        
 	    } else {
 	    	// 이미 로그아웃 되어있거나 세션이 없는 경우
-	    	System.out.println(session);
 	    	msg = "이미 로그아웃 되어 있습니다.";
 	        
 	    }
@@ -255,7 +248,6 @@ public class HomeController {
 			HttpSession session,
 			RedirectAttributes rttr) {
 		log.info("updateProc()");
-		System.out.println("mUpdate에서 넘어온 dto"+member);
 		String view = mServ.memberUpdate(files, member, session, rttr);
 		
 		return view;

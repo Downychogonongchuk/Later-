@@ -29,4 +29,11 @@
  		FROM review
  		WHERE reviewId=#{reviewId}
  	</select>
+ 	
+ 	<!-- 회원탈퇴시 멤버id null로 변경 -->
+ 	<update id="deleteReview" parameterType="Integer">
+ 	UPDATE review
+	SET memberId = NULL
+	WHERE memberId = #{memberId}
+	</update>
  </mapper>
