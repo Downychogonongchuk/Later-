@@ -51,10 +51,16 @@ body {
     justify-content: space-around;
 }
 
+.item-area {
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+
 .shop-item {
     width: 200px;
     height: 270px;
-    margin: 10px;
+    margin: 5px;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;

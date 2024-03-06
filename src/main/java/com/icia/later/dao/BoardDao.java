@@ -60,8 +60,12 @@ public interface BoardDao {
 
 	// 카테고리에 속한 게시글 수 조회
 	int cntBoardByCategory(Integer cateNum);
-
+	
+	// 사업자가 등록한 업체 리스트
 	List<BoardDto> selectCompanyListByCustomerId(Integer id);
+	
+	// 회원이 예약한 업체 리스트
+	List<BoardDto> getBoardListByBoardId(Integer boardId);
 
 	
 

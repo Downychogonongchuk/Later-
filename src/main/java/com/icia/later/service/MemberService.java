@@ -1,7 +1,9 @@
 package com.icia.later.service;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 import javax.swing.text.View;
@@ -12,9 +14,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.icia.later.dao.BoardDao;
 import com.icia.later.dao.MemberDao;
 import com.icia.later.dao.ReservationDao;
+import com.icia.later.dto.BoardDto;
 import com.icia.later.dto.MemberDto;
+import com.icia.later.dto.ReservationDto;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -25,6 +30,8 @@ public class MemberService {
 	private MemberDao mDao;
 	@Autowired
 	private ReservationDao rDao;
+	@Autowired
+	private BoardDao bDao;
 	
 	public String mEmailCheck(String memberEmailCheck) {
 		log.info("memberEmailCheck()");
@@ -99,7 +106,7 @@ public class MemberService {
 		String msg = null;
 		String view = null;
 		MemberDto loggedInMember = mDao.login(member);
-		System.out.println(loggedInMember);
+		
 		
 		if (loggedInMember != null) {
 			msg = "로그인 성공";
@@ -108,7 +115,7 @@ public class MemberService {
 			System.out.println(loggedInMember);
 			// 로그인시 세션에 저장
 			session.setAttribute("mLogin", loggedInMember);
-			System.out.println(loggedInMember);
+			
 
 		} else {
 			msg = "이메일 및 비밀번호를 다시 확인해주세요.";
@@ -116,7 +123,7 @@ public class MemberService {
 		}
 
 		rttr.addFlashAttribute("msg", msg);
-		System.out.println(msg);
+		
 
 		return view;
 	}
@@ -161,7 +168,7 @@ public class MemberService {
 				}
 			}
 			mDao.updateMember(member);
-			System.out.println("mServ" + member);
+			
 
 			view = "redirect:/"; 
 			msg = "수정 성공";
@@ -198,9 +205,23 @@ public class MemberService {
 
 		try {
 			if (loginInfo != null) {
+				// 로그인한 회원이 예약한 리스트 가져오기
+				List<ReservationDto> rList = rDao.getReservationListByMemberId(id);
+				for(ReservationDto rDto : rList) {
+					Integer boardId = rDto.getBoardId();
+					// 회원이 예약한 업체 리스트 가져오기
+					List<BoardDto> bList = bDao.getBoardListByBoardId(boardId);
+					for(BoardDto bDto : bList) {
+						Integer hits = bDto.getHits();
+						hits--;
+						Map<String, Integer> pMap = new HashMap<>();
+						pMap.put("boardId", boardId);
+						pMap.put("hits", hits);
+						bDao.updateHits(pMap);
+					}
+				}
 				rDao.deleteApplyCompany(id);
 				mDao.deleteMember(id);
-				System.out.println("mServ" + id);
 
 				view = "redirect:/"; // + member.getMemberId();
 				msg = "탈퇴 성공";
@@ -221,10 +242,8 @@ public class MemberService {
 	// 일반회원 이메일찾기
 	public String mFindById(MemberDto member, Model model, RedirectAttributes rttr) {
 	    log.info("mFindById()");
-	    System.out.println(member);
 	    String msg = null;
 	    MemberDto EmailResult = mDao.FindById(member);
-	    System.out.println(EmailResult);
 	    
 	    if(EmailResult == null) {
 	        msg = "가입된 정보가 없습니다 다시 확인해주세요.";
@@ -239,10 +258,8 @@ public class MemberService {
 	// 일반회원 비밀번호찾기
 		public String mFindByPass(MemberDto member, Model model, RedirectAttributes rttr) {
 		    log.info("mFindByPass()");
-		    System.out.println(member);
 		    String msg = null;
 		    MemberDto PassResult = mDao.FindByPass(member);
-		    System.out.println(PassResult);
 		    
 		    if(PassResult == null) {
 		        msg = "가입된 정보가 없습니다 다시 확인해주세요.";
@@ -257,7 +274,7 @@ public class MemberService {
 		//일반회원 비밀번호 처리 메서드
 		public String mUpdatePassProc(MemberDto member,RedirectAttributes rttr) {
 			log.info("mUpdatePassProc()");
-			System.out.println(member);
+			
 			String msg = null;
 			String view = null;
 			mDao.mUpdatePassProc(member);

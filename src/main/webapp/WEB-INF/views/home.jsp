@@ -69,7 +69,7 @@
 		<!-- 업체 리스트 (2024-02-26) -->
 <div id="content">
         <section id="applyCompany">
-            <div class="data-area">
+            <div class="item-area">
                 <!-- 신청 목록 출력 -->
                     <c:if test="${empty bList}">
                         <div class="shop-item">
@@ -78,7 +78,7 @@
                     </c:if><!--if boardList is Empty-->
 
                     <c:if test="${!empty bList}">
-                        <c:forEach var="board" items="${bList}" begin="0" end="4" step="1">
+                        <c:forEach var="board" items="${bList}" begin="0" end="7" step="1">
                             <div class="shop-item">
                                 <a href="companyDetail?boardId=${board.boardId}">
                                     <c:if test="${empty board.boardFile}">
@@ -122,7 +122,7 @@
 		<!-- 업체 리스트 (2024-02-26) -->
 	<div id="content">
         <section id="applyCompany">
-            <div class="data-area">
+            <div class="item-area">
                 <!-- 신청 목록 출력 -->
                     <c:if test="${empty cbList}">
                         <div class="shop-item">
@@ -131,7 +131,7 @@
                     </c:if><!--if boardList is Empty-->
 
                     <c:if test="${!empty cbList}">
-                        <c:forEach var="cbList" items="${cbList}" begin="0" end="4" step="1">
+                        <c:forEach var="cbList" items="${cbList}" begin="0" end="7" step="1">
                             <div class="shop-item">
                                 <a href="companyDetail?boardId=${cbList.boardId}">
                                     <c:if test="${empty cbList.boardFile}">
