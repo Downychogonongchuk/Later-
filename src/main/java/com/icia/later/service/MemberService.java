@@ -194,7 +194,7 @@ public class MemberService {
 	}
 	// 회원 탈퇴 메서드
 	public String mDelete(Integer memberId, HttpSession session, RedirectAttributes rttr) {
-		log.info("mDelete()");
+		log.info("mDelete()1");
 		String msg = null;
 		String view = null;
 		MemberDto loginInfo = (MemberDto) session.getAttribute("mLogin");
