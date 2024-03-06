@@ -138,10 +138,10 @@ public class CompanyController {
 
 						// 진행 상태 status 변경 메서드(확정 or 거절)
 						@PostMapping("select")
-						public String select(Integer reservationId, String status, Model model, RedirectAttributes rttr) {
+						public String select(Integer reservationId, Integer boardId, String status, Model model, RedirectAttributes rttr) {
 							log.info("select()");
 							
-							String view = rServ.updateStatus(reservationId, status, model, rttr);
+							String view = rServ.updateStatus(reservationId, boardId, status, model, rttr);
 							
 							return view;
 						}
