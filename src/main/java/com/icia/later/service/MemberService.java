@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
-import javax.swing.text.View;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -17,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.icia.later.dao.BoardDao;
 import com.icia.later.dao.MemberDao;
 import com.icia.later.dao.ReservationDao;
+import com.icia.later.dao.ReviewDao;
 import com.icia.later.dto.BoardDto;
 import com.icia.later.dto.MemberDto;
 import com.icia.later.dto.ReservationDto;
@@ -31,7 +30,10 @@ public class MemberService {
 	@Autowired
 	private ReservationDao rDao;
 	@Autowired
+	private ReviewDao reDao;
+	@Autowired
 	private BoardDao bDao;
+
 	
 	public String mEmailCheck(String memberEmailCheck) {
 		log.info("memberEmailCheck()");
@@ -107,23 +109,19 @@ public class MemberService {
 		String view = null;
 		MemberDto loggedInMember = mDao.login(member);
 		
-		
 		if (loggedInMember != null) {
 			msg = "로그인 성공";
 			view = "redirect:/";
 
-			System.out.println(loggedInMember);
 			// 로그인시 세션에 저장
 			session.setAttribute("mLogin", loggedInMember);
 			
-
 		} else {
 			msg = "이메일 및 비밀번호를 다시 확인해주세요.";
 			view = "redirect:mLogin";
 		}
 
 		rttr.addFlashAttribute("msg", msg);
-		
 
 		return view;
 	}
@@ -168,7 +166,6 @@ public class MemberService {
 				}
 			}
 			mDao.updateMember(member);
-			
 
 			view = "redirect:/"; 
 			msg = "수정 성공";
@@ -205,6 +202,8 @@ public class MemberService {
 
 		try {
 			if (loginInfo != null) {
+				reDao.deleteReview(id);
+
 				// 로그인한 회원이 예약한 리스트 가져오기
 				List<ReservationDto> rList = rDao.getReservationListByMemberId(id);
 				for(ReservationDto rDto : rList) {

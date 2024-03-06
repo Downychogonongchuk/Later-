@@ -51,7 +51,7 @@
             <input type="hidden" class="write-input ta" name="memberId"
             	value="${member.memberId}">
             <input type="text" class="write-input ta" name="reviewTitle" placeholder="ex)[업체명]제목">
-            <input type="date" class="write-input ta" name="time">
+            <input type="datetime-local" class="write-input ta" name="time">
             <input type="text" class="write-input ta" name="reviewLink" placeholder="리뷰 작성를 작성하신 SNS링크">
             <textarea rows="20" class="write-input ta" name="contents"
                       placeholder="내용"></textarea>

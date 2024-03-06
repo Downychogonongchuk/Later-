@@ -60,7 +60,7 @@
 							class="img-poster">
 					</c:if>
 				</div>
-				<div class="detailcontent">${member.memberName}</div>
+				<div class="detailcontent">${member.memberName != null ? member.memberName : '탈퇴한 회원입니다.'}</div>
 				<div class="detailcontent">${review.time}</div>
 			</div>
 			<hr color="gray">

@@ -182,14 +182,12 @@ public class BoardService {
 		BoardDto board = bDao.selectBoard(boardId);
 		// DB에서 데이터 가져오기
 		model.addAttribute("board", board);
-		System.out.println(model);
 
 	}
 
 	// 모집글 목록을 가져오기
 	public String getBoardListBycustomerId(Integer pageNum, Model model, HttpSession session, Integer customerId) {
 		log.info("getBoardListBycustomerId()");
-		System.out.println("cId" + customerId);
 
 		if (pageNum == null) {
 			pageNum = 1;// 처음에 사이트가 열릴 때 첫페이지가 되도록 설정.
@@ -204,7 +202,6 @@ public class BoardService {
 		pMap.put("customerId", customerId);
 
 		List<BoardDto> bList = bDao.getBoardListBycustomerId(pMap, customerId);
-		System.out.println("bList" + bList);
 		model.addAttribute("bList", bList);
 
 		// 페이징 처리
@@ -262,14 +259,11 @@ public class BoardService {
 		// 업체 예약자 수 증가하는 메서드
 		public void updateHits(Integer boardId, Integer hits) {
 			log.info("updateHits()");
-			System.out.println(boardId);
-			System.out.println(hits);
 			
 			Map<String, Integer> pMap = new HashMap<String, Integer>();
 			pMap.put("boardId", boardId);
 			pMap.put("hits", hits);
 			bDao.updateHits(pMap);
-			System.out.println(hits);
 		}
 
 		// 카테고리 목록 가져오기
