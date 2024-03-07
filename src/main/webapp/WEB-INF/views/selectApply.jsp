@@ -7,7 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <title>신청한 체험단 선택</title>
-<link rel="stylesheet" href="resources/css/style.css" />
 <link rel="stylesheet" href="resources/css/selectApply.css" />
 </head>
 <style>
@@ -59,59 +58,72 @@
 		</c:if>
 
 
-		<c:if test="${empty rList}">
-			<div class="shop-item">
-				<span class="none-content">신청한 체험단이 없습니다.</span>
-			</div>
-		</c:if>
-		<c:if test="${!empty rList}">
-			<c:forEach var="reserv" items="${rList}">
-				<c:forEach var="member" items="${mList}">
-					<c:if test="${reserv.memberId == member.memberId}">
 
 
-						<div class="right">
+
+		<div class="right">
+			<c:if test="${empty rList}">
+				<div class="shop-item">
+					<span class="none-content">신청한 체험단이 없습니다.</span>
+				</div>
+			</c:if>
+			<c:if test="${!empty rList}">
+				<c:forEach var="reserv" items="${rList}">
+					<c:forEach var="member" items="${mList}">
+						<c:if test="${reserv.memberId == member.memberId}">
 							<section class="info">
+								<c:if test="${!empty member.memberProfile}">
+									<img src="resources/upload/${member.memberProfile}"
+										class="poster-pre">
+								</c:if>
+								<c:if test="${empty member.memberProfile}">
+									<img src="resources/images/no_image.jpg" class="poster-pre">
+								</c:if>
 								<p>
 									<strong>회원이름</strong><br>${member.memberName}</p>
-								<p>
-									<strong>신청시간</strong><br>${reserv.reservationTime}</p>
-								<p>
-									<strong>신청 상태</strong><br>${reserv.status}</p>
 								<p>
 									<strong>sns팔로워 수</strong><br>${member.snsFollower}</p>
 								<p>
 									<strong>sns링크</strong><br>${member.snsLink}</p>
+								<p>
+									<strong>신청시간</strong><br>${reserv.reservationTime}</p>
+								<p>
+									<strong>신청 상태</strong><br>${reserv.status}</p>
+								
+								
 
+
+								<form id="detailForm" method="post" action="select"
+									enctype="multipart/form-data">
+									<input type="hidden" name="reservationId"
+										value="${reserv.reservationId}"> <input type="hidden"
+										name="reservationTime" value="${reserv.reservationTime}">
+									<input type="hidden" name="status" value="${reserv.status}">
+									<input type="hidden" name="memberId" value="${reserv.memberId}">
+									<input type="hidden" name="boardId" value="${reserv.boardId}">
+
+									<div class="buttons">
+										<!-- 결제버튼-->
+										<button type="submit" id="btn-yes" class="btn-yes">확정</button>
+										<!-- 결제버튼 완-->
+										<button type="submit" id="btn-no" class="btn-no">거절</button>
+									</div>
+									<!--buttonsEnd-->
+								</form>
+								<!-- formEnd -->
 							</section>
-							<form id="detailForm" method="post" action="select"
-								enctype="multipart/form-data">
-								<input type="hidden" name="reservationId"
-									value="${reserv.reservationId}"> <input type="hidden"
-									name="reservationTime" value="${reserv.reservationTime}">
-								<input type="hidden" name="status" value="${reserv.status}">
-								<input type="hidden" name="memberId" value="${reserv.memberId}">
-								<input type="hidden" name="boardId" value="${reserv.boardId}">
-
-								<div class="buttons">
-									<!-- 결제버튼-->
-									<button type="submit" id="btn-yes" class="btn-yes">확정</button>
-									<!-- 결제버튼 완-->
-									<button type="submit" id="btn-no" class="btn-no">거절</button>
-								</div>
-								<!--buttonsEnd-->
-							</form>
-							<!-- formEnd -->
-						</div>
-						<!--rightEnd-->
-
-					</c:if>
+						</c:if>
+					</c:forEach>
+					<!-- mList End -->
 				</c:forEach>
-				<!-- mList End -->
-			</c:forEach>
-			<!-- rList End -->
+				<!-- rList End -->
+				</c:if>
+		</div>
+		<!--rightEnd-->
 
-		</c:if>
+
+
+		
 
 		<jsp:include page="footer.jsp" />
 	</div>

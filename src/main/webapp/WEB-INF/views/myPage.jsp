@@ -95,7 +95,7 @@
 					</div>
 					<div class="div-box">
 					<div>
-						<a href="mUpdate">회원정보수정</a>
+						<a href="cUpdate">회원정보수정</a>
 					</div>
 					<div>
 						<a href="companyList?customerId=${cLogInInfo.customerId}">내가 모집한글</a>
