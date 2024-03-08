@@ -31,10 +31,11 @@
 				enctype="multipart/form-data">
                 <div id="content">
                 <div class="left">
-                    <section>
-                        <p>
-                            <img src="resources/upload/${board.boardFile}" class="boardfile"></p>
-                            <input type="hidden" name="boardFile" value="${board.boardFile}">   
+                    <section class="img-section">
+                    <div class="img-area">
+                        <p>         
+                            <img src="resources/upload/${board.boardFile}" class="boardfile"></p> </div>
+                            <input type="hidden" name="boardFile" value="${board.boardFile}">  
                         <p>
                     </section>
                     <section class="checkInfo">
