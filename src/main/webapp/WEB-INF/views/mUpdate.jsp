@@ -11,7 +11,6 @@
 			crossorigin="anonymous"></script>
 	<!-- 파일 업로드 시 선택한 파일명 출력을 위한 스크립트 -->
     <script>
-        $(document).ready(function() {
             $("#file").on("change", function () {
                 let files = $("#file")[0].files;
                 let fileName = "";
@@ -25,13 +24,12 @@
 
                 $(".upload-name").val(fileName);
             });
-        });
     </script>
 
     <!-- 기존의 SNS 종류 값 가져와서 선택 상태 설정하는 스크립트 -->
     <script>
         $(document).ready(function() {
-            let snsKindValue = "${logInInfo.snsKind}";
+            let snsKindValue = "${mLogInInfo.snsKind}";
 
             $("select[name='snsKind'] option").each(function() {
                 let optionValue = $(this).val();
@@ -46,7 +44,7 @@
     <!-- 기존의 팔로워 수 값 가져와서 선택 상태 설정하는 스크립트 -->
     <script>
         $(document).ready(function() {
-            let snsFollowerValue = "${logInInfo.snsFollower}";
+            let snsFollowerValue = "${mLogInInfo.snsFollower}";
 
             $("select[name='snsFollower'] option").each(function() {
                 let optionValue = $(this).val();
@@ -73,20 +71,20 @@
             </div>
             <!-- 개인정보 입력 영역 -->
             <input type="hidden" class="write-input" name="memberId"
-            autofocus value="${logInInfo.memberId}">
+            autofocus value="${mLogInInfo.memberId}">
             <input type="hidden" class="write-input" name="memberName"
-            autofocus value="${logInInfo.memberName}">
+            autofocus value="${mLogInInfo.memberName}">
             <input type="hidden" class="write-input" name="memberEmail"
-                   autofocus value="${logInInfo.memberEmail}">
+                   autofocus value="${mLogInInfo.memberEmail}">
             <h5>비밀번호</h5>
             <input type="password" class="write-input" name="memberPass"
-                   autofocus value="${logInInfo.memberPass}">
+                   autofocus value="${mLogInInfo.memberPass}">
             <h5>비밀번호 재확인</h5>
             <input type="password" class="write-input" name=""
                    autofocus placeholder="변동사항 없을시 미입력">
             <h5>연락처</h5>
             <input type="text" class="write-input" name="memberPhone"
-                   autofocus value="${logInInfo.memberPhone}">
+                   autofocus value="${mLogInInfo.memberPhone}">
             <h5>사용하는 SNS</h5>
             <select name = "snsKind" class="write-input" required="required" autofocus>
 			<option value="없음">==선택해주세요==</option>
@@ -97,7 +95,7 @@
             </select>
             <h5>본인의 SNS또는 BLOG 링크</h5>
             <input type="text" class="write-input" name="snsLink"
-                   value="${logInInfo.snsLink}">
+                   value="${mLogInInfo.snsLink}">
             <h5>팔로워 수</h5>       
             <select name="snsFollower" class="write-input" required="required" autofocus>
 			<option value="없음">==선택해주세요==</option>

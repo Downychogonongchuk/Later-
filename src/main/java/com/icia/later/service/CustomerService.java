@@ -128,6 +128,7 @@ public class CustomerService {
 			String msg = null;
 			String view = null;
 			String poster = customer.getCustomerProfile();// 기존파일(포스터)
+			System.out.println(customer);
 			
 			try {
 				if (!files.get(0).isEmpty()) {

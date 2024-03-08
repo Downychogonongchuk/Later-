@@ -133,12 +133,12 @@ public class CustomerController {
 		public String cUpdate(Model model,HttpSession session) {
 			log.info("cUpdate()");
 			
-			CustomerDto logInInfo = (CustomerDto) session.getAttribute("login");
-			
-			if (logInInfo != null && session.getAttribute("login") != null) {
+			CustomerDto cLogInInfo = (CustomerDto) session.getAttribute("cLogin");
+			System.out.println(cLogInInfo);
+			if (cLogInInfo != null && session.getAttribute("cLogin") != null) {
 		        // 로그인한 회원 정보를 모델에 추가하여 JSP로 전달
-		        model.addAttribute("cLogInInfo", logInInfo);
-		        	        	        	        
+		        model.addAttribute("cLogInInfo", cLogInInfo);
+		        System.out.println(cLogInInfo);
 		}
 			return "cUpdate";
 	}

@@ -32,7 +32,7 @@
     <!-- 기존의 업종 가져와서 선택 상태 설정하는 스크립트 -->
     <script>
         $(document).ready(function() {
-            let sectorsValue = "${logInInfo.sectors}";
+            let sectorsValue = "${cLogInInfo.sectors}";
 
             $("select[name='sectors'] option").each(function() {
                 let optionValue = $(this).val();
@@ -60,26 +60,26 @@
             </div>
             <!-- 개인정보 입력 영역 -->
             <input type="hidden" class="write-input" name="customerId"
-            autofocus value="${logInInfo.customerId}">
+            autofocus value="${cLogInInfo.customerId}">
             <input type="hidden" class="write-input" name="customerName"
-            autofocus value="${logInInfo.customerName}">
+            autofocus value="${cLogInInfo.customerName}">
             <input type="hidden" class="write-input" name="customerEmail"
-                   autofocus value="${logInInfo.customerEmail}">
+                   autofocus value="${cLogInInfo.customerEmail}">
             <h5>비밀번호</h5>
             <input type="password" class="write-input" name="customerPass"
-                   autofocus value="${logInInfo.customerPass}">
+                   autofocus value="${cLogInInfo.customerPass}">
             <h5>비밀번호 재확인</h5>
             <input type="password" class="write-input" name=""
                    autofocus placeholder="변동사항 없을시 미입력">
             <h5>사업자번호</h5>
             <input type="text" class="write-input" name="customerNum"
-                   autofocus value="${logInInfo.customerNum}">
+                   autofocus value="${cLogInInfo.customerNum}">
             <h5>업체명</h5>
             <input type="text" class="write-input" name="companyName"
-                   autofocus value="${logInInfo.companyName}">
+                   autofocus value="${cLogInInfo.companyName}">
             <h5>사업장 주소</h5>       
             <input type="text" class="write-input" name="companyAddress"
-                   autofocus value="${logInInfo.companyAddress}">
+                   autofocus value="${cLogInInfo.companyAddress}">
             <h5>업종</h5>       
             <select name="sectors" class="write-input" required="required" autofocus>
 			<option value="없음">==카테고리 선택==</option>

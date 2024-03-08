@@ -80,6 +80,7 @@ public class ReviewController {
 		rServ.getReview(reviewId, model);
 		model.addAttribute("mLogInInfo", mLogInInfo);
 		model.addAttribute("cLogInInfo", cLogInInfo);
+		System.out.println(model);
 		
 		return "reviewDetail";
 	}
