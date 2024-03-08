@@ -60,13 +60,10 @@ public class BoardController {
 			public String bUpdate(Integer boardId, Model model, HttpSession session) {
 				log.info("bUpdate()");
 				
-				boardId = 1;
-				
 				BoardDto board = bServ.getBoard(boardId);
 				
 				CustomerDto cLogInInfo = (CustomerDto) session.getAttribute("cLogin");
 				
-				System.out.println(cLogInInfo);
 				if(cLogInInfo != null) {
 					model.addAttribute("customer", cLogInInfo);
 				}
@@ -78,12 +75,11 @@ public class BoardController {
 			//업체정보 수정 처리 메서드
 			@PostMapping("bUpdateProc")
 			public String bUpdateProc(@RequestPart List<MultipartFile> files, 
-					Integer boardId,
+					BoardDto board,
 					HttpSession session,
 					RedirectAttributes rttr) {
 				log.info("bUpdateProc()");
-				
-				BoardDto board = bServ.getBoard(boardId);
+				// BoardDto board = bServ.getBoard(boardId);
 				
 				String view = bServ.boardUpdate(files, board, session, rttr);
 				
@@ -96,8 +92,32 @@ public class BoardController {
 								  HttpSession session,
 								  RedirectAttributes rttr) {
 				log.info("bDelete()");
-				String view = bServ.boardDelete(boardId, session, rttr);
+				CustomerDto cLogInInfo = (CustomerDto) session.getAttribute("cLogin");
+				
+				Integer customerId = cLogInInfo.getCustomerId();
+				String view = bServ.boardDelete(boardId, customerId, session, rttr);
 				return view;
 			}
+			// 카테고리를 처리하는 메소드
+						@GetMapping("category")
+						private String handleCategory(Integer cateNum, Integer pageNum, Model model, HttpSession session) {
+							log.info("handleCategory() cn: {}", cateNum);
+							
+							MemberDto logInInfo = (MemberDto) session.getAttribute("mLogin");
+							
+							if (logInInfo != null && session.getAttribute("mLogin") != null) {
+								// 로그인한 회원 정보를 모델에 추가하여 JSP로 전달
+						        model.addAttribute("mLogInInfo", logInInfo);
+						        }
+							CustomerDto logInInfo1 = (CustomerDto) session.getAttribute("cLogin");
+							
+							if (logInInfo1 != null && session.getAttribute("cLogin") != null) {
+								// 로그인한 사업자 정보를 모델에 추가하여 JSP로 전달
+						        model.addAttribute("cLogInInfo", logInInfo1);	        	        	        
+						}
+
+							// BoardService를 통해 카테고리 목록을 가져옴
+							return bServ.getCategoryList(cateNum, pageNum, model, session);
+						}
 
 }

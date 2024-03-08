@@ -10,14 +10,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.icia.later.dto.BoardDto;
 import com.icia.later.dto.CustomerDto;
 import com.icia.later.dto.MemberDto;
+import com.icia.later.service.BoardService;
 import com.icia.later.service.MemberService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -28,30 +29,36 @@ import lombok.extern.slf4j.Slf4j;
 public class HomeController {
 	@Autowired
 	private MemberService mServ;
+	@Autowired 
+	private BoardService bServ;
 			
 	//메인페이지
 		@GetMapping("/")
 		public String home(Model model,HttpSession session) {
 			log.info("home()");
 			MemberDto logInInfo = (MemberDto) session.getAttribute("mLogin");
+			List<BoardDto> cbList = bServ.getComingList(model);
 			
 			if (logInInfo != null && session.getAttribute("mLogin") != null) {
-		        // 로그인한 회원 정보를 모델에 추가하여 JSP로 전달
+				// 로그인한 회원 정보를 모델에 추가하여 JSP로 전달
 		        model.addAttribute("mLogInInfo", logInInfo);
-		        System.out.println(logInInfo);
 		        }
 			CustomerDto logInInfo1 = (CustomerDto) session.getAttribute("cLogin");
 			
 			if (logInInfo1 != null && session.getAttribute("cLogin") != null) {
-		        // 로그인한 회원 정보를 모델에 추가하여 JSP로 전달
-		        model.addAttribute("cLogInInfo", logInInfo1);
-		        	        	        	        
+				// 로그인한 사업자 정보를 모델에 추가하여 JSP로 전달
+		        model.addAttribute("cLogInInfo", logInInfo1);	        	        	        
 		}
-
+			// 인기 업체 리스트 가져오기
+		    List<BoardDto> bList = bServ.getBoardList();
+		    model.addAttribute("bList", bList);
+			
+		    // coming soon 업체 리스트 가져오기
+			model.addAttribute("cbList", cbList);
 			return "home";
 		}
 		
-	// 마이페이지 홈 이동
+		//마이페이지 이동
 		@GetMapping("myPage")
 		public String myPage(Model model,HttpSession session) {
 			log.info("myPage()");
@@ -59,21 +66,19 @@ public class HomeController {
 			CustomerDto logInInfo1 = (CustomerDto) session.getAttribute("cLogin");
 			
 			if (logInInfo1 != null && session.getAttribute("cLogin") != null) {
-		        // 로그인한 회원 정보를 모델에 추가하여 JSP로 전달
+				// 로그인한 회원 정보를 모델에 추가하여 JSP로 전달
 		        model.addAttribute("cLogInInfo", logInInfo1);
-		        System.out.println(logInInfo1);
 			}
 			
 			if (logInInfo != null && session.getAttribute("mLogin") != null) {
-		        // 로그인한 회원 정보를 모델에 추가하여 JSP로 전달
+				// 로그인한 사업자 정보를 모델에 추가하여 JSP로 전달
 		        model.addAttribute("mLogInInfo", logInInfo);
-		        System.out.println(logInInfo);
 			}
 			return "myPage";
 		}
 	
 	
-	// 회원가입 유형선택페이지
+		// 회원가입 유형선택페이지
 	@GetMapping("signSelect")
 	public String signSelect() {
 		log.info("signSelect()");
@@ -93,7 +98,7 @@ public class HomeController {
 	@PostMapping("mEmailCheck")
 	@ResponseBody
 	public String mEmailCheck(String memberEmailCheck) {
-	log.info("mEmailCheck()" + memberEmailCheck);
+	log.info("mEmailCheck()");
 	String res = mServ.mEmailCheck(memberEmailCheck); 
 	
 		return res;
@@ -135,7 +140,6 @@ public class HomeController {
 							HttpSession session,
 							RedirectAttributes rttr) {
 		log.info("mLoginProc()");
-		System.out.println(member);
 		
 		String view = mServ.mLogin(member, session, rttr);
 		return view;
@@ -198,7 +202,7 @@ public class HomeController {
 			return view;
 		}
 
-	// 일반회원 로그아웃 
+		// 일반회원 로그아웃 
 	@GetMapping("mLogout")
 	public String mLogout(HttpServletRequest request, RedirectAttributes rttr) {
 	    log.info("mLogout()");
@@ -207,14 +211,12 @@ public class HomeController {
 	    HttpSession session = request.getSession(false); // false 플래그는 새로운 세션이 생성되지 않도록 합니다.
 
 	    if (session != null && session.getAttribute("mLogin") != null) {
-	        // 세션이 비어있지 않을 때 로그아웃 처리
+	    	// 세션이 비어있지 않을 때 로그아웃 처리
 	        session.invalidate();
-	        System.out.println(session);
 	        msg = "로그아웃 되었습니다. 감사합니다.";
 	        
 	    } else {
-	        // 이미 로그아웃 되어있거나 세션이 없는 경우
-	    	System.out.println(session);
+	    	// 이미 로그아웃 되어있거나 세션이 없는 경우
 	    	msg = "이미 로그아웃 되어 있습니다.";
 	        
 	    }
@@ -232,7 +234,7 @@ public class HomeController {
 		MemberDto logInInfo = (MemberDto) session.getAttribute("mLogin");
 		
 		if (logInInfo != null && session.getAttribute("mLogin") != null) {
-	        // 로그인한 회원 정보를 모델에 추가하여 JSP로 전달
+			// 로그인한 회원 정보를 모델에 추가하여 JSP로 전달
 	        model.addAttribute("mLogInInfo", logInInfo);
 	        	        	        	        
 	}
@@ -246,7 +248,6 @@ public class HomeController {
 			HttpSession session,
 			RedirectAttributes rttr) {
 		log.info("updateProc()");
-		System.out.println("mUpdate에서 넘어온 dto"+member);
 		String view = mServ.memberUpdate(files, member, session, rttr);
 		
 		return view;
@@ -260,7 +261,7 @@ public class HomeController {
 		
 		String view = mServ.mDelete(memberId,session,rttr);
 		if (session != null && session.getAttribute("mLogin") != null) {
-	        // 탈퇴 후 세션에 저장되어있는 값 삭제
+			// 탈퇴 후 세션에 저장되어있는 값 삭제
 	        session.invalidate();
 	    }
 

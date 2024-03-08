@@ -24,8 +24,6 @@
 				<br>
 				<button class="small-button" id="backbtn">홈으로 돌아가기</button>
 			</div>
-
-
 		</div>
 		<jsp:include page="footer.jsp" />
 	</div>

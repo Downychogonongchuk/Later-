@@ -133,12 +133,12 @@ public class CustomerController {
 		public String cUpdate(Model model,HttpSession session) {
 			log.info("cUpdate()");
 			
-			CustomerDto logInInfo = (CustomerDto) session.getAttribute("login");
-			
-			if (logInInfo != null && session.getAttribute("login") != null) {
+			CustomerDto cLogInInfo = (CustomerDto) session.getAttribute("cLogin");
+			System.out.println(cLogInInfo);
+			if (cLogInInfo != null && session.getAttribute("cLogin") != null) {
 		        // 로그인한 회원 정보를 모델에 추가하여 JSP로 전달
-		        model.addAttribute("cLogInInfo", logInInfo);
-		        	        	        	        
+		        model.addAttribute("cLogInInfo", cLogInInfo);
+		        System.out.println(cLogInInfo);
 		}
 			return "cUpdate";
 	}
@@ -150,7 +150,6 @@ public class CustomerController {
 				HttpSession session,
 				RedirectAttributes rttr) {
 			log.info("cUpdateProc()");
-			System.out.println("cUpdate에서 넘어온 dto"+customer);
 			String view = cServ.customerUpdate(files, customer, session, rttr);
 			
 			return view;
@@ -182,12 +181,10 @@ public class CustomerController {
 		    if (session != null && session.getAttribute("cLogin") != null) {
 		        // 세션이 비어있지 않을 때 로그아웃 처리
 		        session.invalidate();
-		        System.out.println(session);
 		        msg = "로그아웃 되었습니다. 감사합니다.";
 		        
 		    } else {
 		        // 이미 로그아웃 되어있거나 세션이 없는 경우
-		    	System.out.println(session);
 		    	msg = "이미 로그아웃 되어 있습니다.";
 		        
 		    }

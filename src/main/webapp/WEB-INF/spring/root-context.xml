@@ -13,8 +13,8 @@
 	<!-- DB 처리용 객체 -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
-		<property name="url" value="jdbc:mysql://127.0.0.1:3306/db_test"/>
-		<property name="username" value="root"/>
+		<property name="url" value="jdbc:mysql://192.168.0.122/later"/>
+		<property name="username" value="later"/>
 		<property name="password" value="1234"/>
 	</bean>
 	

@@ -55,7 +55,7 @@
                 <!-- 파일 입력 처리 영역 -->
                  <div class="filebox">
                 <label for="file">업체 사진</label>
-                <input type="file" name="files" id="file">
+                <input type="file" name="files" id="file"> 
                 <input type="text" class="upload-name" value="파일명" readonly>
             </div>
             <!-- 변경할 업체 정보 입력 -->
@@ -63,10 +63,10 @@
             autofocus value="${board.customerId}">
             <input type="hidden" class="write-input" name="boardId"
             autofocus value="${board.boardId}">
-            <input type="text" class="write-input" name="periodStart"
-            autofocus value="${board.periodStart}" placeholder="모집시작일ex)2024-02-00">
-            <input type="text" class="write-input" name="periodEnd"
-                   autofocus value="${board.periodEnd}" placeholder="모집종료일ex)2024-02-00">
+            <input type="datetime-local" class="write-input" name="periodStart"
+            autofocus value="${board.periodStart}" required="required">
+            <input type="datetime-local" class="write-input" name="periodEnd"
+                   autofocus value="${board.periodEnd}" required="required">
             <input type="text" class="write-input" name="personnel"
                    value="${board.personnel}" placeholder="모집인원">
             <input type="hidden" class="write-input" name="companyName"
@@ -85,7 +85,8 @@
              <h4>제공 가격</h4>  -->
              <input type="hidden" class="write-input" name="provideType"
                    autofocus value="무료" placeholder="제공가격">
-            
+            <input type="hidden" class="write-input" name="hits"
+            		autofocus value="${board.hits}">
 			
             <div class="btn-area">
                 <input type="submit" class="btn-write" value="수정완료">

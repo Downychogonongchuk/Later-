@@ -53,7 +53,6 @@ public class ReservationService {
 		// 세션을 사용하여 필요한 작업을 수행합니다.
 
 		rttr.addFlashAttribute("msg", msg);
-		System.out.println(msg);
 
 		return view;
 	}
@@ -76,28 +75,27 @@ public class ReservationService {
 		pMap.put("memberId11", memberId11);
 
 		List<BoardDto> bList = rDao.getBoardListBymemberId(pMap);
-		System.out.println("bList" + bList);
 		model.addAttribute("bList", bList);
-
+		
 		// 페이징 처리
-		String pageHtml = getPaging(pageNum, listCnt);
+		String pageHtml = getPagingApplyList(memberId11,pageNum, listCnt);
 		model.addAttribute("paging", pageHtml);
-
 		session.setAttribute("pageNum", pageNum);
 
 		return "applyCompany";
 	}
 	// 페이징
-	private String getPaging(Integer pageNum, Integer listCnt) {
+	private String getPagingApplyList(Integer memberId11, Integer pageNum, Integer listCnt) {
 		String pageHtml = null;
 
 		// 신청한 업체 개수
-		int maxNum = rDao.cntBoard();
+		int maxNum = rDao.cntBoardByApplyList(memberId11);
 		// 페이지 당 보여질 번호 개수
-		int pageCnt = 2;
+		int pageCnt = 5;
 
-		PagingUtil paging = new PagingUtil(maxNum, pageCnt, listCnt, pageCnt);
-
+		String urlName = "applyCompany";
+		
+		PagingUtil paging = new PagingUtil(maxNum, pageCnt, listCnt, pageCnt, urlName);
 		pageHtml = paging.makePaging();
 
 		return pageHtml;
@@ -123,27 +121,26 @@ public class ReservationService {
 		return rList;
 	}
 	
-	// 신청 진행 상태 
-	public String updateStatus(Integer reservationId, String status, Model model, RedirectAttributes rttr) {
-		log.info("updateStatus()");
+	// 신청 진행 상태 (확정 or 거절)
+	public String updateStatus(Integer reservationId, Integer boardId, String status, Model model, RedirectAttributes rttr) {
+		log.info("updateStatus()1");
 		String view = null;
 		String msg = null;
-		
 		if("확정".equals(status)) {
 			Map<String, Object> pMap = new HashMap<>();
 			pMap.put("reservationId", reservationId);
 			pMap.put("status", status);
 			
 			rDao.updateStatus(pMap);
-			view = "redirect:selectApply ";
+			view = "redirect:/selectApply?boardId=" + boardId;
 			msg = "신청한 회원을 확정하였습니다.";
-		} else {
+		} else if("거절".equals(status)){
 			Map<String, Object> pMap = new HashMap<>();
 			pMap.put("reservationId", reservationId);
 			pMap.put("status", status);
 			
 			rDao.updateStatus(pMap);
-			view = "redirect:selectApply";
+			view = "redirect:/selectApply?boardId=" + boardId;
 			msg = "신청한 회원을 거절하였습니다.";
 		}
 

@@ -29,7 +29,7 @@
 	</div>
 	<div class="login-signin">
 		<a class="link" href="myPage">마이페이지</a>
-		<a class="link" href="writeFrm">업체등록</a>
+		<a class="link" href="writeFrm">모집글등록</a>
 		<a class="link" href="cLogout">로그아웃</a>
 	</div>
 </div>

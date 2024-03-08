@@ -13,6 +13,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.icia.later.dao.BoardDao;
 import com.icia.later.dao.CustomerDao;
+import com.icia.later.dao.ReservationDao;
+import com.icia.later.dto.BoardDto;
 import com.icia.later.dto.CustomerDto;
 import com.icia.later.dto.MemberDto;
 
@@ -23,6 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 public class CustomerService {
 	@Autowired CustomerDao cDao;
 	@Autowired BoardDao bDao;
+	@Autowired ReservationDao rDao;
 	
 	public String cEmailCheck(String customerEmailCheck) {
 		log.info("customerEmailCheck()");
@@ -100,7 +103,6 @@ public class CustomerService {
 			String msg = null;
 			String view = null;
 			CustomerDto loggedInCustomer = cDao.login(customer);
-			System.out.println(loggedInCustomer);
 			
 			if (loggedInCustomer != null) {
 				msg = "로그인 성공";
@@ -109,7 +111,6 @@ public class CustomerService {
 				System.out.println(loggedInCustomer);
 				// 로그인시 세션에 저장
 				session.setAttribute("cLogin", loggedInCustomer);
-				System.out.println(loggedInCustomer);
 
 			} else {
 				msg = "이메일 및 비밀번호를 다시 확인해주세요.";
@@ -117,7 +118,6 @@ public class CustomerService {
 			}
 
 			rttr.addFlashAttribute("msg", msg);
-			System.out.println(msg);
 
 			return view;
 		}
@@ -128,6 +128,7 @@ public class CustomerService {
 			String msg = null;
 			String view = null;
 			String poster = customer.getCustomerProfile();// 기존파일(포스터)
+			System.out.println(customer);
 			
 			try {
 				if (!files.get(0).isEmpty()) {
@@ -139,7 +140,6 @@ public class CustomerService {
 					}
 				}
 				cDao.updateCustomer(customer);
-				System.out.println("cServ" + customer);
 
 				view = "redirect:/"; // + member.getMemberId();
 				msg = "수정 성공";
@@ -177,9 +177,18 @@ public class CustomerService {
 
 			try {
 				if (loginInfo != null) {
+					// 사업자가 등록한 업체 리스트 가져오기
+					List<BoardDto> board = bDao.selectCompanyListByCustomerId(id);
+					for(BoardDto boardDto : board) {
+						Integer boardId = boardDto.getBoardId();
+						// 사업자가 등록한 업체의 예약 삭제
+						rDao.deleteReservation(boardId);
+						
+					}
+					// 사업자가 등록한 업체 삭제
 					bDao.deleteCompanyList(id);
+					// 사업자 탈퇴
 					cDao.deleteCustomer(id);
-					System.out.println("cServ" + id);
 
 					view = "redirect:/"; 
 					msg = "탈퇴 성공";
@@ -203,7 +212,6 @@ public class CustomerService {
 		    System.out.println(customer);
 		    String msg = null;
 		    CustomerDto EmailResult = cDao.FindById(customer);
-		    System.out.println(EmailResult);
 		    
 		    if(EmailResult == null) {
 		        msg = "가입된 정보가 없습니다 다시 확인해주세요.";
@@ -221,7 +229,6 @@ public class CustomerService {
 				    System.out.println(customer);
 				    String msg = null;
 				    CustomerDto PassResult = cDao.FindByPass(customer);
-				    System.out.println(PassResult);
 				    
 				    if(PassResult == null) {
 				        msg = "가입된 정보가 없습니다 다시 확인해주세요.";
@@ -236,7 +243,6 @@ public class CustomerService {
 				//사업자회원 비밀번호 처리 메서드
 				public String cUpdatePassProc(CustomerDto customer,RedirectAttributes rttr) {
 					log.info("cUpdatePassProc()");
-					System.out.println(customer);
 					String msg = null;
 					String view = null;
 					cDao.cUpdatePassProc(customer);

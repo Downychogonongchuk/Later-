@@ -4,7 +4,7 @@
 <%@ page session="false"%>
 <html>
 <head>
-<title>Home</title>
+<title>마이페이지</title>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 <link rel="stylesheet"
@@ -95,16 +95,13 @@
 					</div>
 					<div class="div-box">
 					<div>
-						<a href="mUpdate">회원정보수정</a>
+						<a href="cUpdate">회원정보수정</a>
 					</div>
 					<div>
 						<a href="companyList?customerId=${cLogInInfo.customerId}">내가 모집한글</a>
 					</div>
 					<div>
-						<a href="writeFrm">업체 등록</a>
-					</div>
-					<div>
-						<a href="bUpdate">업체 수정</a>
+						<a href="writeFrm">모집글 등록</a>
 					</div>
 					<div>
 						<a href="cDelete">회원탈퇴</a>

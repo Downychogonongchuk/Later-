@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.icia.later.dao.ReviewDao">
+ 	<!--  <select id="getReview" resultType="review"
+ 		parameterType="Integer">
+ 		SELETE * FROM review
+ 		WHERE reviewId = #{reviewId}
+ 	</select> -->
+ 	
+ 	<!-- 리뷰 작성 -->
+ 	<insert id="insertReview" parameterType="review">
+ 		INSERT INTO review (reviewFile, reviewTitle ,time, reviewLink, contents, memberId)
+ 		VALUES (#{reviewFile}, #{reviewTitle}, #{time}, #{reviewLink}, #{contents}, #{memberId})
+ 	</insert>
+ 	
+ 	<!-- 리뷰 작성 리스트 가져오기 -->
+ 	<select id="getReviewList" resultType="review"
+ 		parameterType="HashMap"> 
+ 		SELECT * FROM review
+ 		LIMIT #{pageNum}, #{listCnt}
+ 	</select>
+ 	
+ 	<!-- 리뷰 정보 가져오기 -->
+ 	<select id="selectReview" parameterType="Integer"
+ 		resultType="review">
+ 		SELECT * 
+ 		FROM review
+ 		WHERE reviewId=#{reviewId}
+ 	</select>
+ 	
+ 	<!-- 회원탈퇴시 멤버id null로 변경 -->
+ 	<update id="deleteReview" parameterType="Integer">
+ 	UPDATE review
+	SET memberId = NULL
+	WHERE memberId = #{memberId}
+	</update>
+ </mapper>

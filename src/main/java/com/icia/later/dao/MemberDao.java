@@ -32,4 +32,10 @@ public interface MemberDao {
 		
 		// 비밀번호 업데이트
 		void mUpdatePassProc(MemberDto member);
+		
+		// 리뷰를 작성한 회원 정보 가져오기
+		MemberDto getReviewByMemberId(Integer memberId);
+		
+		// 예약한 회원의 정보 가져오기
+		MemberDto getReservationByMemberId(Integer memberId);
 }

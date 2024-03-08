@@ -3,34 +3,42 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.icia.later.dao.BoardDao">
-	
+
 	<!-- 모집글 등록 -->
 	<insert id="insertBoard" parameterType="board">
-		INSERT INTO board ( category,companyName,periodStart, periodEnd,personnel,price,provideType,detail,checkInfo,
-		boardFile, customerId)
-		
-		VALUES (#{category},#{companyName},#{periodStart}, #{periodEnd}, #{personnel}, 
-				#{price}, #{provideType},#{detail}, #{checkInfo}, 
-				 #{boardFile}, #{customerId})
+		INSERT INTO board (
+		category,companyName,periodStart,
+		periodEnd,personnel,price,provideType,detail,checkInfo,
+		boardFile,
+		customerId, hits)
+
+		VALUES (#{category},#{companyName},#{periodStart}, #{periodEnd},
+		#{personnel},
+		#{price}, #{provideType},#{detail}, #{checkInfo},
+		#{boardFile}, #{customerId}, #{hits})
 	</insert>
-	
-		<!--업체 수정  -->
+
+	<!--업체 수정 -->
 	<update id="updateBoard" parameterType="board">
 		UPDATE board
-		INNER JOIN customer ON board.customerId = customer.customerId
-		SET board.periodStart=#{periodStart}, board.periodEnd=#{periodEnd}, 
-		board.personnel=#{personnel}, board.detail=#{detail}, 
-		board.checkInfo=#{checkInfo}, board.price=#{price}, 
-		board.boardFile=#{boardFile}, board.category=#{category}, board.customerId=#{customerId}
-		WHERE board.boardId = #{boardId}
+		SET boardId=#{boardId},
+		category=#{category}, companyName=#{companyName},
+		periodStart=#{periodStart}, periodEnd=#{periodEnd},
+		personnel=#{personnel}, price=#{price},
+		provideType=#{provideType}, detail=#{detail}, 
+		checkInfo=#{checkInfo}, boardFile=#{boardFile}, 
+		hits=#{hits}, customerId=#{customerId}
+		WHERE boardId = #{boardId}
 	</update>
 	<!-- 업체 삭제 -->
-	<delete id="deleteBoard" parameterType="Integer">
-		DELETE FROM board WHERE boardId = #{boardId}
+	<delete id="deleteBoard" parameterType="HashMap">
+		DELETE FROM board WHERE
+		boardId = #{pMap.boardId} AND customerId = #{pMap.customerId}
 	</delete>
 	<!-- 수정할 업체 불러오기 -->
 	<select id="getBoardList" resultType="board">
-		SELECT * FROM board
+		SELECT * FROM board ORDER
+		BY hits DESC
 	</select>
 
 	<!-- 상세 모집글 -->
@@ -39,16 +47,16 @@
 		select * from board
 		where boardId=#{boardId}
 	</select>
-	
-	
+
+
 	<!-- 신청한 글 목록 -->
 	<select id="applyCompany" parameterType="Integer"
 		resultType="board">
 		select * from board
 		where boardId=#{boardId}
 	</select>
-	
-	<!-- 내가 모집한 글 목록-->
+
+	<!-- 내가 모집한 글 목록 -->
 	<select id="getBoardListBycustomerId" parameterType="HashMap"
 		resultType="board">
 		select * from board
@@ -57,9 +65,59 @@
 		#{pMap.listCnt}
 	</select>
 	
+	<!-- 내가 모집한 글 목록 수 계산 -->
+	<select id="cntBoardByBoardList" parameterType="Integer" resultType="Integer">
+		select count(*) from board
+		where customerId=#{customerId}
+	</select>
+
 	<!-- 사업자 탈퇴시 모집한글 삭제 -->
 	<delete id="deleteCompanyList" parameterType="Integer">
-		DELETE FROM board WHERE customerId = #{customerId}
+		DELETE FROM board
+		WHERE customerId = #{customerId}
 	</delete>
 	
+	<!-- comingsoon 업체 리스트 -->
+	<select id="getComingList" resultType="board">
+		SELECT *
+		FROM board
+		WHERE periodStart > CURDATE()
+		AND periodStart != CURDATE()
+		order by periodStart asc;
+	</select>
+
+	<!-- 업체 예약자 수 수정 -->
+	<update id="updateHits" parameterType="HashMap">
+		UPDATE board
+		SET hits=#{pMap.hits}
+		WHERE boardId=#{pMap.boardId}
+	</update>
+	
+	<!-- 카테고리별 게시글 목록 조회 -->
+	<select id="getBoardListByCategory" parameterType="HashMap" resultType="board">
+		select * from board
+		where category=#{cateNum}
+		limit #{pageNum}, #{listCnt}
+	</select>
+	
+	<!-- 카테고리에 속하는 게시글 수 계산 -->
+	<select id="cntBoardByCategory" parameterType="Integer" resultType="Integer">
+		select count(*) from board
+		where category=#{cateNum}
+	</select>
+	
+	<!-- 사업자가 등록한 업체 리스트 -->
+		<select id="selectCompanyListByCustomerId" parameterType="Integer"
+		resultType="board">
+		SELECT * FROM board WHERE customerId=#{customerId}
+	</select>
+	
+	<!-- 회원이 예약한 업체 리스트 -->
+	<select id="getBoardListByBoardId" parameterType="Integer"
+		resultType="board">
+		SELECT * FROM board
+		WHERE boardId=#{boardId}	
+	</select>
 </mapper>
+
+
